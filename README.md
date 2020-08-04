@@ -20,7 +20,7 @@ Ethereum:
 
 Quest Chat JS is the first fully featured, publicly auditable decentralized, end-to-end encrypted messenger to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js) and the Quest Network Whistle ID Protocol among other dependencies. We're planning to integrate payments soon, so you can send each other money!
 
-Quest Chat JS works in the browser and as an app on Windows, Mac and Linux and as a chromium app on iOS and Android.
+Quest Chat JS works in the browser, as an Electron on Windows, Mac and Linux and as a Chromium on iOS and Android.
 
 ## Installation & Usage
 
