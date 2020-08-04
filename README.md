@@ -1,4 +1,6 @@
 # Quest Chat JS
+> I'm currently debugging the master branch, so y'all can build and test with no issues, I'll commit it within the next 24 hours. 
+
 > The first fully featured, publicly auditable decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps out there.
 
 ## Lead Maintainer
