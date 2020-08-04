@@ -6,7 +6,7 @@
 [StationedInTheField](https://github.com/StationedInTheField)
 
 ## Please Donate
-This project is a lot of work but unfortunately we have to eat and pay rent, we'd be thrilled if you could send us a small donation to:
+This project is a lot of work and unfortunately we have to eat and pay rent, we'd be thrilled if you could send us a small donation to:
 
 Bitcoin: bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq
 Ethereum: 0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E
