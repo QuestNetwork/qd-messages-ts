@@ -1,7 +1,7 @@
 # Quest Chat JS
 > I'm currently debugging the master branch, so y'all can build and test with no issues, I'll commit it within the next 24 hours. 
 
-> The first fully featured, publicly auditable decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps out there.
+> The first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps out there.
 
 ## Lead Maintainer
 
@@ -18,7 +18,7 @@ Ethereum:
 
 ## Description
 
-Quest Chat JS is the first fully featured, publicly auditable decentralized, end-to-end encrypted messenger to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js) and the Quest Network Whistle ID Protocol among other dependencies. We're planning to integrate payments soon, so you can send each other money!
+Quest Chat JS is the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js) and the Quest Network Whistle ID Protocol among other dependencies. We're planning to integrate payments soon, so you can send each other money!
 
 Quest Chat JS works in the browser, as an Electron on Windows, Mac and Linux and as a Chromium on iOS and Android.
 
