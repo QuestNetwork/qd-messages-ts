@@ -27,7 +27,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 1.0.0:
 - Encrypted P2P File Transfer (it's in beta in the current version)
-- Emojis
+- Unlimited Custom Emojis
 - Private Chats (open a private channel with someone on the user list of a channel you're in)
 - Ethereum Integration
 
