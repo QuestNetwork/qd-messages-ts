@@ -1,5 +1,5 @@
 # Quest Messenger JS
-> We're working hard on a working build, it's coming soon...
+> We're working hard on a working build of the master branch, it's coming soon...
 
 > The first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps out there.
 
