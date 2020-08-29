@@ -51,9 +51,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 1.0.0:
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 - Inline Preview For Media Files And Links (images, videos, etc)
+- Unlimited Custom Emojis
 - Private Channels Extendable To Groups (background create and join)
 - Ethereum Payment Integration
-- Unlimited Custom Emojis
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 2.0.0:
