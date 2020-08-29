@@ -30,12 +30,23 @@ Please use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test an
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
 
+## Features
+
+0.9.1:
+- Encrypted Channels 
+- Organize Channels By Transport Like Project Folders In Atom
+- Does not depend on the internet. 
+- Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
+- Export Themes 
+- Export Settings
+- Export Message Histories
+
 ## Roadmap
 
 1.0.0:
-- Encrypted P2P File Transfer (it's in beta in the current version)
+- Encrypted P2P File Transfer (beta in the current version)
 - Unlimited Custom Emojis
-- Private Chats (open a private channel with someone on the user list of a channel you're in)
+- Private Chats (open a private channel with someone on the user list of a channel you're in, beta in current version)
 - Sync Message History (like syncing the ethereum blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 - Ethereum Integration
 
