@@ -35,7 +35,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 0.9.1:
 - Does not depend on the internet
 - Encrypted Channels 
-- Private Channels (open a private channel with someone on the user list of a channel you're in, beta in current version)
+- Private Channels (open a private channel with someone on the participant list of a channel)
+- Encrypted P2P File Transfer 
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Export Themes 
@@ -45,7 +46,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 1.0.0:
-- Encrypted P2P File Transfer (beta in the current version)
 - Unlimited Custom Emojis
 - Sync Message History (like syncing the ethereum blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 - Ethereum Integration
