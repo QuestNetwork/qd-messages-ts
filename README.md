@@ -54,7 +54,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Private Channels Extendable To Groups (background create and join)
 - Ethereum Payment Integration
-- Sync Message History (like syncing the ethereum blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
+- Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 2.0.0:
 - Parenting (reply to channel and private messages)
