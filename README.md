@@ -62,6 +62,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - ChainLink Integration
 
 3.0.0:
+- OpenAI GPT3 Integration For Suggestions, AutoRespond And Completion
 - Bitcoin Integration
 - Monero Integration
 - Share Screen
