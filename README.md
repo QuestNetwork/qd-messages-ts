@@ -40,8 +40,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Private P2P Channels (open a private channel with someone on the participant list of a channel)
 - Encrypted P2P File Transfer 
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
-- Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - AutoSave For Settings And Message Histories
+- Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Export Themes 
 - Export Settings
 - Export Message Histories
