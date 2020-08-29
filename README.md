@@ -59,9 +59,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 2.0.0:
 - Parenting (reply to channel and private messages)
 - [OpenAI GPT3](https://en.wikipedia.org/wiki/GPT-3) Integration For Suggestions, AutoRespond And Completion
-
+- Quest Network Widgets (plug-in that connects the messenger to other apps, for example collaborative illustration in Inkscape)
 
 3.0.0:
 - Modular Crypto Currency Integration (presets for Bitcoin, Monero and Chainlink)
-- Quest Network Widgets (the quest widget lets you start quests straight from the messenger)
 - Share Screen
