@@ -41,6 +41,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted P2P File Transfer 
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
+- AutoSave For Settings And Message Histories
 - Export Themes 
 - Export Settings
 - Export Message Histories
