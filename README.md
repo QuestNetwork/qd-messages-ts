@@ -37,8 +37,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Does not depend on centralized servers
 - No static external address or port forwarding necessary
 - Messages are signed using a P-521 keypair
-- Encrypted P2P Channels (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
-- Private Encrypted P2P Channels (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
+- Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
+- Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings And Message Histories
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
