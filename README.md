@@ -50,17 +50,17 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 1.0.0:
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
-- Unlimited Custom Emojis
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Private Channels Extendable To Groups (background create and join)
 - Ethereum Payment Integration
+- Unlimited Custom Emojis
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 2.0.0:
 - Parenting (reply to channel and private messages)
 - [OpenAI GPT3](https://en.wikipedia.org/wiki/GPT-3) Integration For Suggestions, AutoRespond And Completion
-- Quest Network Widgets (plug-in that connects the messenger to other apps, for example collaborative illustration in Inkscape)
 
 3.0.0:
+- Quest Network Widgets (plug-in that connects the messenger to other apps, for example collaborative illustration in Inkscape)
 - Modular Crypto Currency Integration (presets for Bitcoin, Monero and Chainlink)
 - Share Screen
