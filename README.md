@@ -35,6 +35,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 0.9.1:
 - Does not depend on the internet
 - Does not depend on centralized servers
+- No static external address or port forwarding necessary
 - Encrypted P2P Channels 
 - Private P2P Channels (open a private channel with someone on the participant list of a channel)
 - Encrypted P2P File Transfer 
