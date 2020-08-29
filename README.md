@@ -37,7 +37,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Does not depend on centralized servers
 - No static external address or port forwarding necessary
 - Encrypted P2P Channels 
-- Private P2P Channels (open a private channel with someone on the participant list of a channel)
+- Private Encrypted P2P Channels (open a private channel with someone on the participant list of a channel)
 - Encrypted P2P File Transfer 
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings And Message Histories
@@ -49,21 +49,19 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 1.0.0:
+- P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 - Unlimited Custom Emojis
 - Inline Display For Media (images, videos, etc)
-- Sync Message History (like syncing the ethereum blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
+- Private Channels Extendable To Groups (background create and join)
 - Ethereum Integration
-
+- Sync Message History (like syncing the ethereum blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 2.0.0:
-- Private Channels Extendable To Groups (background create and join)
 - Parenting (reply to channel and private messages)
-- Audio/Video
-
-3.0.0:
 - [OpenAI GPT3](https://en.wikipedia.org/wiki/GPT-3) Integration For Suggestions, AutoRespond And Completion
 
-4.0.0
+
+3.0.0:
 - Modular Crypto Currency Integration (presets for Bitcoin, Monero and Chainlink)
 - Quest Network Widgets (the quest widget lets you start quests straight from the messenger)
 - Share Screen
