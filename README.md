@@ -36,6 +36,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted P2P File Transfer (it's in beta in the current version)
 - Unlimited Custom Emojis
 - Private Chats (open a private channel with someone on the user list of a channel you're in)
+- Sync Message History (like syncing the ethereum blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify it)
 - Ethereum Integration
 
 
