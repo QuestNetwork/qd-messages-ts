@@ -49,10 +49,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 1.0.0:
+- Private Channels Extendable To Groups (background create and join)
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Unlimited Custom Emojis
-- Private Channels Extendable To Groups (background create and join)
 
 1.5.0
 - Ethereum Payment Integration
