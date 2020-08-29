@@ -56,7 +56,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 
 2.0.0:
-- Private Channels Extendable to Groups
+- Private Channels Extendable To Groups (background create and join)
 - Parenting (reply to channel and private messages)
 - Audio/Video
 - ChainLink Integration
