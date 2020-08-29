@@ -36,7 +36,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Does not depend on the internet
 - Encrypted Channels 
 - Private Channels (open a private channel with someone on the user list of a channel you're in, beta in current version)
-- Organize Channels By Transport/Protocol (like project folders in Atom)
+- Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Export Themes 
 - Export Settings
