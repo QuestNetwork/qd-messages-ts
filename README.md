@@ -53,6 +53,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Unlimited Custom Emojis
 - Private Channels Extendable To Groups (background create and join)
+
+1.5.0
 - Ethereum Payment Integration
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
