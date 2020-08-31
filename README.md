@@ -22,7 +22,7 @@ The Quest Messenger is the first fully featured, multi-platform, publicly audita
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code.
 
-The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and as a Chromium on iOS and Android.
+The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
 ## Installation & Usage
 
