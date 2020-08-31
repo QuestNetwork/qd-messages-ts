@@ -39,7 +39,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Light & Dark Mode
 - Messages are signed using a P-521 EC keypair
 - Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
-- Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings And Message Histories
 - Export Settings
@@ -47,6 +46,11 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 0.9.2:
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
+
+0.9.3:
+- Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
+
+0.9.4:
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Export Themes 
 
