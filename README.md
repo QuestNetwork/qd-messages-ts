@@ -32,7 +32,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 ## Features
 
-0.9.1:
+**0.9.1**
 - Does not depend on the internet
 - Does not depend on centralized servers
 - No static external address or port forwarding necessary
@@ -44,33 +44,33 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Export Settings
 - Export Message Histories
 
-0.9.2:
+**0.9.2**
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 
-0.9.3:
+**0.9.3**
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 
-0.9.4:
+**0.9.4**
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Export Themes 
 
 ## Roadmap
 
-1.0.0:
+**1.0.0**
 - Private Channels Extendable To Groups (background create and join)
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Unlimited Custom Emojis
 
-1.5.0
+**1.5.0**
 - Ethereum Payment Integration
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
-2.0.0:
+**2.0.0**
 - Parenting (reply to channel and private messages)
 - [OpenAI GPT3](https://en.wikipedia.org/wiki/GPT-3) Integration For Suggestions, AutoRespond And Completion
 
-3.0.0:
+**3.0.0**
 - Quest Network Widgets (plug-in that connects the messenger to other apps, for example collaborative illustration in Inkscape)
 - Modular Crypto Currency Integration (presets for Bitcoin, Monero and Chainlink)
 - Share Screen
