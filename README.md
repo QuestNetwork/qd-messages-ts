@@ -59,7 +59,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.4**
 - Light Mode
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
-- Export Themes 
+- Import/Export Themes 
 
 ## Roadmap
 
