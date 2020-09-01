@@ -30,6 +30,9 @@ Please use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test an
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
 
+## Warning
+**THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE!**
+
 ## Features
 
 **0.9.0**
@@ -41,6 +44,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings
+
+## Roadmap
 
 **0.9.1**
 - AutoSave For Message Histories
@@ -61,8 +66,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Light Mode
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Import/Export Themes 
-
-## Roadmap
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
