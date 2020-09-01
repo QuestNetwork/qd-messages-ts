@@ -41,6 +41,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings And Message Histories
+- Join/Create Channels
+- Export Channel Groups
 
 **0.9.2**
 - Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
