@@ -43,7 +43,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - AutoSave For Settings And Message Histories
 
 **0.9.2**
-- Invite Only Channels (Generate Tokens To Invite Users Instead Of Challenging Them)
+- Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 
 **0.9.3**
