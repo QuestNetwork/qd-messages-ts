@@ -44,7 +44,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.1**
 - AutoSave For Message Histories
-- Join/Create Channels
+- Join/Create Custom Channels
 - Export Channel Groups
 
 **0.9.2**
