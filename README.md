@@ -32,7 +32,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 ## Features
 
-**0.9.1**
+**0.9.0**
 - Does not depend on the internet
 - Does not depend on centralized servers
 - No static external address or port forwarding necessary
@@ -40,7 +40,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Messages are signed using a P-521 EC keypair
 - Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
-- AutoSave For Settings And Message Histories
+- AutoSave For Settings
+
+**0.9.1**
+- AutoSave For Message Histories
 - Join/Create Channels
 - Export Channel Groups
 
@@ -61,6 +64,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **1.0.0**
+- Third Party Dependencies Audited, Security Issues Fixed
 - Private Channels Extendable To Groups (background create and join)
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 - Inline Preview For Media Files And Links (images, videos, etc)
