@@ -44,6 +44,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.1**
 - AutoSave For Message Histories
+- Ban Channel Participants By Generating New Channel Names (ask representatives for the new channel name, banned participants are refused)
 - Join/Create Custom Channels
 - Import/Export Channel Groups
 
