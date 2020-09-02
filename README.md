@@ -57,19 +57,19 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.1**
-- AutoSave For Message Histories
-- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
-- Alias (show custom name instead of pub key)
 - Join/Create Custom Channels
 - Import/Export Channel Groups
-- Pair with participants by sharing public keys in person (scanning qr codes of the keys/channels)
+- Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
 
 **0.9.2**
-- Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
-- Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
+- AutoSave For Message Histories
+- Pair with participants by sharing public keys in person (scanning qr codes of the keys/channels)
+- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
+- Alias (show custom name instead of pub key)
 
 **0.9.3**
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
+- Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Export Settings
 - Export Message Histories
 
