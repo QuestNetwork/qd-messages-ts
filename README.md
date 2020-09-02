@@ -18,8 +18,8 @@ Ethereum:
 
 ## Download
 
-| Platform | Download link | Download count
-|---------:|---------------|---------------
+| Platform | Download link                | 
+|---------:|------------------------------|
 | **Linux**  | [0.9.0.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0.9.0-linux.zip) 
 | **Mac**    | [0.9.0.app](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0-9-0-mac.zip) 
 
