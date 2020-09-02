@@ -95,14 +95,21 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Unlimited Custom Emojis
 
-**1.5.0**
-- Ethereum Payment Integration
-- Quick Response (from list or automated)
+**1.1.0**
+- QuickResponse (from list of possible responses)
+- AutoResponse (from quick responses)
+
+**1.2.0**
+- Parenting (reply to channel and private messages)
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
+**1.5.0**
+- Ethereum Payment Integration
+
 **2.0.0**
-- Parenting (reply to channel and private messages)
 - [OpenAI GPT3](https://en.wikipedia.org/wiki/GPT-3) Integration For Suggestions, AutoRespond And Completion
+
+**2.1.0**
 - Matrix Plugin to add Matrix rooms and communities
 
 **3.0.0**
