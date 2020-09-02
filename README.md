@@ -1,6 +1,4 @@
 # Quest Messenger JS
-> We're working hard on a working build of the master branch, it's coming soon...
-
 > The first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps out there.
 
 ![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/blob/master/doc/images/messages-locked-sidebars.png?raw=true)
