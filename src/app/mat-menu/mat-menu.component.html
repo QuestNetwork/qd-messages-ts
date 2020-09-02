@@ -1,0 +1,50 @@
+
+
+  <button mat-menu-item (click)="newJob()" *ngIf="!noJobLoadedFlag && !isElectron">
+    <mat-icon>undo</mat-icon>
+    <span>Reset</span>
+  </button>
+
+  <button mat-menu-item  *ngIf="!noJobLoadedFlag && isElectron">
+    <mat-icon>support</mat-icon>
+    <span>Help</span>
+  </button>
+
+<button mat-menu-item *ngIf="!noJobLoadedFlag && !publicKeyFlag" (click)="downloadKey('saveFile')">
+  <mat-icon>save_alt</mat-icon>
+  <span>Save As Draft</span>
+</button>
+
+<button mat-menu-item *ngIf="!noJobLoadedFlag && publicKeyFlag" (click)="downloadKey('saveFile')">
+  <mat-icon>save_alt</mat-icon>
+  <span>Download</span>
+</button>
+
+<button mat-menu-item (click)="closeWindow()" *ngIf="isElectron">
+  <mat-icon>close</mat-icon>
+  <span>Quit</span>
+</button>
+
+<!-- <button mat-menu-item *ngIf="noJobLoadedFlag">
+<mat-icon>tune</mat-icon>
+<span (click)="triggerOpenFileDialog()">
+  Node Settings
+</span>
+</button> -->
+<!-- <button mat-menu-item [disabled]="noJobLoadedFlag">
+  <mat-icon>lock_open</mat-icon>
+  <span>Sign In</span>
+</button> -->
+
+<!-- <button mat-menu-item>
+  <mat-icon>history</mat-icon>
+  <span>Job History</span>
+</button> -->
+<!-- <button mat-menu-item>
+  <mat-icon>attach_money</mat-icon>
+  <span>Credits</span>
+</button> -->
+<!-- <button mat-menu-item>
+  <mat-icon>lock</mat-icon>
+  <span>Sign Out</span>
+</button> -->

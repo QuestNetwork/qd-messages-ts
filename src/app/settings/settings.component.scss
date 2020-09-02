@@ -1,0 +1,145 @@
+.ramField{
+      width: 60px !important;
+}
+
+
+.driveField{
+      width: 60px !important;
+}
+
+
+.gpuTypeField{
+  width: 140px !important;
+
+}
+
+.gpuField{
+width: 110px !important;
+}
+
+
+.locationField{
+width: 115px !important;
+}
+
+.driveField{
+  width: 95px !important;
+}
+
+.softwareField{
+  width: 115px !important;
+}
+
+.vCpuField, .qualityField, .FrameField, .endFrameField{
+      width: 90px !important;
+}
+
+
+.BuyTicketButton{
+color: #40de55eb;
+}
+
+
+
+.creditsRow .creditCodeField{
+  min-width: 217px;
+  margin:20px;
+
+}
+
+.creditsRow {
+ margin-top: 10px;
+ margin-bottom:0px;
+ height:66px;
+}
+
+
+.creditsRow .creditField{
+  margin:20px;
+  margin-left:10px;
+  width: 100px;
+    text-align: right;
+    z-index:2 !important;
+}
+
+
+
+.ticketButtonWrapper{
+  // bottom: 88px;
+  top: 127px;
+  background: white;
+  position: absolute;
+  left: 402px;
+  padding-left: 10px;
+  z-index: 10;
+  width: 160px;
+}
+
+
+.refreshCreditIcon{
+  position: absolute;
+    display: inline;
+    /* left: 43px; */
+    top: 130px;
+    left: 298px;
+    color: #888888;
+    cursor:pointer;
+    z-index:3 !important;
+}
+
+.creditsInfoRow{
+  font-size:8px;
+  color:#555555a3;
+  margin-top: 0px;
+  margin-bottom:30px;
+}
+
+.credtisInfoText{
+  margin-top:5px;
+}
+
+
+
+.termsButton{
+  margin-right:20px;
+  float: right;
+  padding-right: 0px;
+      padding-left: 10px;
+      padding-bottom: 3px;
+top: -1px;
+}
+
+
+.termsCheckbox{
+    margin-right: 23px;
+}
+
+
+.clusterButton{
+    margin-left: 20px !important;
+    margin-bottom: 18px !important;
+    float: left;
+}
+
+
+
+::ng-deep .termsButton .mat-checkbox-ripple {
+  display: none !important;
+}
+
+
+
+.useTicketButton{
+  color:#851d9ce8;
+  margin-right:10px;
+  font-size: 12px;
+margin-right: 10px;
+padding: 0px;
+}
+
+.discardTicketButton{
+  color:#a21818bd;
+  font-size: 12px;
+margin-right: 10px;
+padding: 0px;
+}

@@ -1,0 +1,186 @@
+
+<div style="position:fixed;left:0px;top:0px;right:0px;bottom:0px;z-index:1000" *ngIf="screenLocked"></div>
+
+<div class="webWrapper" fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!isElectron">
+<div class="webContainer" style="width:610px;height:380px;overflow:hidden;">
+<div class="appWrapper" fxLayout="column" fxLayoutAlign="space-around center">
+  <mat-card class=" mat-elevation-z3 ">
+    <mat-tab-group #menuTabGroup (selectedTabChange)="selectedTabChanged($event);" dynamicHeight animationDuration="0ms">
+
+      <mat-tab label="Sign In"  class="signInTab" [disabled]="!tabAccessibility['signInTab']">
+        <app-sign-in *ngIf="!signedIn"></app-sign-in>
+      </mat-tab>
+
+      <mat-tab label="Messages"  class="channelTab" [disabled]="!tabAccessibility['channelTab']">
+
+        <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;" [hidden]="selectedChannel != channel">
+          <app-channel [channel]="channel"></app-channel>
+        </div>
+
+      </mat-tab>
+
+
+
+      <!-- <mat-tab label="Create" placeholder="createChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['createChannelTab']">
+        <app-channel channel="create"></app-channel>
+      </mat-tab>
+      <mat-tab label="Join" placeholder="joinChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['joinChannelTab']">
+        <app-channel channel="join"></app-channel>
+      </mat-tab> -->
+
+
+      <mat-tab label="Settings"  class="settingsTab" [disabled]="!tabAccessibility['settingsTab']">
+        <app-settings *ngIf="!ticketGenerator"></app-settings>
+      </mat-tab>
+
+
+    </mat-tab-group>
+
+    <app-load-hex></app-load-hex>
+
+
+  </mat-card>
+
+</div>
+</div>
+</div>
+
+<div class="webContainer" style="width:610px;height:380px;overflow:hidden;" *ngIf="isElectron">
+<div class="appWrapper" fxLayout="column" fxLayoutAlign="space-around center">
+  <mat-card class=" mat-elevation-z3 ">
+    <mat-tab-group #menuTabGroup (selectedTabChange)="selectedTabChanged($event);" dynamicHeight>
+
+      <mat-tab label="Sign In"  class="signInTab" [disabled]="!tabAccessibility['signInTab']">
+        <app-sign-in *ngIf="!signedIn"></app-sign-in>
+      </mat-tab>
+
+
+      <mat-tab label="Messages"  class="channelTab" [disabled]="!tabAccessibility['channelTab']">
+
+        <div *ngFor="let channel of channelNameList" class="channelWrapper" style="font-weight:900;">
+          <app-channel [channel]="channel" *ngIf="selectedChannel == channel"></app-channel>
+        </div>
+
+      </mat-tab>
+
+      <!-- <mat-tab label="Create" placeholder="createChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['createChannelTab']">
+        <app-channel channel="create"></app-channel>
+      </mat-tab>
+      <mat-tab label="Join" placeholder="joinChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['joinChannelTab']">
+        <app-channel channel="join"></app-channel>
+      </mat-tab> -->
+
+
+      <mat-tab label="Settings"  class="settingsTab" [disabled]="!tabAccessibility['settingsTab']">
+        <app-settings *ngIf="!ticketGenerator"></app-settings>
+      </mat-tab>
+
+
+    </mat-tab-group>
+
+    <app-load-hex></app-load-hex>
+
+
+  </mat-card>
+
+</div>
+</div>
+
+<div style="       position: fixed;
+    bottom: 0;
+    max-height: 28px;
+    height: 28px;
+
+        left: 0;
+    right: 0;
+    background-color: #2d2a2a;
+    z-index: 20;
+    font-size: 14px;
+    color: grey;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 1px solid black;" *ngIf="isElectron"><div style="float:left;padding-top: 3px;">
+      Connected
+    </div>
+    <div style="float:right;padding-top: 4px;">
+      <mat-icon style="    top: 4px;
+    margin: 0;
+    position: relative;
+    line-height: 10px;
+    font-size: 21px;">router</mat-icon>&nbsp;
+      {{ swarmPeers }}
+      &nbsp;
+      <nb-icon  icon="radio-outline" style="     top: -5px;
+    margin: 0;
+    margin-left: 5px;
+    position: relative;
+    line-height: 9px;
+    font-size: 17px;"></nb-icon>&nbsp;
+      {{ pubSubPeers }}
+      &nbsp;
+    </div></div>
+
+<div class="g-recaptcha mat-elevation-z3"  style="
+    position: fixed;
+    bottom: 2vh;
+    z-index: 1000;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    padding: 7px;
+    padding-bottom:0px;
+    overflow: hidden;
+    right: -7px;" id="reCaptchaV2"></div>
+
+
+
+<div class="web-top-links" style="position:fixed;top:13px;right:13px;cursor:pointer;z-index: 20;">
+
+  <a href="https://github.com/QuestNetwork/quest-messenger-js" target="_blank"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png' width=50></a>
+
+  </div>
+
+<div class='popup--machine-types'  *ngIf="popupVisible == 'terms'">
+<div class="popup-machine-types" *ngIf="popupVisible == 'terms'">
+<mat-card style="margin:auto;width:550px;height:100%;overflow-y:scroll;">
+
+  <img mat-card-image src="/assets/clusters.png">
+
+<mat-card-title class="popup-title" style="font-size: 32px;">Terms of Service</mat-card-title>
+
+<!-- <mat-card-subtitle class="popup-subtitle">Your Saved Codes:</mat-card-subtitle> -->
+<mat-card-content style="    margin: 20px;height:auto !important;">
+    By agreeing to the terms of service, you agree that you understand that you are using an unassisted beta version of a decentralized service.
+    You agree to assume full liability for the payment and render process and to therewith relief the developers and owners of this service from all liabilities.
+    You agree to take full responsibility for all risks involved, including for example damage to the device or disk you are using this service with.
+    In short: QuestNetwork Messenger.com comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.
+    <br>
+    Each swarm node runs an image recognition machine learning algorithm on the rendered frames. If your frame classifies as an offensive image or illegal content, your frame will
+    not be saved and we may choose to report you to the relevant authorities.
+    <br>
+    You can only access your render job as long as it's being propagated across the swarm, the job will automatically stop propagating across the swarm 24-72 hours after it was completed.
+    If your Render Job completed with errors (contained offensive frames), it may stop propagating immediately but in case of illegal frames, your information may be kept as evidence for an
+    indefinite amount of time.
+    <br>
+    Prices can not be accurately calculated ahead of time, since the resources needed can vary from frame to frame and are only calculated after a frame is completed. However,
+    the main logic behind our network should ensure that you always get the best price.
+    <br><br>
+    No refunds. This is a beta version, if you want to help us improve the app, please don't hesitate to contact us at: ask (at) QuestNetwork Messenger (dot) com
+
+</mat-card-content>
+<div class="centerButtonWrapper">
+  <div class="centerButtonContainer">
+    <button mat-stroked-button color="primary" (click)="changeToS(true)" class="agreeButton">I Agree</button>
+    <button mat-stroked-button color="primary" (click)="changeToS(false)" class="disagreeButton">I Disagree</button>
+  </div>
+</div>
+
+</mat-card>
+
+</div>
+</div>
+
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+<mat-icon class="hamburger">more_vert</mat-icon>
+<mat-menu #menu="matMenu" class="ham_menu">
+  <app-mat-menu></app-mat-menu>
+</mat-menu>

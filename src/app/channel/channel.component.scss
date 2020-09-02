@@ -1,0 +1,195 @@
+.browse-files-button{
+    border-radius:3px;
+  padding:5px;
+  color:purple;
+}
+
+
+.importButton{
+  color:purple !important;
+}
+
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.channelParticipantList ul{
+  margin-top: 20px;
+  padding-right: 10px;
+}
+
+
+
+ul li{
+  display:inline-block;
+  clear: both;
+  padding: 12px;
+  border-radius: 14px;
+  font-family: MONOSPACE;
+  font-size: 11px;
+  margin-top: 0px;
+
+    margin-right: 10px;
+
+    margin-left: 10px;
+}
+
+ul li.participant{
+  padding: 10px;
+  border-radius: 12px;
+  margin-top: 5px;
+
+    margin-right: 5px;
+
+    margin-left: 5px;
+}
+
+.him{
+  opacity:0.9;
+  float: left;
+margin-bottom: 10px;
+  background: #0084ff;
+  background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
+  color:#fff;
+  overflow-wrap: break-word;
+  max-width: 450px;
+}
+
+.me{
+  float: right;
+margin-bottom: 10px;
+  background: #0084ff;
+  background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
+  color: #fff;
+  overflow-wrap: break-word;
+  max-width: 450px;
+}
+.participant{
+    background: #0084ff;
+    background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
+    color: #fff;
+  margin:0;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+       width: 100%;
+}
+.fromIndicator{
+  color: #fff;
+    opacity: 0.5;
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+    margin-top: 10px;
+    padding: 5px;
+    padding-bottom: 0px;
+}
+
+
+.fromIndicator.L{
+  float:left;
+  margin-top: 0px;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+.fromIndicator.R{
+  float:right;
+  margin-top: 0px;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+//
+// .him + .me{
+//   border-bottom-right-radius: 5px;
+// }
+//
+// .me + .me{
+
+//   border-top-right-radius: 5px;
+//   border-bottom-right-radius: 5px;
+// }
+//
+// .me:last-of-type {
+//   border-bottom-right-radius: 30px;
+// }
+
+.realTimeChatHistory{
+  overflow-y: scroll; margin: auto;text-align: left;  position: relative;height:280px;margin-right:100px;margin-bottom:22px;
+}
+
+
+.sendMessageIcon{
+  cursor:pointer;  float: right;
+margin-left: 10px;
+background-color: lightblue;
+padding-left: 5px;
+padding-right: 0px;
+color: white;
+border-radius: 5px;
+font-size: 13px;
+height:21px;
+}
+
+
+
+
+
+
+
+
+
+
+button[nbTreeGridRowToggle] {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.search-label {
+  display: block;
+}
+.search-input {
+  margin-bottom: 1rem;
+}
+//
+// .nb-column-name {
+//   width: 100%;
+// }
+
+  .nb-column-name {
+    width: 80%;
+  }
+  .nb-column-items {
+    width: 20%;
+  }
+//
+// @media screen and (min-width: 400px) {
+//   .nb-column-name,
+//   .nb-column-size {
+//     width: 50%;
+//   }
+// }
+//
+// @media screen and (min-width: 500px) {
+//   .nb-column-name,
+//   .nb-column-size,
+//   .nb-column-kind {
+//     width: 33.333%;
+//   }
+// }
+//
+// @media screen and (min-width: 600px) {
+//   .nb-column-name {
+//     width: 31%;
+//   }
+//   .nb-column-size,
+//   .nb-column-kind,
+//   .nb-column-items {
+//     width: 23%;
+//   }
+// }
