@@ -3,10 +3,6 @@
 
 > The first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps out there.
 
-## License
-
-GNU GPLv3
-
 ![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/blob/master/doc/images/messages-locked-sidebars.png?raw=true)
 
 ## Lead Maintainer
@@ -103,3 +99,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Quest Network Widgets (plug-in that connects the messenger to other apps, for example collaborative illustration in Inkscape)
 - Modular Crypto Currency Integration (presets for Bitcoin, Monero and Chainlink)
 - Share Screen
+
+## License
+
+GNU GPLv3
