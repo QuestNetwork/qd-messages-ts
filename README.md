@@ -81,11 +81,15 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.5**
 - IRC Plugin to add IRC servers
 
-**1.0.0**
+**0.9.6**
 - Encrypt Settings/Message History Files
-- Third Party Dependencies Audited, Security Issues Fixed
+
+**0.9.7**
 - Private Channels Extendable To Groups (background create and join)
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
+
+**1.0.0**
+- Third Party Dependencies Audited, Security Issues Fixed
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Unlimited Custom Emojis
 
