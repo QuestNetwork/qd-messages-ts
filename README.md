@@ -16,6 +16,17 @@ Bitcoin:
 Ethereum:
 `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E`
 
+## License
+
+GNU GPLv3
+
+## Download
+
+[Linux](https://ipfs.io)
+[MacOS](https://ipfs.io)
+
+If you want anything else, you'll have to build from sources and probably fix some stuff.
+
 ## Description
 
 The Quest Messenger is the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest P2P Captcha](https://github.com/QuestNetwork/quest-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate payments soon, so you can send each other money!
@@ -30,9 +41,12 @@ Please use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test an
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
 
+## Warning
+**THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!**
+
 ## Features
 
-**0.9.1**
+**0.9.0**
 - Does not depend on the internet
 - Does not depend on centralized servers
 - No static external address or port forwarding necessary
@@ -40,9 +54,19 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Messages are signed using a P-521 EC keypair
 - Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
-- AutoSave For Settings And Message Histories
+- AutoSave For Settings
+
+## Roadmap
+
+**0.9.1**
+- AutoSave For Message Histories
+- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
+- Alias (show custom name instead of pub key)
+- Join/Create Custom Channels
+- Import/Export Channel Groups
 
 **0.9.2**
+- Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 
 **0.9.3**
@@ -53,11 +77,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.4**
 - Light Mode
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
-- Export Themes 
+- Import/Export Themes.
 
-## Roadmap
+**0.9.5**
+- IRC Plugin to add IRC servers
 
 **1.0.0**
+- Third Party Dependencies Audited, Security Issues Fixed
 - Private Channels Extendable To Groups (background create and join)
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 - Inline Preview For Media Files And Links (images, videos, etc)
