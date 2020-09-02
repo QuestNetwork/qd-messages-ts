@@ -18,8 +18,8 @@ Ethereum:
 
 ## Download
 
-[Linux](https://ipfs.io)
-[MacOS](https://ipfs.io)
+[Linux](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0.9.0-linux.zip)
+[MacOS](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0-9-0-mac.zip)
 
 If you want anything else, you'll have to build from sources and probably fix some stuff.
 
