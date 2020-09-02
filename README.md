@@ -54,12 +54,12 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings
 
-## Roadmap
-
 **0.9.1**
 - Join/Create Custom Channels
 - Import/Export Channel Groups
 - Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
+
+## Roadmap
 
 **0.9.2**
 - AutoSave For Message Histories
