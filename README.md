@@ -1,7 +1,7 @@
 # Quest Messenger JS
-> We're working hard on a working build of the master branch, it's coming soon...
-
 > The first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps out there.
+
+![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/blob/master/doc/images/messages-locked-sidebars.png?raw=true)
 
 ## Lead Maintainer
 
@@ -16,14 +16,10 @@ Bitcoin:
 Ethereum:
 `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E`
 
-## License
-
-GNU GPLv3
-
 ## Download
 
-[Linux](https://ipfs.io)
-[MacOS](https://ipfs.io)
+[Linux](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0.9.0-linux.zip)
+[MacOS](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0-9-0-mac.zip)
 
 If you want anything else, you'll have to build from sources and probably fix some stuff.
 
@@ -101,3 +97,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Quest Network Widgets (plug-in that connects the messenger to other apps, for example collaborative illustration in Inkscape)
 - Modular Crypto Currency Integration (presets for Bitcoin, Monero and Chainlink)
 - Share Screen
+
+## License
+
+GNU GPLv3
