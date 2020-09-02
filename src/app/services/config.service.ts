@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { QuestPubSubService }  from './quest-pubsub.service';
 import { ElectronService } from 'ngx-electron';
 import { UiService }  from './ui.service';
-const version = require('../swarm.json').version;
+const version = require('../../../package.json').version;
 
 
 // declare var require;
