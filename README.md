@@ -89,6 +89,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **1.5.0**
 - Ethereum Payment Integration
+- Quick Response (from list or automated)
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 **2.0.0**
