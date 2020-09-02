@@ -65,7 +65,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.4**
 - Light Mode
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
-- Import/Export Themes 
+- Import/Export Themes.
+
+**0.9.5**
+- IRC Plugin to add IRC servers
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
