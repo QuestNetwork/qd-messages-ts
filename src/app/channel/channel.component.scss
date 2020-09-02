@@ -144,52 +144,40 @@ height:21px;
 
 
 
-button[nbTreeGridRowToggle] {
-  background: transparent;
-  border: none;
-  padding: 0;
+
+
+
+// INVITE CODES PANEL
+
+.channelSettingsTab{
+      padding-top: 20px;
 }
 
-.search-label {
-  display: block;
+.inviteCodeListItem{
+  padding: 0 !important;
+    margin: 0 !important;
+    width:100%;
 }
-.search-input {
-  margin-bottom: 1rem;
-}
-//
-// .nb-column-name {
-//   width: 100%;
-// }
 
-  .nb-column-name {
-    width: 80%;
-  }
-  .nb-column-items {
-    width: 20%;
-  }
-//
-// @media screen and (min-width: 400px) {
-//   .nb-column-name,
-//   .nb-column-size {
-//     width: 50%;
-//   }
-// }
-//
-// @media screen and (min-width: 500px) {
-//   .nb-column-name,
-//   .nb-column-size,
-//   .nb-column-kind {
-//     width: 33.333%;
-//   }
-// }
-//
-// @media screen and (min-width: 600px) {
-//   .nb-column-name {
-//     width: 31%;
-//   }
-//   .nb-column-size,
-//   .nb-column-kind,
-//   .nb-column-items {
-//     width: 23%;
-//   }
-// }
+.inviteCodeUsers, .inviteCodeItem{
+  float:left;
+}
+
+.inviteCodeItem{
+  margin-left: 5px;
+    width: 55%;
+margin-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deleteCode{
+  margin-left:5px;
+  cursor:pointer;
+
+}
+
+.inviteCodeCopy{
+  cursor:pointer;
+}

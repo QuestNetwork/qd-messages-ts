@@ -1,0 +1,25 @@
+
+
+button[nbTreeGridRowToggle] {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.search-label {
+  display: block;
+}
+.search-input {
+  margin-bottom: 1rem;
+}
+//
+// .nb-column-name {
+//   width: 100%;
+// }
+
+  .nb-column-name {
+    width: 80%;
+  }
+  .nb-column-items {
+    width: 20%;
+  }

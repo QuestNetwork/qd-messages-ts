@@ -23,34 +23,7 @@
                          <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.left">Float Panel</button>
                          <nb-tabset fullWidth>
                            <nb-tab tabIcon="share-outline" class="channelList">
-
-                            <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" placeholder="Search">
-
-                            <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
-
-                              <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
-                              <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
-
-                              <ng-container [nbTreeGridColumnDef]="customColumn">
-                                <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
-                                  <!-- {{customColumn}} -->
-                                </th>
-                                <td nbTreeGridCell *nbTreeGridCellDef="let row" (click)="selectChannel(row.data[customColumn])" nb-fs-icon style="width:100%;overflow:hidden;text-overflow:ellipsis;break-work:any;white-space:nowrap">
-                                  <nb-fs-icon [kind]="row.data.kind" [expanded]="row.expanded"></nb-fs-icon>
-                                  {{row.data[customColumn]}}
-                                </td>
-                              </ng-container>
-
-                              <ng-container *ngFor="let column of defaultColumns; let index = index"
-                                            [nbTreeGridColumnDef]="column"
-                                            [showOn]="getShowOn(index)">
-                                <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
-                                  {{column}}
-                                </th>
-                                <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
-                              </ng-container>
-
-                            </table>
+                             <app-channel-list></app-channel-list>
                            </nb-tab>
                            <nb-tab tabIcon="flip-2-outline">
                              <p>List of <strong>Notifications</strong>.</p>
@@ -71,10 +44,63 @@
                            <nb-tab tabIcon="bell-outline">
                              <p>List of <strong>Notifications</strong>.</p>
                            </nb-tab>
-                           <nb-tab tabIcon="settings-outline">
-                             <p>List of <strong>I don't even</strong>.</p>
+                           <nb-tab tabIcon="settings-outline" class="channelSettingsTab">
+                               <p style="color: goldenrod !important;  margin-bottom: 0px;"> Challenge</p>
+                               <mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged($event.value)" style="width: 24%;" >
+                                      <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
+                                          {{ thislocation.name }}
+                                      </mat-option> -->
+                                                <mat-option  [value]="1" >
+                                                   On
+                                               </mat-option>
+                                               <mat-option  [value]="0" >
+                                                  Off
+                                              </mat-option>
+
+                                     </mat-select>
+                            <p style="color: goldenrod !important;    margin-top: 10px;  margin-bottom: 0px;"> Invite Codes</p>
+                             <div style="margin-bottom: 10px;">
+                             Max:   <mat-select [(value)]="newInviteCodeMax" (selectionChange)="newInviteCodeMaxChanged($event.value)" style="width: 24%;" >
+                                     <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
+                                         {{ thislocation.name }}
+                                     </mat-option> -->
+                                               <mat-option  [value]="1" >
+                                                  1
+                                              </mat-option>
+                                              <mat-option  [value]="5" >
+                                                 5
+                                             </mat-option>
+                                             <mat-option  [value]="10" >
+                                                10
+                                            </mat-option>
+                                            <mat-option  [value]="20" >
+                                               20
+                                           </mat-option>
+                                           <mat-option  [value]="40" >
+                                              40
+                                          </mat-option>
+                                          <mat-option  [value]="80" >
+                                             80
+                                         </mat-option>
+                                         <mat-option  [value]="100" >
+                                            100
+                                        </mat-option>
+
+                                    </mat-select>
+                               <button mat-stroked-button color="primary" (click)="generateInviteCode()" class="generateInviteCodeButton" style="margin-left:10px;">Generate</button>
+                               </div>
+
+                             <ul>
+                             <li  *ngFor="let inviteCode of channelInviteCodes" class='inviteCodeListItem' ><div class="inviteCodeUsers"> {{ inviteCode['usersUsed'] }} / {{ inviteCode['usersMax'] }} </div>   <div class="inviteCodeItem"> {{ inviteCode['code'] }} </div>
+                               <nb-icon icon="copy-outline" class="inviteCodeCopy" (click)="copyToClipboard(inviteCode['code'])"></nb-icon>
+                               <nb-icon icon="trash-2-outline" class="deleteCode" (click)="deleteInviteCode(inviteCode['code'])"></nb-icon>
+                             </li>
+                            </ul>
+
+
                            </nb-tab>
                          </nb-tabset>
+
                        </nb-sidebar>
 
                         <nb-layout-column>
@@ -116,49 +142,12 @@
                       </div>
 
 
-                     <!-- <div id="main" class="realTimeChatHistory" style="     ">
-
-                        <div *ngFor="let msg of messages">
-
-                            <ul>
-                              <li class="fromIndicator R" *ngIf="msg.self">{{ msg.channelPubKey }}</li>
-                              <li class="fromIndicator L" *ngIf="!msg.self">{{ msg.channelPubKey }}</li>
-                              <li class="me" *ngIf="msg.self">{{  msg.message }}</li>
-                              <li class="him" *ngIf="!msg.self">{{  msg.message }}</li>
-                            </ul>
-                      </div>
-
-
-
-
-                       <div class="messageInput" style="    width:95%;
-    bottom: 11px;
-    left: 8px;
-    margin: auto;
-    text-align: left;
-    position: absolute;
-    z-index:10;
-    height: 20px;
-    background: white;
-    border-radius: 5px;
-    padding: 5px;">
-
-                         <div class="input" style="float: left;width:88% ">
-
-                                  <input value="" #newMessage style="width:100%">
-                         </div>
-
-                         <div (click)="publishChannelMessage()" class="sendMessageIcon" style=" " >
-                           <mat-icon style="font-size: 17px; padding: 2px;    left: 1px;position: relative;">send</mat-icon>
-                           </div> -->
-
-
 
                        </div>
 
 
 
-'
+
 
                    <div class="file-drop file-drop-bee-processing-screen" [hidden]="!beeProcessing" style="">
                      &nbsp;

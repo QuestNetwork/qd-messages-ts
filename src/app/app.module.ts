@@ -47,6 +47,7 @@ import { NbIconModule,NbTreeGridModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
+import { ChannelListComponent } from './channel-list/channel-list.component';
 
 
 
@@ -59,7 +60,8 @@ import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
     MatMenuComponent,
     SettingsComponent,
     SignInComponent,
-    FsIconComponent
+    FsIconComponent,
+    ChannelListComponent
   ],
   imports: [
     FlexLayoutModule,

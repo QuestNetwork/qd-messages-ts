@@ -7,23 +7,10 @@ import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 
 import { NbSidebarService } from '@nebular/theme';
 import { ConfigService } from '../services/config.service';
 
-import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder,NbGetters } from '@nebular/theme';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
 declare var $: any;
-
-interface TreeNode<T> {
-  data: T;
-  children?: TreeNode<T>[];
-  expanded?: boolean;
-}
-
-interface FSEntry {
-  name: string;
-  kind: string;
-  items?: number;
-}
 
 @Component({
   selector: 'app-channel',
@@ -32,44 +19,34 @@ interface FSEntry {
 })
 export class ChannelComponent implements OnInit {
 
-  customColumn = 'name';
-    defaultColumns = [  'items' ];
-    allColumns = [ this.customColumn, ...this.defaultColumns ];
+  challengeFlowFlag = 0;
+  challengeFlowFlagChanged(value){
 
-    dataSource: NbTreeGridDataSource<FSEntry>;
+  }
 
-    sortColumn: string;
-    sortDirection: NbSortDirection = NbSortDirection.NONE;
+  newInviteCodeMax = 1;
+  newInviteCodeMaxChanged(event){
 
-    updateSort(sortRequest: NbSortRequest): void {
-      this.sortColumn = sortRequest.column;
-      this.sortDirection = sortRequest.direction;
-    }
+  }
+  generateInviteCode(){
 
-    getSortDirection(column: string): NbSortDirection {
-      if (this.sortColumn === column) {
-        return this.sortDirection;
-      }
-      return NbSortDirection.NONE;
-    }
+  }
 
+  channelInviteCodes = [ { usersMax: 5, usersUsed: 2, code: "1234567812378136218376128371238761387126312873612873612837621378126371238126387126318273126382173612836217368127" } ];
 
+  copyToClipboard(code){
+    console.log(code);
+  }
 
-    getShowOn(index: number) {
-      const minWithForMultipleColumns = 400;
-      const nextColumnStep = 100;
-      return minWithForMultipleColumns + (nextColumnStep * index);
-    }
 
 
   @Input() channel: string;
   @ViewChild('newMessage') newMessage;
 
-  constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef,private config: ConfigService, private ui: UiService, private pubsub: QuestPubSubService, private sidebarService: NbSidebarService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+  constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef,private config: ConfigService, private ui: UiService, private pubsub: QuestPubSubService, private sidebarService: NbSidebarService) {
     //parse channels
 
-    let data = this.config.getChannelFolderList();
-    this.dataSource = this.dataSourceBuilder.create(data);
+  
   }
 
 
@@ -114,7 +91,6 @@ export class ChannelComponent implements OnInit {
     }
     catch(e){}
 
-    this.channelNameList = this.pubsub.getChannelNameList();
 
 
     this.beeProcessing = true;
@@ -182,10 +158,7 @@ export class ChannelComponent implements OnInit {
         }
       });
 
-      this.config.channelFolderListSub.subscribe( (chFL: []) => {
 
-         this.dataSource = this.dataSourceBuilder.create(chFL);
-      });
 
     },1500);
 
@@ -193,7 +166,6 @@ export class ChannelComponent implements OnInit {
 
 }
   channelParticipantListArray = [];
-  channelNameList = [];
 
   public showChallengeScreen = true;
 
@@ -201,13 +173,6 @@ export class ChannelComponent implements OnInit {
 
 
 
-  selectChannel(channelName){
-      console.log("trying to select: ",channelName);
-      if(this.pubsub.isInArray(channelName,this.pubsub.getChannelNameList())){
-        console.log('selecting: ',channelName);
-        this.pubsub.selectChannel(channelName);
-      }
-  }
 
   challengeFail(){
     this.beeProcessing = false;

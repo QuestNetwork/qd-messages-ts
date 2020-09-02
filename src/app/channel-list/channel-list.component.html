@@ -1,0 +1,27 @@
+<input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" placeholder="Search">
+
+<table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+
+  <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+  <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+  <ng-container [nbTreeGridColumnDef]="customColumn">
+    <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
+      <!-- {{customColumn}} -->
+    </th>
+    <td nbTreeGridCell *nbTreeGridCellDef="let row" (click)="selectChannel(row.data[customColumn])" nb-fs-icon style="width:100%;overflow:hidden;text-overflow:ellipsis;break-work:any;white-space:nowrap">
+      <nb-fs-icon [kind]="row.data.kind" [expanded]="row.expanded"></nb-fs-icon>
+      {{row.data[customColumn]}}
+    </td>
+  </ng-container>
+
+  <ng-container *ngFor="let column of defaultColumns; let index = index"
+                [nbTreeGridColumnDef]="column"
+                [showOn]="getShowOn(index)">
+    <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+      {{column}}
+    </th>
+    <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
+  </ng-container>
+
+</table>
