@@ -81,6 +81,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - IRC Plugin to add IRC servers
 
 **1.0.0**
+- Pair with your friends by sharing public keys in person
 - Third Party Dependencies Audited, Security Issues Fixed
 - Private Channels Extendable To Groups (background create and join)
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
