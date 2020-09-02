@@ -62,7 +62,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Alias (show custom name instead of pub key)
 - Join/Create Custom Channels
 - Import/Export Channel Groups
-- Pair with your friends by sharing public keys in person (scanning qr codes of the keys/channels)
+- Pair with participants by sharing public keys in person (scanning qr codes of the keys/channels)
 
 **0.9.2**
 - Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
