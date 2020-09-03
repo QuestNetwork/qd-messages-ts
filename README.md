@@ -55,6 +55,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - AutoSave For Settings
 
 **0.9.1**
+- Auto SignIn, if signed in
 - Join/Create Custom Channels
 - Import/Export Channel Groups
 - Invite Only Channels (Generate tokens to invite participants instead of the challenge flow)
