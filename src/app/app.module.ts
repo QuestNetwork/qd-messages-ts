@@ -39,7 +39,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 
 import { NgxElectronModule } from 'ngx-electron';
 
-import { NbThemeModule } from '@nebular/theme';
+import { NbThemeModule, NbContextMenuModule, NbMenuService, NbMenuModule} from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbTabsetModule } from '@nebular/theme';
 import { NbChatModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -91,12 +91,14 @@ import { ChannelListComponent } from './channel-list/channel-list.component';
     NbEvaIconsModule,
     NbIconModule,
     NbTreeGridModule,
-    FormsModule
+    FormsModule,
+    NbContextMenuModule,
+    NbMenuModule.forRoot(),
 
 
   ],
   providers: [
-    UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService
+    UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService,NbMenuService
   ],
   bootstrap: [AppComponent]
 })

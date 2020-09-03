@@ -1,4 +1,7 @@
 <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" placeholder="Search">
+<button outline nbButton [nbContextMenu]="items" size="small" class="addChannelButton">
+     Add
+   </button>
 
 <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
 

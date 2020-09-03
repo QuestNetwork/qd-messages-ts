@@ -24,13 +24,19 @@ export class ChannelComponent implements OnInit {
 
   }
 
-  newInviteCodeMax = 1;
+  newInviteCodeMax = 5;
   newInviteCodeMaxChanged(event){
 
   }
   generateInviteCode(){
 
   }
+
+  newInviteExportFoldersChanged(value){
+
+  }
+
+  includeFolderStructure = 1;
 
   channelInviteCodes = [ { usersMax: 5, usersUsed: 2, code: "1234567812378136218376128371238761387126312873612873612837621378126371238126387126318273126382173612836217368127" } ];
 
@@ -46,7 +52,7 @@ export class ChannelComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef,private config: ConfigService, private ui: UiService, private pubsub: QuestPubSubService, private sidebarService: NbSidebarService) {
     //parse channels
 
-  
+
   }
 
 

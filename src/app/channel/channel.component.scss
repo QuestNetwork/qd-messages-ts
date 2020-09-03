@@ -181,3 +181,19 @@ margin-right: 5px;
 .inviteCodeCopy{
   cursor:pointer;
 }
+
+.generateInviteCodeButton{
+  margin-bottom: 16px;
+      color: rgba(218,165,32,.75);
+      margin-left: 5%;
+      height: 22px;
+      width: 37%;
+      margin-top: 5px;
+      position: relative;
+      top: 0px;
+      margin-left: 15px;
+      background-color: transparent;
+      border: 1px solid;
+      opacity: .7;
+      font-size: 13px;
+}

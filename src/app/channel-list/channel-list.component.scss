@@ -9,17 +9,41 @@ button[nbTreeGridRowToggle] {
 .search-label {
   display: block;
 }
-.search-input {
-  margin-bottom: 1rem;
-}
-//
-// .nb-column-name {
-//   width: 100%;
-// }
 
-  .nb-column-name {
-    width: 80%;
-  }
-  .nb-column-items {
-    width: 20%;
-  }
+.search-input{
+  background: transparent;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    width: 100%;
+        margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 75%;
+}
+
+.addChannelButton{
+  color: #daa520bf;
+  margin-left: 5%;
+  height: 25px;
+  width: 20%;
+  position: relative;
+  top: 2px;
+  background-color: transparent;
+  /* padding: 0px; */
+  padding-right: 12px;
+  border: 1px solid;
+  opacity: 0.7;
+}
+
+
+.nb-column-name {
+  width: 80%;
+}
+.nb-column-items {
+  width: 20%;
+}
+
+
+:host nb-layout-header ::ng-deep nav {
+ justify-content: flex-end;
+}

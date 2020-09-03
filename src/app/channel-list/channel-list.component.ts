@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { ConfigService } from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
+import { NbMenuService } from '@nebular/theme';
+import { filter, map } from 'rxjs/operators';
 
 
 interface TreeNode<T> {
@@ -64,7 +66,14 @@ export class ChannelListComponent implements OnInit {
     }
 
 
-  constructor(private config: ConfigService, private pubsub: QuestPubSubService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+    items = [
+        { title: 'Create Channel' },
+        { title: 'Import Channel' },
+        { title: 'New Folder' },
+      ];
+
+
+  constructor(private nbMenuService: NbMenuService,private config: ConfigService, private pubsub: QuestPubSubService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
 
     let data = this.config.getChannelFolderList();
     this.dataSource = this.dataSourceBuilder.create(data);
@@ -76,6 +85,14 @@ export class ChannelListComponent implements OnInit {
       this.config.channelFolderListSub.subscribe( (chFL: []) => {
          this.dataSource = this.dataSourceBuilder.create(chFL);
       });
+
+
+      this.nbMenuService.onItemClick()
+     .pipe(
+       filter(({ tag }) => tag === 'my-context-menu'),
+       map(({ item: { title } }) => title),
+     )
+     .subscribe(title => console.log(`${title} was clicked!`));
     // },2500);
   }
 
