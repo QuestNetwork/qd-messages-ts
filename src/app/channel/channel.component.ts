@@ -169,7 +169,7 @@ export class ChannelComponent implements OnInit {
 }
   channelParticipantListArray = [];
 
-  public showChallengeScreen = true;
+  public showChallengeScreen = false;
 
 
 

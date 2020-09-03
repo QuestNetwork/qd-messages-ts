@@ -266,9 +266,8 @@ public async ngAfterContentInit() {
 
     this.ui.signedInSub.subscribe( (value) => {
       this.signedIn = value;
-      this.channelNameList = this.pubsub.getChannelNameList();
     });
-    
+
     this.ipfs.swarmPeersSub.subscribe( (value:number) => {
       this.swarmPeers = value;
     });

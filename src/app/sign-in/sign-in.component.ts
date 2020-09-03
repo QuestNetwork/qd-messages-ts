@@ -32,6 +32,7 @@ export class SignInComponent implements OnInit {
   stringifyStore;
 
   ngOnInit(): void {
+    this.ui.updateProcessingStatus(true);
 
     //auto login
     if(this.config.isSignedIn()){
@@ -46,6 +47,9 @@ export class SignInComponent implements OnInit {
         }
         else{this.ui.showSnack('Error Importing Settings!','Oh No');}
       });
+    }
+    else{
+      this.ui.updateProcessingStatus(false);
     }
 
   }

@@ -152,7 +152,7 @@ export class ConfigService {
         this.pubsub.setChannelParticipantList(this.config['channelParticipantList']);
     }
     if(typeof(config['channelNameList']) != 'undefined'){
-      console.log('Importing NameList ...',config['channelNameList']);
+      console.log('Importing channelNameList ...',config['channelNameList']);
       this.pubsub.setChannelNameList(config['channelNameList']);
     }
     else{
