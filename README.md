@@ -59,7 +59,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Export Settings
 - Join/Create Custom Channels
 - Import/Export Channel Groups
-- Option To Generate tokens to invite participants instead of the challenge flow
+- Option To Generate Invite Tokens (to invite participants instead of the challenge flow)
 
 ## Roadmap
 
