@@ -35,11 +35,12 @@ export class ChannelListComponent implements OnInit {
 
 
     selectChannel(channelName){
-        console.log("Channel-List: Trying to select: ",channelName);
-        this.DEVMODE && console.log("Channel-List: ChannelNameList: ",this.pubsub.getChannelNameList())
-        if(this.pubsub.isInArray(channelName,this.pubsub.getChannelNameList())){
-          console.log('Channel-List: Selecting: ',channelName);
-          this.pubsub.selectChannel(channelName);
+        console.log("ChannelList: Trying to select: >>",channelName.trim());
+        this.DEVMODE && console.log("ChannelList: ChannelNameList: ",this.pubsub.getChannelNameList());
+        this.DEVMODE && console.log("isInArray: "+this.pubsub.isInArray(channelName.trim(),this.pubsub.getChannelNameList()));
+        if(this.pubsub.isInArray(channelName.trim(),this.pubsub.getChannelNameList())){
+          console.log('ChannelList: Selecting: ',channelName.trim());
+          this.pubsub.selectChannel(channelName.trim());
         }
     }
 

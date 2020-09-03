@@ -26,24 +26,12 @@ export class SignInComponent implements OnInit {
   fs: any;
 
   constructor(private ui: UiService, private ipfs: IpfsService,private pubsub: QuestPubSubService, private config:ConfigService) {
-    // let dirExists = fs.existsSync('/home/jessica');
-    // console.log(existsSync);
-    // this.fs = this.electron.remote.require('fs');
-    // let ex = this.fs.existsSync('/home');
-    // console.log('FS TEST:',ex);
+  
   }
 
   stringifyStore;
 
   ngOnInit(): void {
-
-
-
-    this.ui.channelNameList.subscribe( (value) => {
-      this.channelNameList = value;
-    });
-
-
 
     //auto login
     if(this.config.isSignedIn()){
@@ -54,6 +42,7 @@ export class SignInComponent implements OnInit {
           console.log('SignIn: Settings Imported Successfully');
           this.ui.showSnack('Loading Channels...','Almost There');
           this.jumpToChannels();
+          this.ui.signIn();
         }
         else{this.ui.showSnack('Error Importing Settings!','Oh No');}
       });
@@ -123,11 +112,11 @@ async openFileLoaded(event){
 
   async jumpToChannels(){
     this.ui.toTabIndex(1);
-    this.ui.setSignedIn(true);
     this.ui.enableTab('channelTab');
     this.ui.disableTab('signInTab');
     return true;
   }
+
 
   beeProcessing = false;
 
@@ -162,7 +151,6 @@ async openFileLoaded(event){
     this.channelName = await this.pubsub.createChannel('developer');
     this.channelNameList.push(this.channelName);
     this.pubsub.setChannelNameList(this.channelNameList);
-    this.ui.setChannelNameList(this.channelNameList);
     let jobFileBlob = new Blob([JSON.stringify({
         version: swarmJson['version'],
         appId: 'quest-messenger-js',
@@ -201,7 +189,6 @@ async openFileLoaded(event){
     console.log('Importing Settings ...',parsedStringify);
       this.ui.setElectronSize('0');
       this.ui.updateProcessingStatus(true);
-      this.beeProcessing = true;
       this.completeChallengeScreen = false;
 
       if(this.ui.isElectron()){

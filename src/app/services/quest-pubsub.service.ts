@@ -52,15 +52,17 @@ export class QuestPubSubService {
     setChannelParticipantList(partList, channel = "all"){
       return QuestPubSub.setChannelParticipantList(partList, channel);
     }
+
+    channelNameListSub = new Subject();
     getChannelNameList(){
       return QuestPubSub.getChannelNameList();
     }
     setChannelNameList(list){
+      this.channelNameListSub.next(list);
       QuestPubSub.setChannelNameList(list);
     }
-    addChannelName(name){
-      QuestPubSub.addChannelName(name);
-    }
+
+
 
     public setChannelKeyChain(channelKeyChain, channel = "all"){
       return QuestPubSub.setChannelKeyChain(channelKeyChain, channel);

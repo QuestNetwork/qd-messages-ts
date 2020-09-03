@@ -241,8 +241,7 @@ export class ChannelComponent implements OnInit {
           await this.pubsub.joinChannel(channel);
         }
         this.ui.showSnack('Loading Channel...','All right', {duration: 2500});
-        this.ui.enableTab('channelTab');
-        this.ui.disableTab('signInTab');
+
         let messageHistory = this.pubsub.getChannelHistory(this.channel);
         this.DEVMODE && console.log('got history: ',messageHistory);
         for(let i = 0;i<messageHistory.length;i++){

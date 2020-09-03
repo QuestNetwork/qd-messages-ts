@@ -253,26 +253,22 @@ public async ngAfterContentInit() {
       this.uiMode = value;
     });
 
-    this.ui.channelNameList.subscribe( (value) => {
+    this.pubsub.channelNameListSub.subscribe( (value) => {
       this.ui.showSnack('Channel Update ','Dismiss');
       this.channelNameList = value;
-      this.signedIn = true;
     });
 
-    this.ui.channelNameList.subscribe( (value) => {
-      this.ui.showSnack('Channel Update ','Dismiss');
-      this.channelNameList = value;
-      this.signedIn = true;
-    });
     this.pubsub.selectedChannelSub.subscribe( (value) => {
       this.selectedChannel = value;
       console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
       console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
     });
+
     this.ui.signedInSub.subscribe( (value) => {
       this.signedIn = value;
       this.channelNameList = this.pubsub.getChannelNameList();
     });
+    
     this.ipfs.swarmPeersSub.subscribe( (value:number) => {
       this.swarmPeers = value;
     });
