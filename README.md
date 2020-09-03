@@ -75,21 +75,21 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Export Message Histories
 
 **0.9.4**
-- Light Mode
-- Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
-- Import/Export Themes.
+- Encrypt Settings/Message History Files
 
 **0.9.5**
 - IRC Plugin to add IRC servers
 
 **0.9.6**
-- Encrypt Settings/Message History Files
+- P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 
 **0.9.7**
 - Private Channels Extendable To Groups (background create and join)
 
 **0.9.8**
-- P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
+- Light Mode
+- Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
+- Import/Export Themes.
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
