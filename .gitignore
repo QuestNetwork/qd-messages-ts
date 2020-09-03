@@ -111,7 +111,6 @@ typings/
 
 .DS_Store
 
-src/app/swarm.json
 local/
 backup/
 dist/
