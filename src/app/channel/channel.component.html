@@ -2,20 +2,8 @@
 
 
 
-                    <div class="import-key-screen captchaScreen" [hidden]="!showChallengeScreen" style="height: 100%;">
-                        <img [src]="captchaImageResource" class="frameThumbnail" style="    width: 80%;  margin: 10%;">
-                        <form class="example-form">
-                          <mat-form-field class="example-full-width">
-                            <mat-label>Captcha Text</mat-label>
-                            <input matInput placeholder="Captcha Text" value="" name='captchaCode' [(ngModel)]='captchaCode'>
-                          </mat-form-field>
-                          </form>
 
-                        <button mat-stroked-button color="primary" (click)="completedChallenge()" class="importButton captchaButton">I Aced That IQ Test</button>
-                   </div>
-
-
-                   <div class="channel-chat-screen" [hidden]="showChallengeScreen" style="height: 100%;">
+                   <div class="channel-chat-screen" style="height: 100%;">
                      <nb-layout>
                        <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
                          <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton" style="margin-right:8px;">Hide Panel</button>
@@ -30,7 +18,7 @@
                            </nb-tab>
                          </nb-tabset>
                        </nb-sidebar>
-                       <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true">
+                       <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true" [hidden]="showChallengeScreen" >
                          <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.right" style="margin-right:10px;">Lock Panel</button>
                          <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.right" style="margin-right:10px;">Float Panel</button>
                          <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton">Hide Panel</button>
@@ -123,7 +111,19 @@
 
                        </nb-sidebar>
 
-                        <nb-layout-column>
+                         <nb-layout-column class="import-key-screen captchaScreen" [hidden]="!showChallengeScreen" style="height: 100%;">
+                             <img [src]="captchaImageResource" class="frameThumbnail" style="    width: 80%;  margin: 10%;">
+                             <form class="example-form">
+                               <mat-form-field class="example-full-width">
+                                 <mat-label>Captcha Text</mat-label>
+                                 <input matInput placeholder="Captcha Text" value="" name='captchaCode' [(ngModel)]='captchaCode'>
+                               </mat-form-field>
+                               </form>
+
+                             <button mat-stroked-button color="primary" (click)="completedChallenge()" class="importButton captchaButton">I Aced That IQ Test</button>
+                        </nb-layout-column>
+
+                        <nb-layout-column [hidden]="showChallengeScreen" >
                            <nb-chat title="Channel: {{channel}}">
                              <nb-chat-message *ngFor="let msg of messages"
                                [type]="msg.type"
@@ -168,10 +168,6 @@
 
 
 
-
-                   <div class="file-drop file-drop-bee-processing-screen" [hidden]="!beeProcessing" style="">
-                     &nbsp;
-                  </div>
 
 
 

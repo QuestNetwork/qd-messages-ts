@@ -42,7 +42,7 @@ processingEncryptionScreen;
 
 
   isElectron = false;
-
+noChannelSelected = "NoChannelSelected";
   current_step = "upload";
 
 
@@ -52,7 +52,7 @@ processingEncryptionScreen;
     this.ui.hidePopups();
   }
 
-  selectedChannel = "0";
+  selectedChannel = "NoChannelSelected";
 
   public popupVisible = "0";
   public hidePopups(){
@@ -266,8 +266,10 @@ public async ngAfterContentInit() {
     });
     this.pubsub.selectedChannelSub.subscribe( (value) => {
       this.selectedChannel = value;
+      console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
+      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
     });
-    this.ui.signedIn.subscribe( (value) => {
+    this.ui.signedInSub.subscribe( (value) => {
       this.signedIn = value;
       this.channelNameList = this.pubsub.getChannelNameList();
     });

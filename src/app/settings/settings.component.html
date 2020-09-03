@@ -1,136 +1,17 @@
-<!--
+<div class="appSettings">
+  <nb-layout>
+    <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
 
-      <div class="formcontainer configuration" >
-        <div layout="row" style="height: 50px;" class="performanceTabRow">
+        <nb-menu [items]="items" autoCollapse="true">
+        </nb-menu>
 
-
-          <mat-form-field class="jobIdField mat-form-field-performance">
-            <mat-label>Job ID</mat-label>
-            <input disabled matInput placeholder="jobId" value="{{ qHash }}" readonly>
-        </mat-form-field>
-
-        <mat-form-field class="locationField mat-form-field-performance" >
-            <mat-label>Location</mat-label>
-            <mat-select [(value)]="questSettings.location" (selectionChange)="locationChanged($event.value)">
-                  <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
-                      {{ thislocation.name }}
-                  </mat-option>
-            </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="driveField mat-form-field-performance">
-        <mat-label>Drive</mat-label>
-        <mat-select [(value)]="questSettings.drive" readonly disabled>
-              <mat-option *ngFor="let thisdrive of driveOptions" [value]="thisdrive.id">
-                  {{ thisdrive.name }}
-              </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="softwareField mat-form-field-performance">
-        <mat-label>Build</mat-label>
-        <mat-select [(value)]="questSettings.software">
-              <mat-option *ngFor="let thissoftware of softwareOptions" [value]="thissoftware.id">
-                  {{ thissoftware.name }}
-              </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-          </div>
-
-          <div layout="row" style="height:40px;" class="performanceTabRow">
-
-            <mat-form-field class="vCpuField " (click)="coresClicked()" (touch)="coresClicked()">
-              <mat-label>CPU</mat-label>
-              <mat-select [(value)]="questSettings.cores" >
-                    <mat-option *ngFor="let thiscore of coresOptions" [value]="thiscore.id">
-                        {{ thiscore.name }}
-                    </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ramField" (click)="ramClicked()" (touch)="ramClicked()">
-              <mat-label>RAM</mat-label>
-              <mat-select [(value)]="questSettings.ram" >
-                    <mat-option *ngFor="let thisram of ramOptions" [value]="thisram.id">
-                        {{ thisram.name }}
-                    </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-              <mat-form-field class="gpuTypeField" (click)="gpuTypeClicked()" (touch)="gpuTypeClicked()">
-                <mat-label>GPU Type</mat-label>
-                <mat-select [(value)]="questSettings.gpuType" (selectionChange)="gpuTypeChanged($event.value)" >
-                      <mat-option *ngFor="let thisgputype of gpuTypeOptions" [value]="thisgputype.id">
-                          {{ thisgputype.name }}
-                      </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field class="gpuField" (click)="gpuCoresClicked()"  (touch)="gpuCoresClicked()">
-                  <mat-label>GPU Amount</mat-label>
-                  <mat-select [(value)]="questSettings.gpuCores"  (selectionChange)="gpuCoresChanged($event.value)">
-                        <mat-option *ngFor="let thisgcore of gpuCoresOptions" [value]="thisgcore.id">
-                            {{ thisgcore.name }}
-                        </mat-option>
-                  </mat-select>
-            </mat-form-field>
-
-</div>
-
-            <div layout="row" class="creditsRow">
+    </nb-sidebar>
 
 
-                <mat-form-field class="creditCodeField mat-form-field-performance">
-                  <mat-label>Ticket ID</mat-label>
-                  <input  matInput placeholder="Please Enter A Valid Ticket ID" [value]="ticketObject.ticketIdShowFriendly" (input)="enteredCreditCode()" #creditCodeField>
-              </mat-form-field>
+     <nb-layout-column>
+       </nb-layout-column>
+       </nb-layout>
 
-              <div class="ticketButtonWrapper" style="display:absolute;" *ngIf="ticketButtonWrapperShowing">
-                <button mat-stroked-button color=""  class="useTicketButton" (click)="useTicket()" style="    margin-right: 10px;">USE</button>
-                <button mat-stroked-button color=""  class="discardTicketButton" (click)="discardTicket()" >DISCARD</button>
-              </div>
-
-
-              <mat-icon class="refreshCreditIcon" aria-label="Check Balance" *ngIf="ticketObject.depositAddressTicketBalanceSet && !enteringCode" (click)="checkBalance()">refresh</mat-icon>
-
-              <mat-form-field class="creditField" *ngIf="ticketObject.depositAddressTicketBalanceSet && !enteringCode">
-                <mat-label>Credit</mat-label>
-                <input disabled  matInput placeholder="credit" value="{{ ticketObject.ticketBalanceUSDShowFriendly }}"  #creditCodeField>
-            </mat-form-field>
-
-                 <button mat-stroked-button color=""  class="BuyTicketButton" (click)="generateTicket()">Get New Ticket</button>
-                </div>
-
-  <div layout="row" class="creditsInfoRow">
-    <div class="credtisInfoText" *ngIf="ticketObject.depositAddressTicketBalanceSet && !enteringCode">DEPOSITS ARE CREDITED AFTER 79 NETWORK CONFIRMATIONS WHICH USUALLY TAKES AROUND 30 MINUTES</div>
-
-    </div>
-
-                <!-- <div layout="row" >
 
 
 </div>
-
-
-            <div layout="row" class="performanceTabRow">
-              <button mat-stroked-button color="primary" (click)="showPopup('cluster')" class="clusterButton">Available Configurations</button>
-              <button mat-stroked-button color="primary"  class="termsButton">
-                <mat-checkbox class="termsCheckbox" color="primary"  (change)="tosAcceptedChanged($event.checked)" [checked]="tosAccepted">
-                  <span color="primary">I accept the <span (click)="showPopup('terms')" style="text-decoration:underline;">ToS</span></span>
-
-                </mat-checkbox>
-              </button>
-              </div>
-
-        </div>
-
-
-
-        <div class="monitor">
-            <!-- monitor progress from all resources, baking, rendering, the cpu usage and running costs
-
-
-          </div>
- -->
-
-          <br> -->

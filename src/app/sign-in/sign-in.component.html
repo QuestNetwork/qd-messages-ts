@@ -1,6 +1,6 @@
 <div class="signInScreen" style="min-width: 300px;">
 
-                       <div class="file-drop file-drop-zone sign-in-drop-zone" [hidden]="settingsLoaded || processing || beeProcessing || completeChallengeScreen" >
+                       <div class="file-drop file-drop-zone sign-in-drop-zone" >
                        <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
                      (onFileOver)="fileOver($event)">
                      <!-- (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"> -->
@@ -19,12 +19,6 @@
                    </div>
 
                      </div>
-
-
-
-                   <div class="file-drop file-drop-bee-processing-screen" [hidden]="!beeProcessing" style="">
-                     &nbsp;
-                  </div>
 
 
                  <!-- hidden file opener start !-->

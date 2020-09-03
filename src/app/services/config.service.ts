@@ -42,21 +42,28 @@ export class ConfigService {
     this.pubsub.commitNowSub.subscribe( (value) => {
       this.commitNow();
     });
+
+    this.pubsub.selectedChannelSub.subscribe( (value) => {
+      this.config['selectedChannel'] = value;
+      this.commit();
+    });
   }
+
   configFilePath;
   autoSaveInterval;
-  commit = false;
+  commitChanges = false;
 
-
-  commitChanges(){
-    this.commit = true;
+  commit(){
+    this.commitChanges = true;
   }
+
   fs:any;
 
   autoSave(){
     this.autoSaveInterval = setInterval( () => {
-        if(this.ui.isElectron && this.commit){
+        if(this.ui.isElectron && this.commitChanges){
           this.commitNow();
+          this.commitChanges = false;
         }
     },30000)
   }
@@ -88,7 +95,7 @@ export class ConfigService {
         ],
       }
     ],
-    selectedChannel: "0",
+    selectedChannel: "NoChannelSelected",
     sideBarFixed: { left: true, right: true},
     sideBarVisible: { left: true, right: false}
   };
@@ -97,7 +104,7 @@ export class ConfigService {
   }
   commitNow(){
       // let folderList: TreeNode<FSEntry> = ;
-      this.commit=false;
+      this.commitChanges=false;
       this.config = {
         version: version,
         appId: 'quest-messenger-js',
@@ -114,10 +121,17 @@ export class ConfigService {
       this.fs.writeFileSync(this.configFilePath, JSON.stringify(this.config),{encoding:'utf8',flag:'w'})
 
   }
+  getConfig(){
+    return this.config;
+  }
   channelFolderListSub = new Subject();
   setChannelFolderList(list){
     this.config.channelFolderList = list;
     this.channelFolderListSub.next(list);
+  }
+
+  isSignedIn(){
+    return this.fs.existsSync(this.configFilePath);
   }
   readConfig(config = {}){
     this.sideBarVisibleSub = new Subject();

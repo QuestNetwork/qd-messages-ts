@@ -1,11 +1,10 @@
 import { Component, OnInit, Input,ViewChild, ChangeDetectorRef} from '@angular/core';
 import { UiService} from '../services/ui.service';
-
+import { ConfigService } from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
 
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { NbSidebarService } from '@nebular/theme';
-import { ConfigService } from '../services/config.service';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -60,19 +59,25 @@ export class ChannelComponent implements OnInit {
   DEVMODE = false;
 
   stringifyStore;
-  settingsLoaded = false;
   ngOnInit(): void {
 
+    console.log("Channel: Initializing...");
 
-    this.settingsLoaded = this.ui.settingsLoaded;
+    if(this.channel != 'NoChannelSelected'){
+      let uiCheck = setInterval( () =>{
+        try{
+          let fullPListArr = this.pubsub.getChannelParticipantList(this.channel)['cList'].split(',');
+          if(fullPListArr.length > 0){
+            for(let i=0;i<fullPListArr.length;i++){
+              fullPListArr[i] =   fullPListArr[i].substr(130);
+            }
+          }
+          this.channelParticipantListArray = fullPListArr;
+        }
+        catch(e){}
 
-    this.ui.settingsLoadedSub.subscribe( (value) => {
-      this.settingsLoaded = value;
-    });
+      },60000);
 
-
-
-    let uiCheck = setInterval( () =>{
       try{
         let fullPListArr = this.pubsub.getChannelParticipantList(this.channel)['cList'].split(',');
         if(fullPListArr.length > 0){
@@ -83,27 +88,18 @@ export class ChannelComponent implements OnInit {
         this.channelParticipantListArray = fullPListArr;
       }
       catch(e){}
-
-    },60000);
-
-    try{
-      let fullPListArr = this.pubsub.getChannelParticipantList(this.channel)['cList'].split(',');
-      if(fullPListArr.length > 0){
-        for(let i=0;i<fullPListArr.length;i++){
-          fullPListArr[i] =   fullPListArr[i].substr(130);
-        }
-      }
-      this.channelParticipantListArray = fullPListArr;
     }
-    catch(e){}
 
 
 
-    this.beeProcessing = true;
 
     //load channel
-    if(this.settingsLoaded){
+    console.log("Channel: Bootstrapping Channel...");
+    if(this.channel != 'NoChannelSelected'){
       this.attemptJoinChannel(this.channel);
+    }
+    else{
+      this.ui.updateProcessingStatus(false);
     }
 
 
@@ -175,13 +171,11 @@ export class ChannelComponent implements OnInit {
 
   public showChallengeScreen = true;
 
-  beeProcessing = false;
 
 
 
 
   challengeFail(){
-    this.beeProcessing = false;
     this.showChallengeScreen = true;
     this.ui.updateProcessingStatus(false);
     this.ui.setElectronSize('0-keyimport');
@@ -219,7 +213,6 @@ export class ChannelComponent implements OnInit {
     }
     else if(pubObj['type'] == "ownerSayHi"){
       //load chat
-      this.beeProcessing = false;
       this.ui.updateProcessingStatus(false);
       this.showChallengeScreen = false;
       this.aChD.detectChanges();
@@ -250,7 +243,6 @@ export class ChannelComponent implements OnInit {
         this.ui.showSnack('Loading Channel...','All right', {duration: 2500});
         this.ui.enableTab('channelTab');
         this.ui.disableTab('signInTab');
-        this.beeProcessing = false;
         let messageHistory = this.pubsub.getChannelHistory(this.channel);
         this.DEVMODE && console.log('got history: ',messageHistory);
         for(let i = 0;i<messageHistory.length;i++){

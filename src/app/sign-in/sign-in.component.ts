@@ -35,14 +35,9 @@ export class SignInComponent implements OnInit {
 
   stringifyStore;
 
-  settingsLoaded = false;
   ngOnInit(): void {
 
-    this.settingsLoaded = this.ui.settingsLoaded;
 
-    this.ui.settingsLoadedSub.subscribe( (value) => {
-      this.settingsLoaded = value;
-    });
 
     this.ui.channelNameList.subscribe( (value) => {
       this.channelNameList = value;
@@ -50,12 +45,19 @@ export class SignInComponent implements OnInit {
 
 
 
-    //load channel
-    if(this.settingsLoaded){
-      this.jumpToChannels();
+    //auto login
+    if(this.config.isSignedIn()){
+      this.attemptImportSettings({}).then( (importSettingsStatus) => {
+        console.log('Import Settings Status:',importSettingsStatus);
+        console.log(importSettingsStatus);
+        if(importSettingsStatus){
+          console.log('SignIn: Settings Imported Successfully');
+          this.ui.showSnack('Loading Channels...','Almost There');
+          this.jumpToChannels();
+        }
+        else{this.ui.showSnack('Error Importing Settings!','Oh No');}
+      });
     }
-
-
 
   }
 
@@ -120,8 +122,10 @@ async openFileLoaded(event){
   }
 
   async jumpToChannels(){
+    this.ui.toTabIndex(1);
     this.ui.setSignedIn(true);
-
+    this.ui.enableTab('channelTab');
+    this.ui.disableTab('signInTab');
     return true;
   }
 
@@ -173,9 +177,7 @@ async openFileLoaded(event){
 
   async attemptImportSettings(parsedStringify){
     try{
-        this.completeChallengeScreen = false;
         await this.importSettings(parsedStringify);
-        this.ui.setSettingsLoaded(true);
         return true;
     }
     catch(error){
@@ -217,17 +219,22 @@ async openFileLoaded(event){
       this.DEVMODE && console.log('Unpacking Global Keychain...')
       this.config.readConfig(parsedStringify);
       this.config.autoSave();
-      this.ui.toTabIndex(1);
-      let defaultChannel = "0";
-      if(typeof(parsedStringify['selectedChannel']) != 'undefined'){
-        defaultChannel = parsedStringify['selectedChannel'];
-      }else if(typeof(parsedStringify.channelNameList) != 'undefined' && typeof(parsedStringify.channelNameList[0] != 'undefined')){
-        defaultChannel = parsedStringify.channelNameList[0];
+
+      //wait for ipfs
+      console.log('SignIn: Waiting for IPFS...');
+      while(!this.ipfs.isReady()){
+        console.log('SignIn: Waiting for IPFS...');
+        await this.ui.delay(5000);
+      }
+
+      let defaultChannel = "NoChannelSelected";
+      if(typeof(this.config.getConfig()['selectedChannel']) != 'undefined'){
+        defaultChannel = this.config.getConfig()['selectedChannel'];
       }
       this.pubsub.setIpfsId(this.ipfs.getIpfsId());
+      console.log('SignIn: Selecting Channel: '+defaultChannel+'...');
       this.pubsub.selectChannel(defaultChannel);
       return true;
-
     }
 
     public async dropped(files) {

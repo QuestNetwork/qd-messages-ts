@@ -27,15 +27,23 @@ interface FSEntry {
 export class ChannelListComponent implements OnInit {
 
   channelNameList = [];
+  constructor(private nbMenuService: NbMenuService,private config: ConfigService, private pubsub: QuestPubSubService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+
+      let data = this.config.getChannelFolderList();
+      this.dataSource = this.dataSourceBuilder.create(data);
+    }
+
 
     selectChannel(channelName){
-        console.log("trying to select: ",channelName);
+        console.log("Channel-List: Trying to select: ",channelName);
+        this.DEVMODE && console.log("Channel-List: ChannelNameList: ",this.pubsub.getChannelNameList())
         if(this.pubsub.isInArray(channelName,this.pubsub.getChannelNameList())){
-          console.log('selecting: ',channelName);
+          console.log('Channel-List: Selecting: ',channelName);
           this.pubsub.selectChannel(channelName);
         }
     }
 
+    DEVMODE = true;
   customColumn = 'name';
     defaultColumns = [  'items' ];
     allColumns = [ this.customColumn, ...this.defaultColumns ];
@@ -73,11 +81,6 @@ export class ChannelListComponent implements OnInit {
       ];
 
 
-  constructor(private nbMenuService: NbMenuService,private config: ConfigService, private pubsub: QuestPubSubService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
-
-    let data = this.config.getChannelFolderList();
-    this.dataSource = this.dataSourceBuilder.create(data);
-  }
 
   ngOnInit(): void {
     this.channelNameList = this.pubsub.getChannelNameList();

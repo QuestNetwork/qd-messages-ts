@@ -57,9 +57,9 @@ export class UiService {
     this.showPopupSub.next(value);
   }
 
-  signedIn = new Subject<any>();
+  signedInSub = new Subject<any>();
   public setSignedIn(value){
-    this.signedIn.next(value);
+    this.signedInSub.next(value);
   }
 
 

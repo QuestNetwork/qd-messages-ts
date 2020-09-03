@@ -13,32 +13,23 @@
 
       <mat-tab label="Messages"  class="channelTab" [disabled]="!tabAccessibility['channelTab']">
 
-        <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;" [hidden]="selectedChannel != channel">
-          <app-channel [channel]="channel"></app-channel>
+        <div class="channel" style="font-weight:900;" *ngIf="selectedChannel == noChannelSelected">
+          <app-channel [channel]="noChannelSelected"></app-channel>
+        </div>
+
+        <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;">
+          <app-channel [channel]="channel" *ngIf="selectedChannel == channel"></app-channel>
         </div>
 
       </mat-tab>
-
-
-
-      <!-- <mat-tab label="Create" placeholder="createChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['createChannelTab']">
-        <app-channel channel="create"></app-channel>
-      </mat-tab>
-      <mat-tab label="Join" placeholder="joinChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['joinChannelTab']">
-        <app-channel channel="join"></app-channel>
-      </mat-tab> -->
 
 
       <mat-tab label="Settings"  class="settingsTab" [disabled]="!tabAccessibility['settingsTab']">
         <app-settings *ngIf="!ticketGenerator"></app-settings>
       </mat-tab>
 
-
     </mat-tab-group>
-
     <app-load-hex></app-load-hex>
-
-
   </mat-card>
 
 </div>
@@ -57,18 +48,15 @@
 
       <mat-tab label="Messages"  class="channelTab" [disabled]="!tabAccessibility['channelTab']">
 
-        <div *ngFor="let channel of channelNameList" class="channelWrapper" style="font-weight:900;">
+        <div class="channel" style="font-weight:900;" *ngIf="selectedChannel == noChannelSelected">
+          <app-channel [channel]="noChannelSelected"></app-channel>
+        </div>
+
+        <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;">
           <app-channel [channel]="channel" *ngIf="selectedChannel == channel"></app-channel>
         </div>
 
       </mat-tab>
-
-      <!-- <mat-tab label="Create" placeholder="createChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['createChannelTab']">
-        <app-channel channel="create"></app-channel>
-      </mat-tab>
-      <mat-tab label="Join" placeholder="joinChannelTab" style="font-weight:900" [disabled]="!tabAccessibility['joinChannelTab']">
-        <app-channel channel="join"></app-channel>
-      </mat-tab> -->
 
 
       <mat-tab label="Settings"  class="settingsTab" [disabled]="!tabAccessibility['settingsTab']">
