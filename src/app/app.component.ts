@@ -11,9 +11,6 @@ import { QuestPubSubService} from './services/quest-pubsub.service';
 
 //
 declare var $: any;
-// declare var crypto: any;
-// declare var Buffer: any;
-
 
 // declare var TransparencyMouseFix: any;
 
@@ -241,9 +238,7 @@ public async ngAfterContentInit() {
       this.showPopup(v);
     });
 
-    this.ui.processingSub.subscribe( (v) => {
-      this.isProcessing = v;
-    });
+
 
     this.ui.componentAccessibilitySub.subscribe( (componentAccessibility) => {
       this.componentAccessibility = componentAccessibility;
@@ -306,7 +301,6 @@ public async ngAfterContentInit() {
   }
 
 
-  isProcessing;
   snackBarRef;
   showSnack(left, right, options = {}){
     if(typeof(this.snackBarRef) != 'undefined'){

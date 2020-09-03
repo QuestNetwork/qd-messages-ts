@@ -17,7 +17,7 @@ export class LoadHexComponent implements OnInit {
     }) }
 
 
-  isProcessing = false;
+  isProcessing = true;
 
   ngOnInit(): void {
     this.isProcessing = this.ui.getProcessingStatus();

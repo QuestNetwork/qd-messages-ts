@@ -149,7 +149,7 @@
     position: fixed;
     right: 7px;
     top: 66px;
-    cursor: pointer;color:#36f !important;" (click)="toggleSideBar('right')" *ngIf="!this.sideBarVisible.right">
+    cursor: pointer;color:#36f !important;" (click)="toggleSideBar('right')" *ngIf="!this.sideBarVisible.right && channel != 'NoChannelSelected'">
     <nb-icon icon="arrow-circle-right-outline" ></nb-icon>
                     </div>
 

@@ -13,7 +13,7 @@ function createWindow() {
   // const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 
 
-  win = new BrowserWindow({ width: 950, height: 555, backgroundColor: "#ffffff",
+  win = new BrowserWindow({ width: 1030, height: 655, backgroundColor: "#ffffff",
     acceptFirstMouse: true,
     webPreferences: {
       nodeIntegration: true,

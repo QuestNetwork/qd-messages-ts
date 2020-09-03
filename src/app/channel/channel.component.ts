@@ -8,9 +8,6 @@ import { NbSidebarService } from '@nebular/theme';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-
-declare var $: any;
-
 @Component({
   selector: 'app-channel',
   templateUrl: './channel.component.html',
@@ -98,10 +95,7 @@ export class ChannelComponent implements OnInit {
     if(this.channel != 'NoChannelSelected'){
       this.attemptJoinChannel(this.channel);
     }
-    else{
-      this.ui.updateProcessingStatus(false);
-    }
-
+  
 
     this.sideBarFixed = this.config.getSideBarFixed();
     this.sideBarVisible = this.config.getSideBarVisible();

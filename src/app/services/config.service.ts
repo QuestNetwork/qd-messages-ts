@@ -145,22 +145,26 @@ export class ConfigService {
       this.pubsub.setChannelKeyChain(config['channelKeyChain']);
     }
     if(typeof(config['channelParticipantList']) != 'undefined'){
-      console.log('Importing ParticipantList ...',config['channelParticipantList']);
+      console.log('Config: Importing ParticipantList ...',config['channelParticipantList']);
       this.pubsub.setChannelParticipantList(config['channelParticipantList']);
     }
     else{
         this.pubsub.setChannelParticipantList(this.config['channelParticipantList']);
     }
     if(typeof(config['channelNameList']) != 'undefined'){
-      console.log('Importing channelNameList ...',config['channelNameList']);
+      console.log('Config: Importing channelNameList ...',config['channelNameList']);
       this.pubsub.setChannelNameList(config['channelNameList']);
     }
     else{
       this.pubsub.setChannelNameList(this.config['channelNameList']);
     }
     if(typeof(config['channelFolderList']) != 'undefined'){
-      console.log('Importing Folder List ...',config['channelFolderList']);
+      console.log('Config: Importing Folder List ...',config['channelFolderList']);
       this.setChannelFolderList(config['channelFolderList']);
+    }
+    if(typeof(config['selectedChannel']) != 'undefined'){
+      console.log('Config: Importing Selected Channel ...',config['selectedChannel']);
+      this.setSelectedChannel(config['selectedChannel']);
     }
 
     if(typeof(config['sideBarFixed']) != 'undefined'){
@@ -172,6 +176,10 @@ export class ConfigService {
 
 
     return true;
+  }
+
+  setSelectedChannel(value){
+    this.config['selectedChannel'] = value;
   }
 
   sideBarFixedSub;

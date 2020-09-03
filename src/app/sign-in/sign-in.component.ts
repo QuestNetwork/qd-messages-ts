@@ -1,19 +1,11 @@
 import { Component, OnInit, Input,ViewChild} from '@angular/core';
 import { UiService} from '../services/ui.service';
 import { IpfsService} from '../services/ipfs.service';
-// import * as Store from 'electron-store';
 import { ConfigService} from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
 import * as swarmJson from '../swarm.json';
-//
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-
-declare var $: any;
-
-// const store = new Store();
 import { saveAs } from 'file-saver';
-// import { existsSync } from 'fs';
-
 
 @Component({
   selector: 'app-sign-in',
@@ -32,8 +24,6 @@ export class SignInComponent implements OnInit {
   stringifyStore;
 
   ngOnInit(): void {
-    this.ui.updateProcessingStatus(true);
-
     //auto login
     if(this.config.isSignedIn()){
       this.attemptImportSettings({}).then( (importSettingsStatus) => {
@@ -44,6 +34,9 @@ export class SignInComponent implements OnInit {
           this.ui.showSnack('Loading Channels...','Almost There');
           this.jumpToChannels();
           this.ui.signIn();
+          if(this.pubsub.getSelectedChannel() == 'NoChannelSelected'){
+            this.ui.updateProcessingStatus(false);
+          }
         }
         else{this.ui.showSnack('Error Importing Settings!','Oh No');}
       });
@@ -63,9 +56,7 @@ export class SignInComponent implements OnInit {
   async openFile(files){
     this.ui.updateProcessingStatus(true);
     if(this.ui.isElectron()){
-      $(function(){
-        $('.lds-heart').fadeTo('fast',0);
-      });
+
     }
     const droppedFile = files[0];
 
@@ -106,7 +97,7 @@ async openFileLoaded(event){
     else if(typeof(parsedStringify) != 'undefined' && typeof(parsedStringify.version) != 'undefined' && typeof(parsedStringify.appId) != 'undefined' && parsedStringify.appId == "quest-messenger-js"){
       //IMPORTED A .KEYCHAIN FILE
       let importSettingsStatus = await this.attemptImportSettings(parsedStringify);
-      console.log('Import Settings Status:',importSettingsStatus);
+      console.log('Sign In: Import Settings Status:',importSettingsStatus);
       //set temporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
       if(importSettingsStatus){this.ui.showSnack('Joining channel...','Almost There');await this.jumpToChannels();return true;}
       else{this.ui.showSnack('Error Importing Settings!','Oh No');}
@@ -118,6 +109,11 @@ async openFileLoaded(event){
     this.ui.toTabIndex(1);
     this.ui.enableTab('channelTab');
     this.ui.disableTab('signInTab');
+
+    if(this.pubsub.getSelectedChannel() == 'NoChannelSelected' ){
+      this.ui.updateProcessingStatus(false);
+    }
+
     return true;
   }
 
@@ -196,9 +192,7 @@ async openFileLoaded(event){
       if(this.ui.isElectron()){
             this.ui.showSnack('Importing key...','Yeh',{duration:1000});
           await this.ui.delay(1200);
-          $(function(){
-            $('.lds-heart').fadeTo('fast',0.9);
-          });
+
       }
       else{
           this.ui.showSnack('Importing key...','Yeh');

@@ -13,7 +13,7 @@ export class UiService {
   headerOptions: any = null
   inElectron = false;
 
-  isProcessing = false
+  isProcessing = true;
   processingSub = new Subject<any>();
   updateProcessingStatus(value) {
     if(value){

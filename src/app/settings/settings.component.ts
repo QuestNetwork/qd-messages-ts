@@ -6,9 +6,6 @@ import { QuestPubSubService } from '../services/quest-pubsub.service';
 import { NbSidebarService } from '@nebular/theme';
 import { NbMenuItem } from '@nebular/theme';
 
-
-declare var $: any;
-
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -26,44 +23,28 @@ sideBarFixed = { left:false}
       expanded: true,
       children: [
         {
-          title: 'Change Password',
+          title: 'Profile Settings',
         },
         {
-          title: 'Privacy Policy',
-        },
-        {
-          title: 'Logout',
+          title: 'Export Settings',
         },
       ],
     },
     {
-      title: 'Shopping Bag',
+      title: 'IPFS',
       children: [
         {
-          title: 'First Product',
+          title: 'Bootstrap',
         },
         {
-          title: 'Second Product',
-        },
-        {
-          title: 'Third Product',
-        },
+          title: 'Settings',
+        }
       ],
     },
     {
-      title: 'Orders',
-      children: [
-        {
-          title: 'First Order',
-        },
-        {
-          title: 'Second Order',
-        },
-        {
-          title: 'Third Order',
-        },
-      ],
-    },
+      title: 'Sign Out'
+    }
+
   ];
 
   DEVMODE = true;
