@@ -64,7 +64,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.2**
 - AutoSave For Message Histories
-- Pair with participants by sharing public keys in person (scanning qr codes of the keys/channels)
+- Pair with participants by sharing public keys in person (show qr codes for keys and invite codes)
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
 - Alias (show custom name instead of pub key)
 
