@@ -56,6 +56,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.1**
 - Auto SignIn, if signed in
+- Export Settings
 - Join/Create Custom Channels
 - Import/Export Channel Groups
 - Option To Generate tokens to invite participants instead of the challenge flow
@@ -71,7 +72,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.3**
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
-- Export Settings
 - Export Message Histories
 
 **0.9.4**
