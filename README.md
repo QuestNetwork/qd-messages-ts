@@ -108,13 +108,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **2.0.0**
 - Ethereum Payment Integration
 
-**2.5.0**
+**3.0.0**
 - Matrix Plugin to add Matrix rooms and communities
 
-**3.0.0**
+**4.0.0**
 - [OpenAI GPT3](https://en.wikipedia.org/wiki/GPT-3) Integration For Suggestions, AutoRespond And Completion
 
-**4.0.0**
+**5.0.0**
 - Quest Network Widgets (plug-in that connects the messenger to other apps, for example collaborative illustration in Inkscape)
 - Modular Crypto Currency Integration (presets for Bitcoin, Monero and Chainlink)
 - Share Screen
