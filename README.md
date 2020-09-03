@@ -78,13 +78,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypt Settings/Message History Files
 
 **0.9.5**
-- IRC Plugin to add IRC servers
-
-**0.9.6**
 - P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 
-**0.9.7**
+**0.9.6**
 - Private Channels Extendable To Groups (background create and join)
+
+**0.9.7**
+- IRC Plugin to add IRC servers
 
 **0.9.8**
 - Light Mode
@@ -108,7 +108,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **2.0.0**
 - Ethereum Payment Integration
 
-**2.1.0**
+**2.5.0**
 - Matrix Plugin to add Matrix rooms and communities
 
 **3.0.0**
