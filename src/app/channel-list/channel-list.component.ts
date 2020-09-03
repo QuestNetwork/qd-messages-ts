@@ -100,4 +100,11 @@ export class ChannelListComponent implements OnInit {
     // },2500);
   }
 
+
+  open(dialog){
+
+  }
+  clode(){
+    
+  }
 }

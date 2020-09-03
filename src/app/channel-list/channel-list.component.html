@@ -1,3 +1,13 @@
+<ng-template #dialog let-data let-ref="dialogRef">
+      <nb-card>
+        <nb-card-header>Template Dialog</nb-card-header>
+        <nb-card-body>{{ data }}</nb-card-body>
+        <nb-card-footer>
+          <button nbButton (click)="close()">Close Dialog</button>
+        </nb-card-footer>
+      </nb-card>
+    </ng-template>
+
 <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" placeholder="Search">
 <button outline nbButton [nbContextMenu]="items" size="small" class="addChannelButton">
      Add

@@ -204,11 +204,14 @@ async openFileLoaded(event){
       this.config.autoSave();
 
       //wait for ipfs
+      this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
       console.log('SignIn: Waiting for IPFS...');
       while(!this.ipfs.isReady()){
         console.log('SignIn: Waiting for IPFS...');
         await this.ui.delay(5000);
-      }
+
+
+      this.ui.showSnack('Swarm Discovered...','Cool',{duration:1000});
 
       let defaultChannel = "NoChannelSelected";
       if(typeof(this.config.getConfig()['selectedChannel']) != 'undefined'){
