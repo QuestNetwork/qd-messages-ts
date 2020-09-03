@@ -26,7 +26,7 @@ export class SignInComponent implements OnInit {
   fs: any;
 
   constructor(private ui: UiService, private ipfs: IpfsService,private pubsub: QuestPubSubService, private config:ConfigService) {
-  
+
   }
 
   stringifyStore;
