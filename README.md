@@ -64,14 +64,14 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.2**
-- AutoSave For Message Histories
 - Pair with participants by sharing public keys in person (show qr codes for keys and invite codes)
-- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
 - Alias (show custom name instead of pub key) and profile pictures
+- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
 
 **0.9.3**
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
+- AutoSave For Message Histories
 - Export Message Histories
 
 **0.9.4**
