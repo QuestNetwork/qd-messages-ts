@@ -134,7 +134,12 @@ async openFileLoaded(event){
     saveAs(jobFileBlob, "profile.qcprofile");
     importSettingsStatus = await this.attemptImportSettings(stringify);
     //settemporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
-    if(importSettingsStatus){this.ui.showSnack('Joining channel...','Almost There');await this.jumpToChannels();return true;}
+
+    if(importSettingsStatus){
+      this.ui.showSnack('Default Settings Loaded...','Almost There');
+      console.log("Default Settings Loaded...");
+      await this.jumpToChannels();
+    }
     else{this.ui.showSnack('Error Importing Settings!','Oh No');}
   }
 
