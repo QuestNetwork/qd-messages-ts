@@ -209,7 +209,7 @@ async openFileLoaded(event){
       while(!this.ipfs.isReady()){
         console.log('SignIn: Waiting for IPFS...');
         await this.ui.delay(5000);
-
+      }
 
       this.ui.showSnack('Swarm Discovered...','Cool',{duration:1000});
 
