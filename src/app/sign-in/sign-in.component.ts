@@ -118,8 +118,6 @@ async openFileLoaded(event){
   }
 
 
-  beeProcessing = false;
-
   async generateDefaultSettings(){
     this.ui.updateProcessingStatus(true);
     let importSettingsStatus = await this.attemptImportSettings({});
