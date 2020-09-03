@@ -34,8 +34,7 @@ We're planning to become for messaging what [Atom](https://atom.io) is for writi
 The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
 ## Installation & Usage
-
-Please use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test and build the app.
+We added the swarm.json to the app folder with an example node to make reproduction easier, but we strongly recommend to use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test and build the app. Among other advantages it places the swarm.json with global information like bootstrap node lists into all your quest network apps and packages.
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
 
