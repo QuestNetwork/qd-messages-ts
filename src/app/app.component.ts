@@ -303,13 +303,12 @@ public async ngAfterContentInit() {
 
   snackBarRef;
   showSnack(left, right, options = {}){
-    if(typeof(this.snackBarRef) != 'undefined'){
-      this.snackBar.dismiss();
-    }
 
     if(Object.keys(options).length > 0){
+      console.log('App: Opening snackbar with options');
       this.snackBarRef = this.snackBar.open(left,right,options);
     }else{
+      console.log('App: Oopening snackbar');
      this.snackBarRef = this.snackBar.open(left,right);
    }
 

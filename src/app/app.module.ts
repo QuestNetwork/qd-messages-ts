@@ -55,7 +55,7 @@ import { ChannelParticipantListComponent } from './channel-participant-list/chan
 import { ChannelSettingsComponent } from './channel-settings/channel-settings.component';
 import { ChannelTabComponent } from './channel-tab/channel-tab.component';
 
-// import {ClipboardModule} from '@angular/cdk/clipboard';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 
 @NgModule({
@@ -76,6 +76,7 @@ import { ChannelTabComponent } from './channel-tab/channel-tab.component';
     ChannelTabComponent
   ],
   imports: [
+    ClipboardModule,
     FlexLayoutModule,
     HttpClientModule,
     MatSliderModule,
@@ -108,8 +109,8 @@ import { ChannelTabComponent } from './channel-tab/channel-tab.component';
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
     NbCardModule
-// ClipboardModule
   ],
+  exports: [MatSelectModule],
   providers: [
     UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService,NbMenuService,NbDialogService
   ],
