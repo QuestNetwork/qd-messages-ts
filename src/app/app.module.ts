@@ -88,7 +88,6 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
-    // MatTreeModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -110,7 +109,6 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     NbDialogModule.forRoot(),
     NbCardModule
   ],
-  exports: [MatSelectModule],
   providers: [
     UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService,NbMenuService,NbDialogService
   ],
