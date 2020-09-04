@@ -1,9 +1,29 @@
-<ng-template #dialog let-data let-ref="dialogRef">
+<ng-template #create let-data let-ref="createRef">
       <nb-card>
-        <nb-card-header>Template Dialog</nb-card-header>
-        <nb-card-body>{{ data }}</nb-card-body>
+        <nb-card-header>Create Channel</nb-card-header>
+        <nb-card-body style="color:goldenrod;">
+
+          <div style="padding: 20px;">
+            Folder:
+            <mat-select [(value)]="newChannelFolder" (selectionChange)="newChannelFolderChanged($event.value)" style="width: 80%;margin-left:10px;" >
+                    <mat-option *ngFor="let folder of channelFolderListArray" [value]="folder.id" >
+                        {{ folder.data.name }}
+                    </mat-option>
+                   </mat-select>
+            </div>
+            <div style="padding: 20px;
+    padding-bottom: 34px;
+    padding-top: 0px;
+    color: white !important;">
+              <input matInput placeholder="Channel Name" value="" name='newChannelName' [(ngModel)]='newChannelName' style="color: black;
+    background-color: goldenrod;
+    padding: 7px;">
+              </div>
+        </nb-card-body>
         <nb-card-footer>
-          <button nbButton (click)="close()">Close Dialog</button>
+          <button mat-stroked-button color="primary" (click)="createNewChannel();" style="    margin-right: 20px;
+    border: 1px solid #ffffff24;">Create</button>
+          <button mat-stroked-button color="primary" (click)="closeCreate()" style="    border: 1px solid #ffffff24;">Cancel</button>
         </nb-card-footer>
       </nb-card>
     </ng-template>

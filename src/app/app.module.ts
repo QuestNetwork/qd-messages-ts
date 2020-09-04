@@ -44,7 +44,7 @@ import { NbDialogService } from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbTabsetModule } from '@nebular/theme';
 import { NbChatModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbIconModule,NbTreeGridModule } from '@nebular/theme';
+import { NbIconModule,NbTreeGridModule,    NbCardModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
@@ -95,8 +95,8 @@ import { ChannelListComponent } from './channel-list/channel-list.component';
     FormsModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
-    NbDialogModule,
-
+    NbDialogModule.forRoot(),
+    NbCardModule
 
   ],
   providers: [

@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { ConfigService } from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService,NbDialogService } from '@nebular/theme';
+import { UiService} from '../services/ui.service';
+
 import { filter, map } from 'rxjs/operators';
 
+import { v4 as uuidv4 } from 'uuid';
 
 interface TreeNode<T> {
   data: T;
@@ -27,7 +30,7 @@ interface FSEntry {
 export class ChannelListComponent implements OnInit {
 
   channelNameList = [];
-  constructor(private nbMenuService: NbMenuService,private config: ConfigService, private pubsub: QuestPubSubService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService,private config: ConfigService, private pubsub: QuestPubSubService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
 
       let data = this.config.getChannelFolderList();
       this.dataSource = this.dataSourceBuilder.create(data);
@@ -81,30 +84,72 @@ export class ChannelListComponent implements OnInit {
         { title: 'New Folder' },
       ];
 
-
+newChannelName;
 
   ngOnInit(): void {
     this.channelNameList = this.pubsub.getChannelNameList();
-    // setTimeout( () => {
       this.config.channelFolderListSub.subscribe( (chFL: []) => {
          this.dataSource = this.dataSourceBuilder.create(chFL);
       });
 
+      this.nbMenuService.onItemClick().subscribe( (menuItem) => {
+          this.getChannelFolderList();
 
-      this.nbMenuService.onItemClick()
-     .pipe(
-       filter(({ tag }) => tag === 'my-context-menu'),
-       map(({ item: { title } }) => title),
-     )
-     .subscribe(title => console.log(`${title} was clicked!`));
-    // },2500);
+
+         if(String(menuItem.item.title) == 'Create Channel' && !this.createOpen){
+            this.open(this.createPop);
+            this.createOpen = true;
+          }
+
+
+          console.log(menuItem);
+    });
   }
 
 
-  open(dialog){
 
+
+
+  @ViewChild('create') createPop;
+  createOpen = false;
+  channelFolderList;
+  channelFolderListArray = [];
+  newChannelFolder;
+  getChannelFolderList(){
+    this.channelFolderList = this.config.getChannelFolderList();
+    this.parseStructure(this.channelFolderList);
+    this.newChannelFolder = this.channelFolderList[0];
+    return this.channelFolderList;
   }
-  clode(){
-    
+  parseStructure(folderStructure){
+    for(let i=0;i<folderStructure.length;i++){
+      if(folderStructure[i]['data']['name'].indexOf('-----') === -1){
+        folderStructure[i]['id'] = uuidv4();
+        this.channelFolderListArray.push(folderStructure[i]);
+        if(typeof(folderStructure[i]['children']) != 'undefined'){
+          this.parseStructure(folderStructure[i]['children']);
+        }
+      }
+    }
+    return folderStructure;
   }
+  newChannelFolderChanged(){}
+  createNewChannel(){
+    this.ui.showSnack('Creating Channel...','Please Wait',{duration:1000});
+    this.createOpen = false;
+    this.createRef.close();
+  }
+ createRef;
+  open(dialog: TemplateRef<any>) {
+      this.createRef = this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' });
+    }
+  closeCreate(){
+    this.createOpen = false;
+    this.createRef.close();
+  }
+
+
+
+
+
 }

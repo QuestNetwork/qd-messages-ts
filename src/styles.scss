@@ -887,6 +887,26 @@ color: #daa520de;
     color: #daa520de !important;
 }
 
+.nb-theme-dark nb-card-header{
+  color:#910eb1;
+      border-bottom: 1px solid #3c55c1;
+}
+
+
+.nb-theme-dark nb-card-footer{
+  color:#910eb1;
+      border-top: 1px solid #3c55c1;
+      text-align: center;
+}
+nb-card{
+    margin-bottom: 0 !important;
+    background: rgba(16,32,66,.88);
+    border-radius: 10px;
+
+    box-shadow: 0 1px 4px #00000066;
+    filter: drop-shadow(0 0px 90px #fffff036);
+}
 mat-card{
       background-color: #222b45;
+
 }
