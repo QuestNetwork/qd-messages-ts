@@ -206,7 +206,7 @@ height:auto !important;
 
 }
 
-.channel-chat-screen .layout-container{
+.channelScreen .layout-container{
   position: fixed;
   z-index: 10;
   padding: 0 !important;
@@ -217,15 +217,15 @@ height:auto !important;
     left: 0;
   }
 
-  .isElectron .channel-chat-screen .layout-container{
+  .isElectron .channelScreen .layout-container{
     bottom: 26px;
   }
 
-.channel-chat-screen nb-layout-column{
+.channelScreen nb-layout-column{
     padding:0 !important;
   }
 
-.isElectron .channel-chat-screen .header{
+.isElectron .channelScreen .header{
   color:#ffffffcf !important;
   white-space: nowrap;
   overflow: hidden;
@@ -238,22 +238,17 @@ height:auto !important;
   height:100%
 }
 
-.nb-theme-dark .menu-item > a, .nb-theme-dark .channel-chat-screen .form input, .nb-theme-dark .channel-chat-screen .text, .nb-theme-dark .toggleSideBarRight, .nb-theme-dark .mat-select-trigger, .nb-theme-dark .mat-select-value, .nb-theme-dark .mat-select-arrow, .nb-theme-dark .inviteCodeListItem{
+.nb-theme-dark .menu-item > a, .nb-theme-dark .channelScreen .form input, .nb-theme-dark .channelScreen .text, .nb-theme-dark .toggleSideBarRight, .nb-theme-dark .mat-select-trigger, .nb-theme-dark .mat-select-value, .nb-theme-dark .mat-select-arrow, .nb-theme-dark .inviteCodeListItem{
   color:#ffffffcf !important;
 }
 
-.isElectron .channel-chat-screen .sender{
+.isElectron .channelScreen .sender{
   white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 150px;
 }
 
-
-.isElectron .g-recaptcha{
-  pointer-events: none;
-
-}
 
 .isElectron .messageInput{
       width: 100vw !important;

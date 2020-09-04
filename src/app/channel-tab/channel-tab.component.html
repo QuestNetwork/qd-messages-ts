@@ -1,8 +1,5 @@
-<div class="channelScreen" style="min-height:200px;    background-image: linear-gradient(315deg, #f907fc 0%, #000000 74%);">
-  <div class="channel-chat-screen" style="height: 100%;">
 
-
-<nb-layout>
+<nb-layout  class="channelScreen" >
 
   <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
     <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton" style="margin-right:8px;">Hide Panel</button>
@@ -14,6 +11,7 @@
     <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.right" style="margin-right:10px;">Lock Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.right" style="margin-right:10px;">Float Panel</button>
     <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton">Hide Panel</button>
+
     <app-channel-sidebar-right></app-channel-sidebar-right>
   </nb-sidebar>
   <nb-layout-column>
@@ -28,11 +26,6 @@
 
   </nb-layout-column>
 </nb-layout>
-
-</div>
-</div>
-
-
 
 
   <div class="toggleSideBarRight toggleSideBarLeft" style="z-index: 20;

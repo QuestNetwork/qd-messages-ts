@@ -271,6 +271,11 @@ public async ngAfterContentInit() {
       this.pubSubPeers = value;
     });
 
+
+
+
+    
+
   }
 
   public swarmPeers = 0;
