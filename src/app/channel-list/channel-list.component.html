@@ -23,10 +23,90 @@
         <nb-card-footer>
           <button mat-stroked-button color="primary" (click)="createNewChannel();" style="    margin-right: 20px;
     border: 1px solid #ffffff24;">Create</button>
-          <button mat-stroked-button color="primary" (click)="closeCreate()" style="    border: 1px solid #ffffff24;">Cancel</button>
+          <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
         </nb-card-footer>
       </nb-card>
     </ng-template>
+
+
+    <ng-template #import let-data let-ref="importRef">
+          <nb-card>
+            <nb-card-header>Import Channel</nb-card-header>
+            <nb-card-body style="color:goldenrod;">
+
+              <div style="padding: 20px;">
+                Import Folder Structure:
+                <mat-form-field style="width: 19%;" > <mat-select [(value)]="importFolderStructure" (selectionChange)="newInviteImportFoldersChanged($event.value)" >
+
+                                 <mat-option  [value]="1" >
+                                    On
+                                </mat-option>
+                                <mat-option  [value]="0" >
+                                   Off
+                               </mat-option>
+
+
+                      </mat-select></mat-form-field>
+              </div>
+
+              <div style="padding: 20px;">
+                Place Into Folder:
+                <mat-select [(value)]="newChannelFolder" (selectionChange)="newChannelFolderChanged($event.value)" style="width: 80%;margin-left:10px;" >
+                        <mat-option *ngFor="let folder of channelFolderListArray" [value]="folder.id" >
+                            {{ folder.data.name }}
+                        </mat-option>
+                       </mat-select>
+                </div>
+                <div style="padding: 20px;
+        padding-bottom: 34px;
+        padding-top: 0px;
+        color: white !important;">
+                  <input matInput placeholder="Invite Code" value="" name='inviteCode' [(ngModel)]='inviteCode' style="color: black;
+        background-color: goldenrod;
+        padding: 7px;">
+                  </div>
+            </nb-card-body>
+            <nb-card-footer>
+              <button mat-stroked-button color="primary" (click)="importNewChannel();" style="    margin-right: 20px;
+        border: 1px solid #ffffff24;">Import</button>
+              <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
+            </nb-card-footer>
+          </nb-card>
+        </ng-template>
+
+
+
+        <ng-template #folder let-data let-ref="folderRef">
+              <nb-card>
+                <nb-card-header>Create Folder</nb-card-header>
+                <nb-card-body style="color:goldenrod;">
+
+                  <div style="padding: 20px;">
+                    Folder:
+                    <mat-select [(value)]="newChannelFolder" (selectionChange)="newChannelFolderChanged($event.value)" style="width: 80%;margin-left:10px;" >
+                            <mat-option *ngFor="let folder of channelFolderListArray" [value]="folder.id" >
+                                {{ folder.data.name }}
+                            </mat-option>
+                           </mat-select>
+                    </div>
+                    <div style="padding: 20px;
+            padding-bottom: 34px;
+            padding-top: 0px;
+            color: white !important;">
+                      <input matInput placeholder="Folder Name" value="" name='newFolderName' [(ngModel)]='newFolderName' style="color: black;
+            background-color: goldenrod;
+            padding: 7px;">
+                      </div>
+                </nb-card-body>
+                <nb-card-footer>
+                  <button mat-stroked-button color="primary" (click)="createNewFolder();" style="    margin-right: 20px;
+            border: 1px solid #ffffff24;">Create</button>
+                  <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
+                </nb-card-footer>
+              </nb-card>
+            </ng-template>
+
+
 
 <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" placeholder="Search">
 <button outline  [nbContextMenu]="items" size="small" class="addChannelButton">

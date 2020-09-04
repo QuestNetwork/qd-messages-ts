@@ -79,7 +79,6 @@ export class ChannelListComponent implements OnInit {
         { title: 'New Folder' },
       ];
 
-newChannelName;
 
   ngOnInit(): void {
     this.channelNameList = this.pubsub.getChannelNameList();
@@ -88,11 +87,18 @@ newChannelName;
       });
 
       this.nbMenuService.onItemClick().subscribe( (menuItem) => {
-         if(String(menuItem.item.title) == 'Create Channel' && !this.createOpen){
+         if(String(menuItem.item.title) == 'Create Channel'){
             this.getChannelFolderList();
             this.open(this.createPop);
           }
-          console.log(menuItem);
+          else if(String(menuItem.item.title) == 'Import Channel'){
+              this.getChannelFolderList();
+              this.open(this.importPop);
+          }
+          else if(String(menuItem.item.title) == 'New Folder'){
+              this.getChannelFolderList();
+              this.open(this.folderPop);
+          }
     });
   }
 
@@ -103,9 +109,8 @@ newChannelName;
 
 
 
-
   @ViewChild('create') createPop;
-  createOpen = false;
+  newChannelName;
   channelFolderList;
   channelFolderListArray = [];
   newChannelFolder;
@@ -133,17 +138,33 @@ newChannelName;
   newChannelFolderChanged(){}
   createNewChannel(){
     this.ui.showSnack('Creating Channel...','Please Wait',{duration:1000});
-    this.createRef.close();
+    this.popupRef.close();
   }
- createRef;
+  popupRef;
   open(dialog: TemplateRef<any>) {
-        this.createRef = this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' });
+        this.popupRef = this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' });
     }
-  closeCreate(){
-    this.createOpen = false;
-    this.createRef.close();
+  closePopup(){
+    this.popupRef.close();
   }
 
+
+
+  @ViewChild('folder') folderPop;
+  newFolderName;
+  createNewFolder(){
+    this.ui.showSnack('Creaingt Folder...','Please Wait',{duration:1000});
+    this.popupRef.close();
+  }
+
+  @ViewChild('import') importPop;
+  importFolderStructure = 1;
+  inviteCode;
+  importChannelFolderChanged(){}
+  importNewChannel(){
+    this.ui.showSnack('Importing Channels...','Please Wait',{duration:1000});
+    this.popupRef.close();
+  }
 
 
 
