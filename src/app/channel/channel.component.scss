@@ -10,42 +10,6 @@
 }
 
 
-ul{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.channelParticipantList ul{
-  margin-top: 20px;
-  padding-right: 10px;
-}
-
-
-
-ul li{
-  display:inline-block;
-  clear: both;
-  padding: 12px;
-  border-radius: 14px;
-  font-family: MONOSPACE;
-  font-size: 11px;
-  margin-top: 0px;
-
-    margin-right: 10px;
-
-    margin-left: 10px;
-}
-
-ul li.participant{
-  padding: 10px;
-  border-radius: 12px;
-  margin-top: 5px;
-
-    margin-right: 5px;
-
-    margin-left: 5px;
-}
 
 .him{
   opacity:0.9;
@@ -67,16 +31,7 @@ margin-bottom: 10px;
   overflow-wrap: break-word;
   max-width: 450px;
 }
-.participant{
-    background: #0084ff;
-    background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
-    color: #fff;
-  margin:0;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-       width: 100%;
-}
+
 .fromIndicator{
   color: #fff;
     opacity: 0.5;
@@ -91,37 +46,6 @@ margin-bottom: 10px;
 }
 
 
-.fromIndicator.L{
-  float:left;
-  margin-top: 0px;
-  padding: 5px;
-  padding-bottom: 0px;
-}
-.fromIndicator.R{
-  float:right;
-  margin-top: 0px;
-  padding: 5px;
-  padding-bottom: 0px;
-}
-//
-// .him + .me{
-//   border-bottom-right-radius: 5px;
-// }
-//
-// .me + .me{
-
-//   border-top-right-radius: 5px;
-//   border-bottom-right-radius: 5px;
-// }
-//
-// .me:last-of-type {
-//   border-bottom-right-radius: 30px;
-// }
-
-.realTimeChatHistory{
-  overflow-y: scroll; margin: auto;text-align: left;  position: relative;height:280px;margin-right:100px;margin-bottom:22px;
-}
-
 
 .sendMessageIcon{
   cursor:pointer;  float: right;
@@ -133,67 +57,4 @@ color: white;
 border-radius: 5px;
 font-size: 13px;
 height:21px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-// INVITE CODES PANEL
-
-.channelSettingsTab{
-      padding-top: 20px;
-}
-
-.inviteCodeListItem{
-  padding: 0 !important;
-    margin: 0 !important;
-    width:100%;
-}
-
-.inviteCodeUsers, .inviteCodeItem{
-  float:left;
-}
-
-.inviteCodeItem{
-  margin-left: 5px;
-    width: 55%;
-margin-right: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.deleteCode{
-  margin-left:5px;
-  cursor:pointer;
-
-}
-
-.inviteCodeCopy{
-  cursor:pointer;
-}
-
-.generateInviteCodeButton{
-  margin-bottom: 16px;
-      color: rgba(218,165,32,.75);
-      margin-left: 5%;
-      height: 22px;
-      width: 37%;
-      margin-top: 5px;
-      position: relative;
-      top: 0px;
-      margin-left: 15px;
-      background-color: transparent;
-      border: 1px solid;
-      opacity: .7;
-      font-size: 13px;
 }

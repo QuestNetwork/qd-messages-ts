@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { ConfigService } from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
@@ -93,17 +93,16 @@ newChannelName;
       });
 
       this.nbMenuService.onItemClick().subscribe( (menuItem) => {
-          this.getChannelFolderList();
-
-
          if(String(menuItem.item.title) == 'Create Channel' && !this.createOpen){
+            this.getChannelFolderList();
             this.open(this.createPop);
-            this.createOpen = true;
           }
-
-
           console.log(menuItem);
     });
+  }
+
+  ngOnDestroy(){
+  //  this.nbMenuService.unsubscribe();
   }
 
 
@@ -117,8 +116,11 @@ newChannelName;
   newChannelFolder;
   getChannelFolderList(){
     this.channelFolderList = this.config.getChannelFolderList();
+    this.channelFolderListArray = [];
     this.parseStructure(this.channelFolderList);
-    this.newChannelFolder = this.channelFolderList[0];
+    if(this.channelFolderListArray.length > 0){
+      this.newChannelFolder = this.channelFolderListArray[0];
+    }
     return this.channelFolderList;
   }
   parseStructure(folderStructure){
@@ -136,12 +138,11 @@ newChannelName;
   newChannelFolderChanged(){}
   createNewChannel(){
     this.ui.showSnack('Creating Channel...','Please Wait',{duration:1000});
-    this.createOpen = false;
     this.createRef.close();
   }
  createRef;
   open(dialog: TemplateRef<any>) {
-      this.createRef = this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' });
+        this.createRef = this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' });
     }
   closeCreate(){
     this.createOpen = false;

@@ -1,174 +1,33 @@
-<div class="channelScreen" style="min-height:200px;    background-image: linear-gradient(315deg, #f907fc 0%, #000000 74%);">
 
+<div class="import-key-screen captchaScreen" [hidden]="!showChallengeScreen" style="height: 100%;">
+     <img [src]="captchaImageResource" class="frameThumbnail" style="    width: 80%;  margin: 10%;">
+     <form class="example-form">
+       <mat-form-field class="example-full-width">
+         <mat-label>Captcha Text</mat-label>
+         <input matInput placeholder="Captcha Text" value="" name='captchaCode' [(ngModel)]='captchaCode'>
+       </mat-form-field>
+       </form>
 
+     <button mat-stroked-button color="primary" (click)="completedChallenge()" class="importButton captchaButton">I Aced That IQ Test</button>
+</div>
 
+<div [hidden]="showChallengeScreen" style="height:100%">
+       <nb-chat title="Channel: {{channel}}">
+         <nb-chat-message *ngFor="let msg of messages"
+           [type]="msg.type"
+           [message]="msg.message"
+           [reply]="msg.reply"
+           [sender]="msg.channelPubKey"
+           [date]="msg.timestamp"
+           [files]="msg.files"
+           [quote]="msg.quote"
+           [latitude]="msg.latitude"
+           [longitude]="msg.longitude"
+           [avatar]="msg.participant.avatar">
+        </nb-chat-message>
 
-                   <div class="channel-chat-screen" style="height: 100%;">
-                     <nb-layout>
-                       <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
-                         <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton" style="margin-right:8px;">Hide Panel</button>
-                         <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.left">Lock Panel</button>
-                         <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.left">Float Panel</button>
-                         <nb-tabset fullWidth>
-                           <nb-tab tabIcon="share-outline" class="channelList">
-                             <app-channel-list></app-channel-list>
-                           </nb-tab>
-                           <nb-tab tabIcon="flip-2-outline">
-                             <p>List of <strong>Notifications</strong>.</p>
-                           </nb-tab>
-                         </nb-tabset>
-                       </nb-sidebar>
-                       <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true" [hidden]="showChallengeScreen" >
-                         <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.right" style="margin-right:10px;">Lock Panel</button>
-                         <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.right" style="margin-right:10px;">Float Panel</button>
-                         <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton">Hide Panel</button>
+        <nb-chat-form (send)="publishChannelMessage($event)" [dropFiles]="true">
+        </nb-chat-form>
 
-                         <nb-tabset fullWidth>
-                           <nb-tab tabIcon="people-outline" class="channelParticipantList">
-                             <ul>
-                             <li  *ngFor="let participant of channelParticipantListArray" class="participant" >  {{ participant }}</li>
-                            </ul>
-                           </nb-tab>
-                           <nb-tab tabIcon="bell-outline">
-                             <p>List of <strong>Notifications</strong>.</p>
-                           </nb-tab>
-                           <nb-tab tabIcon="settings-outline" class="channelSettingsTab">
-                               <p style="color: goldenrod !important;  margin-bottom: 0px;"> Challenge</p>
-                               <mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged($event.value)" style="width: 24%;" >
-                                      <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
-                                          {{ thislocation.name }}
-                                      </mat-option> -->
-                                                <mat-option  [value]="1" >
-                                                   On
-                                               </mat-option>
-                                               <mat-option  [value]="0" >
-                                                  Off
-                                              </mat-option>
-
-                                     </mat-select>
-                            <p style="color: goldenrod !important;    margin-top: 10px;  margin-bottom: 0px;"> Invite Codes</p>
-                             <div style="margin-bottom: 4px;">
-
-                                Include Folder Structure:   <mat-select [(value)]="includeFolderStructure" (selectionChange)="newInviteExportFoldersChanged($event.value)" style="width: 19%;" >
-                                        <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
-                                            {{ thislocation.name }}
-                                        </mat-option> -->
-                                                  <mat-option  [value]="1" >
-                                                     On
-                                                 </mat-option>
-                                                 <mat-option  [value]="0" >
-                                                    Off
-                                                </mat-option>
-
-
-                                       </mat-select>
-                                  </div>
-                                  <div style="">
-
-                             Max:   <mat-select [(value)]="newInviteCodeMax" (selectionChange)="newInviteCodeMaxChanged($event.value)" style="width: 24%;" >
-                                     <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
-                                         {{ thislocation.name }}
-                                     </mat-option> -->
-                                               <mat-option  [value]="1" >
-                                                  1
-                                              </mat-option>
-                                              <mat-option  [value]="5" >
-                                                 5
-                                             </mat-option>
-                                             <mat-option  [value]="10" >
-                                                10
-                                            </mat-option>
-                                            <mat-option  [value]="20" >
-                                               20
-                                           </mat-option>
-                                           <mat-option  [value]="40" >
-                                              40
-                                          </mat-option>
-                                          <mat-option  [value]="80" >
-                                             80
-                                         </mat-option>
-                                         <mat-option  [value]="100" >
-                                            100
-                                        </mat-option>
-
-                                    </mat-select>
-
-                                    <button nbButton size="small" (click)="generateInviteCode()" class="generateInviteCodeButton" >
-                                         Generate
-                                       </button>
-                               </div>
-
-                             <ul>
-                             <li  *ngFor="let inviteCode of channelInviteCodes" class='inviteCodeListItem' ><div class="inviteCodeUsers"> {{ inviteCode['usersUsed'] }} / {{ inviteCode['usersMax'] }} </div>   <div class="inviteCodeItem"> {{ inviteCode['code'] }} </div>
-                               <nb-icon icon="copy-outline" class="inviteCodeCopy" (click)="copyToClipboard(inviteCode['code'])"></nb-icon>
-                               <nb-icon icon="trash-2-outline" class="deleteCode" (click)="deleteInviteCode(inviteCode['code'])"></nb-icon>
-                             </li>
-                            </ul>
-
-
-                           </nb-tab>
-                         </nb-tabset>
-
-                       </nb-sidebar>
-
-                         <nb-layout-column class="import-key-screen captchaScreen" [hidden]="!showChallengeScreen" style="height: 100%;">
-                             <img [src]="captchaImageResource" class="frameThumbnail" style="    width: 80%;  margin: 10%;">
-                             <form class="example-form">
-                               <mat-form-field class="example-full-width">
-                                 <mat-label>Captcha Text</mat-label>
-                                 <input matInput placeholder="Captcha Text" value="" name='captchaCode' [(ngModel)]='captchaCode'>
-                               </mat-form-field>
-                               </form>
-
-                             <button mat-stroked-button color="primary" (click)="completedChallenge()" class="importButton captchaButton">I Aced That IQ Test</button>
-                        </nb-layout-column>
-
-                        <nb-layout-column [hidden]="showChallengeScreen" >
-                           <nb-chat title="Channel: {{channel}}">
-                             <nb-chat-message *ngFor="let msg of messages"
-                               [type]="msg.type"
-                               [message]="msg.message"
-                               [reply]="msg.reply"
-                               [sender]="msg.channelPubKey"
-                               [date]="msg.timestamp"
-                               [files]="msg.files"
-                               [quote]="msg.quote"
-                               [latitude]="msg.latitude"
-                               [longitude]="msg.longitude"
-                               [avatar]="msg.participant.avatar">
-                            </nb-chat-message>
-
-                            <nb-chat-form (send)="publishChannelMessage($event)" [dropFiles]="true">
-                            </nb-chat-form>
-
-                            </nb-chat>
-                    </nb-layout-column>
-
-                  </nb-layout>
-                  <div class="toggleSideBarRight" style="z-index: 20;
-    position: fixed;
-    right: 7px;
-    top: 66px;
-    cursor: pointer;color:#36f !important;" (click)="toggleSideBar('right')" *ngIf="!this.sideBarVisible.right && channel != 'NoChannelSelected'">
-    <nb-icon icon="arrow-circle-right-outline" ></nb-icon>
-                    </div>
-
-                    <div class="toggleSideBarRight" style="z-index: 20;
-      position: fixed;
-      left: 7px;
-      top: 66px;
-      cursor: pointer;color:#36f !important;" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
-                      <nb-icon icon="arrow-circle-left-outline" ></nb-icon>
-                      </div>
-
-
-
-                       </div>
-
-
-
-
-
-
-
+        </nb-chat>
 </div>

@@ -1,0 +1,71 @@
+<p style="color: goldenrod !important;  margin-bottom: 0px;"> Challenge</p>
+<mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged($event.value)" style="width: 24%;" >
+       <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
+           {{ thislocation.name }}
+       </mat-option> -->
+                 <mat-option  [value]="1" >
+                    On
+                </mat-option>
+                <mat-option  [value]="0" >
+                   Off
+               </mat-option>
+
+      </mat-select>
+<p style="color: goldenrod !important;    margin-top: 10px;  margin-bottom: 0px;"> Invite Codes</p>
+<div style="margin-bottom: 4px;">
+
+ Include Folder Structure:   <mat-select [(value)]="includeFolderStructure" (selectionChange)="newInviteExportFoldersChanged($event.value)" style="width: 19%;" >
+         <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
+             {{ thislocation.name }}
+         </mat-option> -->
+                   <mat-option  [value]="1" >
+                      On
+                  </mat-option>
+                  <mat-option  [value]="0" >
+                     Off
+                 </mat-option>
+
+
+        </mat-select>
+   </div>
+   <div style="">
+
+Max:   <mat-select [(value)]="newInviteCodeMax" (selectionChange)="newInviteCodeMaxChanged($event.value)" style="width: 24%;" >
+      <!-- <mat-option *ngFor="let thislocation of locationOptions" [value]="thislocation.id" >
+          {{ thislocation.name }}
+      </mat-option> -->
+                <mat-option  [value]="1" >
+                   1
+               </mat-option>
+               <mat-option  [value]="5" >
+                  5
+              </mat-option>
+              <mat-option  [value]="10" >
+                 10
+             </mat-option>
+             <mat-option  [value]="20" >
+                20
+            </mat-option>
+            <mat-option  [value]="40" >
+               40
+           </mat-option>
+           <mat-option  [value]="80" >
+              80
+          </mat-option>
+          <mat-option  [value]="100" >
+             100
+         </mat-option>
+
+     </mat-select>
+
+     <button nbButton size="small" (click)="generateInviteCode()" class="generateInviteCodeButton" >
+          Generate
+        </button>
+</div>
+
+<ul>
+<li  *ngFor="let inviteCode of channelInviteCodes" class='inviteCodeListItem' ><div class="inviteCodeUsers"> {{ inviteCode['usersUsed'] }} / {{ inviteCode['usersMax'] }} </div>   <div class="inviteCodeItem"> {{ inviteCode['code'] }} </div>
+<nb-icon icon="copy-outline" class="inviteCodeCopy" (click)="copyToClipboard(inviteCode['code'])"></nb-icon>
+<nb-icon icon="trash-2-outline" class="deleteCode" (click)="deleteInviteCode(inviteCode['code'])"></nb-icon>
+</li>
+</ul>

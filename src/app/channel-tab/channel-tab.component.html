@@ -1,0 +1,54 @@
+<div class="channelScreen" style="min-height:200px;    background-image: linear-gradient(315deg, #f907fc 0%, #000000 74%);">
+  <div class="channel-chat-screen" style="height: 100%;">
+
+
+<nb-layout>
+
+  <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton" style="margin-right:8px;">Hide Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.left">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.left">Float Panel</button>
+    <app-channel-sidebar-left></app-channel-sidebar-left>
+  </nb-sidebar>
+  <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true">
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.right" style="margin-right:10px;">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.right" style="margin-right:10px;">Float Panel</button>
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton">Hide Panel</button>
+    <app-channel-sidebar-right></app-channel-sidebar-right>
+  </nb-sidebar>
+  <nb-layout-column>
+
+    <div class="channel" style="font-weight:900;" *ngIf="selectedChannel == noChannelSelected">
+      <app-channel [channel]="noChannelSelected"></app-channel>
+    </div>
+
+    <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;">
+      <app-channel [channel]="channel" *ngIf="selectedChannel == channel"></app-channel>
+    </div>
+
+  </nb-layout-column>
+</nb-layout>
+
+</div>
+</div>
+
+
+
+
+  <div class="toggleSideBarRight toggleSideBarLeft" style="z-index: 20;
+    position: fixed;
+    left: 7px;
+    top: 66px;
+    cursor: pointer;color:#36f !important;" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
+    <nb-icon icon="arrow-circle-left-outline" ></nb-icon>
+    </div>
+
+
+
+    <div class="toggleSideBarRight" style="z-index: 20;
+      position: fixed;
+      right: 7px;
+      top: 66px;
+      cursor: pointer;color:#36f !important;" (click)="toggleSideBar('right')" *ngIf="!this.sideBarVisible.right && selectedChannel != 'NoChannelSelected'">
+      <nb-icon icon="arrow-circle-right-outline" ></nb-icon>
+      </div>

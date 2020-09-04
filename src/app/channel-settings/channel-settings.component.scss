@@ -1,0 +1,46 @@
+
+
+.inviteCodeListItem{
+  padding: 0 !important;
+    margin: 0 !important;
+    width:100%;
+}
+
+.inviteCodeUsers, .inviteCodeItem{
+  float:left;
+}
+
+.inviteCodeItem{
+  margin-left: 5px;
+    width: 55%;
+margin-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deleteCode{
+  margin-left:5px;
+  cursor:pointer;
+
+}
+
+.inviteCodeCopy{
+  cursor:pointer;
+}
+
+.generateInviteCodeButton{
+  margin-bottom: 16px;
+      color: rgba(218,165,32,.75);
+      margin-left: 5%;
+      height: 22px;
+      width: 37%;
+      margin-top: 5px;
+      position: relative;
+      top: 0px;
+      margin-left: 15px;
+      background-color: transparent;
+      border: 1px solid;
+      opacity: .7;
+      font-size: 13px;
+}

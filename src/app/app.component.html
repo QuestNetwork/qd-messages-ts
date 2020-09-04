@@ -12,15 +12,7 @@
       </mat-tab>
 
       <mat-tab label="Messages"  class="channelTab" [disabled]="!tabAccessibility['channelTab']">
-
-        <div class="channel" style="font-weight:900;" *ngIf="selectedChannel == noChannelSelected">
-          <app-channel [channel]="noChannelSelected"></app-channel>
-        </div>
-
-        <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;">
-          <app-channel [channel]="channel" *ngIf="selectedChannel == channel"></app-channel>
-        </div>
-
+        <app-channel-tab></app-channel-tab>
       </mat-tab>
 
 
@@ -45,19 +37,9 @@
         <app-sign-in *ngIf="!signedIn"></app-sign-in>
       </mat-tab>
 
-
       <mat-tab label="Messages"  class="channelTab" [disabled]="!tabAccessibility['channelTab']">
-
-        <div class="channel" style="font-weight:900;" *ngIf="selectedChannel == noChannelSelected">
-          <app-channel [channel]="noChannelSelected"></app-channel>
-        </div>
-
-        <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;">
-          <app-channel [channel]="channel" *ngIf="selectedChannel == channel"></app-channel>
-        </div>
-
+        <app-channel-tab></app-channel-tab>
       </mat-tab>
-
 
       <mat-tab label="Settings"  class="settingsTab" [disabled]="!tabAccessibility['settingsTab']">
         <app-settings *ngIf="!ticketGenerator"></app-settings>

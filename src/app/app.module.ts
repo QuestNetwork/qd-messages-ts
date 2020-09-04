@@ -49,6 +49,11 @@ import { FormsModule } from '@angular/forms';
 
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
 import { ChannelListComponent } from './channel-list/channel-list.component';
+import { ChannelSidebarRightComponent } from './channel-sidebar-right/channel-sidebar-right.component';
+import { ChannelSidebarLeftComponent } from './channel-sidebar-left/channel-sidebar-left.component';
+import { ChannelParticipantListComponent } from './channel-participant-list/channel-participant-list.component';
+import { ChannelSettingsComponent } from './channel-settings/channel-settings.component';
+import { ChannelTabComponent } from './channel-tab/channel-tab.component';
 
 
 
@@ -62,7 +67,12 @@ import { ChannelListComponent } from './channel-list/channel-list.component';
     SettingsComponent,
     SignInComponent,
     FsIconComponent,
-    ChannelListComponent
+    ChannelListComponent,
+    ChannelSidebarRightComponent,
+    ChannelSidebarLeftComponent,
+    ChannelParticipantListComponent,
+    ChannelSettingsComponent,
+    ChannelTabComponent
   ],
   imports: [
     FlexLayoutModule,

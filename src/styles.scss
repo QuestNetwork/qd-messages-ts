@@ -21,6 +21,12 @@
 opacity:0;
 }
 
+.channelParticipantList ul{
+  margin-top: 20px;
+  padding-right: 10px;
+}
+
+
 
 
 .popup--machine-types{
@@ -226,6 +232,10 @@ height:auto !important;
   text-overflow: ellipsis;
   padding-left:33px;
   width: 99%;
+}
+
+.channel{
+  height:100%
 }
 
 .nb-theme-dark .menu-item > a, .nb-theme-dark .channel-chat-screen .form input, .nb-theme-dark .channel-chat-screen .text, .nb-theme-dark .toggleSideBarRight, .nb-theme-dark .mat-select-trigger, .nb-theme-dark .mat-select-value, .nb-theme-dark .mat-select-arrow, .nb-theme-dark .inviteCodeListItem{

@@ -1,10 +1,8 @@
 import { Component, OnInit, Input,ViewChild, ChangeDetectorRef} from '@angular/core';
 import { UiService} from '../services/ui.service';
-import { ConfigService } from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
 
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-import { NbSidebarService } from '@nebular/theme';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -15,158 +13,31 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class ChannelComponent implements OnInit {
 
-  challengeFlowFlag = 0;
-  challengeFlowFlagChanged(value){
-
-  }
-
-  newInviteCodeMax = 5;
-  newInviteCodeMaxChanged(event){
-
-  }
-  generateInviteCode(){
-
-  }
-
-  newInviteExportFoldersChanged(value){
-
-  }
-
-  includeFolderStructure = 1;
-
-  channelInviteCodes = [ { usersMax: 5, usersUsed: 2, code: "1234567812378136218376128371238761387126312873612873612837621378126371238126387126318273126382173612836217368127" } ];
-
-  copyToClipboard(code){
-    console.log(code);
-  }
 
 
 
   @Input() channel: string;
   @ViewChild('newMessage') newMessage;
 
-  constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef,private config: ConfigService, private ui: UiService, private pubsub: QuestPubSubService, private sidebarService: NbSidebarService) {
+  constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef, private ui: UiService, private pubsub: QuestPubSubService) {
     //parse channels
 
 
   }
-
-
-
   DEVMODE = false;
 
-  stringifyStore;
   ngOnInit(): void {
 
     console.log("Channel: Initializing...");
-
-    if(this.channel != 'NoChannelSelected'){
-      let uiCheck = setInterval( () =>{
-        try{
-          let fullPListArr = this.pubsub.getChannelParticipantList(this.channel)['cList'].split(',');
-          if(fullPListArr.length > 0){
-            for(let i=0;i<fullPListArr.length;i++){
-              fullPListArr[i] =   fullPListArr[i].substr(130);
-            }
-          }
-          this.channelParticipantListArray = fullPListArr;
-        }
-        catch(e){}
-
-      },60000);
-
-      try{
-        let fullPListArr = this.pubsub.getChannelParticipantList(this.channel)['cList'].split(',');
-        if(fullPListArr.length > 0){
-          for(let i=0;i<fullPListArr.length;i++){
-            fullPListArr[i] =   fullPListArr[i].substr(130);
-          }
-        }
-        this.channelParticipantListArray = fullPListArr;
-      }
-      catch(e){}
-    }
-
-
-
 
     //load channel
     console.log("Channel: Bootstrapping Channel...");
     if(this.channel != 'NoChannelSelected'){
       this.attemptJoinChannel(this.channel);
     }
-  
-
-    this.sideBarFixed = this.config.getSideBarFixed();
-    this.sideBarVisible = this.config.getSideBarVisible();
-    console.log('toggling:',this.sideBarVisible);
-    if(!this.sideBarVisible['left']){
-      this.sidebarService.collapse('left');
-    }
-    else if(this.sideBarVisible['left']){
-      this.sidebarService.expand('left');
-    }
-    if(!this.sideBarVisible['right']){
-      this.sidebarService.collapse('right');
-    }
-    if(this.sideBarVisible['right']){
-      this.sidebarService.expand('right');
-    }
-
-    setTimeout( () => {
-          this.sideBarFixed = this.config.getSideBarFixed();
-          this.sideBarVisible = this.config.getSideBarVisible();
-          console.log('toggling:',this.sideBarVisible);
-          if(!this.sideBarVisible['left']){
-            this.sidebarService.collapse('left');
-          }
-          else if(this.sideBarVisible['left']){
-            this.sidebarService.expand('left');
-          }
-          if(!this.sideBarVisible['right']){
-            this.sidebarService.collapse('right');
-          }
-          if(this.sideBarVisible['right']){
-            this.sidebarService.expand('right');
-          }
-    },100);
-
-    setTimeout( () => {
-      this.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
-        console.log('getting',sideBarFixed);
-        this.sideBarFixed = sideBarFixed
-      });
-
-      this.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
-          console.log('toggling:',sideBarVisible);
-        this.sideBarVisible = sideBarVisible;
-        if(!this.sideBarVisible['left']){
-          this.sidebarService.collapse('left');
-        }
-        else if(this.sideBarVisible['left']){
-          this.sidebarService.expand('left');
-        }
-        if(!this.sideBarVisible['right']){
-          this.sidebarService.collapse('right');
-        }
-        else if(this.sideBarVisible['right']){
-          this.sidebarService.expand('right');
-        }
-      });
-
-
-
-    },1500);
-
-
-
 }
-  channelParticipantListArray = [];
 
   public showChallengeScreen = false;
-
-
-
 
 
   challengeFail(){
@@ -276,35 +147,6 @@ export class ChannelComponent implements OnInit {
     this.pubsub.publishChannelMessage(this.channel, event.message);
     this.newMessage.nativeElement.value = "";
   }
-
-
-  sideBarFixed = { right: true, left: true };
-  sideBarVisible = { right: false, left: true };
-
-
-   zeroandone = 0;
-   lockSideBar(side,value){
-     this.sideBarFixed[side] = value;
-     this.config.setSideBarFixed(this.sideBarFixed);
-     this.config.commitNow();
-   }
-
-    toggleSideBar(side) {
-      this.sideBarVisible = this.config.getSideBarVisible();
-      if( this.sideBarVisible[side] == true ){
-        this.sideBarVisible[side]  = false;
-      }
-      else{
-        this.sideBarVisible[side]  = true;
-      }
-      this.config.setSideBarVisible(this.sideBarVisible);
-      this.config.commitNow();
-
-    }
-    //
-    // toggleCompact() {
-    //   this.sidebarService.toggle(true, 'right');
-    // }
 
 
 

@@ -134,9 +134,6 @@ export class ConfigService {
     return this.fs.existsSync(this.configFilePath);
   }
   readConfig(config = {}){
-    this.sideBarVisibleSub = new Subject();
-    this.sideBarFixedSub = new Subject();
-
     try{
        config = JSON.parse(this.fs.readFileSync(this.configFilePath,"utf8"));
     }catch(error){console.log(error);}
@@ -182,7 +179,7 @@ export class ConfigService {
     this.config['selectedChannel'] = value;
   }
 
-  sideBarFixedSub;
+  sideBarFixedSub = new Subject();
   setSideBarFixed(sideBarFixed){
     this.config.sideBarFixed = sideBarFixed
     this.sideBarFixedSub.next(sideBarFixed);
@@ -190,7 +187,7 @@ export class ConfigService {
   getSideBarFixed(){
       return this.config.sideBarFixed;
   }
-  sideBarVisibleSub;
+  sideBarVisibleSub = new Subject();
   setSideBarVisible(sideBarVisible){
     this.config.sideBarVisible = sideBarVisible;
     this.sideBarVisibleSub.next(sideBarVisible);
