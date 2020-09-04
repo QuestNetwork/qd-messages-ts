@@ -9,11 +9,6 @@ import { filter, map } from 'rxjs/operators';
 
 import { v4 as uuidv4 } from 'uuid';
 
-interface TreeNode<T> {
-  data: T;
-  children?: TreeNode<T>[];
-  expanded?: boolean;
-}
 
 interface FSEntry {
   name: string;

@@ -65,7 +65,7 @@ Max:   <mat-select [(value)]="newInviteCodeMax" (selectionChange)="newInviteCode
 
 <ul>
 <li  *ngFor="let inviteCode of channelInviteCodes" class='inviteCodeListItem' ><div class="inviteCodeUsers"> {{ inviteCode['usersUsed'] }} / {{ inviteCode['usersMax'] }} </div>   <div class="inviteCodeItem"> {{ inviteCode['code'] }} </div>
-<nb-icon icon="copy-outline" class="inviteCodeCopy" (click)="copyToClipboard(inviteCode['code'])"></nb-icon>
+<nb-icon icon="copy-outline" class="inviteCodeCopy" [cdkCopyToClipboard]="inviteCode['code']"></nb-icon>
 <nb-icon icon="trash-2-outline" class="deleteCode" (click)="deleteInviteCode(inviteCode['code'])"></nb-icon>
 </li>
 </ul>

@@ -36,7 +36,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/jsblend/build/js.blend.js",
               "node_modules/three/build/three.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/treeviz/dist/index.js",
