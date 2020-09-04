@@ -202,7 +202,6 @@ public async ngAfterContentInit() {
 
     this.ipfs.start();
 
-
     this.ui.snackBar.subscribe( (object) => {
         this.showSnack(object.left, object.right, object.object);
     });
@@ -274,7 +273,7 @@ public async ngAfterContentInit() {
 
 
 
-    
+
 
   }
 

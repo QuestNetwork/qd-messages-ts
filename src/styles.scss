@@ -8,6 +8,9 @@
   @include nb-theme-global();
 };
 
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+
 #cf2 img {
   position:absolute;
   left:0;
@@ -179,32 +182,9 @@ mat-card{
   background-color:transparent !important;
 }
 
-.isElectron .webContainer{
-  width:100vw !important;
-  height:100vh !important;
-}
 
-.isElectron .appWrapper > .mat-card{
-  height: 100vh !important;
-  width: 100vw !important;
-  border-radius: 0pt!important;
-}
 
-.isElectron .sign-in-drop-zone{
-  height:100vh;
-}
 
-.isElectron .realTimeChatHistory{
-margin-right: 100px  !important;
-left: 0  !important;
-right: 0  !important;
-position: fixed  !important;
-z-index:2  !important;
-top: 50px !important;
-bottom: 70px !important;
-height:auto !important;
-
-}
 
 .channelScreen .layout-container{
   position: fixed;
@@ -217,7 +197,7 @@ height:auto !important;
     left: 0;
   }
 
-  .isElectron .channelScreen .layout-container{
+  .nb-theme-dark .channelScreen .layout-container{
     bottom: 26px;
   }
 
@@ -225,7 +205,7 @@ height:auto !important;
     padding:0 !important;
   }
 
-.isElectron .channelScreen .header{
+.nb-theme-dark .channelScreen .header{
   color:#ffffffcf !important;
   white-space: nowrap;
   overflow: hidden;
@@ -242,7 +222,7 @@ height:auto !important;
   color:#ffffffcf !important;
 }
 
-.isElectron .channelScreen .sender{
+.nb-theme-dark .channelScreen .sender{
   white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -250,7 +230,7 @@ height:auto !important;
 }
 
 
-.isElectron .messageInput{
+.nb-theme-dark .messageInput{
       width: 100vw !important;
   left: 0  !important;
   right: 0  !important;
@@ -268,48 +248,6 @@ height:auto !important;
 }
 
 
-
-.isElectron .messageInput > .input{
-  float: left !important;
-/* width: 100%; */
-position: fixed !important;
-right: 80px !important;
-left: 10px !important;
-bottom: 48px !important;
-font-size: 24px !important;
-width:auto !important;
-}
-
-.isElectron.nb-theme-dark .messageInput > .input{
-  color:white;
-}
-
-.isElectron .messageInput > .input > input{
-  width: 100%;
-    font-size: 16px;
-    /* line-height: 6px; */
-    padding: 5px;
-    padding-bottom: 2px;
-    border-radius: 5px;
-    background: darkgoldenrod;
-}
-
-.isElectron .sendMessageIcon{
-  bottom: 51px!important;
-      position: fixed!important;
-      right: 18px!important;
-      font-size: 26px !important;
-      background-color:transparent !important;
-}
-
-.isElectron .sendMessageIcon > mat-icon{
-  font-size: 24px !important;
-padding: 2px !important;
-top: -3px !important;
-left: 1px !important;
-color: lightgoldenrodyellow !important;
-position: relative !important;
-}
 
 
 .nb-theme-dark nb-tabset nb-tab {
@@ -920,4 +858,12 @@ mat-card{
 html{
       max-height: 100vh;
       overflow:hidden;
+}
+
+.layout{
+  width:100vw;
+}
+
+nb-layout-column{
+    padding: 0 !important;
 }

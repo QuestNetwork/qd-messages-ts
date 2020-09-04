@@ -50,3 +50,37 @@
     opacity: 0.97;
     border-radius: 10px;
 }
+
+
+.statusBarWrapper{
+  position: fixed;
+ bottom: 0;
+ max-height: 28px;
+ height: 28px;
+     left: 0;
+ right: 0;
+ background-color: #2d2a2a;
+ z-index: 20;
+ font-size: 14px;
+ color: grey;
+ padding-left: 10px;
+ padding-right: 10px;
+ border-top: 1px solid black;
+}
+
+.statusBarRouterIcon{
+ top: 4px;
+margin: 0;
+position: relative;
+line-height: 10px;
+font-size: 21px;
+}
+
+.statusBarRadioIcon{
+  top: -5px;
+margin: 0;
+margin-left: 5px;
+position: relative;
+line-height: 9px;
+font-size: 17px;
+}

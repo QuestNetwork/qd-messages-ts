@@ -7,12 +7,8 @@ import { Subject } from 'rxjs';
 import { QuestPubSubService }  from './quest-pubsub.service';
 import { ElectronService } from 'ngx-electron';
 import { UiService }  from './ui.service';
-const version = require('../../../package.json').version;
-
-
-// declare var require;
-// const QuestPubSub = require( 'local/quest-pubsub-js/dist/index.js' );
-
+import  version from '../../../package.json';
+import { saveAs } from 'file-saver';
 
 interface TreeNode<T> {
   data: T;
@@ -34,10 +30,16 @@ interface FSEntry {
 
 export class ConfigService {
 
+  isElectron = false;
+
   constructor(private pubsub:QuestPubSubService, private electron: ElectronService, private ui: UiService) {
-    this.fs = this.electron.remote.require('fs');
-    let configPath = this.electron.remote.app.getPath('userData');
-    this.configFilePath = configPath + "/user.qcprofile";
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf(' electron/') > -1) {
+      this.isElectron = true;
+      this.fs = this.electron.remote.require('fs');
+      let configPath = this.electron.remote.app.getPath('userData');
+      this.configFilePath = configPath + "/user.qcprofile";
+    }
 
     this.pubsub.commitNowSub.subscribe( (value) => {
       this.commitNow();
@@ -118,7 +120,13 @@ export class ConfigService {
       };
 
       console.log(JSON.stringify(this.config));
-      this.fs.writeFileSync(this.configFilePath, JSON.stringify(this.config),{encoding:'utf8',flag:'w'})
+      if(this.isElectron){
+        this.fs.writeFileSync(this.configFilePath, JSON.stringify(this.config),{encoding:'utf8',flag:'w'})
+      }
+      else{
+        let userProfileBlob = new Blob([ JSON.stringify(this.config)], { type: 'text/plain;charset=utf-8' });
+        saveAs(userProfileBlob, "profile.qcprofile");
+      }
 
   }
   getConfig(){
@@ -131,11 +139,18 @@ export class ConfigService {
   }
 
   isSignedIn(){
-    return this.fs.existsSync(this.configFilePath);
+    if(this.isElectron){
+      return this.fs.existsSync(this.configFilePath);
+    }
+    else{
+      return false;
+    }
   }
   readConfig(config = {}){
     try{
+      if(this.isElectron){
        config = JSON.parse(this.fs.readFileSync(this.configFilePath,"utf8"));
+      }
     }catch(error){console.log(error);}
     //put config into pubsub
     if(typeof(config['channelKeyChain']) != 'undefined'){
