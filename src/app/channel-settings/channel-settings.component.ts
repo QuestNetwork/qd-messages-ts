@@ -37,6 +37,15 @@ export class ChannelSettingsComponent implements OnInit {
     }
   }
 
+  removeInviteLink(link){
+    this.config.removeInviteLink(this.selectedChannel,link);
+    let ivC = this.pubsub.getInviteCodes(this.selectedChannel);
+    this.channelInviteCodes = [];
+    if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
+             this.channelInviteCodes = ivC['items'];
+    }
+  }
+
   newInviteExportFoldersChanged(value){
 
   }

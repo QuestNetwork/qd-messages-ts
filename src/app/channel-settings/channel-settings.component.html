@@ -60,7 +60,7 @@ Max:  <mat-form-field style="width: 24%;"> <mat-select [(value)]="newInviteCodeM
 
 <ul>
 <li  *ngFor="let inviteCode of channelInviteCodes" class='inviteCodeListItem' ><div class="inviteCodeUsers"> {{ inviteCode['used'] }} / {{ inviteCode['max'] }} </div>   <div class="inviteCodeItem"> {{ inviteCode['link'] }} </div>
-<nb-icon icon="copy-outline" class="inviteCodeCopy" [cdkCopyToClipboard]="inviteCode['code']"></nb-icon>
-<nb-icon icon="trash-2-outline" class="deleteCode" (click)="deleteInviteCode(inviteCode['code'])"></nb-icon>
+<nb-icon icon="copy-outline" class="inviteCodeCopy" [cdkCopyToClipboard]="inviteCode['link']"></nb-icon>
+<nb-icon icon="trash-2-outline" class="deleteCode" (click)="removeInviteLink(inviteCode['link'])"></nb-icon>
 </li>
 </ul>

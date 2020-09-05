@@ -173,6 +173,10 @@ export class ConfigService {
       this.setSideBarVisible(config['sideBarVisible']);
     }
 
+    if(typeof(config['inviteCodes']) != 'undefined' && Object.keys(config['inviteCodes']).length !== 0){
+      this.setInviteCodes(config['inviteCodes']);
+    }
+
 
     return true;
   }
@@ -257,6 +261,15 @@ export class ConfigService {
    this.setChannelFolderList(chfl);
   }
 
+
+
+  setInviteCodes(codeObject, channel = 'all'){
+    if(channel == 'all'){
+      this.config['inviteCodes'] = codeObject;
+      this.pubsub.setInviteCodes(this.config['inviteCodes']);
+    }
+    return true;
+  }
   createInviteCode(channel,newInviteCodeMax, importFolders = false){
     if(typeof this.config['inviteCodes'][channel] == 'undefined'){
        this.config['inviteCodes'][channel] = {};
@@ -294,7 +307,16 @@ export class ConfigService {
     this.config['inviteCodes'][channel]['links'].push(  link  );
     this.config['inviteCodes'][channel]['items'].push({ max: newInviteCodeMax, used: 0, link: link });
     this.pubsub.setInviteCodes(this.config['inviteCodes'][channel], channel);
+    this.commitNow();
     return link;
+  }
+
+  removeInviteLink(channel,link){
+    delete this.config['inviteCodes'][channel]['codes'][link];
+    this.config['inviteCodes'][channel]['links'] = this.config['inviteCodes'][channel]['links'].filter(i => i !== link);
+    this.config['inviteCodes'][channel]['items'] = this.config['inviteCodes'][channel]['items'].filter(i => i['link'] !== link);
+    this.pubsub.setInviteCodes(this.config['inviteCodes'][channel], channel);
+    this.commitNow();
   }
 
 
