@@ -40,6 +40,10 @@ export class QuestPubSubService {
 
     async createChannel(channelInput){
         //generate keypair and register channel
+
+        //clean the Input
+        channelInput = channelInput.toLowerCase().replace(/[^A-Z0-9]+/ig, "-");
+
         let channelName = await QuestPubSub.createChannel(channelInput);
         this.getChannelKeyChain(channelName);
         this.getChannelParticipantList(channelName);
