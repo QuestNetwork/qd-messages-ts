@@ -71,13 +71,13 @@ export class ChannelComponent implements OnInit {
   }
 
   captchaCode;
-  completedChallenge(){
+  inviteToken;
+  completedChallenge(tokenorcode){
     setTimeout( () => {
       this.ui.updateProcessingStatus(false);
-
     },30000);
     this.ui.updateProcessingStatus(true);
-    this.pubsub.completedChallenge(this.channel, this.captchaCode);
+    this.pubsub.completedChallenge(this.channel, tokenorcode);
   }
 
   messages = [];

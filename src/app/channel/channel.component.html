@@ -12,7 +12,7 @@
 
          <button mat-stroked-button color="primary" (click)="goToJoin()" class="thickOutlineButton marginRight20">Back</button>
 
-       <button mat-stroked-button color="primary" (click)="completedChallenge()" class="thickOutlineButton">I Aced That IQ Test</button>
+       <button mat-stroked-button color="primary" (click)="completedChallenge(captchaCode)" class="thickOutlineButton">I Aced That IQ Test</button>
 
 
       </div>
@@ -27,14 +27,14 @@
       <form class="example-form">
         <mat-form-field class="example-full-width" color="primary">
           <mat-label>Invite Code</mat-label>
-          <input matInput placeholder="Invite Code" value="" name='captchaCode' [(ngModel)]='captchaCode'>
+          <input matInput placeholder="Invite Code" value="" name='inviteToken' [(ngModel)]='inviteToken'>
         </mat-form-field>
         </form>
 
 <br><br>
         <button mat-stroked-button color="primary" (click)="goToJoin()" class="thickOutlineButton marginRight20">Back</button>
 
-      <button mat-stroked-button color="primary" (click)="completedChallenge()" class="thickOutlineButton">Let me in!</button>
+      <button mat-stroked-button color="primary" (click)="completedChallenge(inviteToken)" class="thickOutlineButton">Let me in!</button>
 
 
       </div>

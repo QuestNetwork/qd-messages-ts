@@ -91,6 +91,7 @@ export class ConfigService {
   getChannelFolderList(){
     return this.config.channelFolderList;
   }
+
   commitNow(){
       // let folderList: TreeNode<FSEntry> = ;
       this.commitChanges=false;
@@ -208,6 +209,13 @@ export class ConfigService {
     return channelNameClean;
   }
 
+  async addChannel(channelNameClean, parentFolderId = ""){
+    await this.pubsub.addChannel(channelNameClean);
+    this.addToChannelFolderList(channelNameClean, parentFolderId);
+    return channelNameClean;
+  }
+
+
   async createFolder(newFolderNameDirty, parentFolderId = ""){
       let chfl = this.getChannelFolderList();
       let newFolder = { data: { name: newFolderNameDirty, kind:"dir", items: 0 }, expanded: true, children: [] };
@@ -271,26 +279,12 @@ export class ConfigService {
     return true;
   }
   addInviteToken(channel,token){
-    if(typeof this.config['inviteCodes'][channel]['token'] == 'undefined'){
-       this.config['inviteCodes'][channel]['token'] = {}
-    }
-    this.pubsub.setInviteCodes(this.config['inviteCodes'][channel], channel);
+    this.pubsub.addInviteToken(channel,token);
     this.commitNow();
     return true;
   }
   createInviteCode(channel,newInviteCodeMax, importFolders = false){
-    if(typeof this.config['inviteCodes'][channel] == 'undefined'){
-       this.config['inviteCodes'][channel] = {};
-    }
-    if(typeof this.config['inviteCodes'][channel]['codes'] == 'undefined'){
-       this.config['inviteCodes'][channel]['codes'] = {}
-    }
-    if(typeof this.config['inviteCodes'][channel]['links'] == 'undefined'){
-       this.config['inviteCodes'][channel]['links'] = [];
-    }
-    if(typeof this.config['inviteCodes'][channel]['items'] == 'undefined'){
-       this.config['inviteCodes'][channel]['items'] = [];
-    }
+
 
     let code = uuidv4();
     let link = ""
@@ -310,20 +304,13 @@ export class ConfigService {
     }
 
     link = Buffer.from(link,'utf8').toString('hex');
-    //
-    this.config['inviteCodes'][channel]['codes'][link] = code ;
-    this.config['inviteCodes'][channel]['links'].push(  link  );
-    this.config['inviteCodes'][channel]['items'].push({ max: newInviteCodeMax, used: 0, link: link });
-    this.pubsub.setInviteCodes(this.config['inviteCodes'][channel], channel);
+    this.pubsub.addInviteCode(channel,link,code,newInviteCodeMax);
     this.commitNow();
     return link;
   }
 
   removeInviteLink(channel,link){
-    delete this.config['inviteCodes'][channel]['codes'][link];
-    this.config['inviteCodes'][channel]['links'] = this.config['inviteCodes'][channel]['links'].filter(i => i !== link);
-    this.config['inviteCodes'][channel]['items'] = this.config['inviteCodes'][channel]['items'].filter(i => i['link'] !== link);
-    this.pubsub.setInviteCodes(this.config['inviteCodes'][channel], channel);
+    this.pubsub.removeInviteCode(channel, link)
     this.commitNow();
   }
 

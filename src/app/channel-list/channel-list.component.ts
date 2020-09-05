@@ -186,7 +186,7 @@ export class ChannelListComponent implements OnInit {
   async importNewChannel(){
     let link = Buffer.from(this.inviteCodeHex,'hex').toString('utf8');
     //TODO put together folder structure...
-    this.ui.showSnack('Importing Channels...','Please Wait',{duration:1000});
+    this.ui.showSnack('Importing Channel...','Please Wait',{duration:1000});
 
     let channelName;
     let inviteToken;
@@ -218,10 +218,15 @@ export class ChannelListComponent implements OnInit {
 
     // console.log(channelName);
     // console.log(inviteToken);
+    if(this.config.isInArray(channelName,this.pubsub.getChannelNameList())){
+      this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
+    }
+    else{
+      await this.config.addChannel(channelName, parentFolderId);
+      this.config.addInviteToken(channelName,inviteToken);
+      this.createCompleteAndClose();
+    }
 
-    await this.config.createChannel(channelName, parentFolderId);
-    this.config.addInviteToken(channelName,inviteToken);
-    this.createCompleteAndClose();
   }
 
 

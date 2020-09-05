@@ -38,13 +38,23 @@ export class QuestPubSubService {
         return QuestPubSub.subs[channel];
     }
 
-    async createChannel(channelInput){
+    async createChannel(channelInput, isClean = false){
         //generate keypair and register channel
 
         //clean the Input
         channelInput = channelInput.toLowerCase().replace(/[^A-Z0-9]+/ig, "-");
 
         let channelName = await QuestPubSub.createChannel(channelInput);
+        this.getChannelKeyChain(channelName);
+        this.getChannelParticipantList(channelName);
+        return channelName;
+    }
+
+
+
+    async addChannel(channelName){
+        //clean the Input
+        await QuestPubSub.addChannel(channelName);
         this.getChannelKeyChain(channelName);
         this.getChannelParticipantList(channelName);
         return channelName;
@@ -151,6 +161,16 @@ setInviteCodes(inviteObject, channel = 'all'){
 getInviteCodes(channel = 'all'){
   return QuestPubSub.getInviteCodes(channel);
 }
+addInviteCode(channel,link,code,newInviteCodeMax){
+  return QuestPubSub.addInviteCode(channel,link,code,newInviteCodeMax);
+}
+addInviteToken(channel,token){
+  return QuestPubSub.addInviteToken(channel,token);
+}
+removeInviteCode(channel,link){
+  return QuestPubSub.removeInviteCode(channel, link)
+}
+
 
 
 
