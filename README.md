@@ -55,20 +55,23 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.1**
 - Auto SignIn, if signed in
-- Export Settings
-- Join/Create Custom Channels
-- Import/Export Channel Groups
-- Option To Generate Invite Tokens (to invite participants instead of the challenge flow)
+- Create Channels/Folders
+- Generate Invite Tokens (optional with folder structure)
+- Import/Join From Invite Token (optional with folder structure)
 
 ## Roadmap
 
 **0.9.2**
-- Pair with participants by sharing public keys in person (show qr codes for keys and invite codes)
+- Export Settings
+- Disable Challenge Flow (close channels to invite only)
+- Share and Import Channels By QR Code
 - Alias (show custom name instead of pub key) and profile pictures
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
 
 **0.9.3**
+- AES Encrypt Invite Tokens
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
+- Pair with participants by sharing public keys in person (show qr codes for keys and invite codes)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - AutoSave For Message Histories
 - Export Message Histories
@@ -83,12 +86,16 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Private Channels Extendable To Groups (background create and join)
 
 **0.9.7**
-- IRC Plugin to add IRC servers
-
-**0.9.8**
 - Light Mode
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Import/Export Themes.
+
+**0.9.9**
+- Desktop Notifications
+- Ethereum Payment Integration Beta
+
+**0.9.9**
+- IRC Plugin to add IRC servers
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
@@ -105,7 +112,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 **2.0.0**
-- Ethereum Payment Integration
+- Ethereum Payment Integration Finalized
 
 **3.0.0**
 - Matrix Plugin to add Matrix rooms and communities
