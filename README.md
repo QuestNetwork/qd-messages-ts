@@ -63,6 +63,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.2**
 - Disable Challenge Flow (close channels to invite only)
+- Share and Import Channels By QR Code
 - Export Settings
 - Pair with participants by sharing public keys in person (show qr codes for keys and invite codes)
 - Alias (show custom name instead of pub key) and profile pictures
@@ -93,6 +94,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Import/Export Themes.
 
 **1.0.0**
+- Ethereum Payment Integration Beta
 - Third Party Dependencies Audited, Security Issues Fixed
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Unlimited Custom Emojis
@@ -107,7 +109,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 **2.0.0**
-- Ethereum Payment Integration
+- Ethereum Payment Integration Finalized
 
 **3.0.0**
 - Matrix Plugin to add Matrix rooms and communities
