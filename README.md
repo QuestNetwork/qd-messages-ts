@@ -85,13 +85,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.6**
 - Private Channels Extendable To Groups (background create and join)
 
-**0.9.7**
-- IRC Plugin to add IRC servers
-
 **0.9.8**
 - Light Mode
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Import/Export Themes.
+
+**0.9.7**
+- IRC Plugin to add IRC servers
 
 **1.0.0**
 - Ethereum Payment Integration Beta
