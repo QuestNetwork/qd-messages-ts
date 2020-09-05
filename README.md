@@ -58,13 +58,14 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Create Channels/Folders
 - Generate Invite Tokens (optional with folder structure)
 - Import/Join From Invite Token (optional with folder structure)
+- Delete Channels
 
 ## Roadmap
 
 **0.9.2**
 - Export Settings
 - Drag/Drop Folders/Channels 
-- Delete Channels/Folders
+- Folders
 - Disable Challenge Flow (close channels to invite only)
 - Share and Import Channels By QR Code
 - Alias (show custom name instead of pub key) and profile pictures
