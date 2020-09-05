@@ -7,7 +7,8 @@ import { Subject } from 'rxjs';
 import { QuestPubSubService }  from './quest-pubsub.service';
 import { ElectronService } from 'ngx-electron';
 import { UiService }  from './ui.service';
-import  version from '../../../package.json';
+import  packageJson from '../../../package.json';
+const version = packageJson.version;
 import { saveAs } from 'file-saver';
 
 interface TreeNode<T> {
@@ -211,7 +212,18 @@ export class ConfigService {
     return this.config.sideBarVisible;
   }
 
+  async createChannel(channelNameDirty, folders = {}){
+    let channelName = this.pubsub.createChannel(channelNameDirty);
+    await this.ui.delay(1000);
+    this.commit();
+    return channelName;
+  }
 
+  async addToChannelFolderList(channelNameClean, folders = {}){
+    let chfl = this.getChannelFolderList();
+    chfl.push({ data: { name: channelNameClean, kind:"rep", items: 0 }, expanded: true, children: [] });
+    this.setChannelFolderList(chfl);
+  }n
 
 
 }

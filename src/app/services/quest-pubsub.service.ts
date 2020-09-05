@@ -41,13 +41,15 @@ export class QuestPubSubService {
     async createChannel(channelInput){
         //generate keypair and register channel
         let channelName = await QuestPubSub.createChannel(channelInput);
-        console.log(channelName);
+        this.getChannelKeyChain(channelName);
+        this.getChannelParticipantList(channelName);
         return channelName;
     }
 
-
     getChannelParticipantList(channel = "all"){
-      return QuestPubSub.getChannelParticipantList(channel);
+      let pl = QuestPubSub.getChannelParticipantList(channel);
+      this.setChannelParticipantList(pl, channel);
+      return pl;
     }
     setChannelParticipantList(partList, channel = "all"){
       return QuestPubSub.setChannelParticipantList(partList, channel);
@@ -68,7 +70,9 @@ export class QuestPubSubService {
       return QuestPubSub.setChannelKeyChain(channelKeyChain, channel);
     }
     getChannelKeyChain(channel = 'all'){
-      return QuestPubSub.getChannelKeyChain(channel);
+      let kc = QuestPubSub.getChannelKeyChain(channel);
+      this.setChannelKeyChain(kc, channel);
+      return kc;
     }
 
     getIpfsId(){

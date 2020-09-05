@@ -16,13 +16,10 @@
   </nb-sidebar>
   <nb-layout-column>
 
-    <div class="channel" style="font-weight:900;" *ngIf="selectedChannel == noChannelSelected">
-      <app-channel [channel]="noChannelSelected"></app-channel>
-    </div>
 
-    <div *ngFor="let channel of channelNameList" class="channel" style="font-weight:900;">
-      <app-channel [channel]="channel" *ngIf="selectedChannel == channel"></app-channel>
-    </div>
+
+    <app-channel *ngFor="let channel of channelNameList"  [channel]="channel" class="channel" [hidden]="selectedChannel != channel"></app-channel>
+    <app-channel [channel]="noChannelSelected" [hidden]="selectedChannel != noChannelSelected" class="channel"></app-channel>
 
   </nb-layout-column>
 </nb-layout>

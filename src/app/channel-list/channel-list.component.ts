@@ -136,8 +136,18 @@ export class ChannelListComponent implements OnInit {
     return folderStructure;
   }
   newChannelFolderChanged(){}
-  createNewChannel(){
+  async createNewChannel(event){
+    console.log(event);
+    let channelNameDirty = event
+    //TODO put together folder structure...
+    let folders;
+
     this.ui.showSnack('Creating Channel...','Please Wait',{duration:1000});
+    let channelNameClean = await this.config.createChannel(channelNameDirty, folders);
+    this.config.addToChannelFolderList(channelNameClean, folders);
+    this.ui.delay(1000);
+    this.config.commit();
+    this.ui.showSnack('Create Complete!','Please Wait',{duration:1000});
     this.popupRef.close();
   }
   popupRef;
