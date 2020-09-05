@@ -21,15 +21,20 @@ export class ChannelSettingsComponent implements OnInit {
 
   }
   generateInviteCode(){
-    let channel = this.pubsub.getSelectedChannel();
-    let code;
-    code = this.config.createInviteCode(channel,this.newInviteCodeMax);
-    code = channel + ":" + code;
+    let channel = this.selectedChannel;
+    let link;
     if(this.includeFolderStructure == 1){
-
+      link = this.config.createInviteCode(channel,this.newInviteCodeMax, true);
     }
-    code = Buffer.from(code,'utf8').toString('hex');
-    this.channelInviteCodes.push( { usersMax: this.newInviteCodeMax, usersUsed: 0, code: code } );
+    else{
+      link = this.config.createInviteCode(channel,this.newInviteCodeMax);
+    }
+
+    let ivC = this.pubsub.getInviteCodes(this.selectedChannel);
+    this.channelInviteCodes = [];
+    if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
+             this.channelInviteCodes = ivC['items'];
+    }
   }
 
   newInviteExportFoldersChanged(value){
@@ -49,8 +54,16 @@ export class ChannelSettingsComponent implements OnInit {
     this.pubsub.selectedChannelSub.subscribe( (value) => {
       this.selectedChannel = value;
       console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
-      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
+      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<");
+
+      let ivC = this.pubsub.getInviteCodes(this.selectedChannel);
+      this.channelInviteCodes = [];
+      if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
+               this.channelInviteCodes = ivC['items'];
+      }
     });
+
+
 
 
   }

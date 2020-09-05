@@ -85,7 +85,8 @@ export class ConfigService {
     channelFolderList: [],
     selectedChannel: "NoChannelSelected",
     sideBarFixed: { left: true, right: true},
-    sideBarVisible: { left: true, right: false}
+    sideBarVisible: { left: true, right: false},
+    inviteCodes: {}
   };
   getChannelFolderList(){
     return this.config.channelFolderList;
@@ -102,7 +103,8 @@ export class ConfigService {
         channelFolderList: this.config.channelFolderList,
         selectedChannel: this.pubsub.getSelectedChannel(),
         sideBarFixed: this.getSideBarFixed(),
-        sideBarVisible: this.getSideBarVisible()
+        sideBarVisible: this.getSideBarVisible(),
+        inviteCodes: this.pubsub.getInviteCodes()
       };
 
       if(this.isElectron){
@@ -240,26 +242,33 @@ export class ConfigService {
    this.setChannelFolderList(chfl);
   }
 
-  createInviteCode(channel,newInviteCodeMax){
-    if(typeof this.config['inviteCode'] == 'undefined'){
-       this.config['inviteCode'] = {};
+  createInviteCode(channel,newInviteCodeMax, importFolders = false){
+    if(typeof this.config['inviteCodes'][channel] == 'undefined'){
+       this.config['inviteCodes'][channel] = {};
     }
-    if(typeof this.config['inviteCode'][channel] == 'undefined'){
-       this.config['inviteCode'][channel] = {};
+    if(typeof this.config['inviteCodes'][channel]['codes'] == 'undefined'){
+       this.config['inviteCodes'][channel]['codes'] = {}
     }
-    if(typeof this.config['inviteCode'][channel]['codes'] == 'undefined'){
-       this.config['inviteCode'][channel]['codes'] = [];
+    if(typeof this.config['inviteCodes'][channel]['links'] == 'undefined'){
+       this.config['inviteCodes'][channel]['links'] = [];
     }
-    if(typeof this.config['inviteCode'][channel]['items'] == 'undefined'){
-       this.config['inviteCode'][channel]['items'] = {};
+    if(typeof this.config['inviteCodes'][channel]['items'] == 'undefined'){
+       this.config['inviteCodes'][channel]['items'] = [];
     }
-
 
     let code = uuidv4();
-    this.config['inviteCode'][channel]['codes'].push(  code  );
-    this.config['inviteCode'][channel]['items'][code] = { max: newInviteCodeMax, used: 0 };
+    let link = ""
+    if(!importFolders){
+      link = channel + ":" + code;
+    }
 
-    return code;
+    link = Buffer.from(link,'utf8').toString('hex');
+    //
+    this.config['inviteCodes'][channel]['codes'][link] = code ;
+    this.config['inviteCodes'][channel]['links'].push(  link  );
+    this.config['inviteCodes'][channel]['items'].push({ max: newInviteCodeMax, used: 0, link: link });
+    this.pubsub.setInviteCodes(this.config['inviteCodes'][channel], channel);
+    return link;
   }
 
 

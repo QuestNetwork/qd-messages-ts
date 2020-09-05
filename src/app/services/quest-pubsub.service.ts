@@ -143,6 +143,15 @@ isOwner(channel,key){
   return QuestPubSub.isOwner(channel,key);
 }
 
+setInviteCodes(inviteObject, channel = 'all'){
+  QuestPubSub.setInviteCodes(inviteObject, channel);
+  return true;
+}
+
+getInviteCodes(channel = 'all'){
+  return QuestPubSub.getInviteCodes(channel);
+}
+
 
 
 
