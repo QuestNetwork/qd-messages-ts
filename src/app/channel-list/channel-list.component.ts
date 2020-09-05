@@ -181,11 +181,35 @@ export class ChannelListComponent implements OnInit {
 
   @ViewChild('import') importPop;
   importFolderStructure = 1;
-  inviteCode;
+  inviteCodeHex;
   importChannelFolderChanged(){}
-  importNewChannel(){
+  async importNewChannel(){
+    let link = Buffer.from(this.inviteCodeHex,'hex').toString('utf8');
+    //TODO put together folder structure...
     this.ui.showSnack('Importing Channels...','Please Wait',{duration:1000});
-    this.popupRef.close();
+
+    let channelName;
+    let inviteToken;
+
+    let folders = link.split("/");
+    if(folders.length > 0){
+      channelName = folders[folders.length-1].split(':')[0];
+      inviteToken =  folders[folders.length-1].split(':')[1];
+    }
+    else{
+       channelName = link.split(':')[0];
+       inviteToken = link.split(':')[1];
+    }
+
+    //see if folders exist
+
+    //create non existing folders
+    let parentFolderId = "";
+    console.log(channelName);
+    console.log(inviteToken);
+
+  //  await this.config.createChannel(channelName, parentFolderId);
+  //  this.createCompleteAndClose();
   }
 
 

@@ -61,13 +61,13 @@
         padding-bottom: 34px;
         padding-top: 0px;
         color: white !important;">
-                  <input matInput placeholder="Invite Code" value="" name='inviteCode' [(ngModel)]='inviteCode' style="color: black;
+                  <input matInput placeholder="Invite Code" value="" name='inviteCodeHex' [(ngModel)]='inviteCodeHex' style="color: black;
         background-color: goldenrod;
         padding: 7px;">
                   </div>
             </nb-card-body>
             <nb-card-footer>
-              <button mat-stroked-button color="primary" (click)="importNewChannel();" style="    margin-right: 20px;
+              <button mat-stroked-button color="primary" (click)="importNewChannel(inviteCode);" style="    margin-right: 20px;
         border: 1px solid #ffffff24;">Import</button>
               <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
             </nb-card-footer>
