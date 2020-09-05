@@ -143,12 +143,13 @@ export class ChannelListComponent implements OnInit {
     let folders;
 
     this.ui.showSnack('Creating Channel...','Please Wait',{duration:1000});
-    let channelNameClean = await this.config.createChannel(channelNameDirty, folders);
-    this.config.addToChannelFolderList(channelNameClean, folders);
-    this.ui.delay(1000);
-    this.config.commit();
-    this.ui.showSnack('Create Complete!','Please Wait',{duration:1000});
-    this.popupRef.close();
+    let parentFolderId =  this.newChannelFolder;
+    if(typeof parentFolderId === 'object'){
+      parentFolderId = "";
+    }
+
+    await this.config.createChannel(channelNameDirty, parentFolderId);
+    this.createCompleteAndClose();
   }
   popupRef;
   open(dialog: TemplateRef<any>) {
@@ -158,13 +159,24 @@ export class ChannelListComponent implements OnInit {
     this.popupRef.close();
   }
 
+  createCompleteAndClose(){
+    this.ui.delay(1000);
+    this.config.commit();
+    this.ui.showSnack('Create Complete!','Please Wait',{duration:1000});
+    this.popupRef.close();
+  }
 
 
   @ViewChild('folder') folderPop;
   newFolderName;
-  createNewFolder(){
-    this.ui.showSnack('Creaingt Folder...','Please Wait',{duration:1000});
-    this.popupRef.close();
+  createNewFolder(folderNameDirty){
+    this.ui.showSnack('Creating Folder...','Please Wait',{duration:1000});
+    let parentFolderId =  this.newChannelFolder;
+    if(typeof parentFolderId === 'object'){
+      parentFolderId = "";
+    }
+    this.config.createFolder(folderNameDirty, parentFolderId);
+    this.createCompleteAndClose();
   }
 
   @ViewChild('import') importPop;

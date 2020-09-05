@@ -212,18 +212,49 @@ export class ConfigService {
     return this.config.sideBarVisible;
   }
 
-  async createChannel(channelNameDirty, folders = {}){
-    let channelName = this.pubsub.createChannel(channelNameDirty);
-    await this.ui.delay(1000);
-    this.commit();
-    return channelName;
+  async createChannel(channelNameDirty, parentFolderId = ""){
+    let channelNameClean = await this.pubsub.createChannel(channelNameDirty);
+    this.addToChannelFolderList(channelNameClean, parentFolderId);
+    return channelNameClean;
   }
 
-  async addToChannelFolderList(channelNameClean, folders = {}){
+  async createFolder(newFolderNameDirty, parentFolderId = ""){
+      let chfl = this.getChannelFolderList();
+      let newFolder = { data: { name: newFolderNameDirty, kind:"dir", items: 0 }, expanded: true, children: [] };
+      if(parentFolderId == ""){
+        chfl.push(newFolder);
+      }
+      else{
+        chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newFolder);
+     }
+     this.setChannelFolderList(chfl);
+   }
+
+  parseFolderStructureAndPushItem(folderStructure, parentFolderId = "", newFolder){
+    for(let i=0;i<folderStructure.length;i++){
+      if(folderStructure[i]['id'] == parentFolderId){
+
+        folderStructure[i]['children'].push(newFolder);
+      }
+      else{
+        if(typeof(folderStructure[i]['children']) != 'undefined'){
+          folderStructure[i]['children'] = this.parseFolderStructureAndPushItem(folderStructure[i]['children'], parentFolderId, newFolder);
+        }
+      }
+    }
+    return folderStructure;
+  }
+
+  async addToChannelFolderList(channelNameClean, parentFolderId = "", newChannel = { data: { name: channelNameClean, kind:"rep", items: 0 }, expanded: true, children: [] }){
     let chfl = this.getChannelFolderList();
-    chfl.push({ data: { name: channelNameClean, kind:"rep", items: 0 }, expanded: true, children: [] });
-    this.setChannelFolderList(chfl);
-  }n
+    if(parentFolderId == ""){
+      chfl.push(newChannel);
+    }
+    else{
+      chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newChannel);
+   }
+   this.setChannelFolderList(chfl);
+  }
 
 
 }
