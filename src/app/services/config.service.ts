@@ -231,6 +231,21 @@ export class ConfigService {
     return folderStructure;
   }
 
+  parseFolderStructureAndGetPath(folderStructure, channelName, path = []){
+    for(let i=0;i<folderStructure.length;i++){
+      if(folderStructure[i]['data']['name'] == channelName){
+       return path;
+      }
+      else{
+        if(typeof(folderStructure[i]['children']) != 'undefined'){
+          path.push(folderStructure[i]['data']['name']);
+          path = this.parseFolderStructureAndGetPath(folderStructure[i]['children'], channelName, path);
+        }
+      }
+    }
+    return path;
+  }
+
   async addToChannelFolderList(channelNameClean, parentFolderId = "", newChannel = { data: { name: channelNameClean, kind:"rep", items: 0 }, expanded: true, children: [] }){
     let chfl = this.getChannelFolderList();
     if(parentFolderId == ""){
@@ -258,8 +273,19 @@ export class ConfigService {
 
     let code = uuidv4();
     let link = ""
-    if(!importFolders){
-      link = channel + ":" + code;
+    if(importFolders){
+      //traverse folders and find this channel in the tree
+      let pathArray = this.parseFolderStructureAndGetPath(this.config.channelFolderList, channel);
+      if(pathArray.length > 0){
+        link = pathArray.join('/') + "/" + channel + ":" + code;
+      }
+      else{
+        link = channel + ":" + code;
+      }
+      console.log(pathArray);
+    }
+    else{
+        link = channel + ":" + code;
     }
 
     link = Buffer.from(link,'utf8').toString('hex');
