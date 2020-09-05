@@ -63,6 +63,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.2**
 - Export Settings
+- Drag/Drop Folders/Channels 
+- Delete Channels/Folders
 - Disable Challenge Flow (close channels to invite only)
 - Share and Import Channels By QR Code
 - Alias (show custom name instead of pub key) and profile pictures
