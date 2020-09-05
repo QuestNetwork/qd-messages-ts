@@ -1,6 +1,4 @@
-
 <nb-layout  class="channelScreen" >
-
   <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
     <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton" style="margin-right:8px;">Hide Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.left">Lock Panel</button>
@@ -15,30 +13,15 @@
     <app-channel-sidebar-right></app-channel-sidebar-right>
   </nb-sidebar>
   <nb-layout-column>
-
-
-
     <app-channel *ngFor="let channel of channelNameList"  [channel]="channel" class="channel" [hidden]="selectedChannel != channel"></app-channel>
     <app-channel [channel]="noChannelSelected" [hidden]="selectedChannel != noChannelSelected" class="channel"></app-channel>
-
   </nb-layout-column>
 </nb-layout>
 
+<div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
+  <nb-icon icon="arrow-circle-left-outline" ></nb-icon>
+</div>
 
-  <div class="toggleSideBarRight toggleSideBarLeft" style="z-index: 20;
-    position: fixed;
-    left: 7px;
-    top: 66px;
-    cursor: pointer;color:#36f !important;" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
-    <nb-icon icon="arrow-circle-left-outline" ></nb-icon>
-    </div>
-
-
-
-    <div class="toggleSideBarRight" style="z-index: 20;
-      position: fixed;
-      right: 7px;
-      top: 66px;
-      cursor: pointer;color:#36f !important;" (click)="toggleSideBar('right')" *ngIf="!this.sideBarVisible.right && selectedChannel != 'NoChannelSelected'">
-      <nb-icon icon="arrow-circle-right-outline" ></nb-icon>
-      </div>
+<div class="toggleSideBarRight" class="toggleSideBarRight" (click)="toggleSideBar('right')" *ngIf="!this.sideBarVisible.right && selectedChannel != 'NoChannelSelected'">
+  <nb-icon icon="arrow-circle-right-outline" ></nb-icon>
+</div>
