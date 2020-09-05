@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-channel-settings',
@@ -8,7 +9,7 @@ import { QuestPubSubService } from '../services/quest-pubsub.service';
 })
 export class ChannelSettingsComponent implements OnInit {
 
-  constructor(private pubsub: QuestPubSubService) { }
+  constructor(private pubsub: QuestPubSubService, private config:ConfigService) { }
 
   challengeFlowFlag = 0;
   challengeFlowFlagChanged(value){
@@ -20,7 +21,15 @@ export class ChannelSettingsComponent implements OnInit {
 
   }
   generateInviteCode(){
+    let channel = this.pubsub.getSelectedChannel();
+    let code;
+    code = this.config.createInviteCode(channel,this.newInviteCodeMax);
+    code = channel + ":" + code;
+    if(this.includeFolderStructure == 1){
 
+    }
+    code = Buffer.from(code,'utf8').toString('hex');
+    this.channelInviteCodes.push( { usersMax: this.newInviteCodeMax, usersUsed: 0, code: code } );
   }
 
   newInviteExportFoldersChanged(value){
@@ -29,7 +38,7 @@ export class ChannelSettingsComponent implements OnInit {
 
   includeFolderStructure = 1;
 
-  channelInviteCodes = [ { usersMax: 5, usersUsed: 2, code: "1234567812378136218376128371238761387126312873612873612837621378126371238126387126318273126382173612836217368127" } ];
+  channelInviteCodes = [];
 
   copyToClipboard(code){
     console.log(code);

@@ -105,7 +105,6 @@ export class ConfigService {
         sideBarVisible: this.getSideBarVisible()
       };
 
-      console.log(JSON.stringify(this.config));
       if(this.isElectron){
         this.fs.writeFileSync(this.configFilePath, JSON.stringify(this.config),{encoding:'utf8',flag:'w'})
       }
@@ -239,6 +238,28 @@ export class ConfigService {
       chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newChannel);
    }
    this.setChannelFolderList(chfl);
+  }
+
+  createInviteCode(channel,newInviteCodeMax){
+    if(typeof this.config['inviteCode'] == 'undefined'){
+       this.config['inviteCode'] = {};
+    }
+    if(typeof this.config['inviteCode'][channel] == 'undefined'){
+       this.config['inviteCode'][channel] = {};
+    }
+    if(typeof this.config['inviteCode'][channel]['codes'] == 'undefined'){
+       this.config['inviteCode'][channel]['codes'] = [];
+    }
+    if(typeof this.config['inviteCode'][channel]['items'] == 'undefined'){
+       this.config['inviteCode'][channel]['items'] = {};
+    }
+
+
+    let code = uuidv4();
+    this.config['inviteCode'][channel]['codes'].push(  code  );
+    this.config['inviteCode'][channel]['items'][code] = { max: newInviteCodeMax, used: 0 };
+
+    return code;
   }
 
 
