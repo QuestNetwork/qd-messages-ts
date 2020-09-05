@@ -270,6 +270,14 @@ export class ConfigService {
     }
     return true;
   }
+  addInviteToken(channel,token){
+    if(typeof this.config['inviteCodes'][channel]['token'] == 'undefined'){
+       this.config['inviteCodes'][channel]['token'] = {}
+    }
+    this.pubsub.setInviteCodes(this.config['inviteCodes'][channel], channel);
+    this.commitNow();
+    return true;
+  }
   createInviteCode(channel,newInviteCodeMax, importFolders = false){
     if(typeof this.config['inviteCodes'][channel] == 'undefined'){
        this.config['inviteCodes'][channel] = {};

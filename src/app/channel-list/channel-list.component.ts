@@ -195,21 +195,33 @@ export class ChannelListComponent implements OnInit {
     if(folders.length > 0){
       channelName = folders[folders.length-1].split(':')[0];
       inviteToken =  folders[folders.length-1].split(':')[1];
+      folders.pop();
     }
     else{
        channelName = link.split(':')[0];
        inviteToken = link.split(':')[1];
     }
 
-    //see if folders exist
+    let parentFolderId =  this.newChannelFolder;
+    if(typeof parentFolderId === 'object'){
+      parentFolderId = "";
+    }
 
-    //create non existing folders
-    let parentFolderId = "";
-    console.log(channelName);
-    console.log(inviteToken);
+    if(this.importFolderStructure == 1 && folders.length > 0){
+        //see if folders exist
 
-  //  await this.config.createChannel(channelName, parentFolderId);
-  //  this.createCompleteAndClose();
+        //create folder structure
+
+        //get id of lowest folder
+        // parentFolderId =
+    }
+
+    // console.log(channelName);
+    // console.log(inviteToken);
+
+    await this.config.createChannel(channelName, parentFolderId);
+    this.config.addInviteToken(channelName,inviteToken);
+    this.createCompleteAndClose();
   }
 
 
