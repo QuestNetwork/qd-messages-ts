@@ -94,6 +94,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - IRC Plugin to add IRC servers
 
 **1.0.0**
+- Desktop Notifications
 - Ethereum Payment Integration Beta
 - Third Party Dependencies Audited, Security Issues Fixed
 - Inline Preview For Media Files And Links (images, videos, etc)
