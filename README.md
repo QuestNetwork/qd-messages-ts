@@ -55,9 +55,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.1**
 - Auto SignIn, if signed in
-- Join/Create Custom Channels
+- Create Channels/Folders
 - Generate Invite Tokens (optional with folder structure)
-- Import From Invite Token (optional with folder structure)
+- Import/Join From Invite Token (optional with folder structure)
 
 ## Roadmap
 
