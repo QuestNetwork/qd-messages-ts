@@ -62,9 +62,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.2**
+- Export Settings
 - Disable Challenge Flow (close channels to invite only)
 - Share and Import Channels By QR Code
-- Export Settings
 - Pair with participants by sharing public keys in person (show qr codes for keys and invite codes)
 - Alias (show custom name instead of pub key) and profile pictures
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
