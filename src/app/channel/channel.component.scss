@@ -11,50 +11,19 @@
 
 
 
-.him{
-  opacity:0.9;
-  float: left;
-margin-bottom: 10px;
-  background: #0084ff;
-  background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
-  color:#fff;
-  overflow-wrap: break-word;
-  max-width: 450px;
+
+
+.joinScreen, .inviteScreen, .captchaScreen{
+  background-color: #222b45;
+      padding: 20px;
+          text-align: center;
 }
 
-.me{
-  float: right;
-margin-bottom: 10px;
-  background: #0084ff;
-  background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
-  color: #fff;
-  overflow-wrap: break-word;
-  max-width: 450px;
-}
-
-.fromIndicator{
-  color: #fff;
-    opacity: 0.5;
-    font-size: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100px;
-    margin-top: 10px;
-    padding: 5px;
-    padding-bottom: 0px;
+.joinScreen,.inviteScreen,.captchaScreen,.chatScreen{
+  height:100%;
 }
 
 
-
-.sendMessageIcon{
-  cursor:pointer;  float: right;
-margin-left: 10px;
-background-color: lightblue;
-padding-left: 5px;
-padding-right: 0px;
-color: white;
-border-radius: 5px;
-font-size: 13px;
-height:21px;
+.joinScreen > div,.inviteScreen > div,.captchaScreen > div,.chatScreen{
+  height:100%;
 }

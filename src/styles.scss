@@ -24,12 +24,17 @@
 opacity:0;
 }
 
-.channelParticipantList ul{
-  margin-top: 20px;
-  padding-right: 10px;
+// .channelParticipantList ul{
+//   margin-top: 20px;
+//   padding-right: 10px;
+// }
+//
+
+
+
+.mat-form-field-label, .matf-form-field-underline{
+      color: #ffffff8c;
 }
-
-
 
 
 .popup--machine-types{
@@ -866,4 +871,19 @@ html{
 
 nb-layout-column{
     padding: 0 !important;
+}
+
+
+.thickOutlineButton{
+      border: 2px solid purple !important;
+}
+.thickOutlineButton.mat-stroked-button:not(.mat-button-disabled) {
+  border-color: purple;
+}
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: #7e44ece3;
+}
+
+.marginRight20{
+  margin-right: 20px !important;
 }

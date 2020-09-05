@@ -40,7 +40,26 @@ export class ChannelComponent implements OnInit {
 }
 
   public showChallengeScreen = false;
+  public showJoinScreen = false;
+  public showInviteScreen = false;
 
+  goToCaptcha(){
+    this.showChallengeScreen = true;
+    this.showJoinScreen = false;
+    this.showInviteScreen = false;
+  }
+
+  goToInviteScreen(){
+    this.showChallengeScreen = false;
+    this.showJoinScreen = false;
+    this.showInviteScreen = true;
+  }
+
+  goToJoin(){
+    this.showChallengeScreen = false;
+    this.showJoinScreen = true;
+    this.showInviteScreen = false;
+  }
 
   challengeFail(){
     this.showChallengeScreen = true;
@@ -72,7 +91,8 @@ export class ChannelComponent implements OnInit {
       let imageB64 = Buffer.from(imageBuffer.data).toString('base64');
 
       this.captchaImageResource = this._sanitizer.bypassSecurityTrustUrl("data:image/png;base64,"+imageB64);
-      this.showChallengeScreen = true;
+      // this.showChallengeScreen = true;
+      this.showJoinScreen = true;
       this.ui.updateProcessingStatus(false);
       this.aChD.detectChanges();
       // this.challengeFail()
@@ -82,6 +102,8 @@ export class ChannelComponent implements OnInit {
       //load chat
       this.ui.updateProcessingStatus(false);
       this.showChallengeScreen = false;
+      this.showJoinScreen = false;
+      this.showInviteScreen = false;
       this.aChD.detectChanges();
     }
     else if(pubObj['type'] == "CHANNEL_MESSAGE"){
@@ -122,6 +144,8 @@ export class ChannelComponent implements OnInit {
         console.log('isOwner:',isOwner);
         if(isOwner){
           this.showChallengeScreen = false;
+          this.showJoinScreen = false;
+          this.showInviteScreen = false;
           this.ui.updateProcessingStatus(false);
         }
     }
