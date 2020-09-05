@@ -11,7 +11,7 @@
      <button mat-stroked-button color="primary" (click)="completedChallenge()" class="importButton captchaButton">I Aced That IQ Test</button>
 </div>
 
-<div [hidden]="showChallengeScreen" style="height:100%">
+<div [hidden]="showChallengeScreen || channel == noChannelSelected" style="height:100%">
        <nb-chat title="Channel: {{channel}}">
          <nb-chat-message *ngFor="let msg of messages"
            [type]="msg.type"

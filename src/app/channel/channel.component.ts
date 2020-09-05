@@ -26,6 +26,8 @@ export class ChannelComponent implements OnInit {
   }
   DEVMODE = false;
 
+  noChannelSelected = "NoChannelSelected";
+
   ngOnInit(): void {
 
     console.log("Channel: Initializing...");
