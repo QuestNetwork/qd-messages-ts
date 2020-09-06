@@ -43,7 +43,7 @@ https://ipfs.io/ipfs/QmZmevZhViKbUgoNUjGqHF6MtGQbasqPYKJ6LHpvPsJJL4/
 
 ```git checkout 0.9.1```
 
-```npm install```
+```npm run install```
 
 ```npm run ipfs```
 
@@ -67,11 +67,15 @@ If you want anything else, you'll have to build from sources and probably fix so
 
 **Commands**
 
+```npm run install``` Safely installs all dependencies
+
 ```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
 
 ```npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
 
-```npm run web``` Creates the bundles application for the web with base path ```/```  to ```dist/web```
+```npm run ipfs```  Creates the bundled application for the web with dynamic base path to ```dist/web```
+
+```npm run web``` Creates the bundled application for the web with base path ```/```  to ```dist/web```
 
 ```npm run serve``` Serves the bundled application on ```localhost:4200``` from ```dist/web```
 
