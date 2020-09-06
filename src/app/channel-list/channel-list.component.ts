@@ -193,7 +193,7 @@ export class ChannelListComponent implements OnInit {
     let channelName;
     let inviteToken;
 
-    let folders = link.split("/");
+    let folders = link.split("/////");
     if(folders.length > 0){
       channelName = folders[folders.length-1].split(':')[0];
       inviteToken =  folders[folders.length-1].split(':')[1];

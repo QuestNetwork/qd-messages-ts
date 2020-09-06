@@ -228,6 +228,7 @@ export class ConfigService {
      this.setChannelFolderList(chfl);
    }
 
+pFICache;
   parseFolderStructureAndPushItem(folderStructure, parentFolderId = "", newFolder,ifdoesntexist = false){
     for(let i=0;i<folderStructure.length;i++){
       if(folderStructure[i]['id'] == parentFolderId){
@@ -237,21 +238,23 @@ export class ConfigService {
         else{
 
           let exists = false;
-          if(typeof folderStructure['children'] == 'undefined'){
-             folderStructure['children'] = [];
+          if(typeof folderStructure[i]['children'] == 'undefined'){
+             folderStructure[i]['children'] = [];
           }
 
-          for (let i2=0;i2<folderStructure['children'].length;i2++){
-            if(folderStructure['children'][i2]['data']['name'] == newFolder['data']['name']){
+          for (let i2=0;i2<folderStructure[i]['children'].length;i2++){
+            if(folderStructure[i]['children'][i2]['data']['name'] == newFolder['data']['name']){
               exists = true;
-              if(typeof folderStructure['children'][i2]['id'] == 'undefined'){
-                folderStructure['children'][i2]['id'] = uuidv4();
+              if(typeof folderStructure[i]['children'][i2]['id'] == 'undefined'){
+                folderStructure[i]['children'][i2]['id'] = uuidv4();
               }
-              parentFolderId = folderStructure['children'][i2]['id'];
+              parentFolderId = folderStructure[i]['children'][i2]['id'];
             }
           }
           if(!exists){
             parentFolderId = newFolder['id'];
+            this.pFICache = parentFolderId;
+            console.log(parentFolderId);
             folderStructure[i]['children'].push(newFolder);
           }
 
@@ -314,7 +317,6 @@ export class ConfigService {
         for(let i=0; i<folders.length;i++){
           let newFolder = { data: { name: folders[i], kind:"dir", items: 0 }, id: uuidv4(),expanded: true, children: [] };
 
-
           if(parentFolderId == ""){
             //check if exist at top level
             let exists = false;
@@ -334,11 +336,15 @@ export class ConfigService {
           }
           else{
             chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newFolder, true);
+            if(typeof this.pFICache != 'undefined' && this.pFICache != null){
+              parentFolderId = this.pFICache;
+            }
+            console.log(parentFolderId);
          }
 
 
         }
-
+        this.pFICache = null;
        this.setChannelFolderList(chfl);
     }
     await this.addChannel(channelName, parentFolderId);
@@ -369,7 +375,7 @@ export class ConfigService {
       //traverse folders and find this channel in the tree
       let pathArray = this.parseFolderStructureAndGetPath(this.config.channelFolderList, channel);
       if(pathArray.length > 0){
-        link = pathArray.join('/') + "/" + channel + ":" + code;
+        link = pathArray.join("/////") + "/////" + channel + ":" + code;
       }
       else{
         link = channel + ":" + code;
