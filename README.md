@@ -39,7 +39,7 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 ```ipfs pin add <CID>```
 
-If you have trouble getting the directory discovered by gateways, you can try ```./ipfs-propagate``` from the root git folder. 
+If you have trouble getting the directory discovered by gateways, you can try ```./ipfs-propagate.sh``` from the root git folder. 
 Keep in mind that the bundled web application is >6MB alone without assets, please be patient until we have a preloader.
 
 ## Download
