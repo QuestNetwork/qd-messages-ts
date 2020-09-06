@@ -63,8 +63,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.2**
-- (Quest Network Bee Service)[https://github.com/QuestNetwork/quest-bee-js]
-- (Quest Network Dolphin Service)https://github.com/QuestNetwork/quest-dolphin-js
+- [Quest Network Bee Service](https://github.com/QuestNetwork/quest-bee-js)
+- [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 - Disable AutoSave
 - Export Settings
 - Drag/Drop Folders/Channels 
