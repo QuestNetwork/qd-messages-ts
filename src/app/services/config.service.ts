@@ -210,7 +210,9 @@ export class ConfigService {
   }
 
   async addChannel(channelNameClean, parentFolderId = ""){
-    await this.pubsub.addChannel(channelNameClean);
+    try{
+      await this.pubsub.addChannel(channelNameClean);
+    }catch(e){}
     this.addToChannelFolderList(channelNameClean, parentFolderId);
     return channelNameClean;
   }
@@ -313,6 +315,7 @@ pFICache;
 
     if(importFolderStructure == 1 && folders.length > 0){
         //see if folders exist starting at parentFolderId
+        console.log(parentFolderId);
         let chfl = this.getChannelFolderList();
         for(let i=0; i<folders.length;i++){
           let newFolder = { data: { name: folders[i], kind:"dir", items: 0 }, id: uuidv4(),expanded: true, children: [] };
@@ -327,10 +330,12 @@ pFICache;
                   chfl[i2]['id'] = uuidv4();
                 }
                 parentFolderId = chfl[i2]['id'];
+                this.pFICache = parentFolderId;
               }
             }
             if(!exists){
-              parentFolderId = newFolder['data']['id'];
+              parentFolderId = newFolder['id'];
+              this.pFICache = parentFolderId;
               chfl.push(newFolder);
             }
           }
@@ -339,7 +344,6 @@ pFICache;
             if(typeof this.pFICache != 'undefined' && this.pFICache != null){
               parentFolderId = this.pFICache;
             }
-            console.log(parentFolderId);
          }
 
 
@@ -347,6 +351,8 @@ pFICache;
         this.pFICache = null;
        this.setChannelFolderList(chfl);
     }
+
+    console.log(parentFolderId);
     await this.addChannel(channelName, parentFolderId);
     this.addInviteToken(channelName,inviteToken);
     return true;

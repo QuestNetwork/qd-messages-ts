@@ -205,7 +205,7 @@ export class ChannelListComponent implements OnInit {
     }
 
     let parentFolderId =  this.newChannelFolder;
-    if(typeof parentFolderId === 'object'){
+    if(typeof parentFolderId === 'object' || typeof parentFolderId == 'undefined' || typeof parentFolderId == null){
       parentFolderId = "";
     }
 
