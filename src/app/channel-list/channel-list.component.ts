@@ -184,10 +184,12 @@ export class ChannelListComponent implements OnInit {
   inviteCodeHex;
   importChannelFolderChanged(){}
   async importNewChannel(){
-    let link = Buffer.from(this.inviteCodeHex,'hex').toString('utf8');
+
     //TODO put together folder structure...
     this.ui.showSnack('Importing Channel...','Please Wait',{duration:1000});
 
+
+    let link = Buffer.from(this.inviteCodeHex,'hex').toString('utf8');
     let channelName;
     let inviteToken;
 
@@ -207,25 +209,13 @@ export class ChannelListComponent implements OnInit {
       parentFolderId = "";
     }
 
-    if(this.importFolderStructure == 1 && folders.length > 0){
-        //see if folders exist
-
-        //create folder structure
-
-        //get id of lowest folder
-        // parentFolderId =
-    }
-
-    // console.log(channelName);
-    // console.log(inviteToken);
-    if(this.config.isInArray(channelName,this.pubsub.getChannelNameList())){
-      this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
-    }
-    else{
-      await this.config.addChannel(channelName, parentFolderId);
-      this.config.addInviteToken(channelName,inviteToken);
+    // if(this.config.isInArray(channelName,this.pubsub.getChannelNameList())){
+    //   this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
+    // }
+    // else{
+      await this.config.importChannel(channelName,folders,parentFolderId,inviteToken,this.importFolderStructure);
       this.createCompleteAndClose();
-    }
+    // }
 
   }
 

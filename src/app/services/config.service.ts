@@ -228,15 +228,38 @@ export class ConfigService {
      this.setChannelFolderList(chfl);
    }
 
-  parseFolderStructureAndPushItem(folderStructure, parentFolderId = "", newFolder){
+  parseFolderStructureAndPushItem(folderStructure, parentFolderId = "", newFolder,ifdoesntexist = false){
     for(let i=0;i<folderStructure.length;i++){
       if(folderStructure[i]['id'] == parentFolderId){
+        if(!ifdoesntexist){
+          folderStructure[i]['children'].push(newFolder);
+        }
+        else{
 
-        folderStructure[i]['children'].push(newFolder);
+          let exists = false;
+          if(typeof folderStructure['children'] == 'undefined'){
+             folderStructure['children'] = [];
+          }
+
+          for (let i2=0;i2<folderStructure['children'].length;i2++){
+            if(folderStructure['children'][i2]['data']['name'] == newFolder['data']['name']){
+              exists = true;
+              if(typeof folderStructure['children'][i2]['id'] == 'undefined'){
+                folderStructure['children'][i2]['id'] = uuidv4();
+              }
+              parentFolderId = folderStructure['children'][i2]['id'];
+            }
+          }
+          if(!exists){
+            parentFolderId = newFolder['id'];
+            folderStructure[i]['children'].push(newFolder);
+          }
+
+        }
       }
       else{
         if(typeof(folderStructure[i]['children']) != 'undefined'){
-          folderStructure[i]['children'] = this.parseFolderStructureAndPushItem(folderStructure[i]['children'], parentFolderId, newFolder);
+          folderStructure[i]['children'] = this.parseFolderStructureAndPushItem(folderStructure[i]['children'], parentFolderId, newFolder,ifdoesntexist);
         }
       }
     }
@@ -244,19 +267,33 @@ export class ConfigService {
   }
 
   parseFolderStructureAndGetPath(folderStructure, channelName, path = []){
+    path = this.parseFolderStructureAndGetPathProcess(folderStructure, channelName);
+    path.shift();
+    return path.reverse();
+  }
+
+  parseFolderStructureAndGetPathProcess(folderStructure, channelName, path = []){
     for(let i=0;i<folderStructure.length;i++){
       if(folderStructure[i]['data']['name'] == channelName){
+        path.push("F");
        return path;
       }
       else{
-        if(typeof(folderStructure[i]['children']) != 'undefined'){
-          path.push(folderStructure[i]['data']['name']);
-          path = this.parseFolderStructureAndGetPath(folderStructure[i]['children'], channelName, path);
+        if(typeof folderStructure[i]['children'] != 'undefined'){
+          let testPath = this.parseFolderStructureAndGetPathProcess(folderStructure[i]['children'], channelName, path);
+          // console.log('PTEST:',testPath);
+          if(testPath[0] == "F"){
+            path = testPath;
+            path.push(folderStructure[i]['data']['name']);
+            return path;
+          }
+
         }
       }
     }
     return path;
   }
+
 
   async addToChannelFolderList(channelNameClean, parentFolderId = "", newChannel = { data: { name: channelNameClean, kind:"rep", items: 0 }, expanded: true, children: [] }){
     let chfl = this.getChannelFolderList();
@@ -269,7 +306,45 @@ export class ConfigService {
    this.setChannelFolderList(chfl);
   }
 
+  async importChannel(channelName,folders,parentFolderId,inviteToken,importFolderStructure){
 
+    if(importFolderStructure == 1 && folders.length > 0){
+        //see if folders exist starting at parentFolderId
+        let chfl = this.getChannelFolderList();
+        for(let i=0; i<folders.length;i++){
+          let newFolder = { data: { name: folders[i], kind:"dir", items: 0 }, id: uuidv4(),expanded: true, children: [] };
+
+
+          if(parentFolderId == ""){
+            //check if exist at top level
+            let exists = false;
+            for (let i2=0;i2<chfl.length;i2++){
+              if(chfl[i2]['data']['name'] == newFolder['data']['name']){
+                exists = true;
+                if(typeof chfl[i2]['id'] == 'undefined'){
+                  chfl[i2]['id'] = uuidv4();
+                }
+                parentFolderId = chfl[i2]['id'];
+              }
+            }
+            if(!exists){
+              parentFolderId = newFolder['data']['id'];
+              chfl.push(newFolder);
+            }
+          }
+          else{
+            chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newFolder, true);
+         }
+
+
+        }
+
+       this.setChannelFolderList(chfl);
+    }
+    await this.addChannel(channelName, parentFolderId);
+    this.addInviteToken(channelName,inviteToken);
+    return true;
+  }
 
   setInviteCodes(codeObject, channel = 'all'){
     if(channel == 'all'){
@@ -280,12 +355,14 @@ export class ConfigService {
   }
   addInviteToken(channel,token){
     this.pubsub.addInviteToken(channel,token);
-    this.commitNow();
     return true;
   }
+  removeInviteCode(channel,link){
+    this.pubsub.removeInviteCode(channel, link)
+  }
+
+
   createInviteCode(channel,newInviteCodeMax, importFolders = false){
-
-
     let code = uuidv4();
     let link = ""
     if(importFolders){
@@ -308,11 +385,5 @@ export class ConfigService {
     this.commitNow();
     return link;
   }
-
-  removeInviteLink(channel,link){
-    this.pubsub.removeInviteCode(channel, link)
-    this.commitNow();
-  }
-
 
 }
