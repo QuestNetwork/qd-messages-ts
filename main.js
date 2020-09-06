@@ -3,7 +3,6 @@ const NativeImage = require("electron").nativeImage;
 const path = require("path");
 const url = require("url");
 const open = require("open");
-const swarmJson = require("./src/app/swarm.json");
 let win;
 
 
@@ -60,10 +59,10 @@ function createWindow() {
     //   }
     });
 
-if(swarmJson['dev']){
+// if(swarmJson['dev']){
   // win.webContents.openDevTools();
   win.webContents.openDevTools({mode: 'undocked'})
-}
+// }
 
 
 
