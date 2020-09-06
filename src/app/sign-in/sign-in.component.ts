@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
         console.log(importSettingsStatus);
         if(importSettingsStatus){
           console.log('SignIn: Settings Imported Successfully');
-          this.ui.showSnack('Loading Channels...','Almost There');
+          this.ui.showSnack('Loading Channels...','Almost There', {duration:2000});
           this.jumpToChannels();
           this.ui.signIn();
           if(this.pubsub.getSelectedChannel() == 'NoChannelSelected'){
