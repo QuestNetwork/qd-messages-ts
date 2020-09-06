@@ -24,11 +24,14 @@ We're planning to become for messaging what [Atom](https://atom.io) is for writi
 The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
 
-## Deploy on IPFS
+## IPFS Deploy
 
 ```git clone https://github.com/QuestNetwork/quest-messenger-js```
+
 ```git checkout 0.9.1```
+
 ```cd quest-messenger-js```
+
 ```npm run ipfs```
 
 
