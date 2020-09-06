@@ -23,11 +23,14 @@ We're planning to become for messaging what [Atom](https://atom.io) is for writi
 
 The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
-## IPFS Gateway
+## IPFS Gateways
 
 https://gateway.pinata.cloud/ipfs/QmZmevZhViKbUgoNUjGqHF6MtGQbasqPYKJ6LHpvPsJJL4/
+
 https://cloudflare-ipfs.com/ipfs/QmZmevZhViKbUgoNUjGqHF6MtGQbasqPYKJ6LHpvPsJJL4/
+
 https://ipfs.eternum.io/ipfs/QmZmevZhViKbUgoNUjGqHF6MtGQbasqPYKJ6LHpvPsJJL4/
+
 https://ipfs.io/ipfs/QmZmevZhViKbUgoNUjGqHF6MtGQbasqPYKJ6LHpvPsJJL4/
 
 
