@@ -44,7 +44,7 @@
     "prepare": "",
     "install": "rm -rf package-lock.json && npm install && npm uninstall @angular/cdk @angular/material npm install @angular/cdk@10.1.1 angular/material@10.1.1",
     "web": "npm run prepare && rm -rf dist/web && rsync --exclude 'dist/' --exclude '.git/' --exclude 'recoveryWEB/' --exclude 'recoveryAPP/' --exclude 'node_modules/' -auv * recoveryWEB/ && ng build --prod --base-href ./ && angular-http-server --path ./dist/web -p 4200",
-    "ipfs": "rm -rf dist/web & mv src/index.html src/index-web.html && mv src/index-ipfs.html src/index.html && ng build --prod  && mv src/index.html src/index-ipfs.html && mv src/index-web.html src/index.html && ipfs add -rQ dist/web",
+    "ipfs": "rm -rf dist/web & mv src/index.html src/index-web.html && mv src/index-ipfs.html src/index.html && ng build --prod --aot && mv src/index.html src/index-ipfs.html && mv src/index-web.html src/index.html && ipfs add -rQ dist/web",
     "serve": "ng serve",
     "linux": "rsync --exclude 'local/' --exclude 'dist/' --exclude '.git/' --exclude 'recoveryWEB/' --exclude 'recoveryAPP/' --exclude 'node_modules/' -auv * recoveryAPP/ && ng build --prod --base-href ./ && electron-builder --linux",
     "mac": "rsync --exclude 'local/' --exclude 'dist/' --exclude '.git/' --exclude 'recoveryWEB/' --exclude 'recoveryAPP/' --exclude 'node_modules/' -auv * recoveryAPP/ && ng build --prod --base-href ./ && electron-builder --mac",
