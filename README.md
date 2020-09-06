@@ -32,6 +32,8 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 ```cd quest-messenger-js```
 
+```npm install```
+
 ```npm run ipfs```
 
 
