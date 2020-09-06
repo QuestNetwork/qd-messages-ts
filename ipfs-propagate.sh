@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 # ——————————————————————————————————————
 # name: ipfs-propagate.sh
 # main: Jaidyn Ann <jadedctrl@teknik.io>
