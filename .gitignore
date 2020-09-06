@@ -114,3 +114,5 @@ typings/
 local/
 backup/
 dist/
+
+package-lock.json
