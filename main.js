@@ -59,11 +59,8 @@ function createWindow() {
     //   }
     });
 
-// if(swarmJson['dev']){
-  // win.webContents.openDevTools();
-  win.webContents.openDevTools({mode: 'undocked'})
-// }
 
+  // win.webContents.openDevTools({mode: 'undocked'})
 
 
   // The following is optional and will open the DevTools:
