@@ -3,9 +3,10 @@ import { UiService} from '../services/ui.service';
 import { IpfsService} from '../services/ipfs.service';
 import { ConfigService} from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
-import * as swarmJson from '../swarm.json';
+import packageJson from '../../../package.json';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { saveAs } from 'file-saver';
+import swarmJson from '../swarm.json';
 
 @Component({
   selector: 'app-sign-in',
@@ -48,7 +49,7 @@ export class SignInComponent implements OnInit {
   }
 
 
-   DEVMODE = false;
+   DEVMODE = swarmJson['dev'];
 
   public processing;
   public completeChallengeScreen = false;
@@ -123,7 +124,7 @@ async openFileLoaded(event){
     let importSettingsStatus = await this.attemptImportSettings({});
     console.log('Import Settings Status:',importSettingsStatus);
     let stringify = JSON.stringify({
-        version: swarmJson['version'],
+        version: packageJson['version'],
         appId: 'quest-messenger-js',
         channelKeyChain:   this.pubsub.getChannelKeyChain(),
         channelParticipantList:  this.pubsub.getChannelParticipantList(),
@@ -155,7 +156,7 @@ async openFileLoaded(event){
     this.channelNameList.push(this.channelName);
     this.pubsub.setChannelNameList(this.channelNameList);
     let jobFileBlob = new Blob([JSON.stringify({
-        version: swarmJson['version'],
+        version: packageJson['version'],
         appId: 'quest-messenger-js',
         channelKeyChain:   this.pubsub.getChannelKeyChain(),
         channelParticipantList: this.pubsub.getChannelParticipantList(),

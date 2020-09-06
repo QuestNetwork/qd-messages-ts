@@ -7,6 +7,9 @@ import { UiService} from './services/ui.service';
 import { IpfsService} from './services/ipfs.service';
 import { QuestPubSubService} from './services/quest-pubsub.service';
 
+
+import swarmJson from './swarm.json';
+
 // import { TicketService} from './services/ticket.service';
 
 //
@@ -31,7 +34,7 @@ processingEncryptionScreen;
   uiMode = 'setup';
 
  //
-  private DEVMODE = true;
+  private DEVMODE = swarmJson['dev'];
  //
   @ViewChild('menuTabGroup') menuTabGroup;
 

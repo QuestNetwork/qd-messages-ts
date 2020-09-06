@@ -8,6 +8,7 @@ import { UiService} from '../services/ui.service';
 import { filter, map } from 'rxjs/operators';
 
 import { v4 as uuidv4 } from 'uuid';
+import swarmJson from '../swarm.json';
 
 
 interface FSEntry {
@@ -42,7 +43,7 @@ export class ChannelListComponent implements OnInit {
         }
     }
 
-    DEVMODE = true;
+    DEVMODE = swarmJson['dev'];
   customColumn = 'name';
     defaultColumns = [  'items' ];
     allColumns = [ this.customColumn, ...this.defaultColumns ];

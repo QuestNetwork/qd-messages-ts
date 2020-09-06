@@ -6,6 +6,8 @@ import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
+import swarmJson from '../swarm.json';
+
 @Component({
   selector: 'app-channel',
   templateUrl: './channel.component.html',
@@ -21,10 +23,8 @@ export class ChannelComponent implements OnInit {
 
   constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef, private ui: UiService, private pubsub: QuestPubSubService) {
     //parse channels
-
-
   }
-  DEVMODE = false;
+  DEVMODE = swarmJson['dev'];
 
   noChannelSelected = "NoChannelSelected";
 
