@@ -248,7 +248,7 @@ public async ngAfterContentInit() {
     });
 
     this.pubsub.channelNameListSub.subscribe( (value) => {
-      this.ui.showSnack('Channel Update ','Dismiss');
+      this.ui.showSnack('Channel Update ','Dismiss', {duration:2000});
       this.channelNameList = value;
     });
 

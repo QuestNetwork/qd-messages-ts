@@ -271,6 +271,26 @@ pFICache;
     return folderStructure;
   }
 
+
+  parseFolderStructureAndRemoveItem(folderStructure, channelName){
+    folderStructure = folderStructure.filter(e => e['data']['name'] != channelName);
+
+    for(let i=0;i<folderStructure.length;i++){
+      if(typeof folderStructure[i]['children'] == 'undefined'){
+         folderStructure[i]['children'] = [];
+      }
+      for (let i2=0;i2<folderStructure[i]['children'].length;i2++){
+        folderStructure[i]['children'] = folderStructure[i]['children'].filter(e => e['data']['name'] != channelName);
+      }
+      if(typeof(folderStructure[i]['children']) != 'undefined'){
+        folderStructure[i]['children'] = this.parseFolderStructureAndRemoveItem(folderStructure[i]['children'], channelName);
+      }
+
+    }
+    return folderStructure;
+  }
+
+
   parseFolderStructureAndGetPath(folderStructure, channelName, path = []){
     path = this.parseFolderStructureAndGetPathProcess(folderStructure, channelName);
     path.shift();
@@ -309,6 +329,17 @@ pFICache;
       chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newChannel);
    }
    this.setChannelFolderList(chfl);
+  }
+
+  removeChannel(channel){
+    //remove from channelNameList
+    let channelNameList = this.pubsub.getChannelNameList().filter(e => e != channel);
+    this.pubsub.setChannelNameList(channelNameList);
+    //remove from channelFolderList
+    let chfl = this.getChannelFolderList();
+    chfl = this.parseFolderStructureAndRemoveItem(chfl, channel);
+    this.setChannelFolderList(chfl);
+
   }
 
   async importChannel(channelName,folders,parentFolderId,inviteToken,importFolderStructure){

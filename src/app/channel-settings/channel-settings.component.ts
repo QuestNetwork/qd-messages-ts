@@ -83,5 +83,9 @@ export class ChannelSettingsComponent implements OnInit {
   selectedChannel = "NoChannelSelected";
   noChannelSelected = "NoChannelSelected";
 
+  deleteCurrentChannel(){
+    this.config.removeChannel(this.selectedChannel);
+  }
+
 
 }
