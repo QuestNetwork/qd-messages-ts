@@ -67,15 +67,15 @@ If you want anything else, you'll have to build from sources and probably fix so
 
 **Commands**
 
-```npm run linux``` Builds Linux AppImage and Snap files
+```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
 
-```npm run mac``` Builds MacOS DMG and .app files
+```npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
 
-```npm run web``` Creates bundles for the web with base path ```/``` 
+```npm run web``` Creates bundles for the web with base path ```/```  to ```dist/web```
 
-```npm run serve``` Serves the bundles created with ```npm run web```
+```npm run serve``` Serves the bundles local at ```dist/web```
 
-```ng serve``` Serves a just in time compilation of the messengr
+```ng serve``` Serves a just in time compilation of the messenger
 
 
 We added the ```swarm.json``` to the ```src/app``` folder with an example node to make reproduction easier, but we strongly recommend to use our [Quest CLI](https://github.com/QuestNetwork/quest-cli) to test and build the app.
