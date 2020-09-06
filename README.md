@@ -26,8 +26,7 @@ Ethereum:
 If you want anything else, you'll have to build from sources and probably fix some stuff.
 
 ## Description
-
-The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest P2P Captcha](https://github.com/QuestNetwork/quest-image-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate payments soon, so you can send each other money!
+The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest P2P Captcha](https://github.com/QuestNetwork/quest-image-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate native crypto currency payments soon!
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code. **Full Matrix integration is planned as well.**
 
@@ -83,6 +82,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Export Message Histories
 
 **0.9.4**
+- Inline Preview For Media Files And Links (images, videos, etc)
 - Encrypt Settings/Message History Files
 
 **0.9.5**
@@ -96,7 +96,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
 - Import/Export Themes.
 
-**0.9.9**
+**0.9.8**
 - Desktop Notifications
 - Ethereum Payment Integration Beta
 
@@ -105,7 +105,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
-- Inline Preview For Media Files And Links (images, videos, etc)
 - Unlimited Custom Emojis
 - Quest Network Calendar App Plugin (for shared calendars)
 
