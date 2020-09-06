@@ -25,7 +25,7 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 
 ## IPFS Deploy
-**Memory:** 3.75GB **Storage**: 6GB
+**Memory:** 3.75GB **Storage**: 6GB **NodeJS**: 14 **NPM**: 6 **IPFS**: 0.6
 
 ```git clone https://github.com/QuestNetwork/quest-messenger-js```
 
