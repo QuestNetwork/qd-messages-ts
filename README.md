@@ -16,29 +16,46 @@ Bitcoin:
 Ethereum:
 `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E`
 
+## Description
+The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest Network Image Captcha](https://github.com/QuestNetwork/quest-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate payments soon, so you can send each other money!
+
+We're planning to become for messaging what [Atom](https://atom.io) is for writing code. Full Matrix integration is planned as well.
+
+The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
+
+
+## IPFS Deploy
+**Memory** 3.75GB **Storage** 6GB **NodeJS** 14 **NPM** 6 **IPFS** 0.6
+
+```git clone https://github.com/QuestNetwork/quest-messenger-js```
+
+```cd quest-messenger-js```
+
+```git checkout 0.9.1```
+
+```npm install```
+
+```npm run ipfs```
+
+```ipfs pin add CID```
+
+
 ## Download
 
 | Platform | Download link                | 
 |---------:|------------------------------|
-| **Linux**  | [0.9.0.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0.9.0-linux.zip) 
+| **Linux**  | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1-linux.zip) 
 | **Mac**    | [0.9.0.app](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0-9-0-mac.zip) 
 
 If you want anything else, you'll have to build from sources and probably fix some stuff.
 
-## Description
-The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest P2P Captcha](https://github.com/QuestNetwork/quest-image-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate native crypto currency payments soon!
-
-We're planning to become for messaging what [Atom](https://atom.io) is for writing code. **Full Matrix integration is planned as well.**
-
-The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
+**WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
 
 ## Installation & Usage
-We added the swarm.json to the app folder with an example node to make reproduction easier, but we strongly recommend to use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test and build the app. Among other advantages it places the swarm.json with global information like bootstrap node lists into all your quest network apps and packages.
+
+We added the swarm.json to the app folder with an example node to make reproduction easier, but we strongly recommend to use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test and build the app.
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
-
-## Warning
-**THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!**
 
 ## Features
 
