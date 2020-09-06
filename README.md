@@ -63,7 +63,20 @@ If you want anything else, you'll have to build from sources and probably fix so
 
 **WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
 
-## Installation & Usage
+## Development
+
+**Commands**
+
+```npm run linux``` Builds Linux AppImage and Snap files
+
+```npm run mac``` Builds MacOS DMG and .app files
+
+```npm run web``` Creates bundles for the web with base path ```/``` 
+
+```npm run serve``` Serves the bundles created with ```npm run web```
+
+```ng serve``` Serves a just in time compilation of the messengr
+
 
 We added the swarm.json to the app folder with an example node to make reproduction easier, but we strongly recommend to use our [quest-cli](https://github.com/QuestNetwork/quest-cli) to test and build the app.
 
