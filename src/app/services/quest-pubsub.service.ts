@@ -149,8 +149,8 @@ isSubscribed(channel){
   return QuestPubSub.isSubscribed(channel);
 }
 
-isOwner(channel,key){
-  return QuestPubSub.isOwner(channel,key);
+isOwner(channel, pubkey = "none"){
+  return QuestPubSub.isOwner(channel,pubkey);
 }
 
 setInviteCodes(inviteObject, channel = 'all'){

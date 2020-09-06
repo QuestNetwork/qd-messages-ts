@@ -20,6 +20,8 @@ export class ChannelSettingsComponent implements OnInit {
   newInviteCodeMaxChanged(event){
 
   }
+
+  isOwner = false;
   generateInviteCode(){
     let channel = this.selectedChannel;
     let link;
@@ -58,13 +60,18 @@ export class ChannelSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.pubsub.selectedChannelSub.subscribe( (value) => {
       this.selectedChannel = value;
-      console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
-      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<");
+      console.log('Channel-Settings: Selected Channel: >>'+this.selectedChannel+'<<');
+      console.log('Channel-Settings: noChannelSelected: >>'+this.noChannelSelected+"<<");
 
-      let ivC = this.pubsub.getInviteCodes(this.selectedChannel);
-      this.channelInviteCodes = [];
-      if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
-               this.channelInviteCodes = ivC['items'];
+      if(this.selectedChannel.indexOf('-----') > -1){
+        this.isOwner = this.pubsub.isOwner(this.selectedChannel);
+        console.log('Channel-Settings:',this.isOwner);
+
+        this.channelInviteCodes = [];
+        let ivC = this.pubsub.getInviteCodes(this.selectedChannel);
+        if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
+                 this.channelInviteCodes = ivC['items'];
+        }
       }
     });
 

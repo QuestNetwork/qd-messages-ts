@@ -209,13 +209,13 @@ export class ChannelListComponent implements OnInit {
       parentFolderId = "";
     }
 
-    // if(this.config.isInArray(channelName,this.pubsub.getChannelNameList())){
-    //   this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
-    // }
-    // else{
+    if(this.config.isInArray(channelName,this.pubsub.getChannelNameList())){
+      this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
+    }
+    else{
       await this.config.importChannel(channelName,folders,parentFolderId,inviteToken,this.importFolderStructure);
       this.createCompleteAndClose();
-    // }
+    }
 
   }
 

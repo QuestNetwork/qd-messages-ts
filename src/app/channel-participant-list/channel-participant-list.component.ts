@@ -27,7 +27,7 @@ export class ChannelParticipantListComponent implements OnInit {
         }
         catch(e){}
 
-      },60000);
+      },10000);
 
       try{
         let fullPListArr = this.pubsub.getChannelParticipantList(this.pubsub.getSelectedChannel())['cList'].split(',');
@@ -56,6 +56,8 @@ export class ChannelParticipantListComponent implements OnInit {
             console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
             console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
           });
+
+
 
 
         }
