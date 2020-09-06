@@ -37,6 +37,8 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 ```npm run ipfs```
 
+```ipfs pin add CID```
+
 
 ## Download
 
