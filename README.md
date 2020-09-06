@@ -44,9 +44,9 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 | **Linux**  | [0.9.0.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0.9.0-linux.zip) 
 | **Mac**    | [0.9.0.app](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0-9-0-mac.zip) 
 
-**WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
-
 If you want anything else, you'll have to build from sources and probably fix some stuff.
+
+**WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
 
 ## Installation & Usage
 
