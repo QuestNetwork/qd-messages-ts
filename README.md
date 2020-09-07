@@ -133,11 +133,12 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - AES Encrypt Invite Tokens
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Pair with participants by sharing public keys in person (show qr codes for keys and invite codes)
-- Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - AutoSave For Message Histories
 - Export Message Histories
 
 **0.9.4**
+- [Quest Network Coral Service](https://github.com/QuestNetwork/quest-coral-js)
+- Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Encrypt Settings/Message History Files
 
