@@ -23,6 +23,17 @@ We're planning to become for messaging what [Atom](https://atom.io) is for writi
 
 The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
+## Download
+
+| Platform | Download link                |
+|---------:|------------------------------|
+| **Linux**  | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage)
+| **Mac**    | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg)
+
+If you want anything else, you'll have to build from sources and probably fix some stuff.
+
+**WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
+
 ## IPFS Gateways
 
 https://gateway.pinata.cloud/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
