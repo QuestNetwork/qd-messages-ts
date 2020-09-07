@@ -56,17 +56,6 @@ https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 If you have trouble getting the directory discovered by gateways, you can try ```./ipfs-propagate.sh``` from the root git folder. 
 Keep in mind that the bundled web application is >6MB alone without assets, please be patient until we have a preloader.
 
-## Download
-
-| Platform | Download link                | 
-|---------:|------------------------------|
-| **Linux**  | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1-linux.zip) 
-| **Mac**    | [0.9.0.app](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0-9-0-mac.zip) 
-
-If you want anything else, you'll have to build from sources and probably fix some stuff.
-
-**WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
-
 ## Development
 
 **Commands**
