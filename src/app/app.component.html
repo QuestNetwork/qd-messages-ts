@@ -3,7 +3,7 @@
 
 <nb-layout>
   <nb-layout-column>
-    <mat-tab-group #menuTabGroup (selectedTabChange)="selectedTabChanged($event);" dynamicHeight>
+    <mat-tab-group #menuTabGroup (selectedTabChange)="selectedTabChanged($event);" dynamicHeight animationDuration="0ms">
 
       <mat-tab label="Sign In"  class="signInTab" [disabled]="!tabAccessibility['signInTab']">
         <app-sign-in *ngIf="!signedIn"></app-sign-in>
