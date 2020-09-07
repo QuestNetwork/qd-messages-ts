@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'themes';
 
+@import 'material-icons';
+
+
 // framework component styles
 @import '~@nebular/theme/styles/globals';
 // install the framework styles
@@ -9,6 +12,69 @@
 };
 
 @import '~@angular/cdk/overlay-prebuilt.css';
+
+@font-face {
+  font-family: "Roboto";
+  src: url("assets/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("assets/fonts/roboto/Roboto-Italic.ttf") format("truetype");
+//   font-weight: normal;
+//   font-style: italic;
+// }
+
+@font-face {
+  font-family: "Roboto";
+  src: url("assets/fonts/roboto/Roboto-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("assets/fonts/roboto/Roboto-BoldItalic.ttf") format("truetype");
+//   font-weight: bold;
+//   font-style: italic;
+// }
+
+@font-face {
+  font-family: "MONOSPACE";
+  src: url("assets/fonts/roboto-mono/RobotoMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("assets/fonts/ubuntu/Ubuntu-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "Ubuntu";
+//   src: url("assets/fonts/ubuntu/Ubuntu-MediumItalic.ttf") format("truetype");
+//   font-weight: normal;
+//   font-style: italic;
+// }
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("assets/fonts/ubuntu/Ubuntu-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "Ubuntu";
+//   src: url("assets/fonts/ubuntu/Ubuntu-BoldItalic.ttf") format("truetype");
+//   font-weight: bold;
+//   font-style: italic;
+// }
 
 
 #cf2 img {
@@ -36,53 +102,6 @@ opacity:0;
       color: #ffffff8c;
 }
 
-
-.popup--machine-types{
-  background-color:rgba(0,0,0,0.55);
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:999998;
-  overflow:hidden;
-}
-.popup-machine-types{
-  position:fixed;
-  top: 5.55%;
-      left: 0;
-      right: 0;
-      bottom: 5.55%;
-  padding:0px;
-  overflow:hidden;
-  z-index:999999;
-}
-
-
-.popup-subtitle{
-  font-family: museo, serif;
-  font-weight: 900;
-  font-style: normal;
-  padding: 0;
-    margin: 0;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    top: -38px;
-    position: relative;
-    text-align: left;
-    margin-top:10px;
-}
-
-
-
-.popup--machine-types .mat-card{
-      border-radius: 7px !important;
-}
-
-
-.jobIdField{
-   width:175px !important;
-}
 
 
 
@@ -385,8 +404,6 @@ padding: 5%;
   }
 
 
-@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300&display=swap');
-@import url("https://use.typekit.net/osa1gsd.css");
 
 
 .electronSize0 .initialUploadScreen{
@@ -403,33 +420,6 @@ padding: 5%;
     top: -67px;
 }
 
-.next-button-performance{
-  top: -37px;
-}
-
-.next-button-render, .mat-fab{
-  // z-index:9999;
-  width:70px !important;
-  height:70px !important;
-  font-size: 16px;
-  color:rgba(0, 0, 0, 0.55);
-  background-color: #7fd82b;
-  background-image: linear-gradient(319deg, #7fd82b 0%, #ef4063 37%, #e557c6 100%);
-  font-weight:200 !important;
-  font-family: "MuseoModerno", serif;
-  font-style:normal;
-}
-
-.next-button-performance{
-  color:white !important;
-  background-color: #fce055;
-  background-image: linear-gradient(319deg, #fce055 0%, #256eff 37%, #46237a 100%);
-  border-radius: 9pt;
-  color: #af101099;
-}
-
-
-
 
 .mat-tab-label{
   min-width: 10px !important;
@@ -437,7 +427,6 @@ padding: 5%;
   color:rgba(255,255,222,0.81);
   //color: rgba(255, 255, 205, 0.71);
 
-  font-family: raleway,sans-serif;
   font-weight: 200 !important;
   font-style: normal;
 
@@ -447,9 +436,6 @@ padding: 5%;
   z-index:49;
 }
 
-.file-drop{
-  font-family: 'MuseoModerno', cursive;
-}
 .mat-checkbox{
   margin:10px;
 }
@@ -470,7 +456,6 @@ padding: 5%;
 }
 
 .matTable{
-  font-family: museo, serif;
 
 font-weight: 100;
 
@@ -480,7 +465,6 @@ font-size:9pt !important;
 }
 
 th{
-  font-family: museo, serif;
   font-weight: 900;
   font-style: normal;
 }
@@ -526,37 +510,6 @@ body{
   max-height:128px !important;
 }
 
-
-.popup-title{
-  font-family: museo, serif;
-
-font-weight: 700;
-
-font-style: italic;
-top: -82px;
-left: -120px;
-color: #ffffffe8;
-font-size: 55pt;
-position:relative;
-}
-
-
-
-.bakeSettingsRow .mat-form-field{
-  margin:20px;
-}
-
-.renderSettingsRow .mat-form-field, .performanceTabRow .mat-form-field, .mat-form-field-performance{
-  margin:10px;
-}
-
-.creditsRow  .mat-form-field{
-  margin:40px;
-}
-
-.creditsRow .mat-form-field:first-child{
-min-width: 222px;
-}
 
 .hamburger{
   color: #42321b !important;
@@ -846,4 +799,17 @@ nb-layout-column{
 
 .marginRight20{
   margin-right: 20px !important;
+}
+
+.mat-tab-label-content{
+  font-family: ubuntu;
+font-weight: bold;
+font-size: 17px;
+    width: 86px;
+
+}
+
+.mat-tab-label-active .mat-tab-label-content{
+  top: -4px;
+position: relative;
 }
