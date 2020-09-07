@@ -25,15 +25,17 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 ## IPFS Gateways
 
-https://gateway.pinata.cloud/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
+https://gateway.pinata.cloud/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
-http://ipfs.infura.io/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
+http://ipfs.infura.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
-https://cloudflare-ipfs.com/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
+https://cloudflare-ipfs.com/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
-https://ipfs.eternum.io/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
+https://ipfs.eternum.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
-https://ipfs.io/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
+https://ipfs.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
+
+https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
 
 ## IPFS Deploy
