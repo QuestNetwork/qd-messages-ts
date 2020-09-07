@@ -45,7 +45,7 @@ https://ipfs.io/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
 
 ```git checkout 0.9.1```
 
-```npm run install```
+```npm run inst```
 
 ```npm run ipfs```
 
