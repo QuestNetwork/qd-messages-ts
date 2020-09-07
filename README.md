@@ -111,6 +111,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.2**
 - IPFS Update (0.50.1)
+- Enhanced Mobile UI, New Icons & Buttons
 
 ## Roadmap
 
