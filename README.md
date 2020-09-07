@@ -58,7 +58,7 @@ https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
 ```git checkout 0.9.2```
 
-```npm run inst```
+```npm install```
 
 ```npm run ipfs```
 
@@ -71,7 +71,7 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 
 **Commands**
 
-```npm run inst``` Safely installs all dependencies
+```npm run inst``` Removes ```package-lock.json``` and runs ``npm install``
 
 ```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
 
