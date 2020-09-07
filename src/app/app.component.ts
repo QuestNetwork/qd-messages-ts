@@ -7,13 +7,13 @@ import { UiService} from './services/ui.service';
 import { IpfsService} from './services/ipfs.service';
 import { QuestPubSubService} from './services/quest-pubsub.service';
 
+
+import swarmJson from './swarm.json';
+
 // import { TicketService} from './services/ticket.service';
 
 //
 declare var $: any;
-// declare var crypto: any;
-// declare var Buffer: any;
-
 
 // declare var TransparencyMouseFix: any;
 
@@ -34,7 +34,7 @@ processingEncryptionScreen;
   uiMode = 'setup';
 
  //
-  private DEVMODE = true;
+  private DEVMODE = swarmJson['dev'];
  //
   @ViewChild('menuTabGroup') menuTabGroup;
 
@@ -42,7 +42,7 @@ processingEncryptionScreen;
 
 
   isElectron = false;
-
+noChannelSelected = "NoChannelSelected";
   current_step = "upload";
 
 
@@ -52,7 +52,7 @@ processingEncryptionScreen;
     this.ui.hidePopups();
   }
 
-  selectedChannel = "0";
+  selectedChannel = "NoChannelSelected";
 
   public popupVisible = "0";
   public hidePopups(){
@@ -205,7 +205,6 @@ public async ngAfterContentInit() {
 
     this.ipfs.start();
 
-
     this.ui.snackBar.subscribe( (object) => {
         this.showSnack(object.left, object.right, object.object);
     });
@@ -241,9 +240,7 @@ public async ngAfterContentInit() {
       this.showPopup(v);
     });
 
-    this.ui.processingSub.subscribe( (v) => {
-      this.isProcessing = v;
-    });
+
 
     this.ui.componentAccessibilitySub.subscribe( (componentAccessibility) => {
       this.componentAccessibility = componentAccessibility;
@@ -253,24 +250,21 @@ public async ngAfterContentInit() {
       this.uiMode = value;
     });
 
-    this.ui.channelNameList.subscribe( (value) => {
-      this.ui.showSnack('Channel Update ','Dismiss');
+    this.pubsub.channelNameListSub.subscribe( (value) => {
+      this.ui.showSnack('Channel Update ','Dismiss', {duration:2000});
       this.channelNameList = value;
-      this.signedIn = true;
     });
 
-    this.ui.channelNameList.subscribe( (value) => {
-      this.ui.showSnack('Channel Update ','Dismiss');
-      this.channelNameList = value;
-      this.signedIn = true;
-    });
     this.pubsub.selectedChannelSub.subscribe( (value) => {
       this.selectedChannel = value;
+      console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
+      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
     });
-    this.ui.signedIn.subscribe( (value) => {
+
+    this.ui.signedInSub.subscribe( (value) => {
       this.signedIn = value;
-      this.channelNameList = this.pubsub.getChannelNameList();
     });
+
     this.ipfs.swarmPeersSub.subscribe( (value:number) => {
       this.swarmPeers = value;
     });
@@ -278,6 +272,11 @@ public async ngAfterContentInit() {
     psPS.subscribe( (value:number) => {
       this.pubSubPeers = value;
     });
+
+
+
+
+
 
   }
 
@@ -309,16 +308,14 @@ public async ngAfterContentInit() {
   }
 
 
-  isProcessing;
   snackBarRef;
   showSnack(left, right, options = {}){
-    if(typeof(this.snackBarRef) != 'undefined'){
-      this.snackBar.dismiss();
-    }
 
     if(Object.keys(options).length > 0){
+      console.log('App: Opening snackbar with options');
       this.snackBarRef = this.snackBar.open(left,right,options);
     }else{
+      console.log('App: Oopening snackbar');
      this.snackBarRef = this.snackBar.open(left,right);
    }
 

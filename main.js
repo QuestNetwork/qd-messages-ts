@@ -3,7 +3,6 @@ const NativeImage = require("electron").nativeImage;
 const path = require("path");
 const url = require("url");
 const open = require("open");
-
 let win;
 
 
@@ -13,7 +12,7 @@ function createWindow() {
   // const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 
 
-  win = new BrowserWindow({ width: 950, height: 555, backgroundColor: "#ffffff",
+  win = new BrowserWindow({ width: 1030, height: 655, backgroundColor: "#ffffff",
     acceptFirstMouse: true,
     webPreferences: {
       nodeIntegration: true,
@@ -60,10 +59,8 @@ function createWindow() {
     //   }
     });
 
-  //win.webContents.openDevTools({mode: 'undocked'})
 
-
-  // win.webContents.openDevTools();
+  // win.webContents.openDevTools({mode: 'undocked'})
 
 
   // The following is optional and will open the DevTools:

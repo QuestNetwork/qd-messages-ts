@@ -38,35 +38,55 @@ export class QuestPubSubService {
         return QuestPubSub.subs[channel];
     }
 
-    async createChannel(channelInput){
+    async createChannel(channelInput, isClean = false){
         //generate keypair and register channel
+
+        //clean the Input
+        channelInput = channelInput.toLowerCase().replace(/[^A-Z0-9]+/ig, "-");
+
         let channelName = await QuestPubSub.createChannel(channelInput);
-        console.log(channelName);
+        this.getChannelKeyChain(channelName);
+        this.getChannelParticipantList(channelName);
         return channelName;
     }
 
 
+
+    async addChannel(channelName){
+        //clean the Input
+        await QuestPubSub.addChannel(channelName);
+        this.getChannelKeyChain(channelName);
+        this.getChannelParticipantList(channelName);
+        return channelName;
+    }
+
     getChannelParticipantList(channel = "all"){
-      return QuestPubSub.getChannelParticipantList(channel);
+      let pl = QuestPubSub.getChannelParticipantList(channel);
+      this.setChannelParticipantList(pl, channel);
+      return pl;
     }
     setChannelParticipantList(partList, channel = "all"){
       return QuestPubSub.setChannelParticipantList(partList, channel);
     }
+
+    channelNameListSub = new Subject();
     getChannelNameList(){
       return QuestPubSub.getChannelNameList();
     }
     setChannelNameList(list){
+      this.channelNameListSub.next(list);
       QuestPubSub.setChannelNameList(list);
     }
-    addChannelName(name){
-      QuestPubSub.addChannelName(name);
-    }
+
+
 
     public setChannelKeyChain(channelKeyChain, channel = "all"){
       return QuestPubSub.setChannelKeyChain(channelKeyChain, channel);
     }
     getChannelKeyChain(channel = 'all'){
-      return QuestPubSub.getChannelKeyChain(channel);
+      let kc = QuestPubSub.getChannelKeyChain(channel);
+      this.setChannelKeyChain(kc, channel);
+      return kc;
     }
 
     getIpfsId(){
@@ -129,9 +149,28 @@ isSubscribed(channel){
   return QuestPubSub.isSubscribed(channel);
 }
 
-isOwner(channel,key){
-  return QuestPubSub.isOwner(channel,key);
+isOwner(channel, pubkey = "none"){
+  return QuestPubSub.isOwner(channel,pubkey);
 }
+
+setInviteCodes(inviteObject, channel = 'all'){
+  QuestPubSub.setInviteCodes(inviteObject, channel);
+  return true;
+}
+
+getInviteCodes(channel = 'all'){
+  return QuestPubSub.getInviteCodes(channel);
+}
+addInviteCode(channel,link,code,newInviteCodeMax){
+  return QuestPubSub.addInviteCode(channel,link,code,newInviteCodeMax);
+}
+addInviteToken(channel,token){
+  return QuestPubSub.addInviteToken(channel,token);
+}
+removeInviteCode(channel,link){
+  return QuestPubSub.removeInviteCode(channel, link)
+}
+
 
 
 

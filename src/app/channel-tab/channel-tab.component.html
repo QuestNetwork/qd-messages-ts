@@ -1,0 +1,27 @@
+<nb-layout  class="channelScreen" >
+  <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton" style="margin-right:8px;">Hide Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.left">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.left">Float Panel</button>
+    <app-channel-sidebar-left></app-channel-sidebar-left>
+  </nb-sidebar>
+  <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true">
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.right" style="margin-right:10px;">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.right" style="margin-right:10px;">Float Panel</button>
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton">Hide Panel</button>
+
+    <app-channel-sidebar-right></app-channel-sidebar-right>
+  </nb-sidebar>
+  <nb-layout-column>
+    <app-channel *ngFor="let channel of channelNameList"  [channel]="channel" class="channel" [hidden]="selectedChannel != channel"></app-channel>
+    <app-channel [channel]="noChannelSelected" [hidden]="selectedChannel != noChannelSelected" class="channel"></app-channel>
+  </nb-layout-column>
+</nb-layout>
+
+<div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
+  <nb-icon icon="arrow-circle-left-outline" ></nb-icon>
+</div>
+
+<div class="toggleSideBarRight" class="toggleSideBarRight" (click)="toggleSideBar('right')" *ngIf="!this.sideBarVisible.right && selectedChannel != 'NoChannelSelected'">
+  <nb-icon icon="arrow-circle-right-outline" ></nb-icon>
+</div>

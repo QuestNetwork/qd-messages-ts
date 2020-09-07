@@ -1,0 +1,73 @@
+<div [hidden]='!isOwner'>
+
+<p style="color: goldenrod !important;  margin-bottom: 0px;"> Challenge</p>
+<mat-form-field style="width: 24%;    padding: 0;">
+<mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged($event.value)"  >
+                 <mat-option  [value]="1" >
+                    On
+                </mat-option>
+                <mat-option  [value]="0" >
+                   Off
+               </mat-option>
+
+      </mat-select>
+      </mat-form-field>
+<p style="color: goldenrod !important;    margin-top: 10px;  margin-bottom: 0px;"> Invite Codes</p>
+<div style="margin-bottom: 4px;    height: 28px;">
+
+ Include Folder Structure:  <mat-form-field style="width: 19%;" > <mat-select [(value)]="includeFolderStructure" (selectionChange)="newInviteExportFoldersChanged($event.value)" >
+
+                   <mat-option  [value]="1" >
+                      On
+                  </mat-option>
+                  <mat-option  [value]="0" >
+                     Off
+                 </mat-option>
+
+
+        </mat-select></mat-form-field>
+   </div>
+   <div style="">
+
+Max:  <mat-form-field style="width: 24%;"> <mat-select [(value)]="newInviteCodeMax" (selectionChange)="newInviteCodeMaxChanged($event.value)"  >
+                <mat-option  [value]="1" >
+                   1
+               </mat-option>
+               <mat-option  [value]="5" >
+                  5
+              </mat-option>
+              <mat-option  [value]="10" >
+                 10
+             </mat-option>
+             <mat-option  [value]="20" >
+                20
+            </mat-option>
+            <mat-option  [value]="40" >
+               40
+           </mat-option>
+           <mat-option  [value]="80" >
+              80
+          </mat-option>
+          <mat-option  [value]="100" >
+             100
+         </mat-option>
+
+     </mat-select>
+</mat-form-field>
+     <button nbButton size="small" (click)="generateInviteCode()" class="generateInviteCodeButton" >
+          Generate
+        </button>
+</div>
+
+<ul>
+<li  *ngFor="let inviteCode of channelInviteCodes" class='inviteCodeListItem' ><div class="inviteCodeUsers"> {{ inviteCode['used'] }} / {{ inviteCode['max'] }} </div>   <div class="inviteCodeItem"> {{ inviteCode['link'] }} </div>
+<nb-icon icon="copy-outline" class="inviteCodeCopy" [cdkCopyToClipboard]="inviteCode['link']"></nb-icon>
+<nb-icon icon="trash-2-outline" class="deleteCode" (click)="removeInviteCode(inviteCode['link'])"></nb-icon>
+</li>
+</ul>
+
+</div>
+
+
+
+<button mat-stroked-button color="primary" (click)="deleteCurrentChannel()" class="defaultSettingsButton"  style="margin-right:10px;">Remove Channel</button>

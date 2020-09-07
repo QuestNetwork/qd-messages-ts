@@ -39,15 +39,23 @@ import { SignInComponent } from './sign-in/sign-in.component';
 
 import { NgxElectronModule } from 'ngx-electron';
 
-import { NbThemeModule } from '@nebular/theme';
+import { NbThemeModule, NbContextMenuModule, NbMenuService, NbMenuModule,     NbDialogModule} from '@nebular/theme';
+import { NbDialogService } from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbTabsetModule } from '@nebular/theme';
 import { NbChatModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbIconModule,NbTreeGridModule } from '@nebular/theme';
+import { NbIconModule,NbTreeGridModule,    NbCardModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
+import { ChannelListComponent } from './channel-list/channel-list.component';
+import { ChannelSidebarRightComponent } from './channel-sidebar-right/channel-sidebar-right.component';
+import { ChannelSidebarLeftComponent } from './channel-sidebar-left/channel-sidebar-left.component';
+import { ChannelParticipantListComponent } from './channel-participant-list/channel-participant-list.component';
+import { ChannelSettingsComponent } from './channel-settings/channel-settings.component';
+import { ChannelTabComponent } from './channel-tab/channel-tab.component';
 
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 
 @NgModule({
@@ -59,9 +67,16 @@ import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
     MatMenuComponent,
     SettingsComponent,
     SignInComponent,
-    FsIconComponent
+    FsIconComponent,
+    ChannelListComponent,
+    ChannelSidebarRightComponent,
+    ChannelSidebarLeftComponent,
+    ChannelParticipantListComponent,
+    ChannelSettingsComponent,
+    ChannelTabComponent
   ],
   imports: [
+    ClipboardModule,
     FlexLayoutModule,
     HttpClientModule,
     MatSliderModule,
@@ -73,7 +88,6 @@ import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
-    // MatTreeModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -89,12 +103,14 @@ import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
     NbEvaIconsModule,
     NbIconModule,
     NbTreeGridModule,
-    FormsModule
-
-
+    FormsModule,
+    NbContextMenuModule,
+    NbMenuModule.forRoot(),
+    NbDialogModule.forRoot(),
+    NbCardModule
   ],
   providers: [
-    UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService
+    UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService,NbMenuService,NbDialogService
   ],
   bootstrap: [AppComponent]
 })

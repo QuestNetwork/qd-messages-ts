@@ -8,6 +8,9 @@
   @include nb-theme-global();
 };
 
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+
 #cf2 img {
   position:absolute;
   left:0;
@@ -21,6 +24,17 @@
 opacity:0;
 }
 
+// .channelParticipantList ul{
+//   margin-top: 20px;
+//   padding-right: 10px;
+// }
+//
+
+
+
+.mat-form-field-label, .matf-form-field-underline{
+      color: #ffffff8c;
+}
 
 
 .popup--machine-types{
@@ -173,34 +187,11 @@ mat-card{
   background-color:transparent !important;
 }
 
-.isElectron .webContainer{
-  width:100vw !important;
-  height:100vh !important;
-}
 
-.isElectron .appWrapper > .mat-card{
-  height: 100vh !important;
-  width: 100vw !important;
-  border-radius: 0pt!important;
-}
 
-.isElectron .sign-in-drop-zone{
-  height:100vh;
-}
 
-.isElectron .realTimeChatHistory{
-margin-right: 100px  !important;
-left: 0  !important;
-right: 0  !important;
-position: fixed  !important;
-z-index:2  !important;
-top: 50px !important;
-bottom: 70px !important;
-height:auto !important;
 
-}
-
-.channel-chat-screen .layout-container{
+.channelScreen .layout-container{
   position: fixed;
   z-index: 10;
   padding: 0 !important;
@@ -211,15 +202,15 @@ height:auto !important;
     left: 0;
   }
 
-  .isElectron .channel-chat-screen .layout-container{
+  .nb-theme-dark .channelScreen .layout-container{
     bottom: 26px;
   }
 
-.channel-chat-screen nb-layout-column{
+.channelScreen nb-layout-column{
     padding:0 !important;
   }
 
-.isElectron .channel-chat-screen .header{
+.nb-theme-dark .channelScreen .header{
   color:#ffffffcf !important;
   white-space: nowrap;
   overflow: hidden;
@@ -228,11 +219,15 @@ height:auto !important;
   width: 99%;
 }
 
-.nb-theme-dark .channel-chat-screen .form input, .nb-theme-dark .channel-chat-screen .text, .nb-theme-dark .toggleSideBarRight{
+.channel{
+  height:100%
+}
+
+.nb-theme-dark .menu-item > a, .nb-theme-dark .channelScreen .form input, .nb-theme-dark .channelScreen .text, .nb-theme-dark .toggleSideBarRight, .nb-theme-dark .mat-select-trigger, .nb-theme-dark .mat-select-value, .nb-theme-dark .mat-select-arrow, .nb-theme-dark .inviteCodeListItem{
   color:#ffffffcf !important;
 }
 
-.isElectron .channel-chat-screen .sender{
+.nb-theme-dark .channelScreen .sender{
   white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -240,12 +235,7 @@ height:auto !important;
 }
 
 
-.isElectron .g-recaptcha{
-  pointer-events: none;
-
-}
-
-.isElectron .messageInput{
+.nb-theme-dark .messageInput{
       width: 100vw !important;
   left: 0  !important;
   right: 0  !important;
@@ -263,48 +253,6 @@ height:auto !important;
 }
 
 
-
-.isElectron .messageInput > .input{
-  float: left !important;
-/* width: 100%; */
-position: fixed !important;
-right: 80px !important;
-left: 10px !important;
-bottom: 48px !important;
-font-size: 24px !important;
-width:auto !important;
-}
-
-.isElectron.nb-theme-dark .messageInput > .input{
-  color:white;
-}
-
-.isElectron .messageInput > .input > input{
-  width: 100%;
-    font-size: 16px;
-    /* line-height: 6px; */
-    padding: 5px;
-    padding-bottom: 2px;
-    border-radius: 5px;
-    background: darkgoldenrod;
-}
-
-.isElectron .sendMessageIcon{
-  bottom: 51px!important;
-      position: fixed!important;
-      right: 18px!important;
-      font-size: 26px !important;
-      background-color:transparent !important;
-}
-
-.isElectron .sendMessageIcon > mat-icon{
-  font-size: 24px !important;
-padding: 2px !important;
-top: -3px !important;
-left: 1px !important;
-color: lightgoldenrodyellow !important;
-position: relative !important;
-}
 
 
 .nb-theme-dark nb-tabset nb-tab {
@@ -804,14 +752,6 @@ padding: 0 !important;
 .browse-files-button{
   cursor:pointer !important;
 }
-.search-input{
-  background: transparent;
-    color: white;
-    padding: 5px;
-    font-size: 12px;
-    width: 100%;
-        margin-top: 1rem;
-}
 
 .nb-theme-dark .nb-column-items{
   color:#36f !important;
@@ -862,4 +802,88 @@ padding: 0 !important;
     100% {
         opacity: 0;
     }
+}
+
+
+
+
+
+.nb-theme-dark nb-menu .menu-item .menu-item:first-child {
+    border-top: 1px solid #2447e2 !important;
+}
+.nb-theme-dark nb-menu .menu-item  {
+    border-bottom: 1px solid #5770da9e !important;
+  }
+
+.nb-theme-dark nb-menu .menu-title{
+  opacity: 0.8;
+padding-left: 18px;
+color: #daa520de !important;
+}
+
+.nb-theme-dark nb menu .menu-items .menu-title {
+  color:#daa520e0 !important;
+}
+
+.nb-theme-dark nb-menu .menu-items  .menu-items .menu-title{
+  opacity: 0.8;
+padding-left: 38px;
+color: #daa520de;
+}
+
+.nb-theme-dark nb-menu .menu-item .expand-state {
+    color: #daa520de !important;
+}
+
+.nb-theme-dark nb-card-header{
+  color:#910eb1;
+      border-bottom: 1px solid #3c55c1;
+}
+
+
+.nb-theme-dark nb-card-footer{
+  color:#910eb1;
+      border-top: 1px solid #3c55c1;
+      text-align: center;
+}
+nb-card{
+    margin-bottom: 0 !important;
+    background: rgba(16,32,66,.88);
+    border-radius: 10px;
+
+    box-shadow: 0 1px 4px #00000066;
+    filter: drop-shadow(0 0px 90px #fffff036);
+}
+mat-card{
+      background-color: #222b45;
+
+}
+
+
+html{
+      max-height: 100vh;
+      overflow:hidden;
+}
+
+.layout{
+  width:100vw;
+}
+
+nb-layout-column{
+    padding: 0 !important;
+}
+
+
+.thickOutlineButton{
+      border: 2px solid purple !important;
+}
+.thickOutlineButton.mat-stroked-button:not(.mat-button-disabled) {
+  border-color: purple;
+}
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: #7e44ece3;
+}
+
+.marginRight20{
+  margin-right: 20px !important;
 }

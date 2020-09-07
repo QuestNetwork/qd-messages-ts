@@ -7,12 +7,9 @@ import { Subject } from 'rxjs';
 import { QuestPubSubService }  from './quest-pubsub.service';
 import { ElectronService } from 'ngx-electron';
 import { UiService }  from './ui.service';
-const version = require('../swarm.json').version;
-
-
-// declare var require;
-// const QuestPubSub = require( 'local/quest-pubsub-js/dist/index.js' );
-
+import  packageJson from '../../../package.json';
+const version = packageJson.version;
+import { saveAs } from 'file-saver';
 
 interface TreeNode<T> {
   data: T;
@@ -34,29 +31,42 @@ interface FSEntry {
 
 export class ConfigService {
 
+  isElectron = false;
+
   constructor(private pubsub:QuestPubSubService, private electron: ElectronService, private ui: UiService) {
-    this.fs = this.electron.remote.require('fs');
-    let configPath = this.electron.remote.app.getPath('userData');
-    this.configFilePath = configPath + "/user.qcprofile";
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf(' electron/') > -1) {
+      this.isElectron = true;
+      this.fs = this.electron.remote.require('fs');
+      let configPath = this.electron.remote.app.getPath('userData');
+      this.configFilePath = configPath + "/user.qcprofile";
+    }
 
     this.pubsub.commitNowSub.subscribe( (value) => {
       this.commitNow();
     });
+
+    this.pubsub.selectedChannelSub.subscribe( (value) => {
+      this.config['selectedChannel'] = value;
+      this.commit();
+    });
   }
+
   configFilePath;
   autoSaveInterval;
-  commit = false;
+  commitChanges = false;
 
-
-  commitChanges(){
-    this.commit = true;
+  commit(){
+    this.commitChanges = true;
   }
+
   fs:any;
 
   autoSave(){
     this.autoSaveInterval = setInterval( () => {
-        if(this.ui.isElectron && this.commit){
+        if(this.ui.isElectron && this.commitChanges){
           this.commitNow();
+          this.commitChanges = false;
         }
     },30000)
   }
@@ -71,33 +81,20 @@ export class ConfigService {
     appId: 'quest-messenger-js',
     channelKeyChain:   {},
     channelParticipantList: {},
-    channelNameList: ["general-----7b22637276223a22502d353231222c22657874223a747275652c226b65795f6f7073223a5b22766572696679225d2c226b7479223a224543222c2278223a2241466f686d414a3677706d41644767596549615a344b772d51446f715f50587670737361796141467a6b624b645f43577a3241747649585538395a52334d506f356e335346384b6a616c71382d57412d3758433243464155222c2279223a2241654a5671785f474e5f4a6e75464b75335951475457373275474f567671767a77765744624e57535532335f61734e304f4534772d43363951306668744f68466e58753558526d56376e35684248594e77656e58656f426d227d-----30820222300d06092a864886f70d01010105000382020f003082020a0282020100ef21ccbf260f39cf7659d56c4115aa7abcf2b093818b3fc0c43a675ffa40ab147d7a8a2c8c9278bf51cc81155eff7e040b300e6214f2240f2f48ecd66c1ad178c3a2c0cc91d3eeaea11c709f03d3df4da7029d3410c24de1e187f99aa9718d7ee2903d05c0200649113937cb99ae12aa963b310c40b072a78fb3b18dd3ba9b98b9800123ebc7924deef3f46f4eb23c9d51b2c21bdbaf7191d191b08e636ff0253aee519640d2be0adb21db45bd0aadef13ee3aee46345bcf178d0d48f1d89f9a0f6e8a14c20076014b7665866d19d2680f51a0a666bba422d3c66e752eacf7369524d69f761cfc44992bdc029920be334839cd9d333755a4c0549b9a110bbf9258fac27f5548f57173e1e9714d25408e787ca8c2b87955ef95651acf01bd2267196f68c2521c1de030ccdb476545505568c7a9f035d76c5c66b149214e7fbe40023349cb92f88066a4eec87cfbb863699edc0d7a2a1ef8d5c507f70fdc04489bc84fd1417f1af973d3fce41e12be6eb6b0374d56425d14a415d4a57ec2360be7d32d9c09d50c99f8ef61e5a8dd56a42b53bce4f52dd4ba42a23451a6ad2e00ca8259d829fb4292ed9dc236952a8928f44b07e0f762075eeacb3f9c0f6f89a88fac7e708c2a7134e4ef7ab540bceb7d497d8644513403fe745f3f7a2960976eb0a7074573cde3097939103c09425df29601a8f5e1890c89d25a628e25a71ae1d50203010001-----rep","developer-----7b22637276223a22502d353231222c22657874223a747275652c226b65795f6f7073223a5b22766572696679225d2c226b7479223a224543222c2278223a224145573931584948526772465f5755795065467768582d41615a4549494f566735545061554a4f454c61544e4e56424c61634463755536695a75546579476867714b42447573654e57704f4f6c41706d6179416255734273222c2279223a22414c71353159347366387832304857306d514b797a4c694764624c4e7159777a375668586738687355372d74386251682d4639757331394766624b614d7145427130504c706a6c4f69733958536b364a6e71564f52707a2d227d-----30820222300d06092a864886f70d01010105000382020f003082020a0282020100b8df55fc74e04daed69d6b2c20faf94fded0a0473876dd618b95efd253717d594ae420741ee46b60297894435877ec91ee9f00fed58f8398205fab6080da322dc70c3b9b9d470b112ce3e7a4a40f3d1f2b535c8aa3453dc9e8b3266eafaf9003dd6396902761b2e360f63feb5b863c286c01054c3b69c7d36247da18280df926038e4bf1cbb8850f65fa8a93ba3adb065aba4ee0c3064632bcdfe6cf2e7f2036ecc962e4e886c59144a7c7393a9ebad2f8b2e0578f90376c08fa4e1f6287efe8934161bab124a6fac1b40c566f2e2f3848bcba90a00479c84744dd4a9bcd49c816725d51a77fe7c88b76cc235881f25a482bc9ec8a92b3530e561615803bc26e91c6bbf4d10fe1bf7563d9c3f1acb522a03a73897bb069c283fc94196aed93e5ed03b684037f7401fb0bef4bc1cc369d7eead4eb9a9b2afd6588dbad4f01e7cc77dcbb763b8bac91ec0b096098362d7de774567ffb588d6c7d584d88affc3d427d8bec41eb4daead4e3338f64beec398c5fe06e4a2a239fef1bf540d86e8764beb28931a461bbff45baa27bd94f29922f67f1e641a164f50bd684cf5df1e6b131d5f9e06124375142bb756586b9a672ae6e461e9ec0510fe7df1ea329bf688fca206f317bf9632ec4b3018e516adf4f987afe679b70222e221153abc50ece3498edeab2ba6800fcaee1400cbf130ebd36c010a331b17422842d99d19685a29bb0203010001-----rep"],
-    channelFolderList: [
-      {
-        data: { name: 'Quest Network (ipfs/pubsub)', kind: 'dir', items: 1 },
-        expanded: true,
-        children: [
-          {
-            data: { name: 'Community', kind: 'dir', items: 2 },
-            expanded: true,
-            children: [
-              { data: { name: 'general-----7b22637276223a22502d353231222c22657874223a747275652c226b65795f6f7073223a5b22766572696679225d2c226b7479223a224543222c2278223a2241466f686d414a3677706d41644767596549615a344b772d51446f715f50587670737361796141467a6b624b645f43577a3241747649585538395a52334d506f356e335346384b6a616c71382d57412d3758433243464155222c2279223a2241654a5671785f474e5f4a6e75464b75335951475457373275474f567671767a77765744624e57535532335f61734e304f4534772d43363951306668744f68466e58753558526d56376e35684248594e77656e58656f426d227d-----30820222300d06092a864886f70d01010105000382020f003082020a0282020100ef21ccbf260f39cf7659d56c4115aa7abcf2b093818b3fc0c43a675ffa40ab147d7a8a2c8c9278bf51cc81155eff7e040b300e6214f2240f2f48ecd66c1ad178c3a2c0cc91d3eeaea11c709f03d3df4da7029d3410c24de1e187f99aa9718d7ee2903d05c0200649113937cb99ae12aa963b310c40b072a78fb3b18dd3ba9b98b9800123ebc7924deef3f46f4eb23c9d51b2c21bdbaf7191d191b08e636ff0253aee519640d2be0adb21db45bd0aadef13ee3aee46345bcf178d0d48f1d89f9a0f6e8a14c20076014b7665866d19d2680f51a0a666bba422d3c66e752eacf7369524d69f761cfc44992bdc029920be334839cd9d333755a4c0549b9a110bbf9258fac27f5548f57173e1e9714d25408e787ca8c2b87955ef95651acf01bd2267196f68c2521c1de030ccdb476545505568c7a9f035d76c5c66b149214e7fbe40023349cb92f88066a4eec87cfbb863699edc0d7a2a1ef8d5c507f70fdc04489bc84fd1417f1af973d3fce41e12be6eb6b0374d56425d14a415d4a57ec2360be7d32d9c09d50c99f8ef61e5a8dd56a42b53bce4f52dd4ba42a23451a6ad2e00ca8259d829fb4292ed9dc236952a8928f44b07e0f762075eeacb3f9c0f6f89a88fac7e708c2a7134e4ef7ab540bceb7d497d8644513403fe745f3f7a2960976eb0a7074573cde3097939103c09425df29601a8f5e1890c89d25a628e25a71ae1d50203010001-----rep', kind: 'rep'} },
-              { data: { name: 'developer-----7b22637276223a22502d353231222c22657874223a747275652c226b65795f6f7073223a5b22766572696679225d2c226b7479223a224543222c2278223a224145573931584948526772465f5755795065467768582d41615a4549494f566735545061554a4f454c61544e4e56424c61634463755536695a75546579476867714b42447573654e57704f4f6c41706d6179416255734273222c2279223a22414c71353159347366387832304857306d514b797a4c694764624c4e7159777a375668586738687355372d74386251682d4639757331394766624b614d7145427130504c706a6c4f69733958536b364a6e71564f52707a2d227d-----30820222300d06092a864886f70d01010105000382020f003082020a0282020100b8df55fc74e04daed69d6b2c20faf94fded0a0473876dd618b95efd253717d594ae420741ee46b60297894435877ec91ee9f00fed58f8398205fab6080da322dc70c3b9b9d470b112ce3e7a4a40f3d1f2b535c8aa3453dc9e8b3266eafaf9003dd6396902761b2e360f63feb5b863c286c01054c3b69c7d36247da18280df926038e4bf1cbb8850f65fa8a93ba3adb065aba4ee0c3064632bcdfe6cf2e7f2036ecc962e4e886c59144a7c7393a9ebad2f8b2e0578f90376c08fa4e1f6287efe8934161bab124a6fac1b40c566f2e2f3848bcba90a00479c84744dd4a9bcd49c816725d51a77fe7c88b76cc235881f25a482bc9ec8a92b3530e561615803bc26e91c6bbf4d10fe1bf7563d9c3f1acb522a03a73897bb069c283fc94196aed93e5ed03b684037f7401fb0bef4bc1cc369d7eead4eb9a9b2afd6588dbad4f01e7cc77dcbb763b8bac91ec0b096098362d7de774567ffb588d6c7d584d88affc3d427d8bec41eb4daead4e3338f64beec398c5fe06e4a2a239fef1bf540d86e8764beb28931a461bbff45baa27bd94f29922f67f1e641a164f50bd684cf5df1e6b131d5f9e06124375142bb756586b9a672ae6e461e9ec0510fe7df1ea329bf688fca206f317bf9632ec4b3018e516adf4f987afe679b70222e221153abc50ece3498edeab2ba6800fcaee1400cbf130ebd36c010a331b17422842d99d19685a29bb0203010001-----rep', kind: 'rep'} },
-            ],
-          }
-        ],
-      }
-    ],
-    selectedChannel: "0",
+    channelNameList: [],
+    channelFolderList: [],
+    selectedChannel: "NoChannelSelected",
     sideBarFixed: { left: true, right: true},
-    sideBarVisible: { left: true, right: false}
+    sideBarVisible: { left: true, right: false},
+    inviteCodes: {}
   };
   getChannelFolderList(){
     return this.config.channelFolderList;
   }
+
   commitNow(){
       // let folderList: TreeNode<FSEntry> = ;
-      this.commit=false;
+      this.commitChanges=false;
       this.config = {
         version: version,
         appId: 'quest-messenger-js',
@@ -107,46 +104,67 @@ export class ConfigService {
         channelFolderList: this.config.channelFolderList,
         selectedChannel: this.pubsub.getSelectedChannel(),
         sideBarFixed: this.getSideBarFixed(),
-        sideBarVisible: this.getSideBarVisible()
+        sideBarVisible: this.getSideBarVisible(),
+        inviteCodes: this.pubsub.getInviteCodes()
       };
 
-      console.log(JSON.stringify(this.config));
-      this.fs.writeFileSync(this.configFilePath, JSON.stringify(this.config),{encoding:'utf8',flag:'w'})
+      if(this.isElectron){
+        this.fs.writeFileSync(this.configFilePath, JSON.stringify(this.config),{encoding:'utf8',flag:'w'})
+      }
+      else{
+        let userProfileBlob = new Blob([ JSON.stringify(this.config)], { type: 'text/plain;charset=utf-8' });
+        saveAs(userProfileBlob, "profile.qcprofile");
+      }
 
+  }
+  getConfig(){
+    return this.config;
   }
   channelFolderListSub = new Subject();
   setChannelFolderList(list){
     this.config.channelFolderList = list;
     this.channelFolderListSub.next(list);
   }
-  readConfig(config = {}){
-    this.sideBarVisibleSub = new Subject();
-    this.sideBarFixedSub = new Subject();
 
+  isSignedIn(){
+    if(this.isElectron){
+      return this.fs.existsSync(this.configFilePath);
+    }
+    else{
+      return false;
+    }
+  }
+  readConfig(config = {}){
     try{
+      if(this.isElectron){
        config = JSON.parse(this.fs.readFileSync(this.configFilePath,"utf8"));
+      }
     }catch(error){console.log(error);}
     //put config into pubsub
     if(typeof(config['channelKeyChain']) != 'undefined'){
       this.pubsub.setChannelKeyChain(config['channelKeyChain']);
     }
     if(typeof(config['channelParticipantList']) != 'undefined'){
-      console.log('Importing ParticipantList ...',config['channelParticipantList']);
+      console.log('Config: Importing ParticipantList ...',config['channelParticipantList']);
       this.pubsub.setChannelParticipantList(config['channelParticipantList']);
     }
     else{
         this.pubsub.setChannelParticipantList(this.config['channelParticipantList']);
     }
     if(typeof(config['channelNameList']) != 'undefined'){
-      console.log('Importing NameList ...',config['channelNameList']);
+      console.log('Config: Importing channelNameList ...',config['channelNameList']);
       this.pubsub.setChannelNameList(config['channelNameList']);
     }
     else{
       this.pubsub.setChannelNameList(this.config['channelNameList']);
     }
     if(typeof(config['channelFolderList']) != 'undefined'){
-      console.log('Importing Folder List ...',config['channelFolderList']);
+      console.log('Config: Importing Folder List ...',config['channelFolderList']);
       this.setChannelFolderList(config['channelFolderList']);
+    }
+    if(typeof(config['selectedChannel']) != 'undefined'){
+      console.log('Config: Importing Selected Channel ...',config['selectedChannel']);
+      this.setSelectedChannel(config['selectedChannel']);
     }
 
     if(typeof(config['sideBarFixed']) != 'undefined'){
@@ -156,11 +174,19 @@ export class ConfigService {
       this.setSideBarVisible(config['sideBarVisible']);
     }
 
+    if(typeof(config['inviteCodes']) != 'undefined' && Object.keys(config['inviteCodes']).length !== 0){
+      this.setInviteCodes(config['inviteCodes']);
+    }
+
 
     return true;
   }
 
-  sideBarFixedSub;
+  setSelectedChannel(value){
+    this.config['selectedChannel'] = value;
+  }
+
+  sideBarFixedSub = new Subject();
   setSideBarFixed(sideBarFixed){
     this.config.sideBarFixed = sideBarFixed
     this.sideBarFixedSub.next(sideBarFixed);
@@ -168,7 +194,7 @@ export class ConfigService {
   getSideBarFixed(){
       return this.config.sideBarFixed;
   }
-  sideBarVisibleSub;
+  sideBarVisibleSub = new Subject();
   setSideBarVisible(sideBarVisible){
     this.config.sideBarVisible = sideBarVisible;
     this.sideBarVisibleSub.next(sideBarVisible);
@@ -177,7 +203,230 @@ export class ConfigService {
     return this.config.sideBarVisible;
   }
 
+  async createChannel(channelNameDirty, parentFolderId = ""){
+    let channelNameClean = await this.pubsub.createChannel(channelNameDirty);
+    this.addToChannelFolderList(channelNameClean, parentFolderId);
+    return channelNameClean;
+  }
+
+  async addChannel(channelNameClean, parentFolderId = ""){
+    try{
+      await this.pubsub.addChannel(channelNameClean);
+    }catch(e){}
+    this.addToChannelFolderList(channelNameClean, parentFolderId);
+    return channelNameClean;
+  }
 
 
+  async createFolder(newFolderNameDirty, parentFolderId = ""){
+      let chfl = this.getChannelFolderList();
+      let newFolder = { data: { name: newFolderNameDirty, kind:"dir", items: 0 }, expanded: true, children: [] };
+      if(parentFolderId == ""){
+        chfl.push(newFolder);
+      }
+      else{
+        chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newFolder);
+     }
+     this.setChannelFolderList(chfl);
+   }
+
+pFICache;
+  parseFolderStructureAndPushItem(folderStructure, parentFolderId = "", newFolder,ifdoesntexist = false){
+    for(let i=0;i<folderStructure.length;i++){
+      if(folderStructure[i]['id'] == parentFolderId){
+        if(!ifdoesntexist){
+          folderStructure[i]['children'].push(newFolder);
+        }
+        else{
+
+          let exists = false;
+          if(typeof folderStructure[i]['children'] == 'undefined'){
+             folderStructure[i]['children'] = [];
+          }
+
+          for (let i2=0;i2<folderStructure[i]['children'].length;i2++){
+            if(folderStructure[i]['children'][i2]['data']['name'] == newFolder['data']['name']){
+              exists = true;
+              if(typeof folderStructure[i]['children'][i2]['id'] == 'undefined'){
+                folderStructure[i]['children'][i2]['id'] = uuidv4();
+              }
+              parentFolderId = folderStructure[i]['children'][i2]['id'];
+            }
+          }
+          if(!exists){
+            parentFolderId = newFolder['id'];
+            this.pFICache = parentFolderId;
+            console.log(parentFolderId);
+            folderStructure[i]['children'].push(newFolder);
+          }
+
+        }
+      }
+      else{
+        if(typeof(folderStructure[i]['children']) != 'undefined'){
+          folderStructure[i]['children'] = this.parseFolderStructureAndPushItem(folderStructure[i]['children'], parentFolderId, newFolder,ifdoesntexist);
+        }
+      }
+    }
+    return folderStructure;
+  }
+
+
+  parseFolderStructureAndRemoveItem(folderStructure, channelName){
+    folderStructure = folderStructure.filter(e => e['data']['name'] != channelName);
+
+    for(let i=0;i<folderStructure.length;i++){
+      if(typeof folderStructure[i]['children'] == 'undefined'){
+         folderStructure[i]['children'] = [];
+      }
+      for (let i2=0;i2<folderStructure[i]['children'].length;i2++){
+        folderStructure[i]['children'] = folderStructure[i]['children'].filter(e => e['data']['name'] != channelName);
+      }
+      if(typeof(folderStructure[i]['children']) != 'undefined'){
+        folderStructure[i]['children'] = this.parseFolderStructureAndRemoveItem(folderStructure[i]['children'], channelName);
+      }
+
+    }
+    return folderStructure;
+  }
+
+
+  parseFolderStructureAndGetPath(folderStructure, channelName, path = []){
+    path = this.parseFolderStructureAndGetPathProcess(folderStructure, channelName);
+    path.shift();
+    return path.reverse();
+  }
+
+  parseFolderStructureAndGetPathProcess(folderStructure, channelName, path = []){
+    for(let i=0;i<folderStructure.length;i++){
+      if(folderStructure[i]['data']['name'] == channelName){
+        path.push("F");
+       return path;
+      }
+      else{
+        if(typeof folderStructure[i]['children'] != 'undefined'){
+          let testPath = this.parseFolderStructureAndGetPathProcess(folderStructure[i]['children'], channelName, path);
+          // console.log('PTEST:',testPath);
+          if(testPath[0] == "F"){
+            path = testPath;
+            path.push(folderStructure[i]['data']['name']);
+            return path;
+          }
+
+        }
+      }
+    }
+    return path;
+  }
+
+
+  async addToChannelFolderList(channelNameClean, parentFolderId = "", newChannel = { data: { name: channelNameClean, kind:"rep", items: 0 }, expanded: true, children: [] }){
+    let chfl = this.getChannelFolderList();
+    if(parentFolderId == ""){
+      chfl.push(newChannel);
+    }
+    else{
+      chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newChannel);
+   }
+   this.setChannelFolderList(chfl);
+  }
+
+  removeChannel(channel){
+    //remove from channelNameList
+    let channelNameList = this.pubsub.getChannelNameList().filter(e => e != channel);
+    this.pubsub.setChannelNameList(channelNameList);
+    //remove from channelFolderList
+    let chfl = this.getChannelFolderList();
+    chfl = this.parseFolderStructureAndRemoveItem(chfl, channel);
+    this.setChannelFolderList(chfl);
+
+  }
+
+  async importChannel(channelName,folders,parentFolderId,inviteToken,importFolderStructure){
+
+    if(importFolderStructure == 1 && folders.length > 0){
+        //see if folders exist starting at parentFolderId
+        console.log(parentFolderId);
+        let chfl = this.getChannelFolderList();
+        for(let i=0; i<folders.length;i++){
+          let newFolder = { data: { name: folders[i], kind:"dir", items: 0 }, id: uuidv4(),expanded: true, children: [] };
+
+          if(parentFolderId == ""){
+            //check if exist at top level
+            let exists = false;
+            for (let i2=0;i2<chfl.length;i2++){
+              if(chfl[i2]['data']['name'] == newFolder['data']['name']){
+                exists = true;
+                if(typeof chfl[i2]['id'] == 'undefined'){
+                  chfl[i2]['id'] = uuidv4();
+                }
+                parentFolderId = chfl[i2]['id'];
+                this.pFICache = parentFolderId;
+              }
+            }
+            if(!exists){
+              parentFolderId = newFolder['id'];
+              this.pFICache = parentFolderId;
+              chfl.push(newFolder);
+            }
+          }
+          else{
+            chfl = this.parseFolderStructureAndPushItem(chfl, parentFolderId, newFolder, true);
+            if(typeof this.pFICache != 'undefined' && this.pFICache != null){
+              parentFolderId = this.pFICache;
+            }
+         }
+
+
+        }
+        this.pFICache = null;
+       this.setChannelFolderList(chfl);
+    }
+
+    console.log(parentFolderId);
+    await this.addChannel(channelName, parentFolderId);
+    this.addInviteToken(channelName,inviteToken);
+    return true;
+  }
+
+  setInviteCodes(codeObject, channel = 'all'){
+    if(channel == 'all'){
+      this.config['inviteCodes'] = codeObject;
+      this.pubsub.setInviteCodes(this.config['inviteCodes']);
+    }
+    return true;
+  }
+  addInviteToken(channel,token){
+    this.pubsub.addInviteToken(channel,token);
+    return true;
+  }
+  removeInviteCode(channel,link){
+    this.pubsub.removeInviteCode(channel, link)
+  }
+
+
+  createInviteCode(channel,newInviteCodeMax, importFolders = false){
+    let code = uuidv4();
+    let link = ""
+    if(importFolders){
+      //traverse folders and find this channel in the tree
+      let pathArray = this.parseFolderStructureAndGetPath(this.config.channelFolderList, channel);
+      if(pathArray.length > 0){
+        link = pathArray.join("/////") + "/////" + channel + ":" + code;
+      }
+      else{
+        link = channel + ":" + code;
+      }
+      console.log(pathArray);
+    }
+    else{
+        link = channel + ":" + code;
+    }
+
+    link = Buffer.from(link,'utf8').toString('hex');
+    this.pubsub.addInviteCode(channel,link,code,newInviteCodeMax);
+    this.commitNow();
+    return link;
+  }
 
 }

@@ -13,7 +13,7 @@ export class UiService {
   headerOptions: any = null
   inElectron = false;
 
-  isProcessing = false
+  isProcessing = true;
   processingSub = new Subject<any>();
   updateProcessingStatus(value) {
     if(value){
@@ -57,17 +57,11 @@ export class UiService {
     this.showPopupSub.next(value);
   }
 
-  signedIn = new Subject<any>();
-  public setSignedIn(value){
-    this.signedIn.next(value);
+  signedInSub = new Subject<any>();
+  public signIn(){
+    this.signedInSub.next(true);
   }
 
-
-    channelNameList = new Subject<any>();
-    public setChannelNameList(value){
-      this.channelNameListArray = value;
-      this.channelNameList.next(value);
-    }
 
 
 
@@ -82,12 +76,6 @@ export class UiService {
   changeStatusSub = new Subject<any>();
   public changeStatus(value){
     this.changeStatusSub.next(value);
-  }
-
-  channelNameListArray = [];
-  public addChannelName(name){
-    this.channelNameListArray.push(name);
-    this.channelNameList.next(this.channelNameListArray);
   }
 
 

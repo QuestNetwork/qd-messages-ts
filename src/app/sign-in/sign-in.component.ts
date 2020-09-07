@@ -1,19 +1,12 @@
 import { Component, OnInit, Input,ViewChild} from '@angular/core';
 import { UiService} from '../services/ui.service';
 import { IpfsService} from '../services/ipfs.service';
-// import * as Store from 'electron-store';
 import { ConfigService} from '../services/config.service';
 import { QuestPubSubService } from '../services/quest-pubsub.service';
-import * as swarmJson from '../swarm.json';
-//
+import packageJson from '../../../package.json';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-
-declare var $: any;
-
-// const store = new Store();
 import { saveAs } from 'file-saver';
-// import { existsSync } from 'fs';
-
+import swarmJson from '../swarm.json';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,41 +19,37 @@ export class SignInComponent implements OnInit {
   fs: any;
 
   constructor(private ui: UiService, private ipfs: IpfsService,private pubsub: QuestPubSubService, private config:ConfigService) {
-    // let dirExists = fs.existsSync('/home/jessica');
-    // console.log(existsSync);
-    // this.fs = this.electron.remote.require('fs');
-    // let ex = this.fs.existsSync('/home');
-    // console.log('FS TEST:',ex);
+
   }
 
   stringifyStore;
 
-  settingsLoaded = false;
   ngOnInit(): void {
-
-    this.settingsLoaded = this.ui.settingsLoaded;
-
-    this.ui.settingsLoadedSub.subscribe( (value) => {
-      this.settingsLoaded = value;
-    });
-
-    this.ui.channelNameList.subscribe( (value) => {
-      this.channelNameList = value;
-    });
-
-
-
-    //load channel
-    if(this.settingsLoaded){
-      this.jumpToChannels();
+    //auto login
+    if(this.config.isSignedIn()){
+      this.attemptImportSettings({}).then( (importSettingsStatus) => {
+        console.log('Import Settings Status:',importSettingsStatus);
+        console.log(importSettingsStatus);
+        if(importSettingsStatus){
+          console.log('SignIn: Settings Imported Successfully');
+          this.ui.showSnack('Loading Channels...','Almost There', {duration:2000});
+          this.jumpToChannels();
+          this.ui.signIn();
+          if(this.pubsub.getSelectedChannel() == 'NoChannelSelected'){
+            this.ui.updateProcessingStatus(false);
+          }
+        }
+        else{this.ui.showSnack('Error Importing Settings!','Oh No');}
+      });
     }
-
-
+    else{
+      this.ui.updateProcessingStatus(false);
+    }
 
   }
 
 
-   DEVMODE = false;
+   DEVMODE = swarmJson['dev'];
 
   public processing;
   public completeChallengeScreen = false;
@@ -68,9 +57,7 @@ export class SignInComponent implements OnInit {
   async openFile(files){
     this.ui.updateProcessingStatus(true);
     if(this.ui.isElectron()){
-      $(function(){
-        $('.lds-heart').fadeTo('fast',0);
-      });
+
     }
     const droppedFile = files[0];
 
@@ -111,28 +98,33 @@ async openFileLoaded(event){
     else if(typeof(parsedStringify) != 'undefined' && typeof(parsedStringify.version) != 'undefined' && typeof(parsedStringify.appId) != 'undefined' && parsedStringify.appId == "quest-messenger-js"){
       //IMPORTED A .KEYCHAIN FILE
       let importSettingsStatus = await this.attemptImportSettings(parsedStringify);
-      console.log('Import Settings Status:',importSettingsStatus);
+      console.log('Sign In: Import Settings Status:',importSettingsStatus);
       //set temporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
-      if(importSettingsStatus){this.ui.showSnack('Joining channel...','Almost There');await this.jumpToChannels();return true;}
+      if(importSettingsStatus){this.ui.showSnack('Opening Messages...','Almost There');await this.jumpToChannels();return true;}
       else{this.ui.showSnack('Error Importing Settings!','Oh No');}
     }
     return false;
   }
 
   async jumpToChannels(){
-    this.ui.setSignedIn(true);
+    this.ui.toTabIndex(1);
+    this.ui.enableTab('channelTab');
+    this.ui.disableTab('signInTab');
+
+    if(this.pubsub.getSelectedChannel() == 'NoChannelSelected' ){
+      this.ui.updateProcessingStatus(false);
+    }
 
     return true;
   }
 
-  beeProcessing = false;
 
   async generateDefaultSettings(){
     this.ui.updateProcessingStatus(true);
     let importSettingsStatus = await this.attemptImportSettings({});
     console.log('Import Settings Status:',importSettingsStatus);
     let stringify = JSON.stringify({
-        version: swarmJson['version'],
+        version: packageJson['version'],
         appId: 'quest-messenger-js',
         channelKeyChain:   this.pubsub.getChannelKeyChain(),
         channelParticipantList:  this.pubsub.getChannelParticipantList(),
@@ -143,7 +135,12 @@ async openFileLoaded(event){
     saveAs(jobFileBlob, "profile.qcprofile");
     importSettingsStatus = await this.attemptImportSettings(stringify);
     //settemporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
-    if(importSettingsStatus){this.ui.showSnack('Joining channel...','Almost There');await this.jumpToChannels();return true;}
+
+    if(importSettingsStatus){
+      this.ui.showSnack('Default Settings Loaded...','Almost There', {duration: 2000});
+      console.log("Default Settings Loaded...");
+      await this.jumpToChannels();
+    }
     else{this.ui.showSnack('Error Importing Settings!','Oh No');}
   }
 
@@ -158,9 +155,8 @@ async openFileLoaded(event){
     this.channelName = await this.pubsub.createChannel('developer');
     this.channelNameList.push(this.channelName);
     this.pubsub.setChannelNameList(this.channelNameList);
-    this.ui.setChannelNameList(this.channelNameList);
     let jobFileBlob = new Blob([JSON.stringify({
-        version: swarmJson['version'],
+        version: packageJson['version'],
         appId: 'quest-messenger-js',
         channelKeyChain:   this.pubsub.getChannelKeyChain(),
         channelParticipantList: this.pubsub.getChannelParticipantList(),
@@ -173,9 +169,7 @@ async openFileLoaded(event){
 
   async attemptImportSettings(parsedStringify){
     try{
-        this.completeChallengeScreen = false;
         await this.importSettings(parsedStringify);
-        this.ui.setSettingsLoaded(true);
         return true;
     }
     catch(error){
@@ -199,15 +193,12 @@ async openFileLoaded(event){
     console.log('Importing Settings ...',parsedStringify);
       this.ui.setElectronSize('0');
       this.ui.updateProcessingStatus(true);
-      this.beeProcessing = true;
       this.completeChallengeScreen = false;
 
       if(this.ui.isElectron()){
             this.ui.showSnack('Importing key...','Yeh',{duration:1000});
           await this.ui.delay(1200);
-          $(function(){
-            $('.lds-heart').fadeTo('fast',0.9);
-          });
+
       }
       else{
           this.ui.showSnack('Importing key...','Yeh');
@@ -217,17 +208,26 @@ async openFileLoaded(event){
       this.DEVMODE && console.log('Unpacking Global Keychain...')
       this.config.readConfig(parsedStringify);
       this.config.autoSave();
-      this.ui.toTabIndex(1);
-      let defaultChannel = "0";
-      if(typeof(parsedStringify['selectedChannel']) != 'undefined'){
-        defaultChannel = parsedStringify['selectedChannel'];
-      }else if(typeof(parsedStringify.channelNameList) != 'undefined' && typeof(parsedStringify.channelNameList[0] != 'undefined')){
-        defaultChannel = parsedStringify.channelNameList[0];
+
+      //wait for ipfs
+      this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
+      console.log('SignIn: Waiting for IPFS...');
+      while(!this.ipfs.isReady()){
+        console.log('SignIn: Waiting for IPFS...');
+        await this.ui.delay(5000);
       }
+
+      this.ui.showSnack('Swarm Discovered...','Cool',{duration:1000});
+
+      let defaultChannel = "NoChannelSelected";
+      if(typeof(this.config.getConfig()['selectedChannel']) != 'undefined'){
+        defaultChannel = this.config.getConfig()['selectedChannel'];
+      }
+
       this.pubsub.setIpfsId(this.ipfs.getIpfsId());
+      console.log('SignIn: Selecting Channel: '+defaultChannel+'...');
       this.pubsub.selectChannel(defaultChannel);
       return true;
-
     }
 
     public async dropped(files) {
