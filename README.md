@@ -71,7 +71,7 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 
 **Commands**
 
-```npm run install``` Safely installs all dependencies
+```npm run inst``` Safely installs all dependencies
 
 ```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
 
