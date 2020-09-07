@@ -84,3 +84,11 @@ position: relative;
 line-height: 9px;
 font-size: 17px;
 }
+
+
+
+@media only screen and (max-width: 500px) {
+  .web-top-links {
+    display:none;
+  }
+}
