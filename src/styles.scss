@@ -129,11 +129,11 @@ mat-card{
 }
 
 
-.isElectron  .mat-snack-bar-container{
+  .mat-snack-bar-container{
   position: relative;
 }
 //
-.isElectron  .cdk-container-pane {
+  .cdk-container-pane {
   opacity: 0.8 !important;
 }
 
@@ -181,11 +181,6 @@ mat-card{
   height:258px !important;
 }
 
-
-
-.isElectron .popup--machine-types, .isElectron .popup-machine-types{
-  background-color:transparent !important;
-}
 
 
 

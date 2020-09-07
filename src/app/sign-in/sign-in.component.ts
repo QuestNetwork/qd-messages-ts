@@ -56,9 +56,6 @@ export class SignInComponent implements OnInit {
 
   async openFile(files){
     this.ui.updateProcessingStatus(true);
-    if(this.ui.isElectron()){
-
-    }
     const droppedFile = files[0];
 
       // Is it a file?

@@ -143,7 +143,7 @@ export class ChannelListComponent implements OnInit {
     //TODO put together folder structure...
     let folders;
 
-    this.ui.showSnack('Creating Channel...','Please Wait',{duration:1000});
+    this.ui.showSnack('Creating Channel...','Please Wait');
     let parentFolderId =  this.newChannelFolder;
     if(typeof parentFolderId === 'object'){
       parentFolderId = "";
@@ -171,7 +171,7 @@ export class ChannelListComponent implements OnInit {
   @ViewChild('folder') folderPop;
   newFolderName;
   createNewFolder(folderNameDirty){
-    this.ui.showSnack('Creating Folder...','Please Wait',{duration:1000});
+    this.ui.showSnack('Creating Folder...','Please Wait');
     let parentFolderId =  this.newChannelFolder;
     if(typeof parentFolderId === 'object'){
       parentFolderId = "";
@@ -187,7 +187,7 @@ export class ChannelListComponent implements OnInit {
   async importNewChannel(){
 
     //TODO put together folder structure...
-    this.ui.showSnack('Importing Channel...','Please Wait',{duration:1000});
+    this.ui.showSnack('Importing Channel...','Please Wait');
 
 
     let link = Buffer.from(this.inviteCodeHex,'hex').toString('utf8');
