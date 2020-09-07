@@ -56,7 +56,7 @@ https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
 ```cd quest-messenger-js```
 
-```git checkout 0.9.1```
+```git checkout 0.9.2```
 
 ```npm run inst```
 
@@ -109,6 +109,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Import/Join From Invite Token (optional with folder structure)
 - Delete Channels
 
+**0.9.2**
+- IPFS Update (0.50.1)
+
 ## Roadmap
 
 **0.9.2**
@@ -116,12 +119,12 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 - Disable AutoSave
 - Export Settings
-- Drag/Drop Folders/Channels 
+- Drag/Drop Folders/Channels
 - Delete Folders
 - Disable Challenge Flow (close channels to invite only)
 - Share and Import Channels By QR Code
 - Alias (show custom name instead of pub key) and profile pictures
-- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants)
+- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
 **0.9.3**
 - AES Encrypt Invite Tokens
