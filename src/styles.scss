@@ -333,8 +333,8 @@ mat-tab-header{
 
   padding:0;
   margin:0;
-font-weight: 900 !important;
-  border: 1px dotted #23ff63 !important;
+  font-weight: 400 !important;
+  border: 1px dotted #46267259 !important;
 }
 
 
@@ -789,6 +789,7 @@ nb-layout-column{
 
 .thickOutlineButton{
       border: 2px solid purple !important;
+      font-family: Ubuntu;
 }
 .thickOutlineButton.mat-stroked-button:not(.mat-button-disabled) {
   border-color: purple;
@@ -802,10 +803,11 @@ nb-layout-column{
 }
 
 .mat-tab-label-content{
-  font-family: ubuntu;
-font-weight: bold;
-font-size: 17px;
-    width: 86px;
+  font-family: Ubuntu;
+  font-weight: 500;
+  letter-spacing: 0.005rem !important;
+  font-size: 17px;
+  width: 86px;
 
 }
 
