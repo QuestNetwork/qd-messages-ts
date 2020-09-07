@@ -27,6 +27,8 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 https://gateway.pinata.cloud/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
 
+http://ipfs.infura.io/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt
+
 https://cloudflare-ipfs.com/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
 
 https://ipfs.eternum.io/ipfs/QmNmVGxisviWZKThsZiyBdp99AVAYFVDoNC3un4Ekoi6Rt/
