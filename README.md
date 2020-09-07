@@ -111,8 +111,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.2**
 - IPFS Update (0.50.1)
-- Enhanced Mobile UI, Centered Snackbar, New Icons & Buttons
-- Removed External Font And Icon References And Included All Fonts In The Bundle
+- Enhanced Mobile UI, Centered Snackbar, New Fonts, Icons & Buttons
+- Included All Fonts And Icons In The Bundle
 
 ## Roadmap
 
