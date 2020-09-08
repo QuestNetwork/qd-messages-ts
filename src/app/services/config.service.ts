@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-// import { IpfsService } from './ipfs.service'
-// import { UiService } from '../services/ui.service'
 import { v4 as uuidv4 } from 'uuid';
 import { Subject } from 'rxjs';
-// import { GlobalPubSub as QuestPubSub }  from '@questnetwork/quest-pubsub-js';
-import { QuestPubSubService }  from './quest-pubsub.service';
+import { QuestOceanService }  from './quest-ocean.service';
 import { ElectronService } from 'ngx-electron';
 import { UiService }  from './ui.service';
 import  packageJson from '../../../package.json';
@@ -33,7 +30,7 @@ export class ConfigService {
 
   isElectron = false;
 
-  constructor(private pubsub:QuestPubSubService, private electron: ElectronService, private ui: UiService) {
+  constructor(private os:QuestOceanService, private electron: ElectronService, private ui: UiService) {
     var userAgent = navigator.userAgent.toLowerCase();
     if (userAgent.indexOf(' electron/') > -1) {
       this.isElectron = true;
@@ -42,11 +39,20 @@ export class ConfigService {
       this.configFilePath = configPath + "/user.qcprofile";
     }
 
-    this.pubsub.commitNowSub.subscribe( (value) => {
+  }
+
+  async ngOnInit(){
+    console.log('ConfigService: Waiting For Ocean...');
+    while(!this.os.ocean.isReady()){
+      console.log('ConfigService: Waiting For Ocean...');
+      await this.ui.delay(1000);
+    }
+
+    this.os.ocean.dolphin.commitNowSub.subscribe( (value) => {
       this.commitNow();
     });
 
-    this.pubsub.selectedChannelSub.subscribe( (value) => {
+    this.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
       this.config['selectedChannel'] = value;
       this.commit();
     });
@@ -98,14 +104,14 @@ export class ConfigService {
       this.config = {
         version: version,
         appId: 'quest-messenger-js',
-        channelKeyChain:   this.pubsub.getChannelKeyChain(),
-        channelParticipantList: this.pubsub.getChannelParticipantList(),
-        channelNameList: this.pubsub.getChannelNameList(),
+        channelKeyChain:   this.os.ocean.dolphin.getChannelKeyChain(),
+        channelParticipantList: this.os.ocean.dolphin.getChannelParticipantList(),
+        channelNameList: this.os.ocean.dolphin.getChannelNameList(),
         channelFolderList: this.config.channelFolderList,
-        selectedChannel: this.pubsub.getSelectedChannel(),
+        selectedChannel: this.os.ocean.dolphin.getSelectedChannel(),
         sideBarFixed: this.getSideBarFixed(),
         sideBarVisible: this.getSideBarVisible(),
-        inviteCodes: this.pubsub.getInviteCodes()
+        inviteCodes: this.os.ocean.dolphin.getInviteCodes()
       };
 
       if(this.isElectron){
@@ -142,21 +148,21 @@ export class ConfigService {
     }catch(error){console.log(error);}
     //put config into pubsub
     if(typeof(config['channelKeyChain']) != 'undefined'){
-      this.pubsub.setChannelKeyChain(config['channelKeyChain']);
+      this.os.ocean.dolphin.setChannelKeyChain(config['channelKeyChain']);
     }
     if(typeof(config['channelParticipantList']) != 'undefined'){
       console.log('Config: Importing ParticipantList ...',config['channelParticipantList']);
-      this.pubsub.setChannelParticipantList(config['channelParticipantList']);
+      this.os.ocean.dolphin.setChannelParticipantList(config['channelParticipantList']);
     }
     else{
-        this.pubsub.setChannelParticipantList(this.config['channelParticipantList']);
+        this.os.ocean.dolphin.setChannelParticipantList(this.config['channelParticipantList']);
     }
     if(typeof(config['channelNameList']) != 'undefined'){
       console.log('Config: Importing channelNameList ...',config['channelNameList']);
-      this.pubsub.setChannelNameList(config['channelNameList']);
+      this.os.ocean.dolphin.setChannelNameList(config['channelNameList']);
     }
     else{
-      this.pubsub.setChannelNameList(this.config['channelNameList']);
+      this.os.ocean.dolphin.setChannelNameList(this.config['channelNameList']);
     }
     if(typeof(config['channelFolderList']) != 'undefined'){
       console.log('Config: Importing Folder List ...',config['channelFolderList']);
@@ -204,14 +210,14 @@ export class ConfigService {
   }
 
   async createChannel(channelNameDirty, parentFolderId = ""){
-    let channelNameClean = await this.pubsub.createChannel(channelNameDirty);
+    let channelNameClean = await this.os.ocean.dolphin.createChannel(channelNameDirty);
     this.addToChannelFolderList(channelNameClean, parentFolderId);
     return channelNameClean;
   }
 
   async addChannel(channelNameClean, parentFolderId = ""){
     try{
-      await this.pubsub.addChannel(channelNameClean);
+      await this.os.ocean.dolphin.addChannel(channelNameClean);
     }catch(e){}
     this.addToChannelFolderList(channelNameClean, parentFolderId);
     return channelNameClean;
@@ -333,8 +339,8 @@ pFICache;
 
   removeChannel(channel){
     //remove from channelNameList
-    let channelNameList = this.pubsub.getChannelNameList().filter(e => e != channel);
-    this.pubsub.setChannelNameList(channelNameList);
+    let channelNameList = this.os.ocean.dolphin.getChannelNameList().filter(e => e != channel);
+    this.os.ocean.dolphin.setChannelNameList(channelNameList);
     //remove from channelFolderList
     let chfl = this.getChannelFolderList();
     chfl = this.parseFolderStructureAndRemoveItem(chfl, channel);
@@ -392,16 +398,16 @@ pFICache;
   setInviteCodes(codeObject, channel = 'all'){
     if(channel == 'all'){
       this.config['inviteCodes'] = codeObject;
-      this.pubsub.setInviteCodes(this.config['inviteCodes']);
+      this.os.ocean.dolphin.setInviteCodes(this.config['inviteCodes']);
     }
     return true;
   }
   addInviteToken(channel,token){
-    this.pubsub.addInviteToken(channel,token);
+    this.os.ocean.dolphin.addInviteToken(channel,token);
     return true;
   }
   removeInviteCode(channel,link){
-    this.pubsub.removeInviteCode(channel, link)
+    this.os.ocean.dolphin.removeInviteCode(channel, link)
   }
 
 
@@ -424,7 +430,7 @@ pFICache;
     }
 
     link = Buffer.from(link,'utf8').toString('hex');
-    this.pubsub.addInviteCode(channel,link,code,newInviteCodeMax);
+    this.os.ocean.dolphin.addInviteCode(channel,link,code,newInviteCodeMax);
     this.commitNow();
     return link;
   }

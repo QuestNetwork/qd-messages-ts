@@ -23,18 +23,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
-import { UiService} from './services/ui.service';
-import { IpfsService} from './services/ipfs.service';
-import { ConfigService } from './services/config.service';
-
-import { QuestPubSubService } from './services/quest-pubsub.service';
 
 import { HttpClientModule } from '@angular/common/http';
-import { LoadHexComponent } from './load-hex/load-hex.component';
-import { ChannelComponent } from './channel/channel.component';
-import { MatMenuComponent } from './mat-menu/mat-menu.component';
-import { SettingsComponent } from './settings/settings.component';
-import { SignInComponent } from './sign-in/sign-in.component';
 
 
 import { NgxElectronModule } from 'ngx-electron';
@@ -47,7 +37,18 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule,NbTreeGridModule,    NbCardModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
+//
+import { UiService} from './services/ui.service';
+import { ConfigService } from './services/config.service';
+import { QuestOceanService } from './services/quest-ocean.service';
+//
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
+import { LoadHexComponent } from './load-hex/load-hex.component';
+import { ChannelComponent } from './channel/channel.component';
+import { MatMenuComponent } from './mat-menu/mat-menu.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+
 import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelSidebarRightComponent } from './channel-sidebar-right/channel-sidebar-right.component';
 import { ChannelSidebarLeftComponent } from './channel-sidebar-left/channel-sidebar-left.component';
@@ -110,7 +111,10 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     NbCardModule
   ],
   providers: [
-    UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService,NbMenuService,NbDialogService
+      UiService,
+      ConfigService,
+      QuestOceanService,
+    NbSidebarService,NbMenuService,NbDialogService
   ],
   bootstrap: [AppComponent]
 })

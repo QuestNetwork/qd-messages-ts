@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { ConfigService } from '../services/config.service';
-import { QuestPubSubService } from '../services/quest-pubsub.service';
+import { QuestOceanService } from '../services/quest-ocean.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../services/ui.service';
 
@@ -26,7 +26,7 @@ interface FSEntry {
 export class ChannelListComponent implements OnInit {
 
   channelNameList = [];
-  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService,private config: ConfigService, private pubsub: QuestPubSubService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService,private config: ConfigService, private os: QuestOceanService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
 
       let data = this.config.getChannelFolderList();
       this.dataSource = this.dataSourceBuilder.create(data);
@@ -35,11 +35,11 @@ export class ChannelListComponent implements OnInit {
 
     selectChannel(channelName){
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
-        this.DEVMODE && console.log("ChannelList: ChannelNameList: ",this.pubsub.getChannelNameList());
-        this.DEVMODE && console.log("isInArray: "+this.pubsub.isInArray(channelName.trim(),this.pubsub.getChannelNameList()));
-        if(this.pubsub.isInArray(channelName.trim(),this.pubsub.getChannelNameList())){
+        this.DEVMODE && console.log("ChannelList: ChannelNameList: ",this.os.ocean.dolphin.getChannelNameList());
+        this.DEVMODE && console.log("isInArray: "+this.os.ocean.dolphin.isInArray(channelName.trim(),this.os.ocean.dolphin.getChannelNameList()));
+        if(this.os.ocean.dolphin.isInArray(channelName.trim(),this.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
-          this.pubsub.selectChannel(channelName.trim());
+          this.os.ocean.dolphin.selectChannel(channelName.trim());
         }
     }
 
@@ -81,26 +81,33 @@ export class ChannelListComponent implements OnInit {
       ];
 
 
-  ngOnInit(): void {
-    this.channelNameList = this.pubsub.getChannelNameList();
+  async ngOnInit() {
+
+    this.nbMenuService.onItemClick().subscribe( (menuItem) => {
+       if(String(menuItem.item.title) == 'Create Channel'){
+          this.getChannelFolderList();
+          this.open(this.createPop);
+        }
+        else if(String(menuItem.item.title) == 'Import Channel'){
+            this.getChannelFolderList();
+            this.open(this.importPop);
+        }
+        else if(String(menuItem.item.title) == 'New Folder'){
+            this.getChannelFolderList();
+            this.open(this.folderPop);
+        }
+  });
+
+    while(!this.os.ocean.isReady()){
+      await this.ui.delay(1000);
+    }
+
+    this.channelNameList = this.os.ocean.dolphin.getChannelNameList();
       this.config.channelFolderListSub.subscribe( (chFL: []) => {
          this.dataSource = this.dataSourceBuilder.create(chFL);
       });
 
-      this.nbMenuService.onItemClick().subscribe( (menuItem) => {
-         if(String(menuItem.item.title) == 'Create Channel'){
-            this.getChannelFolderList();
-            this.open(this.createPop);
-          }
-          else if(String(menuItem.item.title) == 'Import Channel'){
-              this.getChannelFolderList();
-              this.open(this.importPop);
-          }
-          else if(String(menuItem.item.title) == 'New Folder'){
-              this.getChannelFolderList();
-              this.open(this.folderPop);
-          }
-    });
+
   }
 
   ngOnDestroy(){
@@ -210,7 +217,7 @@ export class ChannelListComponent implements OnInit {
       parentFolderId = "";
     }
 
-    if(this.config.isInArray(channelName,this.pubsub.getChannelNameList())){
+    if(this.config.isInArray(channelName,this.os.ocean.dolphin.getChannelNameList())){
       this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
     }
     else{

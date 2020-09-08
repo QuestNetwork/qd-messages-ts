@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
 import { ConfigService } from '../services/config.service';
-import { QuestPubSubService } from '../services/quest-pubsub.service';
+import { UiService } from '../services/ui.service';
+import { QuestOceanService } from '../services/quest-ocean.service';
 
 @Component({
   selector: 'app-channel-tab',
@@ -10,10 +11,10 @@ import { QuestPubSubService } from '../services/quest-pubsub.service';
 })
 export class ChannelTabComponent implements OnInit {
 
-  constructor( private sidebarService: NbSidebarService,private config: ConfigService, private pubsub: QuestPubSubService) { }
+  constructor( private ui: UiService, private sidebarService: NbSidebarService,private config: ConfigService, private os: QuestOceanService) { }
   channelNameList = [];
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
 
       this.sideBarFixed = this.config.getSideBarFixed();
@@ -71,13 +72,18 @@ export class ChannelTabComponent implements OnInit {
         }
     });
 
-      this.channelNameList = this.pubsub.getChannelNameList();
+
+      while(!this.os.ocean.isReady()){
+        await this.ui.delay(1000);
+      }
+
+      this.channelNameList = this.os.ocean.dolphin.getChannelNameList();
         this.config.channelFolderListSub.subscribe( (chFL: []) => {
-          this.channelNameList = this.pubsub.getChannelNameList();
+          this.channelNameList = this.os.ocean.dolphin.getChannelNameList();
         });
 
 
-      this.pubsub.selectedChannelSub.subscribe( (value) => {
+      this.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
         this.selectedChannel = value;
         console.log('Channel-Tab: Selected Channel: >>'+this.selectedChannel+'<<');
         console.log('Channel-Tab: noChannelSelected: >>'+this.noChannelSelected+"<<")

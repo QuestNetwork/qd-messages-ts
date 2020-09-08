@@ -1,21 +1,10 @@
-import { Component, ViewChild, ElementRef, Inject, AfterContentInit } from '@angular/core';
-
- import { MatSnackBar } from  '@angular/material/snack-bar';
-// import {ipcService} from './ipcService';
-
+import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetectorRef } from '@angular/core';
+import { MatSnackBar } from  '@angular/material/snack-bar';
 import { UiService} from './services/ui.service';
-import { IpfsService} from './services/ipfs.service';
-import { QuestPubSubService} from './services/quest-pubsub.service';
-
-
+import { QuestOceanService } from './services/quest-ocean.service';
 import swarmJson from './swarm.json';
-
-// import { TicketService} from './services/ticket.service';
-
-//
 declare var $: any;
 
-// declare var TransparencyMouseFix: any;
 
 @Component({
   selector: 'app-root',
@@ -23,35 +12,13 @@ declare var $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor( private aChD: ChangeDetectorRef,private os:QuestOceanService, private ui: UiService,private snackBar: MatSnackBar ){}
 
-
-downloadKeyScreen;
-processingEncryptionScreen;
-
-// { name: "Quest Network Support", fqn: support-----key-----key-----rep}
-  public channels = [];
-
-  uiMode = 'setup';
-
- //
   private DEVMODE = swarmJson['dev'];
- //
   @ViewChild('menuTabGroup') menuTabGroup;
 
-  ticketGenerator = false;
-
-
   isElectron = false;
-noChannelSelected = "NoChannelSelected";
-  current_step = "upload";
-
-
-  public changeToS(flag){
-    console.log(flag);
-    this.ui.tosAcceptedChanged(flag);
-    this.ui.hidePopups();
-  }
-
+  noChannelSelected = "NoChannelSelected";
   selectedChannel = "NoChannelSelected";
 
   public popupVisible = "0";
@@ -72,105 +39,17 @@ noChannelSelected = "NoChannelSelected";
 
   public screenLocked = false;
 
-
   public jqueryInit(){
     $(function() {
-      $( ".downloadEncryptionKeyScreen2" ).animate({
-        opacity: 0
-  //      left: "+=50",
-    //    height: "toggle"
-  }, 1);
-
-
-
-  $('.initialUploadScreen').css('cursor','default');
-  $('.downloadEncryptionContainer').css('pointer-events','none');
-    $('.uploadProgressEncryptionContainer').css('pointer-events','none');
-
-      $(document).on('touchstart click mouseenter ', '.downloadEncryptionKeyScreenHover', function(){
-        this.DEVMODE && console.log('hover import {  } from "module";!');
-        $( ".downloadEncryptionKeyScreen2" ).animate({
-         opacity: 1
-       }, 333);
-      });
-      $(document).on('   mouseout', '.downloadEncryptionKeyScreenHover', function(){
-        this.DEVMODE && console.log('hover out!');
-        $( ".downloadEncryptionKeyScreen2" ).animate({
-          opacity: 0
-    //      left: "+=50",
-      //    height: "toggle"
-    }, 555);
-
-      });
-
-
-      $(document).on('touchstart click mouseenter ', '.uploadProgressEncryptionKeyScreenHover', function(){
-        this.DEVMODE && console.log('hover import {  } from "module";!');
-        $( ".uploadProgressEncryptionKeyScreen2" ).animate({
-         opacity: 1
-       }, 333);
-      });
-      $(document).on('   mouseout', '.uploadProgressEncryptionKeyScreenHover', function(){
-        this.DEVMODE && console.log('hover out!');
-        $( ".uploadProgressEncryptionKeyScreen2" ).animate({
-          opacity: 0
-    //      left: "+=50",
-      //    height: "toggle"
-    }, 555);
-
-      });
-
-
       $('.mat-tab-label-active').css('opacity',1);
-
-
-    //mat menu
-
-
-
       $('.mat-tab-label').on('click', function(){
         $('.mat-tab-label').css('opacity',0.6);
         $('.mat-tab-label-active').css('opacity',1);
-
       });
-
     });
   }
 
 
-
-//private _sanitizer: DomSanitizer,private ticketService: TicketService, , private ipc: ipcService
-
-
-   constructor( private pubsub: QuestPubSubService, private ui: UiService, private ipfs: IpfsService,private snackBar: MatSnackBar ){
-
-   }
-
-
-
-// RECAPTCHA START
-
-
-loadScript(url){
-  let node = document.createElement('script');
-  node.src = url;
-  node.type = 'text/javascript';
-  node.async = true;
-  node.charset = 'utf-8';
-  document.getElementsByTagName('head')[0].appendChild(node);
-}
-
-public async ngAfterContentInit() {
-          // this.loadScript('https://www.google.com/recaptcha/api.js');
-
-
-}
-
-
-
-
-
-// RECAPTCHA END
 
 
   public async ngOnInit(){
@@ -200,14 +79,11 @@ public async ngAfterContentInit() {
 
 
     this.jqueryInit();
-
-    // this.ipc.send('resize', "200px", "400px");
-
-    this.ipfs.start();
+    this.os.create();
 
     this.ui.snackBar.subscribe( (object) => {
         this.showSnack(object.left, object.right, object.object);
-    });
+    });c
 
     this.ui.snackBarDismissedSub.subscribe( (value) => {
       this.snackBar.dismiss();
@@ -215,13 +91,6 @@ public async ngAfterContentInit() {
 
     this.ui.screenLockedSub.subscribe( (value) => {
       this.screenLocked = value;
-    });
-
-
-
-
-    this.ui.ticketGeneratorSub.subscribe( (value) => {
-      this.ticketGenerator = value;
     });
 
     this.ui.hidePopupsSub.subscribe( (value) => {
@@ -240,43 +109,43 @@ public async ngAfterContentInit() {
       this.showPopup(v);
     });
 
-
-
     this.ui.componentAccessibilitySub.subscribe( (componentAccessibility) => {
       this.componentAccessibility = componentAccessibility;
-    });
-
-    this.ui.uiModeSub.subscribe( (value) => {
-      this.uiMode = value;
-    });
-
-    this.pubsub.channelNameListSub.subscribe( (value) => {
-      this.ui.showSnack('Channel Update ','Dismiss', {duration:2000});
-      this.channelNameList = value;
-    });
-
-    this.pubsub.selectedChannelSub.subscribe( (value) => {
-      this.selectedChannel = value;
-      console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
-      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
     });
 
     this.ui.signedInSub.subscribe( (value) => {
       this.signedIn = value;
     });
 
-    this.ipfs.swarmPeersSub.subscribe( (value:number) => {
+    this.os.ocean.swarmPeersSub.subscribe( (value:number) => {
       this.swarmPeers = value;
+      this.aChD.detectChanges();
     });
-    let psPS = this.pubsub.getPubSubPeersSub();
+
+    console.log('App: Waiting For Ocean...');
+    while(!this.os.ocean.isReady()){
+      console.log('App: Waiting For Ocean...');
+      await this.ui.delay(1000);
+    }
+
+    this.os.ocean.dolphin.channelNameListSub.subscribe( (value) => {
+      this.ui.showSnack('Channel Update ','Dismiss', {duration:2000});
+      this.channelNameList = value;
+    });
+
+    this.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+      this.selectedChannel = value;
+      console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
+      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
+    });
+
+    let psPS = this.os.ocean.dolphin.getPubSubPeersSub();
     psPS.subscribe( (value:number) => {
       this.pubSubPeers = value;
+      this.aChD.detectChanges();
     });
 
-
-
-
-
+    console.log('App: Boot Complete');
 
   }
 
@@ -294,19 +163,12 @@ public async ngAfterContentInit() {
     signInTab: true, settingsTab: true, channelTab:false
   }
 
-  public pushStart(){
-    this.ui.pushStart();
-  }
-
   public enableTab(channel){
     this.ui.enableTab(channel+'Tab');
   }
-
-
   public disableTab(channel){
     this.ui.disableTab(channel+'Tab');
   }
-
 
   snackBarRef;
   showSnack(left, right, options = {}){
@@ -321,7 +183,6 @@ public async ngAfterContentInit() {
 
    return this.snackBarRef;
   }
-
 
   closeWindow(){
     window.close();
