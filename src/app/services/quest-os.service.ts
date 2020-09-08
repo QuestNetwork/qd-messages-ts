@@ -23,4 +23,7 @@ export class QuestOSService {
     await this.os.boot(this.config);
     this.ready = true;
   }
+  isReady(){
+    return this.ready;
+  }
 }

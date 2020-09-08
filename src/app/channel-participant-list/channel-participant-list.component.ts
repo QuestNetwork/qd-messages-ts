@@ -16,7 +16,7 @@ export class ChannelParticipantListComponent implements OnInit {
 
   async initProcess(){
 
-    while(!this.q.os.ocean.isReady()){
+    while(!this.q.isReady()){
       await this.ui.delay(1000);
     }
 
