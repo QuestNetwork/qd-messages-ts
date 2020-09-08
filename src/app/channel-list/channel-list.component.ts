@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { ConfigService } from '../services/config.service';
-import { QuestOceanService } from '../services/quest-ocean.service';
+import { QuestOSService } from '../services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../services/ui.service';
 
@@ -26,7 +26,7 @@ interface FSEntry {
 export class ChannelListComponent implements OnInit {
 
   channelNameList = [];
-  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService,private config: ConfigService, private os: QuestOceanService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService,private config: ConfigService, private q: QuestOSService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
 
       let data = this.config.getChannelFolderList();
       this.dataSource = this.dataSourceBuilder.create(data);
@@ -35,11 +35,11 @@ export class ChannelListComponent implements OnInit {
 
     selectChannel(channelName){
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
-        this.DEVMODE && console.log("ChannelList: ChannelNameList: ",this.os.ocean.dolphin.getChannelNameList());
-        this.DEVMODE && console.log("isInArray: "+this.os.ocean.dolphin.isInArray(channelName.trim(),this.os.ocean.dolphin.getChannelNameList()));
-        if(this.os.ocean.dolphin.isInArray(channelName.trim(),this.os.ocean.dolphin.getChannelNameList())){
+        this.DEVMODE && console.log("ChannelList: ChannelNameList: ",this.q.os.ocean.dolphin.getChannelNameList());
+        this.DEVMODE && console.log("isInArray: "+this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList()));
+        if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
-          this.os.ocean.dolphin.selectChannel(channelName.trim());
+          this.q.os.ocean.dolphin.selectChannel(channelName.trim());
         }
     }
 
@@ -98,11 +98,11 @@ export class ChannelListComponent implements OnInit {
         }
   });
 
-    while(!this.os.ocean.isReady()){
+    while(!this.q.os.ocean.isReady()){
       await this.ui.delay(1000);
     }
 
-    this.channelNameList = this.os.ocean.dolphin.getChannelNameList();
+    this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
       this.config.channelFolderListSub.subscribe( (chFL: []) => {
          this.dataSource = this.dataSourceBuilder.create(chFL);
       });
@@ -217,7 +217,7 @@ export class ChannelListComponent implements OnInit {
       parentFolderId = "";
     }
 
-    if(this.config.isInArray(channelName,this.os.ocean.dolphin.getChannelNameList())){
+    if(this.config.isInArray(channelName,this.q.os.ocean.dolphin.getChannelNameList())){
       this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
     }
     else{

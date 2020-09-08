@@ -40,7 +40,7 @@ import { FormsModule } from '@angular/forms';
 //
 import { UiService} from './services/ui.service';
 import { ConfigService } from './services/config.service';
-import { QuestOceanService } from './services/quest-ocean.service';
+import { QuestOSService } from './services/quest-os.service';
 //
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
 import { LoadHexComponent } from './load-hex/load-hex.component';
@@ -113,7 +113,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
   providers: [
       UiService,
       ConfigService,
-      QuestOceanService,
+      QuestOSService,
     NbSidebarService,NbMenuService,NbDialogService
   ],
   bootstrap: [AppComponent]

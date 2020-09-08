@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetectorRef } from '@angular/core';
 import { MatSnackBar } from  '@angular/material/snack-bar';
 import { UiService} from './services/ui.service';
-import { QuestOceanService } from './services/quest-ocean.service';
+import { QuestOSService } from './services/quest-os.service';
 import swarmJson from './swarm.json';
 declare var $: any;
 
@@ -12,7 +12,7 @@ declare var $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor( private aChD: ChangeDetectorRef,private os:QuestOceanService, private ui: UiService,private snackBar: MatSnackBar ){}
+  constructor( private aChD: ChangeDetectorRef,private q:QuestOSService, private ui: UiService,private snackBar: MatSnackBar ){}
 
   private DEVMODE = swarmJson['dev'];
   @ViewChild('menuTabGroup') menuTabGroup;
@@ -79,7 +79,6 @@ export class AppComponent {
 
 
     this.jqueryInit();
-    this.os.start();
 
     this.ui.snackBar.subscribe( (object) => {
         this.showSnack(object.left, object.right, object.object);
@@ -117,29 +116,31 @@ export class AppComponent {
       this.signedIn = value;
     });
 
-    this.os.ocean.swarmPeersSub.subscribe( (value:number) => {
+    console.log("App: Booting Quest Network Operating System...");
+    await this.q.boot();
+    this.q.os.ocean.swarmPeersSub.subscribe( (value:number) => {
       this.swarmPeers = value;
       this.aChD.detectChanges();
     });
 
     console.log('App: Waiting For Ocean...');
-    while(!this.os.ocean.isReady()){
+    while(!this.q.os.ocean.isReady()){
       console.log('App: Waiting For Ocean...');
       await this.ui.delay(1000);
     }
 
-    this.os.ocean.dolphin.channelNameListSub.subscribe( (value) => {
+    this.q.os.ocean.dolphin.channelNameListSub.subscribe( (value) => {
       this.ui.showSnack('Channel Update ','Dismiss', {duration:2000});
       this.channelNameList = value;
     });
 
-    this.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+    this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
       this.selectedChannel = value;
       console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
       console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
     });
 
-    let psPS = this.os.ocean.dolphin.getPubSubPeersSub();
+    let psPS = this.q.os.ocean.dolphin.getPubSubPeersSub();
     psPS.subscribe( (value:number) => {
       this.pubSubPeers = value;
       this.aChD.detectChanges();

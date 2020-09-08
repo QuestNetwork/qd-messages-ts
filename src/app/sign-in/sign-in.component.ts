@@ -1,7 +1,7 @@
 import { Component, OnInit, Input,ViewChild} from '@angular/core';
 import { UiService} from '../services/ui.service';
 import { ConfigService} from '../services/config.service';
-import { QuestOceanService } from '../services/quest-ocean.service';
+import { QuestOSService } from '../services/quest-os.service';
 import packageJson from '../../../package.json';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { saveAs } from 'file-saver';
@@ -17,7 +17,7 @@ export class SignInComponent implements OnInit {
 
   fs: any;
 
-  constructor(private ui: UiService, private os: QuestOceanService, private config:ConfigService) {
+  constructor(private ui: UiService, private q: QuestOSService, private config:ConfigService) {
 
   }
 
@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit {
 
       //wait for ocean
       console.log('SignIn: Waiting For Ocean...');
-      while(!this.os.ocean.isReady()){
+      while(!this.q.os.ocean.isReady()){
         console.log('SignIn: Waiting For Ocean...');
         this.ui.delay(1000);
       }
@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
           this.ui.showSnack('Loading Channels...','Almost There', {duration:2000});
           this.jumpToChannels();
           this.ui.signIn();
-          if(this.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected'){
+          if(this.q.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected'){
             this.ui.updateProcessingStatus(false);
           }
         }
@@ -115,7 +115,7 @@ async openFileLoaded(event){
     this.ui.enableTab('channelTab');
     this.ui.disableTab('signInTab');
 
-    if(this.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected' ){
+    if(this.q.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected' ){
       this.ui.updateProcessingStatus(false);
     }
 
@@ -130,9 +130,9 @@ async openFileLoaded(event){
     let stringify = JSON.stringify({
         version: packageJson['version'],
         appId: 'quest-messenger-js',
-        channelKeyChain:   this.os.ocean.dolphin.getChannelKeyChain(),
-        channelParticipantList:  this.os.ocean.dolphin.getChannelParticipantList(),
-        channelNameList: this.os.ocean.dolphin.getChannelNameList(),
+        channelKeyChain:   this.q.os.ocean.dolphin.getChannelKeyChain(),
+        channelParticipantList:  this.q.os.ocean.dolphin.getChannelParticipantList(),
+        channelNameList: this.q.os.ocean.dolphin.getChannelNameList(),
         channelchannelFolderList: this.config.getChannelFolderList()
     });
     let jobFileBlob = new Blob([stringify], { type: 'text/plain;charset=utf-8' });
@@ -151,20 +151,20 @@ async openFileLoaded(event){
   channelNameList = [];
   channelName;
   async createNewMessengerNetwork(){
-    this.os.ocean.dolphin.setChannelKeyChain({});
-    this.os.ocean.dolphin.setChannelParticipantList({});
-    this.os.ocean.dolphin.setChannelNameList([]);
-    this.channelName = await this.os.ocean.dolphin.createChannel('general');
+    this.q.os.ocean.dolphin.setChannelKeyChain({});
+    this.q.os.ocean.dolphin.setChannelParticipantList({});
+    this.q.os.ocean.dolphin.setChannelNameList([]);
+    this.channelName = await this.q.os.ocean.dolphin.createChannel('general');
     this.channelNameList.push(this.channelName);
-    this.channelName = await this.os.ocean.dolphin.createChannel('developer');
+    this.channelName = await this.q.os.ocean.dolphin.createChannel('developer');
     this.channelNameList.push(this.channelName);
-    this.os.ocean.dolphin.setChannelNameList(this.channelNameList);
+    this.q.os.ocean.dolphin.setChannelNameList(this.channelNameList);
     let jobFileBlob = new Blob([JSON.stringify({
         version: packageJson['version'],
         appId: 'quest-messenger-js',
-        channelKeyChain:   this.os.ocean.dolphin.getChannelKeyChain(),
-        channelParticipantList: this.os.ocean.dolphin.getChannelParticipantList(),
-        channelNameList: this.os.ocean.dolphin.getChannelNameList()
+        channelKeyChain:   this.q.os.ocean.dolphin.getChannelKeyChain(),
+        channelParticipantList: this.q.os.ocean.dolphin.getChannelParticipantList(),
+        channelNameList: this.q.os.ocean.dolphin.getChannelNameList()
     })], { type: 'text/plain;charset=utf-8' });
     saveAs(jobFileBlob, "profile.qcprofile");
     // this.ui.setSettingsLoaded(true);
@@ -216,7 +216,7 @@ async openFileLoaded(event){
       //wait for ipfs
       this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
       console.log('SignIn: Waiting for IPFS...');
-      while(!this.os.ocean.isReady()){
+      while(!this.q.os.ocean.isReady()){
         console.log('SignIn: Waiting for IPFS...');
         await this.ui.delay(5000);
       }
@@ -229,7 +229,7 @@ async openFileLoaded(event){
       }
 
       console.log('SignIn: Selecting Channel: '+defaultChannel+'...');
-      this.os.ocean.dolphin.selectChannel(defaultChannel);
+      this.q.os.ocean.dolphin.selectChannel(defaultChannel);
       return true;
     }
 

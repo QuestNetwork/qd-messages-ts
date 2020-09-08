@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Ocean }  from '@questnetwork/quest-ocean-js';
+import { qOS }  from '@questnetwork/quest-os-js';
 import * as swarmJson from '../swarm.json';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class QuestOceanService {
+export class QuestOSService {
   //
-  ocean;
+  public os;
+  ready = false;
+  config;
   constructor() {
-    this.ocean = Ocean;
-  }
-
-  config = {};
-  async start(){
     this.config = {
       ipfs: {
         swarm: swarmJson['ipfs']['swarm']
       }
     };
-    await this.ocean.create(this.config);
+    this.os = qOS;
   }
-
-
+  async boot(){
+    await this.os.boot(this.config);
+    this.ready = true;
+  }
 }

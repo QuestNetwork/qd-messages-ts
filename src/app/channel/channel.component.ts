@@ -1,6 +1,6 @@
 import { Component, OnInit, Input,ViewChild, ChangeDetectorRef} from '@angular/core';
 import { UiService} from '../services/ui.service';
-import { QuestOceanService } from '../services/quest-ocean.service';
+import { QuestOSService } from '../services/quest-os.service';
 
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 
@@ -21,7 +21,7 @@ export class ChannelComponent implements OnInit {
   @Input() channel: string;
   @ViewChild('newMessage') newMessage;
 
-  constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef, private ui: UiService, private os: QuestOceanService) {
+  constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef, private ui: UiService, private q: QuestOSService) {
     //parse channels
   }
   DEVMODE = swarmJson['dev'];
@@ -77,7 +77,7 @@ export class ChannelComponent implements OnInit {
       this.ui.updateProcessingStatus(false);
     },30000);
     this.ui.updateProcessingStatus(true);
-    this.os.ocean.dolphin.completedChallenge(this.channel, tokenorcode);
+    this.q.os.ocean.dolphin.completedChallenge(this.channel, tokenorcode);
   }
 
   messages = [];
@@ -126,21 +126,21 @@ export class ChannelComponent implements OnInit {
   async attemptJoinChannel(channel){
     console.log('attempting to join: ',channel);
     try{
-        if(!this.os.ocean.dolphin.isSubscribed(this.channel)){
-          await this.os.ocean.dolphin.joinChannel(channel);
+        if(!this.q.os.ocean.dolphin.isSubscribed(this.channel)){
+          await this.q.os.ocean.dolphin.joinChannel(channel);
         }
         this.ui.showSnack('Loading Channel...','All right', {duration: 2500});
 
-        let messageHistory = this.os.ocean.dolphin.getChannelHistory(this.channel);
+        let messageHistory = this.q.os.ocean.dolphin.getChannelHistory(this.channel);
         this.DEVMODE && console.log('got history: ',messageHistory);
         for(let i = 0;i<messageHistory.length;i++){
           await this.handleNewMessage(messageHistory[i]);
         }
-        this.os.ocean.dolphin.listen(channel).subscribe( async (pubObj) => {
+        this.q.os.ocean.dolphin.listen(channel).subscribe( async (pubObj) => {
           await this.handleNewMessage(pubObj)
         });
 
-        let isOwner = this.os.ocean.dolphin.isOwner(channel,this.os.ocean.dolphin.getChannelKeyChain(channel)['channelPubKey']);
+        let isOwner = this.q.os.ocean.dolphin.isOwner(channel,this.q.os.ocean.dolphin.getChannelKeyChain(channel)['channelPubKey']);
         console.log('isOwner:',isOwner);
         if(isOwner){
           this.showChallengeScreen = false;
@@ -170,7 +170,7 @@ export class ChannelComponent implements OnInit {
   }
 
   async publishChannelMessage(event){
-    this.os.ocean.dolphin.publishChannelMessage(this.channel, event.message);
+    this.q.os.ocean.dolphin.publishChannelMessage(this.channel, event.message);
     this.newMessage.nativeElement.value = "";
   }
 

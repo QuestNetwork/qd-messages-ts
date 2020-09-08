@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestOceanService } from '../services/quest-ocean.service';
+import { QuestOSService } from '../services/quest-os.service';
 import { UiService } from '../services/ui.service';
 
 @Component({
@@ -9,21 +9,21 @@ import { UiService } from '../services/ui.service';
 })
 export class ChannelParticipantListComponent implements OnInit {
 
-  constructor(private os: QuestOceanService, private ui: UiService) { }
+  constructor(private q: QuestOSService, private ui: UiService) { }
 
   channelParticipantListArray = [];
 
 
   async initProcess(){
 
-    while(!this.os.ocean.isReady()){
+    while(!this.q.os.ocean.isReady()){
       await this.ui.delay(1000);
     }
 
-    if(this.os.ocean.dolphin.getSelectedChannel() != 'NoChannelSelected'){
+    if(this.q.os.ocean.dolphin.getSelectedChannel() != 'NoChannelSelected'){
       let uiCheck = setInterval( () =>{
         try{
-          let fullPListArr = this.os.ocean.dolphin.getChannelParticipantList(this.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
+          let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
           if(fullPListArr.length > 0){
             for(let i=0;i<fullPListArr.length;i++){
               fullPListArr[i] =   fullPListArr[i].substr(130);
@@ -36,7 +36,7 @@ export class ChannelParticipantListComponent implements OnInit {
       },10000);
 
       try{
-        let fullPListArr = this.os.ocean.dolphin.getChannelParticipantList(this.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
+        let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
         if(fullPListArr.length > 0){
           for(let i=0;i<fullPListArr.length;i++){
             fullPListArr[i] =   fullPListArr[i].substr(130);
@@ -56,7 +56,7 @@ export class ChannelParticipantListComponent implements OnInit {
     await this.initProcess()
 
 
-          this.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+          this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
             this.initProcess();
 
             this.selectedChannel = value;
