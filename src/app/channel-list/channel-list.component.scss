@@ -47,3 +47,30 @@ button[nbTreeGridRowToggle] {
 :host nb-layout-header ::ng-deep nav {
  justify-content: flex-end;
 }
+
+
+
+
+
+@import '~@angular/material/theming';
+.mat-tree-node {
+  background-color: white;
+  user-select: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: move;
+  &.cdk-drag-preview { // while dragging
+    @include mat-elevation(12);
+  }
+  &.cdk-drag-placeholder { // potential drop area
+    opacity: 0;
+  }
+}
+/* items moving away to make room for drop */
+.cdk-drop-list-dragging .mat-tree-node:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+/* item being dropped */
+.cdk-drag-animating {
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}

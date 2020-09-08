@@ -18,31 +18,25 @@ sideBarFixed = { left:false}
 
   items: NbMenuItem[] = [
     {
-      title: 'Profile',
-      expanded: true,
-      children: [
-        {
-          title: 'Profile Settings',
-        },
-        {
-          title: 'Export Settings',
-        },
-      ],
+      title: 'General',
+      icon: 'browser-outline',
+
+    },
+    {
+      title: 'AutoSave',
+      icon: "save-outline"
+
     },
     {
       title: 'IPFS',
-      children: [
-        {
-          title: 'Bootstrap',
-        },
-        {
-          title: 'Settings',
-        }
-      ],
+      icon: "cube-outline"
     },
     {
-      title: 'Sign Out'
-    }
+      title: 'Export',
+      icon:'code-download-outline'
+    },
+
+
 
   ];
 

@@ -15,14 +15,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-// import {MatTreeModule} from '@angular/material/tree';
-
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTreeModule} from '@angular/material/tree';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {DragDropModule} from '@angular/cdk/drag-drop';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -34,7 +35,7 @@ import { NbDialogService } from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbTabsetModule } from '@nebular/theme';
 import { NbChatModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbIconModule,NbTreeGridModule,    NbCardModule } from '@nebular/theme';
+import { NbIconModule,    NbCardModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
 //
@@ -76,6 +77,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     ChannelTabComponent
   ],
   imports: [
+    CdkTableModule,
+    CdkTreeModule,
     ClipboardModule,
     FlexLayoutModule,
     HttpClientModule,
@@ -102,12 +105,18 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     NbTabsetModule,
     NbEvaIconsModule,
     NbIconModule,
-    NbTreeGridModule,
     FormsModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
-    NbCardModule
+    NbCardModule,
+    MatTreeModule,
+    DragDropModule
+  ],
+  exports: [
+    CdkTableModule,
+    CdkTreeModule,
+    MatTreeModule,
   ],
   providers: [
       UiService,
