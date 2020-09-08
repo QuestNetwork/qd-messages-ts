@@ -43,7 +43,7 @@ export class ConfigService {
 
   async ngOnInit(){
     console.log('ConfigService: Waiting For Ocean...');
-    while(!this.q.os.ocean.isReady()){
+    while(!this.q.isReady()){
       console.log('ConfigService: Waiting For Ocean...');
       await this.ui.delay(1000);
     }

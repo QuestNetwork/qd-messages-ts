@@ -118,16 +118,13 @@ export class AppComponent {
 
     console.log("App: Booting Quest Network Operating System...");
     await this.q.boot();
+    this.swarmPeers = this.q.os.ocean.getPeers();
+    this.aChD.detectChanges();
+
     this.q.os.ocean.swarmPeersSub.subscribe( (value:number) => {
       this.swarmPeers = value;
       this.aChD.detectChanges();
     });
-
-    console.log('App: Waiting For Ocean...');
-    while(!this.q.os.ocean.isReady()){
-      console.log('App: Waiting For Ocean...');
-      await this.ui.delay(1000);
-    }
 
     this.q.os.ocean.dolphin.channelNameListSub.subscribe( (value) => {
       this.ui.showSnack('Channel Update ','Dismiss', {duration:2000});

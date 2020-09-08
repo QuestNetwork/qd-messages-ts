@@ -73,7 +73,7 @@ export class ChannelTabComponent implements OnInit {
     });
 
 
-      while(!this.q.os.ocean.isReady()){
+      while(!this.q.isReady()){
         await this.ui.delay(1000);
       }
 

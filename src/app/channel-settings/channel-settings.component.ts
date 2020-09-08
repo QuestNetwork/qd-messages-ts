@@ -59,7 +59,7 @@ export class ChannelSettingsComponent implements OnInit {
 
 
   async ngOnInit() {
-    while(!this.q.os.ocean.isReady()){
+    while(!this.q.isReady()){
       await this.ui.delay(1000);
     }
 

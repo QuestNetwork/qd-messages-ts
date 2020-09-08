@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit {
 
       //wait for ocean
       console.log('SignIn: Waiting For Ocean...');
-      while(!this.q.os.ocean.isReady()){
+      while(!this.q.isReady()){
         console.log('SignIn: Waiting For Ocean...');
         this.ui.delay(1000);
       }
@@ -216,7 +216,7 @@ async openFileLoaded(event){
       //wait for ipfs
       this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
       console.log('SignIn: Waiting for IPFS...');
-      while(!this.q.os.ocean.isReady()){
+      while(!this.q.isReady()){
         console.log('SignIn: Waiting for IPFS...');
         await this.ui.delay(5000);
       }
