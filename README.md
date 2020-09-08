@@ -71,6 +71,12 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 
 **Commands**
 
+Until this branch is released, you need to clone: 
+- [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
+- [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
+
+To The same directory you're cloning this repository to.
+
 ```npm run inst``` Removes ```package-lock.json``` and runs ``npm install``
 
 ```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
