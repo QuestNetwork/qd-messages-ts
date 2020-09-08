@@ -1,6 +1,5 @@
 import { Component, ViewChild, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import { UiService} from '../services/ui.service';
-import { ConfigService } from '../services/config.service';
 import { QuestOSService } from '../services/quest-os.service';
 
 import { NbSidebarService } from '@nebular/theme';
@@ -13,7 +12,7 @@ import { NbMenuItem } from '@nebular/theme';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private config: ConfigService, private ui: UiService, private q: QuestOSService, private sidebarService: NbSidebarService) {}
+  constructor(private ui: UiService, private q: QuestOSService, private sidebarService: NbSidebarService) {}
 
 sideBarFixed = { left:false}
 

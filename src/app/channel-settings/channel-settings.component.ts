@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestOSService } from '../services/quest-os.service';
-import { ConfigService } from '../services/config.service';
 import { UiService } from '../services/ui.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { UiService } from '../services/ui.service';
 })
 export class ChannelSettingsComponent implements OnInit {
 
-  constructor(private ui: UiService,private q: QuestOSService, private config:ConfigService) { }
+  constructor(private ui: UiService,private q: QuestOSService) { }
 
   challengeFlowFlag = 0;
   challengeFlowFlagChanged(value){
@@ -27,13 +26,13 @@ export class ChannelSettingsComponent implements OnInit {
     let channel = this.selectedChannel;
     let link;
     if(this.includeFolderStructure == 1){
-      link = this.config.createInviteCode(channel,this.newInviteCodeMax, true);
+      link = this.q.os.ocean.dolphin.createInviteCode(channel,this.newInviteCodeMax, true);
     }
     else{
-      link = this.config.createInviteCode(channel,this.newInviteCodeMax);
+      link =  this.q.os.ocean.dolphin.createInviteCode(channel,this.newInviteCodeMax);
     }
 
-    let ivC = this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
+    let ivC =  this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
     this.channelInviteCodes = [];
     if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
              this.channelInviteCodes = ivC['items'];
@@ -41,7 +40,7 @@ export class ChannelSettingsComponent implements OnInit {
   }
 
   removeInviteCode(link){
-    this.config.removeInviteCode(this.selectedChannel,link);
+    this.q.os.ocean.dolphin.removeInviteCode(this.selectedChannel,link);
     this.channelInviteCodes = this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel)['items'];
   }
 
@@ -89,7 +88,7 @@ export class ChannelSettingsComponent implements OnInit {
   noChannelSelected = "NoChannelSelected";
 
   deleteCurrentChannel(){
-    this.config.removeChannel(this.selectedChannel);
+    this.q.os.removeChannel(this.selectedChannel);
   }
 
 

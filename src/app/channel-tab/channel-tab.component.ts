@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
-import { ConfigService } from '../services/config.service';
 import { UiService } from '../services/ui.service';
 import { QuestOSService } from '../services/quest-os.service';
 
@@ -11,14 +10,14 @@ import { QuestOSService } from '../services/quest-os.service';
 })
 export class ChannelTabComponent implements OnInit {
 
-  constructor( private ui: UiService, private sidebarService: NbSidebarService,private config: ConfigService, private q: QuestOSService) { }
+  constructor( private ui: UiService, private sidebarService: NbSidebarService, private q: QuestOSService) { }
   channelNameList = [];
 
   async ngOnInit() {
 
 
-      this.sideBarFixed = this.config.getSideBarFixed();
-      this.sideBarVisible = this.config.getSideBarVisible();
+      this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
+      this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
       console.log('toggling:',this.sideBarVisible);
       if(!this.sideBarVisible['left']){
         this.sidebarService.collapse('left');
@@ -34,8 +33,8 @@ export class ChannelTabComponent implements OnInit {
       }
 
       setTimeout( () => {
-            this.sideBarFixed = this.config.getSideBarFixed();
-            this.sideBarVisible = this.config.getSideBarVisible();
+            this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
+            this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
             console.log('toggling:',this.sideBarVisible);
             if(!this.sideBarVisible['left']){
               this.sidebarService.collapse('left');
@@ -51,13 +50,13 @@ export class ChannelTabComponent implements OnInit {
             }
       },100);
 
-      this.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
-        this.sideBarFixed = this.config.getSideBarFixed();
+      this.q.os.bee.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
+        this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
       });
 
-      this.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
+      this.q.os.bee.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
         console.log('getting',sideBarVisible);
-        this.sideBarVisible = this.config.getSideBarVisible();
+        this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
         if(!this.sideBarVisible['left']){
           this.sidebarService.collapse('left');
         }
@@ -78,7 +77,7 @@ export class ChannelTabComponent implements OnInit {
       }
 
       this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
-        this.config.channelFolderListSub.subscribe( (chFL: []) => {
+        this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
           this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
         });
 
@@ -102,20 +101,20 @@ export class ChannelTabComponent implements OnInit {
 
      lockSideBar(side,value){
        this.sideBarFixed[side] = value;
-       this.config.setSideBarFixed(this.sideBarFixed);
-       this.config.commitNow();
+       this.q.os.bee.config.setSideBarFixed(this.sideBarFixed);
+       this.q.os.bee.config.commitNow();
      }
 
       toggleSideBar(side) {
-        this.sideBarVisible = this.config.getSideBarVisible();
+        this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
         if( this.sideBarVisible[side] == true ){
           this.sideBarVisible[side]  = false;
         }
         else{
           this.sideBarVisible[side]  = true;
         }
-        this.config.setSideBarVisible(this.sideBarVisible);
-        this.config.commitNow();
+        this.q.os.bee.config.setSideBarVisible(this.sideBarVisible);
+        this.q.os.bee.config.commitNow();
       }
 
 

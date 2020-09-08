@@ -3,6 +3,7 @@ import { qOS }  from '@questnetwork/quest-os-js';
 import * as swarmJson from '../swarm.json';
 import  packageJson from '../../../package.json';
 import { ElectronService } from 'ngx-electron';
+import { saveAs } from 'file-saver';
 const version = packageJson.version;
 
 @Injectable({
@@ -20,7 +21,8 @@ export class QuestOSService {
       },
       version: version,
       dependencies: {
-        electronService: this.electron
+        electronService: this.electron,
+        saveAs: saveAs
       }
     };
     this.os = qOS;

@@ -1,6 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
-import { ConfigService } from '../services/config.service';
 import { QuestOSService } from '../services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../services/ui.service';
@@ -26,9 +25,9 @@ interface FSEntry {
 export class ChannelListComponent implements OnInit {
 
   channelNameList = [];
-  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService,private config: ConfigService, private q: QuestOSService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
 
-      let data = this.config.getChannelFolderList();
+      let data = this.q.os.bee.config.getChannelFolderList();
       this.dataSource = this.dataSourceBuilder.create(data);
     }
 
@@ -103,7 +102,7 @@ export class ChannelListComponent implements OnInit {
     }
 
     this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
-      this.config.channelFolderListSub.subscribe( (chFL: []) => {
+      this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
          this.dataSource = this.dataSourceBuilder.create(chFL);
       });
 
@@ -123,7 +122,7 @@ export class ChannelListComponent implements OnInit {
   channelFolderListArray = [];
   newChannelFolder;
   getChannelFolderList(){
-    this.channelFolderList = this.config.getChannelFolderList();
+    this.channelFolderList = this.q.os.bee.config.getChannelFolderList();
     this.channelFolderListArray = [];
     this.parseStructure(this.channelFolderList);
     if(this.channelFolderListArray.length > 0){
@@ -156,7 +155,7 @@ export class ChannelListComponent implements OnInit {
       parentFolderId = "";
     }
 
-    await this.config.createChannel(channelNameDirty, parentFolderId);
+    await this.q.os.createChannel(channelNameDirty, parentFolderId);
     this.createCompleteAndClose();
   }
   popupRef;
@@ -169,7 +168,7 @@ export class ChannelListComponent implements OnInit {
 
   createCompleteAndClose(){
     this.ui.delay(1000);
-    this.config.commit();
+    this.q.os.bee.config.commit();
     this.ui.showSnack('Create Complete!','Please Wait',{duration:1000});
     this.popupRef.close();
   }
@@ -183,7 +182,7 @@ export class ChannelListComponent implements OnInit {
     if(typeof parentFolderId === 'object'){
       parentFolderId = "";
     }
-    this.config.createFolder(folderNameDirty, parentFolderId);
+    this.q.os.bee.config.createFolder(folderNameDirty, parentFolderId);
     this.createCompleteAndClose();
   }
 
@@ -217,11 +216,11 @@ export class ChannelListComponent implements OnInit {
       parentFolderId = "";
     }
 
-    if(this.config.isInArray(channelName,this.q.os.ocean.dolphin.getChannelNameList())){
+    if(this.q.os.bee.config.isInArray(channelName,this.q.os.ocean.dolphin.getChannelNameList())){
       this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
     }
     else{
-      await this.config.importChannel(channelName,folders,parentFolderId,inviteToken,this.importFolderStructure);
+      await this.q.os.bee.config.importChannel(channelName,folders,parentFolderId,inviteToken,this.importFolderStructure);
       this.createCompleteAndClose();
     }
 

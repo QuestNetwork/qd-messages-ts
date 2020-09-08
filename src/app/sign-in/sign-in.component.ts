@@ -1,6 +1,5 @@
 import { Component, OnInit, Input,ViewChild} from '@angular/core';
 import { UiService} from '../services/ui.service';
-import { ConfigService} from '../services/config.service';
 import { QuestOSService } from '../services/quest-os.service';
 import packageJson from '../../../package.json';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
@@ -17,7 +16,7 @@ export class SignInComponent implements OnInit {
 
   fs: any;
 
-  constructor(private ui: UiService, private q: QuestOSService, private config:ConfigService) {
+  constructor(private ui: UiService, private q: QuestOSService) {
 
   }
 
@@ -25,7 +24,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     //auto login
-    if(this.config.isSignedIn()){
+    if(this.q.os.bee.config.isSignedIn()){
 
       //wait for ocean
       console.log('SignIn: Waiting For Ocean...');
@@ -122,7 +121,6 @@ async openFileLoaded(event){
     return true;
   }
 
-
   async generateDefaultSettings(){
     this.ui.updateProcessingStatus(true);
     let importSettingsStatus = await this.attemptImportSettings({});
@@ -133,7 +131,7 @@ async openFileLoaded(event){
         channelKeyChain:   this.q.os.ocean.dolphin.getChannelKeyChain(),
         channelParticipantList:  this.q.os.ocean.dolphin.getChannelParticipantList(),
         channelNameList: this.q.os.ocean.dolphin.getChannelNameList(),
-        channelchannelFolderList: this.config.getChannelFolderList()
+        channelchannelFolderList: this.q.os.bee.config.getChannelFolderList()
     });
     let jobFileBlob = new Blob([stringify], { type: 'text/plain;charset=utf-8' });
     saveAs(jobFileBlob, "profile.qcprofile");
@@ -210,8 +208,8 @@ async openFileLoaded(event){
 
       await this.ui.delay(2000);
       this.DEVMODE && console.log('Unpacking Global Keychain...')
-      this.config.readConfig(parsedStringify);
-      this.config.autoSave();
+      this.q.os.bee.config.readConfig(parsedStringify);
+      this.q.os.bee.config.autoSave();
 
       //wait for ipfs
       this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
@@ -224,8 +222,8 @@ async openFileLoaded(event){
       this.ui.showSnack('Swarm Discovered...','Cool',{duration:1000});
 
       let defaultChannel = "NoChannelSelected";
-      if(typeof(this.config.getConfig()['selectedChannel']) != 'undefined'){
-        defaultChannel = this.config.getConfig()['selectedChannel'];
+      if(typeof(this.q.os.bee.config.getConfig()['selectedChannel']) != 'undefined'){
+        defaultChannel = this.q.os.bee.config.getConfig()['selectedChannel'];
       }
 
       console.log('SignIn: Selecting Channel: '+defaultChannel+'...');
