@@ -120,6 +120,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Delete Channels
 
 **0.9.2**
+- After 0.9.0 & 0.9.1 proved the concept, 0.9.2 is almost an entire rewrite 
 - IPFS Update (0.50.1)
 - Enhanced Mobile UI, Centered Snackbar, New Fonts, Icons & Buttons
 - Included All Fonts And Icons In The Bundle
