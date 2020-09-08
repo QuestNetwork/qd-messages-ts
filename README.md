@@ -93,6 +93,8 @@ To The same directory you're cloning this repository to.
 
 ```ng serve``` Serves a just in time compilation of the messenger on ```localhost:4200```
 
+```npm run serve-fresh``` Runs ``rm -rf node_modules && npm run inst && ng serve``
+
 
 We added an example ```swarm.json``` to the ```src/app``` folder with an example node to make reproduction easier, but we strongly recommend to use our [Quest CLI](https://github.com/QuestNetwork/quest-cli) to test and build the app.
 
