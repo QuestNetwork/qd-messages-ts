@@ -72,6 +72,7 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 **Commands**
 
 Until this branch is released, you need to clone: 
+- [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
 - [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 
@@ -119,6 +120,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - IPFS Update (0.50.1)
 - Enhanced Mobile UI, Centered Snackbar, New Fonts, Icons & Buttons
 - Included All Fonts And Icons In The Bundle
+- [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
 - [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 
