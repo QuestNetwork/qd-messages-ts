@@ -113,13 +113,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - IPFS Update (0.50.1)
 - Enhanced Mobile UI, Centered Snackbar, New Fonts, Icons & Buttons
 - Included All Fonts And Icons In The Bundle
+- [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
+- [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 
 ## Roadmap
 
 **0.9.2**
 - [Quest Network Bee Service](https://github.com/QuestNetwork/quest-bee-js)
-- [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
-- [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 - Disable AutoSave
 - Export Settings
 - Drag/Drop Folders/Channels
