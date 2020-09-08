@@ -79,11 +79,11 @@ export class AppComponent {
 
 
     this.jqueryInit();
-    this.os.create();
+    this.os.start();
 
     this.ui.snackBar.subscribe( (object) => {
         this.showSnack(object.left, object.right, object.object);
-    });c
+    });
 
     this.ui.snackBarDismissedSub.subscribe( (value) => {
       this.snackBar.dismiss();
