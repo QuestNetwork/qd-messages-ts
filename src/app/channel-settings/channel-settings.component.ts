@@ -26,10 +26,10 @@ export class ChannelSettingsComponent implements OnInit {
     let channel = this.selectedChannel;
     let link;
     if(this.includeFolderStructure == 1){
-      link = this.q.os.ocean.dolphin.createInviteCode(channel,this.newInviteCodeMax, true);
+      link = this.q.os.createInvite(channel,this.newInviteCodeMax, true);
     }
     else{
-      link =  this.q.os.ocean.dolphin.createInviteCode(channel,this.newInviteCodeMax);
+      link =  this.q.os.createInvite(channel,this.newInviteCodeMax);
     }
 
     let ivC =  this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);

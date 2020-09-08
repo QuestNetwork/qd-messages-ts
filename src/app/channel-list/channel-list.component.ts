@@ -220,7 +220,7 @@ export class ChannelListComponent implements OnInit {
       this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
     }
     else{
-      await this.q.os.bee.config.importChannel(channelName,folders,parentFolderId,inviteToken,this.importFolderStructure);
+      await this.q.os.importChannel(channelName,folders,parentFolderId,inviteToken,this.importFolderStructure);
       this.createCompleteAndClose();
     }
 
