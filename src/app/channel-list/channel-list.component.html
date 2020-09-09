@@ -123,36 +123,35 @@
                      (drop)="handleDrop($event, node);"
                      [ngClass]="getStyle(node)" >
 
+                     <!-- <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)"> -->
 
-      <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)">
+      <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf='!isFolder(node.item)'>
        <!-- <button mat-icon-button disabled></button> -->
        <nb-icon icon="activity"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"
                        (dragstart)="handleDragStart($event, node);">
-           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
+           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" (click)="selectChannel(node.item)">
                 {{node.item}}
            </span>
          </span>
 
    </div>
 
-   <div class="treeNodeContrainerFolder" *ngIf="isFolder(node.item)"  (contextmenu)="onContextMenu($event, node.item)">
-   <!-- (contextmenu)="onContextMenu($event, node.item)"> -->
-   <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
-   <mat-icon class="mat-icon-rtl-mirror">
-   {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-   </mat-icon>
-   </button>
-   <nb-icon icon="folder-outline"></nb-icon>
+   <div class="treeNodeContrainerFolder"  (contextmenu)="onContextMenu($event, node.item)" *ngIf='isFolder(node.item)'>
+     <!-- (contextmenu)="onContextMenu($event, node.item)"> -->
 
-   <span class="checklist-leaf-node"  draggable="true"
-   (dragstart)="handleDragStart($event, node);">
-   <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
-   {{getFolderNameFromId(node.item)}}
-   </span>
-   </span>
+<nb-icon icon="folder-outline"></nb-icon>
 
-   </div>
+<span class="checklist-leaf-node"  draggable="true"
+     (dragstart)="handleDragStart($event, node);">
+<span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
+{{getFolderNameFromId(node.item)}}
+<!-- {{node.item}} -->
+</span>
+</span>
+
+</div>
+
 
      </mat-tree-node>
 
@@ -176,6 +175,7 @@
                          (dragstart)="handleDragStart($event, node);">
              <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
                {{getFolderNameFromId(node.item)}}
+               <!-- {{node.item}} -->
              </span>
            </span>
 

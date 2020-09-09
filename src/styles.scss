@@ -791,6 +791,14 @@ nb-layout-column{
       border: 2px solid purple !important;
       font-family: Ubuntu;
 }
+.thinOutlineButton{
+  border: 1px solid #673ab6 !important;
+font-family: Ubuntu;
+color: #673ab6 !important;
+
+
+}
+
 .thickOutlineButton.mat-stroked-button:not(.mat-button-disabled) {
   border-color: purple;
 }

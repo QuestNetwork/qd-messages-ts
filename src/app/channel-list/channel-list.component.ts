@@ -481,7 +481,11 @@ onContextMenu(event: MouseEvent, item) {
   }
 
   public isFolder(id){
-    return this.q.os.bee.config.isChannelFolderItemFolder(id);
+    if(id.indexOf('-----') > -1){
+      return false;
+    }
+    return true;
+    // return this.q.os.bee.config.isChannelFolderItemFolder(id);
   }
 
   constructor(private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
