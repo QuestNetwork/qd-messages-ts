@@ -936,3 +936,12 @@ position: relative;
 .mat-tree-node{
     cursor: pointer !important;
 }
+
+.nb-theme-dark nb-tabset .tab-link {
+    background-color: transparent;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    color: #407de9 !important;
+    outline: none !important;
+border: 0 !important;
+  }

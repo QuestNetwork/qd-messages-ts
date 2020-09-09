@@ -96,7 +96,10 @@ export class ChecklistDatabase {
     const newItem = { item: name } as TodoItemNode;
     parent.children.push(newItem);
     this.dataChange.next(this.data);
+    this.buildChannelFolderListFromTreeNodeData(this.data);
+
     return newItem;
+
   }
 
   insertItemAbove(node: TodoItemNode, name: string): TodoItemNode {
@@ -108,6 +111,7 @@ export class ChecklistDatabase {
       this.data.splice(this.data.indexOf(node), 0, newItem);
     }
     this.dataChange.next(this.data);
+    this.buildChannelFolderListFromTreeNodeData(this.data);
     return newItem;
   }
 
@@ -120,6 +124,7 @@ export class ChecklistDatabase {
       this.data.splice(this.data.indexOf(node) + 1, 0, newItem);
     }
     this.dataChange.next(this.data);
+    this.buildChannelFolderListFromTreeNodeData(this.data);
     return newItem;
   }
 
@@ -256,6 +261,25 @@ export class ChecklistDatabase {
   //   // Notify the change.
     this.dataChange.next(data);
   }
+
+  q;
+  setQOS(q){
+    this.q = q;
+  }
+
+  buildChannelFolderListFromTreeNodeData(data){
+    let chFL = [];
+    for(let i=0;i<data.length;i++){
+      let kind = "dir";
+      if(data[i]['item'].indexOf('-----') > -1){
+        kind = "channel";
+      }
+      let children = this.q.os.bee.config.getChannelListChildren(data[i]['item']);
+      chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
+    }
+    this.q.bee.config.setChannelFolderList(chFL);
+  }
+
 }
 
 @Component({
@@ -500,11 +524,13 @@ onContextMenu(event: MouseEvent, item) {
 
   constructor(private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
 
+    this.database.setQOS(this.q);
+
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel, this.isExpandable, this.getChildren);
     this.treeControl = new FlatTreeControl<TodoItemFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-    database.dataChange.subscribe(data => {
+    this.database.dataChange.subscribe(data => {
       this.dataSource.data = [];
       this.dataSource.data = data;
     });
