@@ -125,7 +125,7 @@
 
                      <!-- <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)"> -->
 
-      <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf='!isFolder(node.item)'>
+      <div  class="treeNodeContainerSingle {{node.item}}" *ngIf='!isFolder(node.item)'>
        <!-- <button mat-icon-button disabled></button> -->
        <nb-icon icon="activity"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"
@@ -137,21 +137,28 @@
 
    </div>
 
-   <div class="treeNodeContrainerFolder"  (contextmenu)="onContextMenu($event, node.item)" *ngIf='isFolder(node.item)'>
-     <!-- (contextmenu)="onContextMenu($event, node.item)"> -->
 
-<nb-icon icon="folder-outline"></nb-icon>
+      <div class="treeNodeContainerFolder" (contextmenu)="onContextMenu($event, node.item)" *ngIf='isFolder(node.item)'>
+        <!-- (contextmenu)="onContextMenu($event, node.item)"> -->
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
+          <mat-icon class="mat-icon-rtl-mirror">
+          chevron_right
+          </mat-icon>
+        </button>
 
-<span class="checklist-leaf-node"  draggable="true"
-     (dragstart)="handleDragStart($event, node);">
-<span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
-{{getFolderNameFromId(node.item)}}
-<!-- {{node.item}} -->
-</span>
-</span>
+        <nb-icon icon="folder-outline"></nb-icon>
 
-</div>
+        <span class="checklist-leaf-node"  draggable="true"
+             (dragstart)="handleDragStart($event, node);">
+        <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
+        {{getFolderNameFromId(node.item)}}
+        <!-- {{node.item}} -->
+        <!-- Empty Folder -->
+        </span>
+        </span>
 
+
+   </div>
 
      </mat-tree-node>
 
@@ -162,7 +169,7 @@
                        (drop)="handleDrop($event, node);"
                        [ngClass]="getStyle(node)">
 
-                       <div class="treeNodeContrainerFolder"  (contextmenu)="onContextMenu($event, node.item)">
+                       <div class="treeNodeContainerFolder"  (contextmenu)="onContextMenu($event, node.item)">
                          <!-- (contextmenu)="onContextMenu($event, node.item)"> -->
          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
            <mat-icon class="mat-icon-rtl-mirror">

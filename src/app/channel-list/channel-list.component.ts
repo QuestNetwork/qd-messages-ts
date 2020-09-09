@@ -477,6 +477,9 @@ onContextMenu(event: MouseEvent, item) {
   channelNameList = [];
 
   public getFolderNameFromId(id){
+    if(id == 'emptyFolder'){
+      return id;
+    }
     return this.q.os.bee.config.getFolderNameFromId(id);
   }
 

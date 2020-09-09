@@ -82,7 +82,7 @@ button[nbTreeGridRowToggle] {
     color:honeydew;
 }
 
-.treeNodeContrainerFolder{
+.treeNodeContainerFolder{
   background-color: #8377e60f;
   border-radius: 5px;
   padding: 0;
@@ -94,7 +94,7 @@ padding-right: 16px;
   overflow: hidden;
 }
 
-.treeNodeContrainerSingle{
+.treeNodeContainerSingle{
 // background-color: #ffffff12;
 //     border-radius: 5px;
 //     padding: 10px;
@@ -150,4 +150,9 @@ overflow: hidden;
 
 .emptyFolder{
   display: none;
+}
+
+
+.mat-icon-button i, .mat-icon-button .mat-icon {
+    line-height: 20px;
 }
