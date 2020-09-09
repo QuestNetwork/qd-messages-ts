@@ -373,7 +373,7 @@ onContextMenu(event: MouseEvent, item) {
     this.saveExpandedNodes();
   }
 
-  toggleExpandedStateForItem(){
+  toggleExpandedStateForItem(itemId = ""){
     setTimeout( () => {
       this.saveExpandedNodes();
     },1000);
@@ -551,39 +551,35 @@ onContextMenu(event: MouseEvent, item) {
         }
   });
 
-    while(!this.q.isReady()){
+    while(!this.q.os.bee.config.hasConfig()){
       await this.ui.delay(1000);
     }
 
     this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
-      this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
-        // console.log('ChannelList: Received Folder List...');
-        setTimeout( () => {
-
-          TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
-          this.database.filter("");
-          console.log(chFL);
-          console.log(this.q.os.bee.config.getExpandedChannelFolderItems());
-          if(chFL.length > 0 && this.q.os.bee.config.getExpandedChannelFolderItems().length > 0 && this.restoreFlag == 0){
-            console.log('got a saved state!');
-            this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
-            this.restoreExpandedNodes();
-            this.restoreFlag = 1;
-          }
-          else if(typeof this.expandedNodes != 'undefined'){
-            this.restoreExpandedNodes();
-          }
-
-        },1000);
-
+    this.channelFolderList = this.q.os.bee.config.getChannelFolderList();
+    this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
+          this.loadChannels(chFL);
     });
-
-    setInterval( () => {
-      this.toggleExpandedStateForItem();
-    },10000);
+    this.loadChannels(this.channelFolderList);
 
   }
 
+
+  loadChannels(chFL){
+    TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
+    this.database.filter("");
+    console.log(chFL);
+    console.log(this.q.os.bee.config.getExpandedChannelFolderItems());
+    if(chFL.length > 0 && this.q.os.bee.config.getExpandedChannelFolderItems().length > 0 && this.restoreFlag == 0){
+      console.log('got a saved state!');
+      this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
+      this.restoreExpandedNodes();
+      this.restoreFlag = 1;
+    }
+    else if(typeof this.expandedNodes != 'undefined'){
+      this.restoreExpandedNodes();
+    }
+  }
 
   expandedNodes;
   restoreFlag = 0;

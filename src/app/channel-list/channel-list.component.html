@@ -151,7 +151,7 @@
                        <div class="treeNodeContainerFolder"  (contextmenu)="onContextMenu($event, node.item)">
                          <!-- (contextmenu)="onContextMenu($event, node.item)"> -->
          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
-           <mat-icon class="mat-icon-rtl-mirror">
+           <mat-icon class="mat-icon-rtl-mirror" (click)="toggleExpandedStateForItem(node.idem)">
              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
            </mat-icon>
          </button>

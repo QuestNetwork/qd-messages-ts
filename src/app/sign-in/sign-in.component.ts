@@ -206,10 +206,13 @@ async openFileLoaded(event){
           this.ui.showSnack('Importing key...','Yeh');
       }
 
-      await this.ui.delay(2000);
-      this.DEVMODE && console.log('Unpacking Global Keychain...')
+      this.DEVMODE && console.log('SignIn: Reading Bee Config...')
+      while(!this.q.os.isReady()){
+        await this.ui.delay(2000);
+      }
       this.q.os.bee.config.readConfig(parsedStringify);
       this.q.os.bee.config.autoSave();
+
 
       //wait for ipfs
       this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
