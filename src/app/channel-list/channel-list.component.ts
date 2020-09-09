@@ -370,6 +370,13 @@ onContextMenu(event: MouseEvent, item) {
     const parentNode = this.flatNodeMap.get(node);
     this.database.insertItem(parentNode, '');
     this.treeControl.expand(node);
+    this.saveExpandedNodes();
+  }
+
+  toggleExpandedStateForItem(){
+    setTimeout( () => {
+      this.saveExpandedNodes();
+    },1000);
   }
 
   /** Save the node to database */
@@ -423,8 +430,10 @@ onContextMenu(event: MouseEvent, item) {
       } else {
         newItem = this.database.copyPasteItem(this.flatNodeMap.get(this.dragNode), this.flatNodeMap.get(node));
       }
+
       this.database.deleteItem(this.flatNodeMap.get(this.dragNode));
       this.treeControl.expandDescendants(this.nestedNodeMap.get(newItem));
+      this.saveExpandedNodes();
     }
      this.handleDragEnd(event);
   }
@@ -549,13 +558,52 @@ onContextMenu(event: MouseEvent, item) {
     this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
       this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
         // console.log('ChannelList: Received Folder List...');
-        TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
-        this.database.filter("");
+        setTimeout( () => {
+
+          TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
+          this.database.filter("");
+          console.log(chFL);
+          console.log(this.q.os.bee.config.getExpandedChannelFolderItems());
+          if(chFL.length > 0 && this.q.os.bee.config.getExpandedChannelFolderItems().length > 0 && this.restoreFlag == 0){
+            console.log('got a saved state!');
+            this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
+            this.restoreExpandedNodes();
+            this.restoreFlag = 1;
+          }
+          else if(typeof this.expandedNodes != 'undefined'){
+            this.restoreExpandedNodes();
+          }
+
+        },1000);
 
     });
 
+    setInterval( () => {
+      this.toggleExpandedStateForItem();
+    },10000);
+
   }
 
+
+  expandedNodes;
+  restoreFlag = 0;
+  saveExpandedNodes() {
+    console.log('ChannelList: saving expanded nodes...');
+      this.expandedNodes = [];
+      this.treeControl.dataNodes.forEach(node => {
+          if (node.expandable && this.treeControl.isExpanded(node)) {
+              this.expandedNodes.push(node);
+          }
+      });
+
+      this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+  }
+
+  restoreExpandedNodes() {
+    this.expandedNodes.forEach(node => {
+        this.treeControl.expand(this.treeControl.dataNodes.find(n => n['id'] === node.id));
+    });
+}
 
   ngOnDestroy(){
   //  this.nbMenuService.unsubscribe();

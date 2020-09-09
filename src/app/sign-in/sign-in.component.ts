@@ -103,7 +103,7 @@ async openFileLoaded(event){
       let importSettingsStatus = await this.attemptImportSettings(parsedStringify);
       console.log('Sign In: Import Settings Status:',importSettingsStatus);
       //set temporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
-      if(importSettingsStatus){this.ui.showSnack('Opening Messages...','Almost There');await this.jumpToChannels();return true;}
+      if(importSettingsStatus){this.ui.showSnack('Opening Messages...','Almost There',{duration:2000});await this.jumpToChannels();return true;}
       else{this.ui.showSnack('Error Importing Settings!','Oh No');}
     }
     return false;
