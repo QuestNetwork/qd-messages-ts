@@ -1,14 +1,14 @@
 <nb-layout  class="channelScreen" >
   <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
-    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton" style="margin-right:8px;">Hide Panel</button>
-    <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.left">Lock Panel</button>
-    <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.left">Float Panel</button>
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thickOutlineButton" style="margin-right:23px;">Hide Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton thickOutlineButton" *ngIf="sideBarFixed.left">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton thickOutlineButton" *ngIf="!sideBarFixed.left">Float Panel</button>
     <app-channel-sidebar-left></app-channel-sidebar-left>
   </nb-sidebar>
   <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true">
-    <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton" *ngIf="sideBarFixed.right" style="margin-right:10px;">Lock Panel</button>
-    <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton" *ngIf="!sideBarFixed.right" style="margin-right:10px;">Float Panel</button>
-    <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton">Hide Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton thickOutlineButton" *ngIf="sideBarFixed.right" style="margin-right:10px;">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton thickOutlineButton" *ngIf="!sideBarFixed.right" style="margin-right:10px;">Float Panel</button>
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton thickOutlineButton ">Hide Panel</button>
 
     <app-channel-sidebar-right></app-channel-sidebar-right>
   </nb-sidebar>

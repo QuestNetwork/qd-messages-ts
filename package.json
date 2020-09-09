@@ -50,7 +50,8 @@
     "linux": "rsync --exclude 'local/' --exclude 'dist/' --exclude '.git/' --exclude 'recoveryWEB/' --exclude 'recoveryAPP/' --exclude 'node_modules/' -auv * recoveryAPP/ && ng build --prod --base-href ./ && electron-builder --linux",
     "mac": "rsync --exclude 'local/' --exclude 'dist/' --exclude '.git/' --exclude 'recoveryWEB/' --exclude 'recoveryAPP/' --exclude 'node_modules/' -auv * recoveryAPP/ && ng build --prod --base-href ./ && electron-builder --mac",
     "postinstall": "electron-builder install-app-deps",
-    "electron": "electron ."
+    "electron": "electron .",
+    "watch-reset": "echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
   },
   "private": false,
   "dependencies": {

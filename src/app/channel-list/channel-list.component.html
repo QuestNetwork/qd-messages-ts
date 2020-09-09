@@ -108,25 +108,83 @@
 
 
 
-<input nbInput id="search" class="search-input" placeholder="Search">
+<mat-form-field style="width: 169px;
+    margin-top: 20px;color:#598adb;">
+   <input matInput placeholder="Search" (input)="filterChanged($event.target.value)">
+</mat-form-field>
 <button outline  [nbContextMenu]="items" size="small" class="addChannelButton">
      <nb-icon icon="plus-outline" style="font-size: 18px;width:auto;"></nb-icon>
    </button>
 
 
-   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" cdkDropList (cdkDropListDropped)="drop($event)">
-     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding cdkDrag [cdkDragData]="node" (mouseenter)="dragHover(node)" (mouseleave)="dragHoverEnd()" (cdkDragStarted)="dragStart()" (cdkDragReleased)="dragEnd()">
-       <nbicon icon="" disabled></nbicon>
-       {{node.filename}} : {{node.type}}
+   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" >
+             <mat-tree-node *matTreeNodeDef="let node"
+                     matTreeNodeToggle matTreeNodePadding
+                     (dragover)="handleDragOver($event, node);"
+                     (dragend)="handleDragEnd($event);"
+                     (drop)="handleDrop($event, node);"
+                     [ngClass]="getStyle(node)" >
+
+
+      <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)">
+       <!-- <button mat-icon-button disabled></button> -->
+       <nb-icon icon="activity"></nb-icon>
+         <span class="checklist-leaf-node"  draggable="true"
+                       (dragstart)="handleDragStart($event, node);">
+           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
+                {{node.item}}
+           </span>
+         </span>
+
+</div>
+
+<div class="treeNodeContrainerFolder" *ngIf="isFolder(node.item)">
+<button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
+<mat-icon class="mat-icon-rtl-mirror">
+{{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+</mat-icon>
+</button>
+<nb-icon icon="folder-outline"></nb-icon>
+
+<span class="checklist-leaf-node"  draggable="true"
+  (dragstart)="handleDragStart($event, node);">
+<span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
+{{getFolderNameFromId(node.item)}}
+</span>
+</span>
+
+</div>
+
      </mat-tree-node>
 
-     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding cdkDrag [cdkDragData]="node" (mouseenter)="dragHover(node)" (mouseleave)="dragHoverEnd()" (cdkDragStarted)="dragStart()" (cdkDragReleased)="dragEnd()">
-       <button mat-icon-button matTreeNodeToggle
-               [attr.aria-label]="'toggle ' + node.filename">
-         <mat-icon class="mat-icon-rtl-mirror">
-           {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-         </mat-icon>
-       </button>
-       {{node.filename}} : {{node.type}}
-     </mat-tree-node>
-   </mat-tree>
+
+     <mat-tree-node *matTreeNodeDef="let node; when: hasChild"
+                       matTreeNodePadding
+                        (dragover)="handleDragOver($event, node);"
+                       (dragend)="handleDragEnd($event, node);"
+                       (drop)="handleDrop($event, node);"
+                       [ngClass]="getStyle(node)">
+
+                       <div class="treeNodeContrainerFolder">
+         <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
+           <mat-icon class="mat-icon-rtl-mirror">
+             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+           </mat-icon>
+         </button>
+         <nb-icon icon="folder-outline"></nb-icon>
+
+           <span class="checklist-leaf-node"  draggable="true"
+                         (dragstart)="handleDragStart($event, node);">
+             <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
+               {{getFolderNameFromId(node.item)}}
+             </span>
+           </span>
+
+           </div>
+           <!-- <button mat-icon-button (click)="deleteItem(node)"><nb-icon icon="trash-2-outline"></nb-icon></button> -->
+
+         <!-- <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add_circle_outline</mat-icon></button> -->
+       </mat-tree-node>
+     </mat-tree>
+
+   <span #emptyItem></span>

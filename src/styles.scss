@@ -97,6 +97,9 @@ opacity:0;
 //
 
 
+.display-none{
+  display: none !important;
+}
 
 .mat-form-field-label, .matf-form-field-underline{
       color: #ffffff8c;
@@ -635,9 +638,10 @@ width:70px;white-space: nowrap;overflow: hidden; text-overflow: ellipsis; }
 }
 
 
-.channelList tr, .channelList td, .nb-theme-dark nb-tabset nb-tab, .channelList nb-icon{
+.channelList tr, .channelList td, .nb-theme-dark nb-tabset nb-tab {
     color:#ffffffcf !important;
   }
+
 
   .channelList td{
 padding: 0 !important;
@@ -685,7 +689,10 @@ padding: 0 !important;
 }
 
 
-.mat-tab-body {
+.mat-tab-body {.channelList nb-icon, .channelList mat-tree-node{
+color:#4781e9fc;
+}
+
     animation: fade-out 0.5s;
     opacity: 0;
 }
@@ -856,6 +863,7 @@ position: relative;
 .menu-item{
       border-bottom: 8px solid #46257b !important;
 border-top: 4px solid #2d62ea !important;
+}
   .nb-theme-dark nb-menu .menu-item:first-child {
     border-top: 12px solid #3259dbd9 !important;
 }
@@ -864,8 +872,47 @@ border-top: 4px solid #2d62ea !important;
     border-bottom: 11px solid #45257c !important;
 }
 
+.nb-theme-dark nb-layout .layout {
+    background-color: #33374bd9 !important;
+  }
+
 .appSettings ul{
   background: #282424;
   padding-top: 5px;
 width: 100%;
+}
+
+.channelList .mat-tree,.channelList  .mat-tree-node{
+  background: transparent;
+}
+
+.channelList .mat-tree nb-icon, .channelList mat-tree-node{
+color:#4781e9fc !important;
+}
+
+.channelList .mat-tree nb-icon{
+  position: relative;
+    left: -7px;
+}
+
+.channelList .mat-tree span{
+  white-space: nowrap;
+word-break: break-all;
+text-overflow: ellipsis;
+overflow: hidden;
+}
+
+.channelList .checklist-leaf-node span{
+  font-size: 16px;
+    font-family: ubuntu;
+}
+
+.channelList .mat-tree{
+  width: 230px;
+    position: relative;
+    left: -14px;
+    z-index: 999;
+width: 225px;
+left: -14px;
+position: relative;
 }

@@ -53,24 +53,101 @@ button[nbTreeGridRowToggle] {
 
 
 @import '~@angular/material/theming';
+
+.mat-tree, .mat-tree-node{
+  background:transparent;
+}
+
 .mat-tree-node {
-  background-color: white;
-  user-select: none;
+  overflow: visible;
+  cursor: move;
+}
+
+.drop-above {
+  border-top: 10px solid #2196F3;
+  margin-top: -10px;
+}
+
+.drop-below {
+  border-bottom: 10px solid #2196F3;
+  margin-bottom: -10px;
+}
+
+.drop-center {
+  background-color: darkgray;
+}
+
+.drag-start {
+    background-color: #1565c0;
+    color:honeydew;
+}
+
+.treeNodeContrainerFolder{
+  background-color: #8377e60f;
+  border-radius: 5px;
+  padding: 0;
+padding-right: 16px;
+  padding-left: 0px;
+  margin: 0px;
   white-space: nowrap;
   text-overflow: ellipsis;
-  cursor: move;
-  &.cdk-drag-preview { // while dragging
-    @include mat-elevation(12);
-  }
-  &.cdk-drag-placeholder { // potential drop area
-    opacity: 0;
-  }
+  overflow: hidden;
 }
-/* items moving away to make room for drop */
-.cdk-drop-list-dragging .mat-tree-node:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+
+.treeNodeContrainerSingle{
+// background-color: #ffffff12;
+//     border-radius: 5px;
+//     padding: 10px;
+//     padding-left: 20px;
+//     margin: 5px;
+//
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+
+
+    background-color: #4527805e;
+border-radius: 5px;
+padding: 6px;
+padding-right: 10px;
+padding-left: 15px;
+margin: 0px;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+  }
+
+
+  .mat-tree{
+    z-index: 999;
+    width: 227px;
+    left: 14px;
+    top: 190px;
+    padding-right: 10px;
+    bottom: 40px;
+    position: fixed;
+    overflow: scroll;
+  }
+
+
+  .mat-tree::-webkit-scrollbar {
+  width: 4px;
+
 }
-/* item being dropped */
-.cdk-drag-animating {
-  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+
+.mat-tree::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.mat-tree::-webkit-scrollbar-thumb {
+  background-color: #4e84e58f;
+  outline: 1px solid slategrey;
+}
+
+.mat-tree::-webkit-scrollbar-track {
+    box-shadow: none !important;
+}
+
+.emptyFolder{
+  display: none;
 }

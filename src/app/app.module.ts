@@ -58,7 +58,6 @@ import { ChannelTabComponent } from './channel-tab/channel-tab.component';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
 
-
 @NgModule({
   declarations: [
 
@@ -111,12 +110,20 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     NbDialogModule.forRoot(),
     NbCardModule,
     MatTreeModule,
-    DragDropModule
+    DragDropModule,
+
+    MatButtonModule,
+   MatCheckboxModule,
+   MatIconModule,
+   MatInputModule,
+   MatTreeModule
+
   ],
   exports: [
     CdkTableModule,
     CdkTreeModule,
-    MatTreeModule,
+    MatTreeModule
+
   ],
   providers: [
       UiService,
