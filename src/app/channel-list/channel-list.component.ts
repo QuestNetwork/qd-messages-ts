@@ -16,6 +16,7 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import {  MatMenuTrigger } from '@angular/material/menu';
 
 /**
  * Node for to-do item
@@ -266,6 +267,26 @@ export class ChecklistDatabase {
 })
 export class ChannelListComponent implements OnInit {
 
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
+  // @ViewChild('contextMenu') contextMenu: MatMenuTrigger;
+
+contextMenuPosition = { x: '0px', y: '0px' };
+onContextMenu(event: MouseEvent, item) {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY-40 + 'px';
+    this.contextMenu.menuData = { 'item': item };
+    // this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
+  }
+
+  onContextMenuAction1(item) {
+    alert(`Click on Action 1 for ${item}`);
+  }
+
+  onContextMenuAction2(item) {
+    alert(`Click on Action 2 for ${item}`);
+  }
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
 
@@ -523,7 +544,7 @@ export class ChannelListComponent implements OnInit {
         // console.log('ChannelList: Received Folder List...');
         TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
         this.database.filter("");
-      
+
     });
 
   }

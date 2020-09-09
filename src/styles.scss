@@ -729,13 +729,6 @@ color:#4781e9fc;
 
 
 
-.nb-theme-dark nb-menu .menu-item .menu-item:first-child {
-    // border-top: 1px solid #2447e2 !important;
-}
-.nb-theme-dark nb-menu .menu-item  {
-    border-bottom: 1px solid #5770da9e !important;
-  }
-
 .nb-theme-dark nb-menu .menu-title{
   opacity: 0.8;
 padding-left: 18px;
@@ -853,21 +846,31 @@ position: relative;
       height: 100vh !important;
 }
 
-.menu-title{
-  font-size: 16px;
-    font-family: ubuntu;
+.menu-title, .mat-menu-item {
+  font-size: 16px  !important;
+    font-family: Ubuntu  !important;
     color: #d5c4f7ed !important;
-
 }
 
-.menu-item{
-      border-bottom: 8px solid #46257b !important;
+.mat-menu-panel{
+      border-radius: 5px;
+}
+
+.mat-menu-item{
+  background-color: #222b45  !important;
+padding: 0  !important;
+margin: 0 !important;
+text-align: center !important;
+line-height: 16px  !important;
+}
+.mat-menu-item, .menu-item{
+      // border-bottom: 8px solid #46257b !important;
 border-top: 4px solid #2d62ea !important;
 }
-  .nb-theme-dark nb-menu .menu-item:first-child {
+  .nb-theme-dark nb-menu .menu-item:first-child, .mat-menu-item:first-child {
     border-top: 12px solid #3259dbd9 !important;
 }
-.nb-theme-dark nb-menu .menu-item:last-child {
+.nb-theme-dark nb-menu .menu-item:last-child, .mat-menu-item:last-child {
     /* border-bottom: none; */
     border-bottom: 11px solid #45257c !important;
 }
@@ -915,4 +918,8 @@ overflow: hidden;
 width: 225px;
 left: -14px;
 position: relative;
+}
+
+.mat-menu-panel .mat-menu-content{
+  padding:0 !important;
 }

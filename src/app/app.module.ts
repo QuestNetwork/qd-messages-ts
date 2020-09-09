@@ -122,7 +122,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
   exports: [
     CdkTableModule,
     CdkTreeModule,
-    MatTreeModule
+    MatTreeModule,
+    MatMenuModule
 
   ],
   providers: [
