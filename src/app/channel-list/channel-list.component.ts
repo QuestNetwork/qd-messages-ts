@@ -63,7 +63,7 @@ export class ChecklistDatabase {
     const data = this.buildFileTree(TREE_DATA, 0);
 
     // Notify the change.
-    this.dataChange.next(data);
+    // this.dataChange.next(data);
   }
 
   /**
@@ -96,37 +96,34 @@ export class ChecklistDatabase {
     const newItem = { item: name } as TodoItemNode;
     parent.children.push(newItem);
     this.dataChange.next(this.data);
-    this.buildChannelFolderListFromTreeNodeData(this.data);
 
     return newItem;
 
   }
 
-  insertItemAbove(node: TodoItemNode, name: string): TodoItemNode {
-    const parentNode = this.getParentFromNodes(node);
-    const newItem = { item: name } as TodoItemNode;
-    if (parentNode != null) {
-      parentNode.children.splice(parentNode.children.indexOf(node), 0, newItem);
-    } else {
-      this.data.splice(this.data.indexOf(node), 0, newItem);
-    }
-    this.dataChange.next(this.data);
-    this.buildChannelFolderListFromTreeNodeData(this.data);
-    return newItem;
-  }
-
-  insertItemBelow(node: TodoItemNode, name: string): TodoItemNode {
-    const parentNode = this.getParentFromNodes(node);
-    const newItem = { item: name } as TodoItemNode;
-    if (parentNode != null) {
-      parentNode.children.splice(parentNode.children.indexOf(node) + 1, 0, newItem);
-    } else {
-      this.data.splice(this.data.indexOf(node) + 1, 0, newItem);
-    }
-    this.dataChange.next(this.data);
-    this.buildChannelFolderListFromTreeNodeData(this.data);
-    return newItem;
-  }
+  // insertItemAbove(node: TodoItemNode, name: string): TodoItemNode {
+  //   const parentNode = this.getParentFromNodes(node);
+  //   const newItem = { item: name } as TodoItemNode;
+  //   if (parentNode != null) {
+  //     parentNode.children.splice(parentNode.children.indexOf(node), 0, newItem);
+  //   } else {
+  //     this.data.splice(this.data.indexOf(node), 0, newItem);
+  //   }
+  //   this.dataChange.next(this.data);
+  //   return newItem;
+  // }
+  //
+  // insertItemBelow(node: TodoItemNode, name: string): TodoItemNode {
+  //   const parentNode = this.getParentFromNodes(node);
+  //   const newItem = { item: name } as TodoItemNode;
+  //   if (parentNode != null) {
+  //     parentNode.children.splice(parentNode.children.indexOf(node) + 1, 0, newItem);
+  //   } else {
+  //     this.data.splice(this.data.indexOf(node) + 1, 0, newItem);
+  //   }
+  //   this.dataChange.next(this.data);
+  //   return newItem;
+  // }
 
   getParentFromNodes(node: TodoItemNode): TodoItemNode {
     for (let i = 0; i < this.data.length; ++i) {
@@ -175,26 +172,26 @@ export class ChecklistDatabase {
     }
     return newItem;
   }
-
-  copyPasteItemAbove(from: TodoItemNode, to: TodoItemNode): TodoItemNode {
-    const newItem = this.insertItemAbove(to, from.item);
-    if (from.children) {
-      from.children.forEach(child => {
-        this.copyPasteItem(child, newItem);
-      });
-    }
-    return newItem;
-  }
-
-  copyPasteItemBelow(from: TodoItemNode, to: TodoItemNode): TodoItemNode {
-    const newItem = this.insertItemBelow(to, from.item);
-    if (from.children) {
-      from.children.forEach(child => {
-        this.copyPasteItem(child, newItem);
-      });
-    }
-    return newItem;
-  }
+  //
+  // copyPasteItemAbove(from: TodoItemNode, to: TodoItemNode): TodoItemNode {
+  //   // const newItem = this.insertItemAbove(to, from.item);
+  //   // if (from.children) {
+  //   //   from.children.forEach(child => {
+  //   //     this.copyPasteItem(child, newItem);
+  //   //   });
+  //   // }
+  //   // return newItem;
+  // }
+  //
+  // copyPasteItemBelow(from: TodoItemNode, to: TodoItemNode): TodoItemNode {
+  //   // const newItem = this.insertItemBelow(to, from.item);
+  //   // if (from.children) {
+  //   //   from.children.forEach(child => {
+  //   //     this.copyPasteItem(child, newItem);
+  //   //   });
+  //   // }
+  //   // return newItem;
+  // }
 
   deleteNode(nodes: TodoItemNode[], nodeToDelete: TodoItemNode) {
     const index = nodes.indexOf(nodeToDelete, 0);
@@ -267,18 +264,7 @@ export class ChecklistDatabase {
     this.q = q;
   }
 
-  buildChannelFolderListFromTreeNodeData(data){
-    let chFL = [];
-    for(let i=0;i<data.length;i++){
-      let kind = "dir";
-      if(data[i]['item'].indexOf('-----') > -1){
-        kind = "channel";
-      }
-      let children = this.q.os.bee.config.getChannelListChildren(data[i]['item']);
-      chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
-    }
-    this.q.bee.config.setChannelFolderList(chFL);
-  }
+
 
 }
 
@@ -305,11 +291,11 @@ onContextMenu(event: MouseEvent, item) {
   }
 
   onContextMenuAction1(item) {
-    alert(`Click on Action 1 for ${item}`);
+    // alert(`Click on Action 1 for ${item}`);
   }
 
   onContextMenuAction2(item) {
-    alert(`Click on Action 2 for ${item}`);
+    // alert(`Click on Action 2 for ${item}`);
   }
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
@@ -389,17 +375,8 @@ onContextMenu(event: MouseEvent, item) {
       : this.checklistSelection.deselect(...descendants);
   }
 
-  /** Select the category so we can insert the new item. */
-  addNewItem(node: TodoItemFlatNode) {
-    const parentNode = this.flatNodeMap.get(node);
-    this.database.insertItem(parentNode, '');
-    this.treeControl.expand(node);
-    this.saveExpandedNodes();
-  }
 
-  toggleExpandedStateForItem(itemId = ""){
-      this.saveExpandedNodes();
-  }
+
 
   /** Save the node to database */
   saveNode(node: TodoItemFlatNode, itemValue: string) {
@@ -409,7 +386,7 @@ onContextMenu(event: MouseEvent, item) {
 
   handleDragStart(event, node) {
     // Required by Firefox (https://stackoverflow.com/questions/19055264/why-doesnt-html5-drag-and-drop-work-in-firefox)
-    event.dataTransfer.setData('foo', 'bar');
+    // event.dataTransfer.setData('foo', 'bar');
     //event.dataTransfer.setDragImage(this.emptyItem.nativeElement, 0, 0);
     this.dragNode = node;
     this.treeControl.collapse(node);
@@ -418,46 +395,55 @@ onContextMenu(event: MouseEvent, item) {
  handleDragOver(event, node) {
     event.preventDefault();
     // Handle node expand
-    if (this.dragNodeExpandOverNode && node === this.dragNodeExpandOverNode) {
-      if ((Date.now() - this.dragNodeExpandOverTime) > this.dragNodeExpandOverWaitTimeMs) {
-        if (!this.treeControl.isExpanded(node)) {
-          this.treeControl.expand(node);
-          //this.cd.detectChanges();
-        }
-      }
-    } else {
-      this.dragNodeExpandOverNode = node;
-      this.dragNodeExpandOverTime = new Date().getTime();
-    }
+    if(node['item'].indexOf('-----') === -1){
 
-    // Handle drag area
-    const percentageY = event.offsetY / event.target.clientHeight;
-    if (0 <= percentageY && percentageY <= 0.25) {
-      this.dragNodeExpandOverArea = 1;
-    } else if (1 >= percentageY && percentageY >= 0.75) {
-      this.dragNodeExpandOverArea = -1;
-    } else {
-      this.dragNodeExpandOverArea = 0;
+          if (this.dragNodeExpandOverNode && node === this.dragNodeExpandOverNode) {
+            if ((Date.now() - this.dragNodeExpandOverTime) > this.dragNodeExpandOverWaitTimeMs) {
+              if (!this.treeControl.isExpanded(node)) {
+                this.treeControl.expand(node);
+                //this.cd.detectChanges();
+              }
+            }
+          } else {
+            this.dragNodeExpandOverNode = node;
+            this.dragNodeExpandOverTime = new Date().getTime();
+          }
+
+          // Handle drag area
+          const percentageY = event.offsetY / event.target.clientHeight;
+          if (0 <= percentageY && percentageY <= 0.25) {
+            this.dragNodeExpandOverArea = 0;
+            this.dragNodeExpandOverAreaReal = 1;
+          } else if (1 >= percentageY && percentageY >= 0.75) {
+            this.dragNodeExpandOverArea = 0;
+            this.dragNodeExpandOverAreaReal = -1;
+          } else {
+            this.dragNodeExpandOverAreaReal = 0;
+            this.dragNodeExpandOverArea = 0;
+          }
     }
   }
 
-
+  dragNodeExpandOverAreaReal = 0;
   handleDrop(event, node) {
+
     if (node !== this.dragNode) {
       let newItem: TodoItemNode;
-      if (this.dragNodeExpandOverArea === 1) {
-        newItem = this.database.copyPasteItemAbove(this.flatNodeMap.get(this.dragNode), this.flatNodeMap.get(node));
-      } else if (this.dragNodeExpandOverArea === -1) {
-        newItem = this.database.copyPasteItemBelow(this.flatNodeMap.get(this.dragNode), this.flatNodeMap.get(node));
+      if (this.dragNodeExpandOverAreaReal === 1) {
+        // newItem = this.database.copyPasteItemAbove(this.flatNodeMap.get(this.dragNode), this.flatNodeMap.get(node));
+      } else if (this.dragNodeExpandOverAreaReal === -1) {
+        // newItem = this.database.copyPasteItemBelow(this.flatNodeMap.get(this.dragNode), this.flatNodeMap.get(node));
       } else {
-        newItem = this.database.copyPasteItem(this.flatNodeMap.get(this.dragNode), this.flatNodeMap.get(node));
+        newItem = this.flatNodeMap.get(this.dragNode);
+        this.database.deleteItem(newItem);
+        newItem = this.database.copyPasteItem(newItem, this.flatNodeMap.get(node))
       }
 
-      this.database.deleteItem(this.flatNodeMap.get(this.dragNode));
-      this.treeControl.expandDescendants(this.nestedNodeMap.get(newItem));
-      this.saveExpandedNodes();
+      // this.treeControl.expandDescendants(this.nestedNodeMap.get(newItem));
     }
      this.handleDragEnd(event);
+
+
   }
 
   handleDragEnd(event) {
@@ -466,6 +452,7 @@ onContextMenu(event: MouseEvent, item) {
     this.dragNodeExpandOverTime = 0;
     this.dragNodeExpandOverArea = NaN;
     event.preventDefault();
+
   }
 
   getStyle(node: TodoItemFlatNode) {
@@ -613,22 +600,61 @@ onContextMenu(event: MouseEvent, item) {
   expandedNodes;
   restoreFlag = 0;
   sENwriteBlock = 0;
+  saveExpandedNodesScheduledWrite = 1000000000000000000000000000000000000000000000;
   saveExpandedNodes() {
-    setTimeout( () => {
-    if(!this.sENwriteBlock){
-    console.log('ChannelList: saving expanded nodes...');
-      this.expandedNodes = [];
-      console.log(this.treeControl.dataNodes);
-      this.treeControl.dataNodes.forEach(node => {
-          if (node.expandable && this.treeControl.isExpanded(node)) {
-              this.expandedNodes.push(node);
-          }
-      });
-
-      this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+    this.expandedNodes = [];
+    for(let i=0;i<this.treeControl.dataNodes.length;i++){
+      let node = this.treeControl.dataNodes[i];
+        if (node.expandable && this.treeControl.isExpanded(node)) {
+            this.expandedNodes.push(node);
+        }
     }
-  },1000);
+
+    console.log('ChannelList: Persisting expanded folders...');
+    this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+    this.buildChannelFolderListFromTreeNodeData();
+}
+
+// buildChannelFolderListFromTreeNodeDataLock = 0;
+buildChannelFolderListFromTreeNodeData(){
+  console.log('!!!!!');
+  console.log(this.database.data);
+  let data = this.database.data;
+  data = data.filter( n => n.item != 'emptyFolder' );
+  let chFL = [];
+  for(let i=0;i<data.length;i++){
+      console.log(data[i]);
+      let kind = "dir";
+      if(data[i]['item'].indexOf('-----') > -1){
+        kind = "channel";
+      }
+      console.log(kind);
+        let children = [];
+      if(typeof data[i]['children'] != 'undefined' && data[i]['children']['length'] > 0){
+         children = this.getFolderListTreeChildrenRec(data[i]['children']);
+      }
+      chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
   }
+  this.q.os.bee.config.setChannelFolderList(chFL);
+}
+
+getFolderListTreeChildrenRec(data){
+  let chFL = [];
+  for(let i=0;i<data.length;i++){
+      console.log(data[i]);
+      let kind = "dir";
+      if(data[i]['item'].indexOf('-----') > -1){
+        kind = "channel";
+      }
+      let children = [];
+      if(typeof data[i]['children'] != 'undefined' && data[i]['children']['length'] > 0){
+        children = this.getFolderListTreeChildrenRec(data[i]['children']);
+      }
+      chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
+  }
+  return chFL;
+
+}
 
   restoreExpandedNodes() {
     this.sENwriteBlock = 1;
@@ -675,6 +701,8 @@ onContextMenu(event: MouseEvent, item) {
   }
   newChannelFolderChanged(){}
   async createNewChannel(event){
+    this.saveExpandedNodes();
+
     console.log(event);
     let channelNameDirty = event
     //TODO put together folder structure...
@@ -708,6 +736,9 @@ onContextMenu(event: MouseEvent, item) {
   @ViewChild('folder') folderPop;
   newFolderName;
   createNewFolder(folderNameDirty){
+
+    this.saveExpandedNodes();
+
     this.ui.showSnack('Creating Folder...','Please Wait');
     let parentFolderId =  this.newChannelFolder;
     if(typeof parentFolderId === 'object'){
@@ -718,6 +749,7 @@ onContextMenu(event: MouseEvent, item) {
   }
 
   deleteFolder(folderId){
+    this.saveExpandedNodes();
     this.ui.showSnack('Deleting Folder...','Please Wait');
     this.q.os.bee.config.deleteFolder(folderId);
     this.createCompleteAndClose();
@@ -728,7 +760,7 @@ onContextMenu(event: MouseEvent, item) {
   inviteCodeHex;
   importChannelFolderChanged(){}
   async importNewChannel(){
-
+    this.saveExpandedNodes();
     //TODO put together folder structure...
     this.ui.showSnack('Importing Channel...','Please Wait');
 

@@ -151,7 +151,7 @@
                        <div class="treeNodeContainerFolder"  (contextmenu)="onContextMenu($event, node.item)">
                          <!-- (contextmenu)="onContextMenu($event, node.item)"> -->
          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item">
-           <mat-icon class="mat-icon-rtl-mirror" (click)="toggleExpandedStateForItem(node.idem)">
+           <mat-icon class="mat-icon-rtl-mirror" >
              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
            </mat-icon>
          </button>
@@ -160,8 +160,9 @@
            <span class="checklist-leaf-node"  draggable="true"
                          (dragstart)="handleDragStart($event, node);">
              <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
-               {{getFolderNameFromId(node.item)}}
+               <!-- {{getFolderNameFromId(node.item)}} -->
                <!-- {{node.item}} -->
+               folder
              </span>
            </span>
 
