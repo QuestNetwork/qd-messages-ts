@@ -95,6 +95,8 @@ To The same directory you're cloning this repository to.
 
 ```npm run serve-fresh``` Runs ``rm -rf node_modules && npm run inst && ng serve``
 
+```watch-reset``` Cleans the watch list, in case of ```System Limit``` error
+
 
 We added an example ```swarm.json``` to the ```src/app``` folder with an example node to make reproduction easier, but we strongly recommend to use our [Quest CLI](https://github.com/QuestNetwork/quest-cli) to test and build the app.
 
