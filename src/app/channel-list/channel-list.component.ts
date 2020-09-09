@@ -587,9 +587,12 @@ onContextMenu(event: MouseEvent, item) {
 
   expandedNodes;
   restoreFlag = 0;
+  sENwriteBlock = 0;
   saveExpandedNodes() {
+    if(!this.sENwriteBlock){
     console.log('ChannelList: saving expanded nodes...');
       this.expandedNodes = [];
+      console.log(this.treeControl.dataNodes);
       this.treeControl.dataNodes.forEach(node => {
           if (node.expandable && this.treeControl.isExpanded(node)) {
               this.expandedNodes.push(node);
@@ -597,12 +600,18 @@ onContextMenu(event: MouseEvent, item) {
       });
 
       this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+    }
   }
 
   restoreExpandedNodes() {
-    this.expandedNodes.forEach(node => {
-        this.treeControl.expand(this.treeControl.dataNodes.find(n => n['id'] === node.id));
-    });
+    this.sENwriteBlock = 1;
+    for(let i=0;i<this.expandedNodes.length;i++) {
+      let node = this.expandedNodes[i];
+      console.log(node);
+      console.log(this.treeControl.dataNodes);
+        this.treeControl.expand(this.treeControl.dataNodes.find(n => n['item'] === node.item));
+    }
+    this.sENwriteBlock = 0;
 }
 
   ngOnDestroy(){
