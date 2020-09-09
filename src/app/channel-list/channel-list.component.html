@@ -180,7 +180,7 @@
 
      <mat-menu #contextMenu="matMenu">
 	<ng-template matMenuContent let-item="item">
-		<button mat-menu-item (click)="onContextMenuAction1(item)">Delete</button>
+		<button mat-menu-item (click)="deleteFolder(item)">Delete</button>
 		<button mat-menu-item (click)="onContextMenuAction2(item)">Rename</button>
     <button mat-menu-item (click)="onContextMenuAction2(item)">Export</button>
 

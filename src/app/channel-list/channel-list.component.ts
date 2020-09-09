@@ -374,9 +374,7 @@ onContextMenu(event: MouseEvent, item) {
   }
 
   toggleExpandedStateForItem(itemId = ""){
-    setTimeout( () => {
       this.saveExpandedNodes();
-    },1000);
   }
 
   /** Save the node to database */
@@ -577,14 +575,20 @@ onContextMenu(event: MouseEvent, item) {
       this.restoreFlag = 1;
     }
     else if(typeof this.expandedNodes != 'undefined'){
-      this.restoreExpandedNodes();
+      // setTimeout( () => {
+        console.log('restoring...');
+        // this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
+        this.restoreExpandedNodes();
+      // },10000);
     }
   }
+
 
   expandedNodes;
   restoreFlag = 0;
   sENwriteBlock = 0;
   saveExpandedNodes() {
+    setTimeout( () => {
     if(!this.sENwriteBlock){
     console.log('ChannelList: saving expanded nodes...');
       this.expandedNodes = [];
@@ -597,6 +601,7 @@ onContextMenu(event: MouseEvent, item) {
 
       this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
     }
+  },1000);
   }
 
   restoreExpandedNodes() {
@@ -634,7 +639,6 @@ onContextMenu(event: MouseEvent, item) {
   parseStructure(folderStructure){
     for(let i=0;i<folderStructure.length;i++){
       if(folderStructure[i]['data']['name'].indexOf('-----') === -1){
-        folderStructure[i]['id'] = uuidv4();
         this.channelFolderListArray.push(folderStructure[i]);
         if(typeof(folderStructure[i]['children']) != 'undefined'){
           this.parseStructure(folderStructure[i]['children']);
@@ -670,7 +674,7 @@ onContextMenu(event: MouseEvent, item) {
   createCompleteAndClose(){
     this.ui.delay(1000);
     this.q.os.bee.config.commit();
-    this.ui.showSnack('Create Complete!','Please Wait',{duration:1000});
+    this.ui.showSnack('Success!','Yesss',{duration:1000});
     this.popupRef.close();
   }
 
@@ -684,6 +688,12 @@ onContextMenu(event: MouseEvent, item) {
       parentFolderId = "";
     }
     this.q.os.bee.config.createFolder(folderNameDirty, parentFolderId);
+    this.createCompleteAndClose();
+  }
+
+  deleteFolder(folderId){
+    this.ui.showSnack('Deleting Folder...','Please Wait');
+    this.q.os.bee.config.deleteFolder(folderId);
     this.createCompleteAndClose();
   }
 
