@@ -4,7 +4,7 @@
   "version": "0.9.2",
   "description": "Decentralized End-To-End Encrypted IPFS PubSub Messenger",
   "main": "main.js",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/QuestNetwork/quest-messenger-js.git"
