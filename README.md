@@ -132,17 +132,18 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 - Delete Folders
 - Drag/Drop Folders/Channels
-- Disable Challenge Flow (close channels to invite only)
 - Share and Import Channels By QR Code
-- Set Alias (show custom name instead of pub key) and profile pictures
 
 ## Roadmap
 
 **0.9.2**
+- Disable Challenge Flow (close channels to invite only)
+- Set Alias (show custom name instead of pub key) and profile pictures
 - Disable AutoSave
 - Export Settings
 
 **0.9.3**
+- Sidebars resizable
 - Participant/Friends Groups And Folders
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 - AES Encrypt Invite Tokens
