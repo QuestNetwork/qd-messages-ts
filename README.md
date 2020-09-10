@@ -204,4 +204,4 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 ## License
 
-GNU GPLv3
+GNU Affero GPLv3
