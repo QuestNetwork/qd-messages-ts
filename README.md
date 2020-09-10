@@ -132,6 +132,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 - Delete Folders
 - Drag/Drop Folders/Channels
+- Export Settings
+- SignOut
+- Disable AutoSave
 - Share and Import Channels By QR Code
 
 ## Roadmap
@@ -139,8 +142,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.2**
 - Disable Challenge Flow (close channels to invite only)
 - Set Alias (show custom name instead of pub key) and profile pictures
-- Disable AutoSave
-- Export Settings
 
 **0.9.3**
 - Sidebars resizable
