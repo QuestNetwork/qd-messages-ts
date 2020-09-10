@@ -138,6 +138,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - SignOut
 - Enable Write Lock To Keep All Processes From Writing
 - Disable AutoSave
+- Change AutoSave Interval
 - Share and Import Channels By QR Code
 
 ## Roadmap
