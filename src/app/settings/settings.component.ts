@@ -16,7 +16,7 @@ export class SettingsComponent implements OnInit {
   constructor(private menu: NbMenuService, private ui: UiService, private q: QuestOSService, private sidebarService: NbSidebarService) {}
   // @ViewChild('driveLockStatusField') driveLockStatusField;
 sideBarFixed = { left:false}
-
+autoSaveInterval = 30*10000;
   items: NbMenuItem[] = [
     {
       title: 'General',
@@ -50,11 +50,17 @@ sideBarFixed = { left:false}
     this.q.os.onSignIn().subscribe( () => {
       this.signIn();
     });
-    this.q.os.saveLockStatus().subscribe( (status) => {
-      this.saveLockActive = status;
-    });
-    // console.log(this.driveLockStatusField);
 
+    this.q.os.onSignIn().subscribe( () => {
+      this.autoSaveActive = this.q.os.getAutoSave();
+      this.autoSaveInterval = this.q.os.getAutoSaveInterval();
+
+    });
+
+
+  }
+  autoSaveIntervalChanged(v){
+     this.q.os.setAutoSaveInterval(v);
   }
   selectedSetting = "General";
   signIn(){
@@ -68,26 +74,31 @@ sideBarFixed = { left:false}
     });
   }
 
-  enableSaveLock(){
-    this.q.os.enableSaveLock();
-  }
-  disableSaveLock(){
-    this.q.os.disableSaveLock();
-  }
-  saveLockActive = false;
-  getSaveLock(){
-    return this.q.os.getSaveLock();
-  }
-
+  saveLockActive = true;
   saveLockActiveToggled(){
-    if(this.getSaveLock()){
-      this.disableSaveLock();
+    let oldSaveLockStatus = this.q.os.getSaveLock();
+    if(oldSaveLockStatus){
+      this.q.os.disableSaveLock();
     }
     else{
       this.q.os.enableSaveLock();
     }
   }
 
+
+  autoSaveActive = true;
+
+  getAutoSave(){
+    return this.q.os.getAutoSave();
+  }
+  autoSaveActiveToggled(){
+    if(!this.q.os.getAutoSave()){
+      this.q.os.enableAutoSave();
+    }
+    else{
+      this.q.os.disableAutoSave();
+    }
+  }
 
 
 }

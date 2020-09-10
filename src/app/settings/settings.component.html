@@ -8,18 +8,82 @@
         <div class="generalSettingsScreen" *ngIf="selectedSetting == 'General'">
           <div class="generalSettingsScreenHeader">General Settings</div>
 
-              <div class="saveLockOptions saveLockToggler"  style=" margin-top: 50px;font-size: 20px;    text-align: center;cursor:pointer;" >
-                <mat-slide-toggle [(ngModel)]="saveLockActive" (toggleChange)="saveLockActiveToggled()">
-                  <div *ngIf="saveLockActive" class="saveLockTogglerTitle saveLockTogglerTitleActive">
-                    Drive Locked
-                  </div>
-                  <div *ngIf="!saveLockActive" class="saveLockTogglerTitle">
-                    Drive Unlocked
-                  </div>
+          <div fxLayout="row" style="margin-bottom:10px;">
+                <div *ngIf="saveLockActive" class="saveLockTogglerTitle saveLockTogglerTitleActive">
+                  Drive Unlocked
+                </div>
+                <div *ngIf="!saveLockActive" class="saveLockTogglerTitle">
+                  Drive Locked
+                </div>
+
+              <div class="saveLockOptions saveLockToggler"  style=" font-size: 20px;    text-align: center;cursor:pointer;" >
+                <mat-slide-toggle  id="saveLockActiveToggle" [(ngModel)]="saveLockActive" (toggleChange)="saveLockActiveToggled()">
+
                 </mat-slide-toggle>
+                </div>
+          </div>
+
+                    <div fxLayout="row" *ngIf="saveLockActive" >
+                      <div *ngIf="autoSaveActive" class="saveLockTogglerTitle saveLockTogglerTitleActive">
+                        AutoSave Enabled
+                      </div>
+                      <div *ngIf="!autoSaveActive" class="saveLockTogglerTitle">
+                        AutoSave Disabled
+                      </div>
+
+                      <div class="saveLockOptions saveLockToggler"  style="font-size: 20px;    text-align: center;cursor:pointer;z-index:99999999999999999999999" >
+                        <mat-slide-toggle id="autoSaveActivoggle" [(ngModel)]="autoSaveActive" (toggleChange)="autoSaveActiveToggled()">
+
+                          </mat-slide-toggle>
+                          </div>
+                    </div>
 
 
-      </div>
+
+            <div fxLayout="row" [hidden]="!saveLockActive || !autoSaveActive" style="margin-top:10px;" class="autoSaveIntervalSelectWrapper">
+                <div [hidden]="!autoSaveActive" class="autoSaveIntervalTogglerTitle">
+                  AutoSave Interval
+                </div>
+
+                <div [hidden]="!autoSaveActive" class="saveLockOptions saveLockToggler "  style="font-size: 20px;    text-align: center;cursor:pointer;" >
+ <mat-form-field style="width: 24%;" name="autoSaveIntervalFormField" id="autoSaveIntervalSelect">
+                     <mat-select [(value)]="autoSaveInterval"  name="autoSaveIntervalSelect" id="autoSaveIntervalSelect" (selectionChange)="autoSaveIntervalChanged($event.value)" class="saveLockToggler" >
+                                  <mat-option  [value]="10000" >
+                                     10s
+                                 </mat-option>
+                                 <mat-option  [value]="30000">
+                                    30s
+                                </mat-option>
+                                <mat-option  [value]="60000" >
+                                   60s
+                               </mat-option>
+                               <mat-option  [value]="300000" >
+                                  5m
+                              </mat-option>
+                              <mat-option  [value]="600000" >
+                                 10m
+                             </mat-option>
+                             <mat-option  [value]="1800000" >
+                                30m
+                            </mat-option>
+                            <mat-option  [value]="3600000" >
+                               60m
+                           </mat-option>
+
+                       </mat-select>
+</mat-form-field>
+
+                  </div>
+              </div>
+
+
+
+
+
+
+            </div>
+
+
 
     </div>
 

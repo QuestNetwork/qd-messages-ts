@@ -166,10 +166,16 @@ padding: 0px;
 }
 .saveLockToggler{
   color:#4982e7;
+  text-align: right !important;
 }
 
 .saveLockToggler:hover{
   color:#2d62ea;
+}
+
+.saveLockTogger{
+  color: #f14f31ab;
+  font-weight:bold;
 }
 
 .saveLockTogglerTitle{
@@ -178,9 +184,23 @@ color: #f14f31ab;
 
 font-weight: bold;
 font-family: Ubuntu;
-margin-left: 10px;
+}
+
+.autoSaveIntervalTogglerTitle{
+  font-size: 20px;
+color: #afb89b;
+font-weight: bold;
+font-family: Ubuntu;
 }
 
 .saveLockTogglerTitleActive{
     color: #f4dc5ff0;
+}
+
+.saveLockTogglerTitle,.saveLockTogglerTitleActive, .saveLockToggler, {
+  flex-grow:2;
+}
+
+.generalSettingsScreenHeader{
+  margin-bottom:20px;
 }

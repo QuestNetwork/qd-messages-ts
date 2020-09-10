@@ -961,6 +961,19 @@ border: 0 !important;
   background: #e7d564 !important;
 }
 
+.autoSaveIntervalSelectWrapper .mat-form-field-wrapper{
+  margin: 0 !important;
+font-size: 19px  !important;
+line-height: 19px  !important;
+position: relative  !important;
+top: -27px  !important;
+}
+.autoSaveIntervalSelectWrapper .mat-form-field-infix{
+      font-weight: 800;
+      color: #afb89b;
+
+}
+
 .nb-theme-dark nb-menu .menu-item a:hover{
   color:blue;
 }
