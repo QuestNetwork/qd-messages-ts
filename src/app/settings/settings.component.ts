@@ -50,6 +50,11 @@ autoSaveInterval = 30*10000;
     this.q.os.onSignIn().subscribe( () => {
       this.signIn();
     });
+    this.ipfsOnline = this.q.os.isReady();
+    this.q.os.onReady().subscribe( () => {
+      console.log('OS Ready');
+      this.ipfsOnline = true;
+    });
 
     this.q.os.onSignIn().subscribe( () => {
       this.autoSaveActive = this.q.os.getAutoSave();
@@ -59,6 +64,7 @@ autoSaveInterval = 30*10000;
 
 
   }
+  ipfsOnline = false;
   autoSaveIntervalChanged(v){
      this.q.os.setAutoSaveInterval(v);
   }

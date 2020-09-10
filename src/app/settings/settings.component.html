@@ -85,6 +85,41 @@
 
 
 
+
+
+
+
+
+
+
+            <div class="ipfsSettingsScreen generalSettingsScreen" *ngIf="selectedSetting == 'IPFS'">
+              <div class="generalSettingsScreenHeader">IPFS Settings</div>
+
+              <div fxLayout="row" style="margin-bottom:10px;">
+                    <div *ngIf="ipfsOnline" class="saveLockTogglerTitle saveLockTogglerTitleActive">
+                      IPFS Online
+                    </div>
+                    <div *ngIf="!ipfsOnline" class="saveLockTogglerTitle">
+                      IPFS Offline
+                    </div>
+
+                  <div class="saveLockOptions saveLockToggler"  style=" font-size: 20px;    text-align: center;cursor:pointer;" >
+                    <mat-slide-toggle  id="saveLockActiveToggle" [(ngModel)]="ipfsOnline" >
+
+                    </mat-slide-toggle>
+                    </div>
+              </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
     </div>
 
 

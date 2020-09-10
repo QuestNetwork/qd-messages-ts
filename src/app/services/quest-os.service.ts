@@ -28,8 +28,13 @@ export class QuestOSService {
     this.os = qOS;
   }
   async boot(){
-    await this.os.boot(this.config);
-    this.ready = true;
+        try{
+        await this.os.boot(this.config);
+        this.ready = true;
+      }
+      catch(e){
+        throw(e);
+      }
   }
   isReady(){
     return this.ready;

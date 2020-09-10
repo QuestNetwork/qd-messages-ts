@@ -117,7 +117,22 @@ export class AppComponent {
     });
 
     console.log("App: Booting Quest Network Operating System...");
-    await this.q.boot();
+    let noPeers = false;
+    try{
+      await this.q.boot();
+    }
+    catch(e){
+      console.log(e);
+      if(e = 'Transport (WebRTCStar) could not listen on any available address'){
+        noPeers = true;
+        this.ui.showSnack('No IPFS Peer','Oh Wow');
+      }
+    }
+
+    if(noPeers){
+      alert('IPFS Caused Boot Termination, Check Bootstrap Peers!');
+    }
+
     this.swarmPeers = this.q.os.ocean.getPeers();
     this.aChD.detectChanges();
 
