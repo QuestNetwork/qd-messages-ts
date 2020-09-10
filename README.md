@@ -23,6 +23,8 @@ We're planning to become for messaging what [Atom](https://atom.io) is for writi
 
 The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
+Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/README.md)!
+
 ## Download
 
 | Platform | Download link                |
