@@ -145,6 +145,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Export Settings
 
 **0.9.3**
+- Participant/Friends Groups And Folders
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 - AES Encrypt Invite Tokens
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
