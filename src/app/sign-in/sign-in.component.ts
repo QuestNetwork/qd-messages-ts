@@ -21,15 +21,23 @@ export class SignInComponent implements OnInit {
   }
 
   stringifyStore;
-
+isElectron;
   ngOnInit(): void {
     //auto login
-    if(this.q.os.bee.config.isSignedIn()){
+
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf(' electron/') > -1) {
+      this.isElectron = true;
+    }
+
+    if(this.isElectron){
+      this.ui.updateProcessingStatus(true);
+    }
 
       //wait for ocean
-      console.log('SignIn: Waiting For Ocean...');
-      while(!this.q.isReady()){
-        console.log('SignIn: Waiting For Ocean...');
+      console.log('SignIn: Waiting For Quest OS...');
+      while(!this.q.os.isReady()){
+        console.log('SignIn: Waiting For Quest OS.');
         this.ui.delay(1000);
       }
 
@@ -45,12 +53,10 @@ export class SignInComponent implements OnInit {
             this.ui.updateProcessingStatus(false);
           }
         }
-        else{this.ui.showSnack('Error Importing Settings!','Oh No');}
+        else{   this.ui.updateProcessingStatus(false);
+                this.ui.showSnack('Error Importing Settings!','Oh No');
+            }
       });
-    }
-    else{
-      this.ui.updateProcessingStatus(false);
-    }
 
   }
 
