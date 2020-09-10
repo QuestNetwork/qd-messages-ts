@@ -153,6 +153,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.5**
 - AES Encrypt Invite Tokens
+- Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 - AutoSave For Message Histories
 - Export Message Histories
@@ -170,6 +171,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Light Mode
 
 **0.9.8**
+- Badges for unread messages
 - Desktop Notifications
 - Ethereum Payment Integration Beta
 
