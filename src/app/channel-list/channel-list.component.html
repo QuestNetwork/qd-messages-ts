@@ -160,7 +160,7 @@
            <span class="checklist-leaf-node"  draggable="true"
                          (dragstart)="handleDragStart($event, node);">
              <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
-               <!-- {{getFolderNameFromId(node.item)}} -->
+               {{getFolderNameFromId(node.item)}}
                <!-- {{node.item}} -->
                folder
              </span>
