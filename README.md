@@ -129,9 +129,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Enhanced Mobile UI, Centered Snackbar, New Fonts, Icons & Buttons
 - Included All Fonts And Icons In The Bundle
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
-- [Quest Network Bee Service](https://github.com/QuestNetwork/quest-bee-js)
-- [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
-- [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
+- [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
+- [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
+- [Quest Network Dolphin Process](https://github.com/QuestNetwork/quest-dolphin-js)
 - Delete Folders
 - Drag/Drop Folders/Channels
 - Export Settings
