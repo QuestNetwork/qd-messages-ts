@@ -1,6 +1,6 @@
 <div [hidden]='!isOwner'>
 
-<p style="color: goldenrod !important;  margin-bottom: 0px;"> Challenge</p>
+<p style=" "class="channelSettingsOption"> Challenge</p>
 <mat-form-field style="width: 24%;    padding: 0;">
 <mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged($event.value)"  >
                  <mat-option  [value]="1" >
@@ -12,7 +12,7 @@
 
       </mat-select>
       </mat-form-field>
-<p style="color: goldenrod !important;    margin-top: 10px;  margin-bottom: 0px;"> Invite Codes</p>
+<p  class="channelSettingsOption mTop10" > Invite Codes</p>
 <div style="margin-bottom: 4px;    height: 28px;">
 
  Include Folders:  <mat-form-field style="width: 19%;" > <mat-select [(value)]="includeFolderStructure" (selectionChange)="newInviteExportFoldersChanged($event.value)" >
