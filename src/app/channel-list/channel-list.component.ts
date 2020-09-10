@@ -556,6 +556,10 @@ onContextMenu(event: MouseEvent, item) {
         this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
               this.loadChannels(chFL);
         });
+        // this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (selectChannel) => {
+        //       this.selectedChannel = selectChannel;
+        // });
+        this.selectedChannel = this.q.os.ocean.dolphin.getSelectedChannel();
         this.loadChannels(this.channelFolderList);
 
       }
