@@ -22,7 +22,7 @@ export class SignInComponent implements OnInit {
 
   stringifyStore;
 isElectron;
-  ngOnInit(): void {
+  async ngOnInit() {
     //auto login
 
     var userAgent = navigator.userAgent.toLowerCase();
@@ -38,7 +38,7 @@ isElectron;
       console.log('SignIn: Waiting For Quest OS...');
       while(!this.q.os.isReady()){
         console.log('SignIn: Waiting For Quest OS.');
-        this.ui.delay(1000);
+        await this.ui.delay(1000);
       }
 
       this.attemptImportSettings({}).then( (importSettingsStatus) => {
@@ -53,9 +53,14 @@ isElectron;
             this.ui.updateProcessingStatus(false);
           }
         }
-        else{   this.ui.updateProcessingStatus(false);
-                this.ui.showSnack('Error Importing Settings!','Oh No');
+        else{
+                this.ui.updateProcessingStatus(false);
+                this.ui.showSnack('No Settings Imported','Oh Ok');
             }
+      }).catch( (error) => {
+        this.ui.updateProcessingStatus(false);
+        this.ui.showSnack('Error Importing Settings!','Oh No');
+        this.DEVMODE && console.log(error);
       });
 
   }
@@ -203,14 +208,7 @@ async openFileLoaded(event){
       this.ui.updateProcessingStatus(true);
       this.completeChallengeScreen = false;
 
-      if(this.ui.isElectron()){
-            this.ui.showSnack('Importing key...','Yeh',{duration:1000});
-          await this.ui.delay(1200);
-
-      }
-      else{
-          this.ui.showSnack('Importing key...','Yeh');
-      }
+      this.ui.showSnack('Importing Profile...','Yeh');
 
       this.DEVMODE && console.log('SignIn: Reading Bee Config...')
       while(!this.q.os.isReady()){
@@ -221,10 +219,11 @@ async openFileLoaded(event){
 
 
       //wait for ipfs
-      this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
-      console.log('SignIn: Waiting for IPFS...');
-      while(!this.q.isReady()){
-        console.log('SignIn: Waiting for IPFS...');
+      this.ui.showSnack('Discovering Swarm...','Yeh');
+
+      console.log('SignIn: Waiting for Quest OS...');
+      while(!this.q.os.isReady()){
+        console.log('SignIn: Waiting for Quest OS...');
         await this.ui.delay(5000);
       }
 
