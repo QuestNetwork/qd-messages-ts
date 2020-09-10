@@ -756,10 +756,20 @@ getFolderListTreeChildrenRec(data){
   }
 
   deleteFolder(folderId){
-    this.saveExpandedNodes();
-    this.ui.showSnack('Deleting Folder...','Please Wait');
-    this.q.os.bee.config.deleteFolder(folderId);
-    this.createCompleteAndClose();
+    // TODO:
+    console.log('Deleting Folder...');
+    console.log(folderId);
+    let hasChannels = this.q.os.bee.config.checkIfFolderIdChannels(folderId);
+    console.log(hasChannels)
+    if(hasChannels){
+      this.ui.showSnack('Folder has channels!','Sorry but no.');
+    }
+    else{
+      this.ui.showSnack('Deleting Folder...','Please Wait');
+      this.saveExpandedNodes();
+      this.q.os.bee.config.deleteFolder(folderId);
+      this.createCompleteAndClose();
+    }
   }
 
   @ViewChild('import') importPop;
