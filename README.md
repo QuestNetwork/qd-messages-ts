@@ -23,6 +23,8 @@ We're planning to become for messaging what [Atom](https://atom.io) is for writi
 
 The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
+Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
+
 ## Download
 
 | Platform | Download link                |
@@ -127,14 +129,16 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Enhanced Mobile UI, Centered Snackbar, New Fonts, Icons & Buttons
 - Included All Fonts And Icons In The Bundle
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
-- [Quest Network Bee Service](https://github.com/QuestNetwork/quest-bee-js)
-- [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
-- [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
+- [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
+- [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
+- [Quest Network Dolphin Process](https://github.com/QuestNetwork/quest-dolphin-js)
 - Delete Folders
 - Drag/Drop Folders/Channels
 - Export Settings
 - SignOut
+- Enable Write Lock To Keep All Processes From Writing
 - Disable AutoSave
+- Change AutoSave Interval
 - Share and Import Channels By QR Code
 
 ## Roadmap
@@ -160,7 +164,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Export Message Histories
 
 **0.9.6**
-- [Quest Network Coral Service](https://github.com/QuestNetwork/quest-coral-js)
+- [Quest Network Coral Process](https://github.com/QuestNetwork/quest-coral-js)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Encrypt Settings/Message History Files
