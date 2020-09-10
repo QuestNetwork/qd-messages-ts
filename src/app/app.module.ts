@@ -57,6 +57,7 @@ import { ChannelSettingsComponent } from './channel-settings/channel-settings.co
 import { ChannelTabComponent } from './channel-tab/channel-tab.component';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     NbCardModule,
     MatTreeModule,
     DragDropModule,
-
+    MatSlideToggleModule,
     MatButtonModule,
    MatCheckboxModule,
    MatIconModule,
@@ -123,7 +124,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     CdkTableModule,
     CdkTreeModule,
     MatTreeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSlideToggleModule
 
   ],
   providers: [

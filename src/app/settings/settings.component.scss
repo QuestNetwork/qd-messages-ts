@@ -153,8 +153,7 @@ padding: 0px;
   z-index: 11;
 }
 
-.settingsScreen{
-  display:flex;
+.generalSettingsScreen{
   flex-grow: 3;
   background-color: #2a2626;
 
@@ -164,4 +163,24 @@ padding: 0px;
     z-index: 10;
     padding: 40px;
     color: #fef5e6ba;
+}
+.saveLockToggler{
+  color:#4982e7;
+}
+
+.saveLockToggler:hover{
+  color:#2d62ea;
+}
+
+.saveLockTogglerTitle{
+    font-size:20px;
+color: #f14f31ab;
+
+font-weight: bold;
+font-family: Ubuntu;
+margin-left: 10px;
+}
+
+.saveLockTogglerTitleActive{
+    color: #f4dc5ff0;
 }

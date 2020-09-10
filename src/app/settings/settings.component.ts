@@ -14,7 +14,7 @@ import { NbMenuService } from '@nebular/theme';
 export class SettingsComponent implements OnInit {
 
   constructor(private menu: NbMenuService, private ui: UiService, private q: QuestOSService, private sidebarService: NbSidebarService) {}
-
+  // @ViewChild('driveLockStatusField') driveLockStatusField;
 sideBarFixed = { left:false}
 
   items: NbMenuItem[] = [
@@ -26,25 +26,67 @@ sideBarFixed = { left:false}
     {
       title: 'IPFS',
       icon: "cube-outline"
-    },
-    {
-      title: 'Export',
-      icon:'code-download-outline'
-    },
-    {
-      title: 'person-remove-outline',
-      icon:'Sign Out'
-    },
+    }
 
   ];
 
   DEVMODE = true;
   ngOnInit(){
-    this.menu.onItemClick().subscribe((item) => {
-        console.log(item);
+    this.menu.onItemClick().subscribe((e) => {
+      if(e['item']['title'] == 'Export'){
+          this.q.os.exportConfig();
+      }
+      else if(e['item']['title'] == 'Sign Out'){
+        this.q.os.signOut();
+      }
+      else if(typeof e['item']['title'] != 'undefined'){
+        this.selectedSetting = e['item']['title'];
+      }
+    });
+
+    if(this.q.os.isSignedIn()){
+      this.signIn();
+    }
+    this.q.os.onSignIn().subscribe( () => {
+      this.signIn();
+    });
+    this.q.os.saveLockStatus().subscribe( (status) => {
+      this.saveLockActive = status;
+    });
+    // console.log(this.driveLockStatusField);
+
+  }
+  selectedSetting = "General";
+  signIn(){
+    this.items.push({
+      title: 'Export',
+      icon:'code-download-outline'
+    });
+    this.items.push({
+      title: 'Sign Out',
+      icon:'person-remove-outline'
     });
   }
 
+  enableSaveLock(){
+    this.q.os.enableSaveLock();
+  }
+  disableSaveLock(){
+    this.q.os.disableSaveLock();
+  }
+  saveLockActive = false;
+  getSaveLock(){
+    return this.q.os.getSaveLock();
+  }
+
+  saveLockActiveToggled(){
+    if(this.getSaveLock()){
+      this.disableSaveLock();
+    }
+    else{
+      this.q.os.enableSaveLock();
+    }
+  }
 
 
 

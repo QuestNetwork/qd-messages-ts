@@ -39,7 +39,7 @@ isElectron = false;
         await this.ui.delay(1000);
       }
 
-      if(this.q.os.isSignedIn()){
+      if(this.q.os.hasConfigFile()){
         this.attemptImportSettings({}).then( (importSettingsStatus) => {
           console.log('Import Settings Status:',importSettingsStatus);
           console.log(importSettingsStatus);
@@ -144,17 +144,7 @@ async openFileLoaded(event){
     this.ui.updateProcessingStatus(true);
     let importSettingsStatus = await this.attemptImportSettings({});
     console.log('Import Settings Status:',importSettingsStatus);
-    let stringify = JSON.stringify({
-        version: packageJson['version'],
-        appId: 'quest-messenger-js',
-        channelKeyChain:   this.q.os.ocean.dolphin.getChannelKeyChain(),
-        channelParticipantList:  this.q.os.ocean.dolphin.getChannelParticipantList(),
-        channelNameList: this.q.os.ocean.dolphin.getChannelNameList(),
-        channelchannelFolderList: this.q.os.bee.config.getChannelFolderList()
-    });
-    let jobFileBlob = new Blob([stringify], { type: 'text/plain;charset=utf-8' });
-    saveAs(jobFileBlob, "profile.qcprofile");
-    importSettingsStatus = await this.attemptImportSettings(stringify);
+    importSettingsStatus = await this.attemptImportSettings({});
     //settemporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
 
     if(importSettingsStatus){
@@ -222,7 +212,7 @@ async openFileLoaded(event){
       while(!this.q.os.isReady()){
         await this.ui.delay(2000);
       }
-      this.q.os.bee.config.readConfig(parsedStringify);
+      this.q.os.signIn(parsedStringify);
 
 
       //wait for ipfs

@@ -5,8 +5,23 @@
         <nb-menu [items]="items" autoCollapse="true" class="settingsMenu  mat-elevation-z12"  >
         </nb-menu>
 
-        <div class="settingsScreen">General Settings</div>
+        <div class="generalSettingsScreen" *ngIf="selectedSetting == 'General'">
+          <div class="generalSettingsScreenHeader">General Settings</div>
 
-        </div>
+              <div class="saveLockOptions saveLockToggler"  style=" margin-top: 50px;font-size: 20px;    text-align: center;cursor:pointer;" >
+                <mat-slide-toggle [(ngModel)]="saveLockActive" (toggleChange)="saveLockActiveToggled()">
+                  <div *ngIf="saveLockActive" class="saveLockTogglerTitle saveLockTogglerTitleActive">
+                    Drive Locked
+                  </div>
+                  <div *ngIf="!saveLockActive" class="saveLockTogglerTitle">
+                    Drive Unlocked
+                  </div>
+                </mat-slide-toggle>
+
+
+      </div>
+
+    </div>
+
 
 </div>
