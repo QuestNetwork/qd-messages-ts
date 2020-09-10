@@ -134,6 +134,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Drag/Drop Folders/Channels
 - Export Settings
 - SignOut
+- Enable Write Lock To Keep All Processes From Writing
 - Disable AutoSave
 - Share and Import Channels By QR Code
 
