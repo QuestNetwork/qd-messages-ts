@@ -132,11 +132,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 - Delete Folders
 - Drag/Drop Folders/Channels
-
 - Disable Challenge Flow (close channels to invite only)
 - Share and Import Channels By QR Code
 - Set Alias (show custom name instead of pub key) and profile pictures
-
 
 ## Roadmap
 
