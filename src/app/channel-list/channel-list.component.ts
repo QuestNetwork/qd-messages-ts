@@ -436,8 +436,12 @@ onContextMenu(event: MouseEvent, item) {
       } else {
         newItem = this.flatNodeMap.get(this.dragNode);
         this.database.deleteItem(newItem);
-        newItem = this.database.copyPasteItem(newItem, this.flatNodeMap.get(node))
+        newItem = this.database.copyPasteItem(newItem, this.flatNodeMap.get(node));
+        this.saveExpandedNodes();
+        this.buildChannelFolderListFromTreeNodeData();
       }
+      // this.buildChannelFolderListFromTreeNodeData();
+
 
       // this.treeControl.expandDescendants(this.nestedNodeMap.get(newItem));
     }
@@ -452,6 +456,7 @@ onContextMenu(event: MouseEvent, item) {
     this.dragNodeExpandOverTime = 0;
     this.dragNodeExpandOverArea = NaN;
     event.preventDefault();
+
 
   }
 
@@ -517,12 +522,99 @@ onContextMenu(event: MouseEvent, item) {
     this.treeControl = new FlatTreeControl<TodoItemFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-    this.database.dataChange.subscribe(data => {
-      this.dataSource.data = [];
-      this.dataSource.data = data;
-    });
+    }
+
+
+      async ngOnInit() {
+
+        this.nbMenuService.onItemClick().subscribe( (menuItem) => {
+           if(String(menuItem.item.title) == 'Create Channel'){
+              this.getChannelFolderList();
+              this.open(this.createPop);
+            }
+            else if(String(menuItem.item.title) == 'Import Channel'){
+                this.getChannelFolderList();
+                this.open(this.importPop);
+            }
+            else if(String(menuItem.item.title) == 'New Folder'){
+                this.getChannelFolderList();
+                this.open(this.folderPop);
+            }
+      });
+
+        while(!this.q.os.bee.config.hasConfig()){
+          await this.ui.delay(1000);
+        }
+
+        this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
+        this.channelFolderList = this.q.os.bee.config.getChannelFolderList();
+            this.database.dataChange.subscribe(data => {
+              this.dataSource.data = [];
+              this.dataSource.data = data;
+            });
+
+        this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
+              this.loadChannels(chFL);
+        });
+        this.loadChannels(this.channelFolderList);
+
+      }
+
+
+    loadChannels(chFL){
+      TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
+      this.database.filter("");
+      if(chFL.length > 0 && this.q.os.bee.config.getExpandedChannelFolderItems().length > 0 ){
+        console.log('got a saved state!');
+        this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
+        this.restoreExpandedNodes();
+      }
 
     }
+
+
+      expandedNodes;
+      restoreFlag = 0;
+      sENwriteBlock = 0;
+      saveExpandedNodesScheduledWrite = 1000000000000000000000000000000000000000000000;
+      saveExpandedNodes() {
+        this.expandedNodes = [];
+        for(let i=0;i<this.treeControl.dataNodes.length;i++){
+          let node = this.treeControl.dataNodes[i];
+            if (node.expandable && this.treeControl.isExpanded(node)) {
+                this.expandedNodes.push(node);
+            }
+        }
+
+        console.log('ChannelList: Persisting expanded folders...');
+        this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+        return true;
+    }
+
+    // buildChannelFolderListFromTreeNodeDataLock = 0;
+    buildChannelFolderListFromTreeNodeData(){
+      console.log('!!!!!');
+      console.log(this.database.data);
+      let data = this.database.data;
+      data = data.filter( n => n.item != 'emptyFolder' );
+      let chFL = [];
+      for(let i=0;i<data.length;i++){
+          console.log(data[i]);
+          let kind = "dir";
+          if(data[i]['item'].indexOf('-----') > -1){
+            kind = "channel";
+          }
+          console.log(kind);
+            let children = [];
+          if(typeof data[i]['children'] != 'undefined' && data[i]['children']['length'] > 0){
+             children = this.getFolderListTreeChildrenRec(data[i]['children']);
+          }
+          chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
+      }
+      this.q.os.bee.config.setChannelFolderList(chFL);
+      return true;
+    }
+
 
     selectChannel(channelName){
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
@@ -545,98 +637,7 @@ onContextMenu(event: MouseEvent, item) {
       ];
 
 
-  async ngOnInit() {
 
-    this.nbMenuService.onItemClick().subscribe( (menuItem) => {
-       if(String(menuItem.item.title) == 'Create Channel'){
-          this.getChannelFolderList();
-          this.open(this.createPop);
-        }
-        else if(String(menuItem.item.title) == 'Import Channel'){
-            this.getChannelFolderList();
-            this.open(this.importPop);
-        }
-        else if(String(menuItem.item.title) == 'New Folder'){
-            this.getChannelFolderList();
-            this.open(this.folderPop);
-        }
-  });
-
-    while(!this.q.os.bee.config.hasConfig()){
-      await this.ui.delay(1000);
-    }
-
-    this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
-    this.channelFolderList = this.q.os.bee.config.getChannelFolderList();
-    this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
-          this.loadChannels(chFL);
-    });
-    this.loadChannels(this.channelFolderList);
-
-  }
-
-
-  loadChannels(chFL){
-    TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
-    this.database.filter("");
-    console.log(chFL);
-    console.log(this.q.os.bee.config.getExpandedChannelFolderItems());
-    if(chFL.length > 0 && this.q.os.bee.config.getExpandedChannelFolderItems().length > 0 && this.restoreFlag == 0){
-      console.log('got a saved state!');
-      this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
-      this.restoreExpandedNodes();
-      this.restoreFlag = 1;
-    }
-    else if(typeof this.expandedNodes != 'undefined'){
-      // setTimeout( () => {
-        console.log('restoring...');
-        // this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
-        this.restoreExpandedNodes();
-      // },10000);
-    }
-  }
-
-
-  expandedNodes;
-  restoreFlag = 0;
-  sENwriteBlock = 0;
-  saveExpandedNodesScheduledWrite = 1000000000000000000000000000000000000000000000;
-  saveExpandedNodes() {
-    this.expandedNodes = [];
-    for(let i=0;i<this.treeControl.dataNodes.length;i++){
-      let node = this.treeControl.dataNodes[i];
-        if (node.expandable && this.treeControl.isExpanded(node)) {
-            this.expandedNodes.push(node);
-        }
-    }
-
-    console.log('ChannelList: Persisting expanded folders...');
-    this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
-    this.buildChannelFolderListFromTreeNodeData();
-}
-
-// buildChannelFolderListFromTreeNodeDataLock = 0;
-buildChannelFolderListFromTreeNodeData(){
-  console.log('!!!!!');
-  console.log(this.database.data);
-  let data = this.database.data;
-  data = data.filter( n => n.item != 'emptyFolder' );
-  let chFL = [];
-  for(let i=0;i<data.length;i++){
-      console.log(data[i]);
-      let kind = "dir";
-      if(data[i]['item'].indexOf('-----') > -1){
-        kind = "channel";
-      }
-      console.log(kind);
-        let children = [];
-      if(typeof data[i]['children'] != 'undefined' && data[i]['children']['length'] > 0){
-         children = this.getFolderListTreeChildrenRec(data[i]['children']);
-      }
-      chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
-  }
-  this.q.os.bee.config.setChannelFolderList(chFL);
-}
 
 getFolderListTreeChildrenRec(data){
   let chFL = [];
