@@ -4,6 +4,7 @@ import { QuestOSService } from '../services/quest-os.service';
 
 import { NbSidebarService } from '@nebular/theme';
 import { NbMenuItem } from '@nebular/theme';
+import { NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +13,7 @@ import { NbMenuItem } from '@nebular/theme';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private ui: UiService, private q: QuestOSService, private sidebarService: NbSidebarService) {}
+  constructor(private menu: NbMenuService, private ui: UiService, private q: QuestOSService, private sidebarService: NbSidebarService) {}
 
 sideBarFixed = { left:false}
 
@@ -23,11 +24,6 @@ sideBarFixed = { left:false}
 
     },
     {
-      title: 'AutoSave',
-      icon: "save-outline"
-
-    },
-    {
       title: 'IPFS',
       icon: "cube-outline"
     },
@@ -35,13 +31,21 @@ sideBarFixed = { left:false}
       title: 'Export',
       icon:'code-download-outline'
     },
-
-
+    {
+      title: 'person-remove-outline',
+      icon:'Sign Out'
+    },
 
   ];
 
   DEVMODE = true;
-  ngOnInit(){}
+  ngOnInit(){
+    this.menu.onItemClick().subscribe((item) => {
+        console.log(item);
+    });
+  }
+
+
 
 
 }

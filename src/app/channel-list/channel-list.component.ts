@@ -456,8 +456,6 @@ onContextMenu(event: MouseEvent, item) {
     this.dragNodeExpandOverTime = 0;
     this.dragNodeExpandOverArea = NaN;
     event.preventDefault();
-
-
   }
 
   getStyle(node: TodoItemFlatNode) {
@@ -580,8 +578,8 @@ onContextMenu(event: MouseEvent, item) {
       expandedNodes;
       restoreFlag = 0;
       sENwriteBlock = 0;
-      saveExpandedNodesScheduledWrite = 1000000000000000000000000000000000000000000000;
       saveExpandedNodes() {
+        this.sENwriteBlock = 1;
         this.expandedNodes = [];
         for(let i=0;i<this.treeControl.dataNodes.length;i++){
           let node = this.treeControl.dataNodes[i];
@@ -589,10 +587,11 @@ onContextMenu(event: MouseEvent, item) {
                 this.expandedNodes.push(node);
             }
         }
-
         console.log('ChannelList: Persisting expanded folders...');
         this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+        this.sENwriteBlock = 0;
         return true;
+
     }
 
     // buildChannelFolderListFromTreeNodeDataLock = 0;
@@ -622,8 +621,6 @@ onContextMenu(event: MouseEvent, item) {
 
     selectChannel(channelName){
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
-        this.DEVMODE && console.log("ChannelList: ChannelNameList: ",this.q.os.ocean.dolphin.getChannelNameList());
-        this.DEVMODE && console.log("isInArray: "+this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList()));
         if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.ocean.dolphin.selectChannel(channelName.trim());
@@ -701,7 +698,7 @@ getFolderListTreeChildrenRec(data){
   }
   parseStructure(folderStructure){
     for(let i=0;i<folderStructure.length;i++){
-      if(folderStructure[i]['data']['name'].indexOf('-----') === -1){
+      if(folderStructure[i]['data']['name'].indexOf('-----') === -1 && folderStructure[i]['data']['name'] != 'emptyFolder'){
         this.channelFolderListArray.push(folderStructure[i]);
         if(typeof(folderStructure[i]['children']) != 'undefined'){
           this.parseStructure(folderStructure[i]['children']);
@@ -766,7 +763,7 @@ getFolderListTreeChildrenRec(data){
     let hasChannels = this.q.os.bee.config.checkIfFolderIdChannels(folderId);
     console.log(hasChannels)
     if(hasChannels){
-      this.ui.showSnack('Folder has channels!','Sorry but no.');
+      this.ui.showSnack('Folder has channels!','Sorry but no.', {duration: 5000});
     }
     else{
       this.ui.showSnack('Deleting Folder...','Please Wait');
@@ -815,5 +812,7 @@ getFolderListTreeChildrenRec(data){
     }
 
   }
+
+  newInviteImportFoldersChanged(){}
 
 }

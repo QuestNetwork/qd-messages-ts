@@ -21,7 +21,7 @@ export class SignInComponent implements OnInit {
   }
 
   stringifyStore;
-isElectron;
+isElectron = false;
   async ngOnInit() {
     //auto login
 
@@ -32,8 +32,6 @@ isElectron;
 
     if(this.isElectron){
       this.ui.updateProcessingStatus(true);
-    }
-
       //wait for ocean
       console.log('SignIn: Waiting For Quest OS...');
       while(!this.q.os.isReady()){
@@ -41,27 +39,37 @@ isElectron;
         await this.ui.delay(1000);
       }
 
-      this.attemptImportSettings({}).then( (importSettingsStatus) => {
-        console.log('Import Settings Status:',importSettingsStatus);
-        console.log(importSettingsStatus);
-        if(importSettingsStatus){
-          console.log('SignIn: Settings Imported Successfully');
-          this.ui.showSnack('Loading Channels...','Almost There', {duration:2000});
-          this.jumpToChannels();
-          this.ui.signIn();
-          if(this.q.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected'){
-            this.ui.updateProcessingStatus(false);
-          }
-        }
-        else{
-                this.ui.updateProcessingStatus(false);
-                this.ui.showSnack('No Settings Imported','Oh Ok');
+      if(this.q.os.isSignedIn()){
+        this.attemptImportSettings({}).then( (importSettingsStatus) => {
+          console.log('Import Settings Status:',importSettingsStatus);
+          console.log(importSettingsStatus);
+          if(importSettingsStatus){
+            console.log('SignIn: Settings Imported Successfully');
+            this.ui.showSnack('Loading Channels...','Almost There', {duration:2000});
+            this.jumpToChannels();
+            this.ui.signIn();
+            if(this.q.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected'){
+              this.ui.updateProcessingStatus(false);
             }
-      }).catch( (error) => {
+          }
+          else{
+                  this.ui.updateProcessingStatus(false);
+                  this.ui.showSnack('SignIn: No Settings Imported','Oh Ok');
+              }
+        }).catch( (error) => {
+          this.ui.updateProcessingStatus(false);
+          this.ui.showSnack('SignIn: Error Importing Settings!','Oh No');
+          this.DEVMODE && console.log(error);
+        });
+      }
+      else{
         this.ui.updateProcessingStatus(false);
-        this.ui.showSnack('Error Importing Settings!','Oh No');
-        this.DEVMODE && console.log(error);
-      });
+        this.DEVMODE && console.log("SignIn: Not Signed In");
+      }
+    }
+    else{
+      this.ui.updateProcessingStatus(false);
+    }
 
   }
 
@@ -215,7 +223,6 @@ async openFileLoaded(event){
         await this.ui.delay(2000);
       }
       this.q.os.bee.config.readConfig(parsedStringify);
-      this.q.os.bee.config.autoSave();
 
 
       //wait for ipfs
