@@ -623,7 +623,13 @@ onContextMenu(event: MouseEvent, item) {
         if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.ocean.dolphin.selectChannel(channelName.trim());
+          this.selectedChannel = channelName;
         }
+    }
+    channelIsSelected = "active-channel";
+    selectedChannel;
+    getSelectedChannel(){
+      return JSON.stringify(this.selectedChannel);
     }
 
     DEVMODE = swarmJson['dev'];

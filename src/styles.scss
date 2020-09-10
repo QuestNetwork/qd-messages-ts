@@ -945,3 +945,15 @@ position: relative;
     outline: none !important;
 border: 0 !important;
   }
+
+
+  .disabled-channel {
+    background: white;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.active-channel {
+  opacity: 1;
+  background: #e7d564 !important;
+}

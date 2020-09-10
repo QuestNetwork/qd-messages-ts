@@ -125,7 +125,7 @@
 
                      <!-- <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)"> -->
 
-      <div  class="treeNodeContainerSingle {{node.item}}" >
+      <div  class="treeNodeContainerSingle {{node.item}}" [class.active-channel]="selectedChannel === node.item" >
        <!-- <button mat-icon-button disabled></button> -->
        <nb-icon icon="activity"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"
@@ -162,7 +162,9 @@
              <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
                {{getFolderNameFromId(node.item)}}
                <!-- {{node.item}} -->
-               folder
+
+
+
              </span>
            </span>
 
