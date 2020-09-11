@@ -80,7 +80,7 @@ To fully participate in the development, you'll need:
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
 - [Quest Network PubSub Service](https://github.com/QuestNetwork/quest-pubsub-js)
 
-```git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js```
+```git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js ```
 
 **Commands**
 
