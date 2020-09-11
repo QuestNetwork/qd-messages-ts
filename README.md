@@ -183,6 +183,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
+- Dynamic Swarm Peer List Also On The Web (add and remove bootstrap peers)
 - Unlimited Custom Emojis
 - Quest Network Calendar App Plugin (for shared calendars)
 - IRC Plugin
