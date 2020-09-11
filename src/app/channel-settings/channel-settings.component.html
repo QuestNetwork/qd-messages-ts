@@ -2,7 +2,7 @@
 
 <p style=" "class="channelSettingsOption"> Challenge</p>
 <mat-form-field style="width: 24%;    padding: 0;">
-<mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged($event.value)"  >
+<mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged()"  >
                  <mat-option  [value]="1" >
                     On
                 </mat-option>
@@ -51,6 +51,15 @@ Max:  <mat-form-field style="width: 24%;"> <mat-select [(value)]="newInviteCodeM
           <mat-option  [value]="100" >
              100
          </mat-option>
+         <mat-option  [value]="1000" >
+            1k
+        </mat-option>
+        <mat-option  [value]="1000000" >
+           1m
+       </mat-option>
+       <mat-option  [value]="10000000" >
+          10m
+      </mat-option>
 
      </mat-select>
 </mat-form-field>

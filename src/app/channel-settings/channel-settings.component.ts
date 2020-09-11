@@ -12,9 +12,7 @@ export class ChannelSettingsComponent implements OnInit {
   constructor(private ui: UiService,private q: QuestOSService) { }
 
   challengeFlowFlag = 0;
-  challengeFlowFlagChanged(value){
 
-  }
 
   newInviteCodeMax = 5;
   newInviteCodeMaxChanged(event){
@@ -82,6 +80,17 @@ export class ChannelSettingsComponent implements OnInit {
 
 
 
+  }
+
+  challengeFlowFlagChanged(){
+      let flag = this.challengeFlowFlag;
+      let ch = this.q.os.getSelectedChannel();
+      if(flag){
+        this.q.os.enableChallenge(ch)
+      }
+      else{
+        this.q.os.disableChallenge(ch)
+      }
   }
 
   selectedChannel = "NoChannelSelected";

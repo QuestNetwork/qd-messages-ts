@@ -58,6 +58,7 @@ import { ChannelTabComponent } from './channel-tab/channel-tab.component';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -117,12 +118,13 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
    MatCheckboxModule,
    MatIconModule,
    MatInputModule,
-   MatTreeModule
+   MatFormFieldModule
 
   ],
   exports: [
     CdkTableModule,
-    CdkTreeModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatTreeModule,
     MatMenuModule,
     MatSlideToggleModule
