@@ -204,3 +204,70 @@ font-family: Ubuntu;
 .generalSettingsScreenHeader{
   margin-bottom:20px;
 }
+
+.peerListWrapper{
+  background-color: #46277f33;
+  border-radius: 10px;
+  padding-top: 10px;
+  min-height: 30vh;
+  padding-bottom: 10px;
+  margin-top: 20px !important;
+}
+
+.peerListHeader{
+  background: #3455d28a;
+      text-align: center;
+      line-height: 29px;
+      font-family: Ubuntu;
+      color: #97abae;
+      font-size: 13px;
+      padding-bottom: 1px;
+}
+// REVIEW:
+.refreshIpfsSwarmPeerListIcon{
+  font-size: 23px;
+      font-weight: bold;
+      margin-left: 10px;
+      position: relative;
+      top: 5px;
+      padding: 2px;
+      color: #2f74f8;
+      cursor: pointer;
+}
+.refreshIpfsSwarmPeerListIcon:hover{
+  color:#2f5de1;
+}
+.peer{
+  font-size: 12px;
+text-align: center;
+padding-top: 9px;
+line-height: 12px;
+text-overflow: ellipsis;
+white-space: nowrap;
+max-width: 46vw;
+overflow: hidden;
+word-break: break-all;
+text-overflow: ellipsis;
+margin: auto;
+}
+
+.peerListBox{
+  min-height: 40vh;
+  max-height: 40vh;
+      overflow-y: scroll;
+}
+
+.peerListFooter{
+  text-align: center;
+}
+.newPeerButton{
+  color: #3877f2;margin-left: 20px; cursor: pointer;
+
+  font-size: 31px;
+    top: 6px;
+    position: relative;
+}
+.newPeerButton:hover{
+  color:#2f5de1;
+
+}

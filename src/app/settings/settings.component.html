@@ -96,18 +96,35 @@
               <div class="generalSettingsScreenHeader">IPFS Settings</div>
 
               <div fxLayout="row" style="margin-bottom:10px;">
-                    <div *ngIf="ipfsOnline" class="saveLockTogglerTitle saveLockTogglerTitleActive">
+                    <div *ngIf="ipfsOnline" class="saveLockTogglerTitle saveLockTogglerTitleActive" style="color:#907d40;">
                       IPFS Online
                     </div>
-                    <div *ngIf="!ipfsOnline" class="saveLockTogglerTitle">
+                    <div *ngIf="!ipfsOnline" class="saveLockTogglerTitle" style="color:#787777;">
                       IPFS Offline
                     </div>
 
                   <div class="saveLockOptions saveLockToggler"  style=" font-size: 20px;    text-align: center;cursor:pointer;" >
-                    <mat-slide-toggle  id="saveLockActiveToggle" [(ngModel)]="ipfsOnline" >
+                    <mat-slide-toggle  id="saveLockActiveToggle" [(ngModel)]="ipfsOnline" disabled=true>
 
                     </mat-slide-toggle>
                     </div>
+              </div>
+              <div style="margin-top:10px;" class="peerListWrapper">
+                  <div class="peerListHeader" (click)="refreshIpfsSwarmPeerList()">swarm.json['ipfs']['swarm']                  <nb-icon icon="swap-outline" class="refreshIpfsSwarmPeerListIcon"></nb-icon></div>
+                  <div class="peerListBox">
+                    <div *ngFor="let peer of bootstrapIpfsPeers" class="peer">{{peer}}</div>
+                  </div>
+                  <div class="peerListFooter">
+                    <mat-form-field style="    color: #598adb;
+    width: 50%;
+    margin-top: 20px;
+    font-size: 15px;">
+                       <input matInput placeholder="New Swarm Peer">
+                    </mat-form-field>
+                    <nb-icon icon="file-add-outline" class="newPeerButton"></nb-icon>
+
+
+                  </div>
               </div>
 
 

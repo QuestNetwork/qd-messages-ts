@@ -31,6 +31,8 @@ autoSaveInterval = 30*10000;
   ];
 
   DEVMODE = true;
+  bootstrapIpfsPeers = [];
+
   ngOnInit(){
     this.menu.onItemClick().subscribe((e) => {
       if(e['item']['title'] == 'Export'){
@@ -51,11 +53,12 @@ autoSaveInterval = 30*10000;
       this.signIn();
     });
     this.ipfsOnline = this.q.os.isReady();
+    this.bootstrapIpfsPeers = this.q.os.getIpfsBootstrapPeers();
     this.q.os.onReady().subscribe( () => {
       console.log('OS Ready');
       this.ipfsOnline = true;
+      this.bootstrapIpfsPeers = this.q.os.getIpfsBootstrapPeers();
     });
-
     this.q.os.onSignIn().subscribe( () => {
       this.autoSaveActive = this.q.os.getAutoSave();
       this.autoSaveInterval = this.q.os.getAutoSaveInterval();
@@ -63,6 +66,9 @@ autoSaveInterval = 30*10000;
     });
 
 
+  }
+  refreshIpfsSwarmPeerList(){
+    this.bootstrapIpfsPeers = this.q.os.getIpfsBootstrapPeers();
   }
   ipfsOnline = false;
   autoSaveIntervalChanged(v){
