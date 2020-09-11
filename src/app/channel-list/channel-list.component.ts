@@ -3,6 +3,9 @@ import { QuestOSService } from '../services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../services/ui.service';
 
+import QrScanner from 'qr-scanner';
+
+
 import { filter, map } from 'rxjs/operators';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -477,9 +480,14 @@ onContextMenu(event: MouseEvent, item) {
     }
   }
 
-
+  closeQR(){
+    setTimeout( () => {
+      this.closePopup();
+    },500);
+  }
   scanQR(){
     this.open(this.qrPop);
+
   }
 
   deleteItem(node: TodoItemFlatNode) {

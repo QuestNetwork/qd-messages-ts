@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTreeModule} from '@angular/material/tree';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -118,7 +119,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
    MatCheckboxModule,
    MatIconModule,
    MatInputModule,
-   MatFormFieldModule
+   MatFormFieldModule,
+   ZXingScannerModule
+
 
   ],
   exports: [

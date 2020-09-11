@@ -34,11 +34,19 @@
             <nb-card-header>Scan QR</nb-card-header>
             <nb-card-body style="color:goldenrod;">
 
+
+
+              <zxing-scanner></zxing-scanner>
+
+
+
+
+
             </nb-card-body>
             <nb-card-footer>
-              <button mat-stroked-button color="primary" (click)="createNewChannel(newChannelName);" style="    margin-right: 20px;
-        border: 1px solid #ffffff24;">Use</button>
-              <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
+              <!-- <button mat-stroked-button color="primary" (click)="createNewChannel(newChannelName);" style="    margin-right: 20px;
+        border: 1px solid #ffffff24;">Use</button> -->
+              <button mat-stroked-button color="primary" (click)="closeQR()" style="    border: 1px solid #ffffff24;">Cancel</button>
             </nb-card-footer>
           </nb-card>
         </ng-template>
