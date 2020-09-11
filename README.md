@@ -185,6 +185,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Third Party Dependencies Audited, Security Issues Fixed
 - Unlimited Custom Emojis
 - Quest Network Calendar App Plugin (for shared calendars)
+- IRC Plugin
 
 **1.1.0**
 - QuickResponse (from list of possible responses)
