@@ -139,13 +139,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Enable Write Lock To Keep All Processes From Writing
 - Disable AutoSave
 - Change AutoSave Interval
-- Share and Import Channels By QR Code
+- Disable Challenge Flow (close channels to invite only)
 - Dynamic Swarm Peer List On Desktop (add and remove bootstrap peers)
 
 ## Roadmap
 
 **0.9.2**
-- Disable Challenge Flow (close channels to invite only)
+- Share and Import Channels By QR Code
 - Set Alias (show custom name instead of pub key) and profile pictures
 
 **0.9.3**
