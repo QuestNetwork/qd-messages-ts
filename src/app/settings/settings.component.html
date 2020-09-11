@@ -17,7 +17,7 @@
                 </div>
 
               <div class="saveLockOptions saveLockToggler"  style=" font-size: 20px;    text-align: center;cursor:pointer;" >
-                <mat-slide-toggle  id="saveLockActiveToggle" [(ngModel)]="saveLockActive" (toggleChange)="saveLockActiveToggled()">
+                <mat-slide-toggle  id="saveLockActiveToggle" [(ngModel)]="saveLockActive" (click)="saveLockActiveToggled()">
 
                 </mat-slide-toggle>
                 </div>
@@ -40,7 +40,7 @@
 
 
 
-            <div fxLayout="row" [hidden]="!saveLockActive || !autoSaveActive" style="margin-top:10px;" class="autoSaveIntervalSelectWrapper">
+            <div fxLayout="row" [hidden]="saveLockActive || !autoSaveActive" style="margin-top:10px;" class="autoSaveIntervalSelectWrapper">
                 <div [hidden]="!autoSaveActive" class="autoSaveIntervalTogglerTitle">
                   AutoSave Interval
                 </div>
@@ -104,7 +104,7 @@
                     </div>
 
                   <div class="saveLockOptions saveLockToggler"  style=" font-size: 20px;    text-align: center;cursor:pointer;" >
-                    <mat-slide-toggle  id="saveLockActiveToggle" [(ngModel)]="ipfsOnline" disabled=true>
+                    <mat-slide-toggle  id="ipfsOnlineToggle" [(ngModel)]="ipfsOnline" disabled=true>
 
                     </mat-slide-toggle>
                     </div>

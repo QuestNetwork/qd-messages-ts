@@ -289,20 +289,6 @@ cursor:pointer;
 }
 
 
-.peerListBox::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-.peerListBox::-webkit-scrollbar-thumb {
-  background-color: #4e84e58f;
-  outline: 1px solid slategrey;
-}
-
-.peerListBox::-webkit-scrollbar-track {
-    box-shadow: none !important;
-}
-
-
 ::ng-deep .mat-form-field {
 
     .mat-form-field-underline {
