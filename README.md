@@ -151,13 +151,14 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Pair with participants by QR Code
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
-- P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
+- Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 
 **0.9.4**
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
 **0.9.5**
+- Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
 - AES Encrypt Invite Tokens
 - AutoSave For Message Histories
 - Export Message Histories
