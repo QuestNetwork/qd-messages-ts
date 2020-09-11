@@ -75,10 +75,10 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 
 To fully participate in the development, you'll need: 
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
-- [Quest Network Bee Service](https://github.com/QuestNetwork/quest-bee-js)
-- [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
-- [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
-- [Quest Network PubSub Service](https://github.com/QuestNetwork/quest-pubsub-js)
+- [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
+- [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
+- [Quest Network Dolphin Process](https://github.com/QuestNetwork/quest-dolphin-js)
+- [Quest Network PubSub Process](https://github.com/QuestNetwork/quest-pubsub-js)
 
 ```git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js ```
 
