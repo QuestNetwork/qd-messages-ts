@@ -140,6 +140,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Disable AutoSave
 - Change AutoSave Interval
 - Share and Import Channels By QR Code
+- Dynamic Swarm Peer List (add and remove bootstrap peers)
 
 ## Roadmap
 
