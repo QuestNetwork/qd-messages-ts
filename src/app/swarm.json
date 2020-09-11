@@ -2,7 +2,7 @@
   "dev": false,
   "ipfs": {
     "swarm": [
-      "/dns4/wrtc-star1.par.dwe2bops.pub/tcp/443/wss/p2p-webrtc-star"
+      "/dns4/wrtc-star1.par.dweboaps.pub/tcp/443/wss/p2p-webrtc-star"
     ]
   }
 }

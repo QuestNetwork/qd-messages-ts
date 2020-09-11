@@ -130,6 +130,7 @@ export class AppComponent {
     }
 
     if(noPeers){
+      this.ui.updateProcessingStatus(false);
       alert('IPFS Caused Boot Termination, Check Bootstrap Peers!');
     }
 

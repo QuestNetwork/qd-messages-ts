@@ -70,6 +70,26 @@ autoSaveInterval = 30*10000;
   refreshIpfsSwarmPeerList(){
     this.bootstrapIpfsPeers = this.q.os.getIpfsBootstrapPeers();
   }
+  newPeerField = "";
+  addNewPeer(){
+    let newPeer = this.newPeerField
+    let peers = this.q.os.getIpfsBootstrapPeers();
+    peers.push(newPeer);
+    this.q.os.setIpfsBootstrapPeers(peers);
+    this.refreshIpfsSwarmPeerList();
+  }
+  removePeer(peer){
+    this.q.os.setIpfsBootstrapPeers(this.q.os.getIpfsBootstrapPeers().filter(e => e != peer));
+    this.refreshIpfsSwarmPeerList();
+  }
+  reboot(){
+    this.q.os.reboot();
+  }
+  newPeerFieldChanged(v){
+    if(typeof v['target']['value'] != 'undefined'){
+      this.newPeerField =  v['target']['value'];
+    }
+  }
   ipfsOnline = false;
   autoSaveIntervalChanged(v){
      this.q.os.setAutoSaveInterval(v);

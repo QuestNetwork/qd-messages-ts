@@ -271,3 +271,39 @@ margin: auto;
   color:#2f5de1;
 
 }
+
+.removePeerButton{
+  font-size: 1.25rem;
+line-height: 1;
+width: 1em;
+height: 1em;
+color: #f14f2f4a;
+position: relative;
+top: 3px;
+}
+
+.removePeerButton:hover{
+  color:#f14f2fa1;
+}
+
+
+.peerListBox::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.peerListBox::-webkit-scrollbar-thumb {
+  background-color: #4e84e58f;
+  outline: 1px solid slategrey;
+}
+
+.peerListBox::-webkit-scrollbar-track {
+    box-shadow: none !important;
+}
+
+
+::ng-deep .mat-form-field {
+
+    .mat-form-field-underline {
+        background-color: #f14f2f4a;
+    }
+}

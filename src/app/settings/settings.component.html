@@ -112,16 +112,18 @@
               <div style="margin-top:10px;" class="peerListWrapper">
                   <div class="peerListHeader" (click)="refreshIpfsSwarmPeerList()">swarm.json['ipfs']['swarm']                  <nb-icon icon="swap-outline" class="refreshIpfsSwarmPeerListIcon"></nb-icon></div>
                   <div class="peerListBox">
-                    <div *ngFor="let peer of bootstrapIpfsPeers" class="peer">{{peer}}</div>
+                    <div *ngFor="let peer of bootstrapIpfsPeers" class="peer">{{peer}}  <nb-icon icon="close-outline" class="removePeerButton" (click)="removePeer(peer)"></nb-icon></div>
                   </div>
                   <div class="peerListFooter">
                     <mat-form-field style="    color: #598adb;
     width: 50%;
     margin-top: 20px;
     font-size: 15px;">
-                       <input matInput placeholder="New Swarm Peer">
+                       <input matInput placeholder="New Swarm Peer" (input)="newPeerFieldChanged($event)">
                     </mat-form-field>
-                    <nb-icon icon="file-add-outline" class="newPeerButton"></nb-icon>
+                    <nb-icon icon="file-add-outline" class="newPeerButton" (click)="addNewPeer()"></nb-icon>
+                    <nb-icon icon="log-in-outline" class="newPeerButton" (click)="reboot()"></nb-icon>
+
 
 
                   </div>
