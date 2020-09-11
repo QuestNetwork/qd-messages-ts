@@ -3,7 +3,6 @@ import { QuestOSService } from '../services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../services/ui.service';
 
-import QrScanner from 'qr-scanner';
 
 
 import { filter, map } from 'rxjs/operators';
