@@ -71,13 +71,19 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 
 ## Development
 
-**Commands**
+**Prerequisites**
 
-Until this branch is released, you need to clone: 
+To fully participate in the development, you'll need: 
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
 - [Quest Network Bee Service](https://github.com/QuestNetwork/quest-bee-js)
 - [Quest Network Ocean Service](https://github.com/QuestNetwork/quest-ocean-js)
 - [Quest Network Dolphin Service](https://github.com/QuestNetwork/quest-dolphin-js)
+- [Quest Network PubSub Service](https://github.com/QuestNetwork/quest-pubsub-js)
+
+```git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js ```
+
+**Commands**
+
 
 To The same directory you're cloning this repository to.
 
