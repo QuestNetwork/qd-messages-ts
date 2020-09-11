@@ -149,16 +149,16 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Sidebars resizable
 - Participant/Friends Groups And Folders
 - Set Alias (show custom name instead of pub key) and profile pictures
-- Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Pair with participants by QR Code
+- Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
+- P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
 
 **0.9.4**
-- P2P Encrypted Audio/Video Conversations (Encryption Can Be Turned Off For Higher Quality)
+- Ignore/Mute Channel Participants Locally
+- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
 **0.9.5**
 - AES Encrypt Invite Tokens
-- Ignore/Mute Channel Participants Locally
-- Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 - AutoSave For Message Histories
 - Export Message Histories
 
@@ -177,10 +177,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.8**
 - Badges for unread messages
 - Desktop Notifications
-- Ethereum Payment Integration Beta
 
 **0.9.9**
-- IRC Plugin to add IRC servers
+- Ethereum Payment Integration Beta
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
