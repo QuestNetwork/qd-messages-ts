@@ -1,7 +1,7 @@
 # Quest Messenger JS
 > We strive to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the chat apps out there.
 
-![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/blob/0.9.2/doc/images/0.9.2.png?raw=true)
+![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/blob/mster/doc/images/messages-locked-sidebars.png?raw=true)
 
 ## Lead Maintainer
 
