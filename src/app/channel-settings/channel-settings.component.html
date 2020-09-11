@@ -1,9 +1,9 @@
 <ng-template #qrCode let-data let-ref="qrCodeRef">
       <nb-card>
         <nb-card-header>Scan QR</nb-card-header>
-        <nb-card-body style="color:goldenrod;">
+        <nb-card-body style="margin:10px;color:goldenrod;">
 
-          <div style="padding: 20px;">
+          <div style="">
 
 
 
@@ -11,8 +11,7 @@
 
 
             <div class="qrCodeWrapper">
-              <img [src]="qrCodeURLSafe" alt="" class="img-thumbnail" style="float:left; display:block;width: 136px;
-            margin-left: 7px;">
+              <img [src]="qrCodeURLSafe" alt="" class="img-thumbnail" class="qrCodeShowGenerate">
             </div>
 
 

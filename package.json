@@ -90,6 +90,7 @@
     "ngx-electron": "^2.2.0",
     "ngx-file-drop": "^9.0.1",
     "open": "^7.2.0",
+    "qr-scanner": "^1.2.0",
     "rxjs": "~6.5.5",
     "three": "^0.118.3",
     "treeviz": "^2.2.3",

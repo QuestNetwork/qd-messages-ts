@@ -3,6 +3,7 @@ import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { QuestOSService } from '../services/quest-os.service';
 import { UiService } from '../services/ui.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-channel-settings',
@@ -11,7 +12,7 @@ import { NbMenuService,NbDialogService } from '@nebular/theme';
 })
 export class ChannelSettingsComponent implements OnInit {
 
-  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
+  constructor( private _sanitizer:DomSanitizer,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
 }
   challengeFlowFlag = 0;
 
@@ -22,8 +23,9 @@ export class ChannelSettingsComponent implements OnInit {
   }
   qrCodeURLSafe;
 
-  generateQR(text){
-    this.qrCodeURLSafe = this.q.os.utilities.qr.generate(text);
+  async generateQR(text){
+    console.log(text);
+    this.qrCodeURLSafe = this._sanitizer.bypassSecurityTrustUrl(await this.q.os.utilities.qr.generate(text));
   }
 
   isOwner = false;

@@ -59,3 +59,13 @@ text-overflow: ellipsis;
 .mat-form-field-infix {
   padding:0;
 }
+
+
+.qrCodeShowGenerate{
+  float: left;
+    display: block;
+    min-width: 20px;
+    max-height: 80vh;
+    max-width: 37vw;
+    margin-left: 7px;
+}
