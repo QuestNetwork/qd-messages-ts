@@ -687,6 +687,8 @@ getFolderListTreeChildrenRec(data){
 
 
   @ViewChild('qrPop') qrPop;
+  @ViewChild('createPop') createPop;
+
   newChannelName;
   channelFolderList;
   channelFolderListArray = [];
@@ -729,19 +731,23 @@ getFolderListTreeChildrenRec(data){
     await this.q.os.createChannel(channelNameDirty, parentFolderId);
     this.createCompleteAndClose();
   }
-  popupRef;
+  popupRef = [];
   open(dialog: TemplateRef<any>) {
-        this.popupRef = this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' });
+        this.popupRef.push(this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' }));
     }
   closePopup(){
-    this.popupRef.close();
+    console.log('close toggled');
+    // for(i=0;i<this.popupRef.length;i++){
+      this.popupRef[this.popupRef.length-1].close();
+      this.popupRef.pop();
+    // }
   }
 
   createCompleteAndClose(){
     this.ui.delay(1000);
     this.q.os.bee.config.commit();
     this.ui.showSnack('Success!','Yesss',{duration:1000});
-    this.popupRef.close();
+    this.closePopup();
   }
 
 
