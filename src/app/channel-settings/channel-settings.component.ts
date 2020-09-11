@@ -74,6 +74,9 @@ export class ChannelSettingsComponent implements OnInit {
         if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
                  this.channelInviteCodes = ivC['items'];
         }
+
+        console.log('getting flag for:',this.selectedChannel);
+        this.challengeFlowFlag = this.q.os.ocean.dolphin.getChallengeFlag(this.selectedChannel);
       }
     });
 
