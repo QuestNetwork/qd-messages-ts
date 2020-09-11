@@ -478,6 +478,10 @@ onContextMenu(event: MouseEvent, item) {
   }
 
 
+  scanQR(){
+    this.open(this.qrPop);
+  }
+
   deleteItem(node: TodoItemFlatNode) {
     this.database.deleteItem(this.flatNodeMap.get(node));
   }
@@ -682,7 +686,7 @@ getFolderListTreeChildrenRec(data){
 
 
 
-  @ViewChild('create') createPop;
+  @ViewChild('qrPop') qrPop;
   newChannelName;
   channelFolderList;
   channelFolderListArray = [];

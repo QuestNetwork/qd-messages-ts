@@ -29,6 +29,21 @@
     </ng-template>
 
 
+    <ng-template #qrPop let-data let-ref="qrRef">
+          <nb-card>
+            <nb-card-header>Scan QR</nb-card-header>
+            <nb-card-body style="color:goldenrod;">
+
+            </nb-card-body>
+            <nb-card-footer>
+              <button mat-stroked-button color="primary" (click)="createNewChannel(newChannelName);" style="    margin-right: 20px;
+        border: 1px solid #ffffff24;">Use</button>
+              <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
+            </nb-card-footer>
+          </nb-card>
+        </ng-template>
+
+
     <ng-template #import let-data let-ref="importRef">
           <nb-card>
             <nb-card-header>Import Channel</nb-card-header>
@@ -63,7 +78,9 @@
         color: white !important;">
                   <input matInput placeholder="Invite Code" value="" name='inviteCodeHex' [(ngModel)]='inviteCodeHex' style="color: black;
         background-color: goldenrod;
-        padding: 7px;">
+        padding: 7px;    margin-right: 5%;
+    width: 80%;">
+        <nb-icon icon="camera-outline" class="deleteCode scanQRCode" (click)="scanQR()" style="  "></nb-icon>
                   </div>
             </nb-card-body>
             <nb-card-footer>

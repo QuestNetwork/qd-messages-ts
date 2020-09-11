@@ -77,6 +77,11 @@
 // }
 
 
+html{
+  max-height: 100vh !important;
+overflow: hidden !important;
+}
+
 #cf2 img {
   position:absolute;
   left:0;

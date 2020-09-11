@@ -9,14 +9,20 @@
     width:100%;
 }
 
+.inviteCodeUsers{
+  width: 30%;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
 .inviteCodeUsers, .inviteCodeItem{
   float:left;
 }
 
 .inviteCodeItem{
   margin-left: 5px;
-    width: 55%;
-margin-right: 5px;
+    width: 30%;
+    margin-right: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

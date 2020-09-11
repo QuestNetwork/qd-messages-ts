@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { QuestOSService } from '../services/quest-os.service';
 import { UiService } from '../services/ui.service';
+import { NbMenuService,NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'app-channel-settings',
@@ -9,8 +11,8 @@ import { UiService } from '../services/ui.service';
 })
 export class ChannelSettingsComponent implements OnInit {
 
-  constructor(private ui: UiService,private q: QuestOSService) { }
-
+  constructor(private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
+}
   challengeFlowFlag = 0;
 
 
@@ -35,6 +37,20 @@ export class ChannelSettingsComponent implements OnInit {
     if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
              this.channelInviteCodes = ivC['items'];
     }
+  }
+
+
+  popupRef;
+  openPopup(dialog: TemplateRef<any>) {
+        this.popupRef = this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' });
+    }
+  closePopup(){
+    this.popupRef.close();
+  }
+
+  @ViewChild('qrCode') qrCode;
+  showQR(text){
+    this.openPopup(this.qrCode);
   }
 
   removeInviteCode(link){
