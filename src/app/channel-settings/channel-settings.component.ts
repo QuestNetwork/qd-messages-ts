@@ -20,6 +20,11 @@ export class ChannelSettingsComponent implements OnInit {
   newInviteCodeMaxChanged(event){
 
   }
+  qrCodeURLSafe;
+
+  generateQR(text){
+    this.qrCodeURLSafe = this.q.os.utilities.qr.generate(text);
+  }
 
   isOwner = false;
   generateInviteCode(){
@@ -50,6 +55,7 @@ export class ChannelSettingsComponent implements OnInit {
 
   @ViewChild('qrCode') qrCode;
   showQR(text){
+    this.generateQR(text);
     this.openPopup(this.qrCode);
   }
 
