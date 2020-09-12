@@ -2,6 +2,7 @@ import { Component, Injectable,ElementRef,OnInit, TemplateRef, ViewChild, OnDest
 import { QuestOSService } from '../services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../services/ui.service';
+import { BarcodeFormat } from '@zxing/library';
 
 
 
@@ -485,6 +486,10 @@ onContextMenu(event: MouseEvent, item) {
     },500);
   }
   scanQR(){
+    const data = {
+      hasDevices: this.hasDevices,
+      hasPermission: this.hasPermission,
+    };
     this.open(this.qrPop);
 
   }
@@ -695,8 +700,51 @@ getFolderListTreeChildrenRec(data){
 
   @ViewChild('qrPop') qrPop;
   @ViewChild('createPop') createPop;
+
+  availableDevices: MediaDeviceInfo[];
+  currentDevice: MediaDeviceInfo = null;
+
+  formatsEnabled: BarcodeFormat[] = [
+    BarcodeFormat.QR_CODE,
+  ];
+
+  hasDevices: boolean;
+  hasPermission: boolean;
+
+  torchEnabled = false;
+  torchAvailable$ = new BehaviorSubject<boolean>(false);
+  tryHarder = false;
+
+
+  onCamerasFound(devices: MediaDeviceInfo[]): void {
+    this.availableDevices = devices;
+    this.hasDevices = Boolean(devices && devices.length);
+  }
+
+  onDeviceSelectChange(selected: string) {
+    const device = this.availableDevices.find(x => x.deviceId === selected);
+    this.currentDevice = device || null;
+  }
+
+  onHasPermission(has: boolean) {
+    this.hasPermission = has;
+  }
+
+  onTorchCompatible(isCompatible: boolean): void {
+    this.torchAvailable$.next(isCompatible || false);
+  }
+
+  toggleTorch(): void {
+    this.torchEnabled = !this.torchEnabled;
+  }
+
+  toggleTryHarder(): void {
+    this.tryHarder = !this.tryHarder;
+  }
   qrSuccessHandler(event){
     console.log(event);
+    this.inviteCodeHex = event;
+    this.closePopup();
   }
 
   newChannelName;

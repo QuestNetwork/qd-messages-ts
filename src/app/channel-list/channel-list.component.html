@@ -34,13 +34,11 @@
             <nb-card-header>Scan QR</nb-card-header>
             <nb-card-body style="color:goldenrod;">
 
-
-
-              <zxing-scanner></zxing-scanner>
-
-
-
-
+              <div class='qrScanWrapper'>
+              <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="qrSuccessHandler($event)"
+                [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+                (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+                </div>
 
             </nb-card-body>
             <nb-card-footer>

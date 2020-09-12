@@ -79,6 +79,7 @@
     "@peculiar/webcrypto": "^1.1.3",
     "@questnetwork/quest-os-js": "file:../quest-os-js",
     "@zxing/ngx-scanner": "3.0.0",
+    "@zxing/library": "0.17.1",
     "async": "^3.2.0",
     "cids": "^0.8.3",
     "crypto-js": "^4.0.0",
