@@ -95,7 +95,13 @@ autoSaveInterval = 30*10000;
      this.q.os.setAutoSaveInterval(v);
   }
   selectedSetting = "General";
+  signedIn = false;
   signIn(){
+
+    if(this.signedIn){
+      return true;
+    }
+
     this.items.push({
       title: 'Export',
       icon:'code-download-outline'
@@ -104,6 +110,8 @@ autoSaveInterval = 30*10000;
       title: 'Sign Out',
       icon:'person-remove-outline'
     });
+
+    this.signedIn = true;
   }
 
   saveLockActive = true;

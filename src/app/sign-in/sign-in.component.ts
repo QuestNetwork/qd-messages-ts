@@ -121,7 +121,6 @@ async openFileLoaded(event){
       //IMPORTED A .KEYCHAIN FILE
       let importSettingsStatus = await this.attemptImportSettings(parsedStringify);
       console.log('Sign In: Import Settings Status:',importSettingsStatus);
-      //set temporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
       if(importSettingsStatus){this.ui.showSnack('Opening Messages...','Almost There',{duration:2000});await this.jumpToChannels();return true;}
       else{this.ui.showSnack('Error Importing Settings!','Oh No');}
     }
@@ -145,7 +144,6 @@ async openFileLoaded(event){
     let importSettingsStatus = await this.attemptImportSettings({});
     console.log('Import Settings Status:',importSettingsStatus);
     importSettingsStatus = await this.attemptImportSettings({});
-    //settemporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
 
     if(importSettingsStatus){
       this.ui.showSnack('Default Settings Loaded...','Almost There', {duration: 2000});
@@ -157,26 +155,6 @@ async openFileLoaded(event){
 
   channelNameList = [];
   channelName;
-  async createNewMessengerNetwork(){
-    this.q.os.ocean.dolphin.setChannelKeyChain({});
-    this.q.os.ocean.dolphin.setChannelParticipantList({});
-    this.q.os.ocean.dolphin.setChannelNameList([]);
-    this.channelName = await this.q.os.ocean.dolphin.createChannel('general');
-    this.channelNameList.push(this.channelName);
-    this.channelName = await this.q.os.ocean.dolphin.createChannel('developer');
-    this.channelNameList.push(this.channelName);
-    this.q.os.ocean.dolphin.setChannelNameList(this.channelNameList);
-    let jobFileBlob = new Blob([JSON.stringify({
-        version: packageJson['version'],
-        appId: 'quest-messenger-js',
-        channelKeyChain:   this.q.os.ocean.dolphin.getChannelKeyChain(),
-        channelParticipantList: this.q.os.ocean.dolphin.getChannelParticipantList(),
-        channelNameList: this.q.os.ocean.dolphin.getChannelNameList()
-    })], { type: 'text/plain;charset=utf-8' });
-    saveAs(jobFileBlob, "profile.qcprofile");
-    // this.ui.setSettingsLoaded(true);
-  }
-
 
   async attemptImportSettings(parsedStringify){
     try{
@@ -201,7 +179,8 @@ async openFileLoaded(event){
   }
 
   async importSettings(parsedStringify){
-    console.log('Importing Settings ...',parsedStringify);
+    console.log('Importing Settings ...');
+    this.DEVMODE && console.log(parsedStringify);
       this.ui.setElectronSize('0');
       this.ui.updateProcessingStatus(true);
       this.completeChallengeScreen = false;
