@@ -144,7 +144,7 @@
                      (dragover)="handleDragOver($event, node);"
                      (dragend)="handleDragEnd($event);"
                      (drop)="handleDrop($event, node);"
-                     [ngClass]="getStyle(node)" >
+                     [ngClass]="getStyle(node)" (click)="selectChannel(node.item)">
 
                      <!-- <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)"> -->
 
@@ -153,7 +153,7 @@
        <nb-icon icon="activity"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"
                        (dragstart)="handleDragStart($event, node);">
-           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" (click)="selectChannel(node.item)">
+           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" >
                 {{node.item}}
            </span>
          </span>

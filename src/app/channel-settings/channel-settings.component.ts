@@ -1,5 +1,5 @@
 
-import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ChangeDetectorRef} from '@angular/core';
 import { QuestOSService } from '../services/quest-os.service';
 import { UiService } from '../services/ui.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
@@ -12,7 +12,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class ChannelSettingsComponent implements OnInit {
 
-  constructor( private _sanitizer:DomSanitizer,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
+  constructor(private cd:ChangeDetectorRef, private _sanitizer:DomSanitizer,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
 }
   challengeFlowFlag = 0;
 
@@ -78,7 +78,6 @@ export class ChannelSettingsComponent implements OnInit {
     console.log(code);
   }
 
-
   async ngOnInit() {
     while(!this.q.isReady()){
       await this.ui.delay(1000);
@@ -102,6 +101,8 @@ export class ChannelSettingsComponent implements OnInit {
         console.log('getting flag for:',this.selectedChannel);
         this.challengeFlowFlag = this.q.os.ocean.dolphin.getChallengeFlag(this.selectedChannel);
       }
+
+      this.cd.detectChanges();
     });
 
 

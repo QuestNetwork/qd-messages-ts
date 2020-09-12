@@ -1,4 +1,4 @@
-import { Component, Injectable,ElementRef,OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, Injectable,ElementRef,OnInit, TemplateRef, ViewChild, OnDestroy,ChangeDetectorRef } from '@angular/core';
 import { QuestOSService } from '../services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../services/ui.service';
@@ -528,7 +528,7 @@ onContextMenu(event: MouseEvent, item) {
     // return this.q.os.bee.config.isChannelFolderItemFolder(id);
   }
 
-  constructor(private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
+  constructor(private cd: ChangeDetectorRef, private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
 
     this.database.setQOS(this.q);
 
@@ -641,6 +641,7 @@ onContextMenu(event: MouseEvent, item) {
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.ocean.dolphin.selectChannel(channelName.trim());
           this.selectedChannel = channelName;
+          this.cd.detectChanges();
         }
     }
     channelIsSelected = "active-channel";

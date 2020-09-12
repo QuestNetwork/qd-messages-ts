@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
 import { UiService } from '../services/ui.service';
 import { QuestOSService } from '../services/quest-os.service';
@@ -10,7 +10,7 @@ import { QuestOSService } from '../services/quest-os.service';
 })
 export class ChannelTabComponent implements OnInit {
 
-  constructor( private ui: UiService, private sidebarService: NbSidebarService, private q: QuestOSService) { }
+  constructor( private cd: ChangeDetectorRef, private ui: UiService, private sidebarService: NbSidebarService, private q: QuestOSService) { }
   channelNameList = [];
 
   async ngOnInit() {
@@ -85,7 +85,8 @@ export class ChannelTabComponent implements OnInit {
       this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
         this.selectedChannel = value;
         console.log('Channel-Tab: Selected Channel: >>'+this.selectedChannel+'<<');
-        console.log('Channel-Tab: noChannelSelected: >>'+this.noChannelSelected+"<<")
+        console.log('Channel-Tab: noChannelSelected: >>'+this.noChannelSelected+"<<");
+        this.cd.detectChanges();
       });
 
 
