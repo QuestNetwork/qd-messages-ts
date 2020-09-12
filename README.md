@@ -26,15 +26,15 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 
 ## Download
 
-| Version | Win | Linux | Mac |
+| Version | Linux | Mac | Windows |
 |---------:|------------------------------|------------------------------|------------------------------|
-| 0.9.1 | No Official Build | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage) | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg) |
+| 0.9.1 | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage) | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg) | No Official Build |
 
 If you want anything else, you'll have to build from sources and probably fix some stuff.
 
 **WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
 
-## IPFS Gateways
+## Web
 
 https://gateway.pinata.cloud/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
@@ -136,7 +136,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
 - [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
 - [Quest Network Dolphin Process](https://github.com/QuestNetwork/quest-dolphin-js)
-- Delete Folders
+- Delete Folders On Right Click
 - Drag/Drop Folders/Channels
 - Export Settings
 - SignOut
@@ -158,6 +158,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 
 **0.9.4**
+- Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
