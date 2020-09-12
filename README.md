@@ -48,19 +48,6 @@ http://ipfs.infura.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
 https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
-## Contents 
-
-- [Quest Messenger JS](#quest-messenger-js)
-  * [Description](#description)
-  * [Support Us](#support-us)
-  * [Download](#download)
-  * [IPFS Gateways](#ipfs-gateways)
-  * [IPFS Deploy](#ipfs-deploy)
-  * [Development](#development)
-  * [Features](#features)
-  * [Roadmap](#roadmap)
-  * [License](#license)
-
 ## Development
 
 ### IPFS Deploy
