@@ -1,5 +1,5 @@
 # Quest Messenger JS
-> The first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger.
+> The first fully featured, multi-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger.
 
 ![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/raw/0.9.2/doc/images/0.9.2.png?raw=true)
 
@@ -8,7 +8,7 @@
 [StationedInTheField](https://github.com/StationedInTheField)
 
 ## Description
-The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest Network Image Captcha](https://github.com/QuestNetwork/quest-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate payments soon, so you can send each other money!
+The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest Network Image Captcha](https://github.com/QuestNetwork/quest-captcha-js) and the Quest Network Whistle ID Protocol among others. 
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code. Full Matrix integration is planned as well.
 
