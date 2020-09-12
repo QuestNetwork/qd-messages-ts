@@ -27,10 +27,10 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 
 ## Download
 
-| Platform | Download link                |
+| Version | Linux | Mac |
 |---------:|------------------------------|
-| **Linux**  | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage)
-| **Mac**    | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg)
+| 0.9.1 |  [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage) |  
+| **Mac**    | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg) |
 
 If you want anything else, you'll have to build from sources and probably fix some stuff.
 
