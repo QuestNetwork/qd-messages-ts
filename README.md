@@ -7,14 +7,6 @@
 
 [StationedInTheField](https://github.com/StationedInTheField)
 
-## Support Us
-This project is a lot of work and unfortunately we need to eat food, so we'd be thrilled if you sent us your financial contributions to:
-
-| Bitcoin | Ethereum | 
-|---|---|
-| `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`  |  `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E` |
-| <img src="doc/images/btc-qr.png" >  | <img src="doc/images/eth-qr.png" >  | 
-
 
 ## Description
 The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest Network Image Captcha](https://github.com/QuestNetwork/quest-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate payments soon, so you can send each other money!
@@ -24,6 +16,14 @@ We're planning to become for messaging what [Atom](https://atom.io) is for writi
 The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
 Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
+
+## Support Us
+This project is a lot of work and unfortunately we need to eat food, so we'd be thrilled if you sent us your financial contributions to:
+
+| Bitcoin | Ethereum | 
+|---|---|
+| `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`  |  `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E` |
+| <img src="doc/images/btc-qr.png" >  | <img src="doc/images/eth-qr.png" >  | 
 
 ## Download
 
