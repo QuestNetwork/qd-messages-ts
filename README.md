@@ -28,7 +28,7 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 
 | Version | Linux | Mac | Windows |
 |---------:|------------------------------|------------------------------|------------------------------|
-| 0.9.2 | [quest-messenger-0.9.2.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.2/quest-messenger-0.9.2.AppImage) | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.2/quest-messenger-0.9.2.dmg) | No Official Build |
+| 0.9.2 | [quest-messenger-0.9.2.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.2/quest-messenger-0.9.2.AppImage) | [quest-messenger-0.9.2.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.2/quest-messenger-0.9.2.dmg) | No Official Build |
 | 0.9.1 | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage) | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg) | No Official Build |
 
 
