@@ -7,8 +7,8 @@
 
 [StationedInTheField](https://github.com/StationedInTheField)
 
-## Please Donate
-This project is a lot of work and unfortunately we need to eat food, so we'd be thrilled if you sent us your donations to:
+## Support Us
+This project is a lot of work and unfortunately we need to eat food, so we'd be thrilled if you sent us your financial contributions to:
 
 Bitcoin:
 `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`
