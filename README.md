@@ -136,7 +136,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
 - [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
 - [Quest Network Dolphin Process](https://github.com/QuestNetwork/quest-dolphin-js)
-- Delete Folders
+- Delete Folders On Right Click
 - Drag/Drop Folders/Channels
 - Export Settings
 - SignOut
@@ -158,6 +158,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 
 **0.9.4**
+- Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
