@@ -163,7 +163,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 - Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
-- Context Meny For Channels In Channel List
+- Context Menu For Channels In Channel List
 
 **0.9.4**
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
