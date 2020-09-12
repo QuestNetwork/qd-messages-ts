@@ -13,7 +13,7 @@ This project is a lot of work and unfortunately we need to eat food, so we'd be 
 | Bitcoin | Ethereum | 
 |---|---|
 | `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`  |  `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E` |
-|   | <img src="doc/images/eth-qr.png" >  | 
+| <img src="doc/images/btc-qr.png" >  | <img src="doc/images/eth-qr.png" >  | 
 
 
 ## Description
