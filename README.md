@@ -36,17 +36,17 @@ If you want anything else, you'll have to build from sources and probably fix so
 
 ## Web
 
-https://gateway.pinata.cloud/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
+https://gateway.pinata.cloud/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 
-https://cloudflare-ipfs.com/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
+https://cloudflare-ipfs.com/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 
-https://ipfs.eternum.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
+https://ipfs.eternum.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 
-https://ipfs.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
+https://ipfs.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 
-http://ipfs.infura.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
+http://ipfs.infura.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 
-https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
+https://35.208.30.22/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 
 ## Development
 
