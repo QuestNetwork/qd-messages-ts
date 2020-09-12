@@ -695,6 +695,9 @@ getFolderListTreeChildrenRec(data){
 
   @ViewChild('qrPop') qrPop;
   @ViewChild('createPop') createPop;
+  qrSuccessHandler(event){
+    console.log(event);
+  }
 
   newChannelName;
   channelFolderList;
