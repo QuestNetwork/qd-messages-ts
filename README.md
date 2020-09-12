@@ -18,7 +18,7 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
 
 ## Support Us
-This project is a lot of work and unfortunately we need to eat food, so we'd be thrilled if you sent us your financial contributions to:
+This project is a lot of work and unfortunately we need to eat food (ツ)
 
 | Bitcoin | Ethereum | 
 |---|---|
