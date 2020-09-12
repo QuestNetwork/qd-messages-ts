@@ -3,20 +3,6 @@
 
 ![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/raw/0.9.2/doc/images/0.9.2.png?raw=true)
 
-
-## Contents 
-
-- [Quest Messenger JS](#quest-messenger-js)
-  * [Description](#description)
-  * [Support Us](#support-us)
-  * [Download](#download)
-  * [IPFS Gateways](#ipfs-gateways)
-  * [IPFS Deploy](#ipfs-deploy)
-  * [Development](#development)
-  * [Features](#features)
-  * [Roadmap](#roadmap)
-  * [License](#license)
-
 ## Lead Maintainer
 
 [StationedInTheField](https://github.com/StationedInTheField)
@@ -62,8 +48,22 @@ http://ipfs.infura.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
 https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
+## Contents 
 
-## IPFS Deploy
+- [Quest Messenger JS](#quest-messenger-js)
+  * [Description](#description)
+  * [Support Us](#support-us)
+  * [Download](#download)
+  * [IPFS Gateways](#ipfs-gateways)
+  * [IPFS Deploy](#ipfs-deploy)
+  * [Development](#development)
+  * [Features](#features)
+  * [Roadmap](#roadmap)
+  * [License](#license)
+
+## Development
+
+### IPFS Deploy
 **Memory** 3.75GB **Storage** 6GB **NodeJS** 14 **NPM** 6 **IPFS** 0.6
 
 ```git clone https://github.com/QuestNetwork/quest-messenger-js```
@@ -81,9 +81,8 @@ https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 If you have trouble getting the directory discovered by gateways, you can try ```./ipfs-propagate.sh``` from the root git folder. 
 Keep in mind that the bundled web application is >6MB alone without assets, please be patient until we have a preloader.
 
-## Development
 
-**Prerequisites**
+### Prerequisites
 
 To fully participate in the development, you'll need: 
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
@@ -94,7 +93,7 @@ To fully participate in the development, you'll need:
 
 ```git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js ```
 
-**Commands**
+### Commands
 
 
 To The same directory you're cloning this repository to.
