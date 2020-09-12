@@ -122,7 +122,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings
-- Quest Network PubSub Process](https://github.com/QuestNetwork/quest-pubsub-js
+- [Quest Network PubSub Process](https://github.com/QuestNetwork/quest-pubsub-js)
 
 **0.9.1**
 - Auto SignIn, if signed in
