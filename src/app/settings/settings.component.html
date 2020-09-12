@@ -42,7 +42,7 @@
 
 
 
-            <div fxLayout="row" [hidden]="saveLockActive || !autoSaveActive" style="margin-top:10px;" class="autoSaveIntervalSelectWrapper">
+            <div fxLayout="row" *ngIf="saveLockActive && autoSaveActive" style="margin-top:10px;" class="autoSaveIntervalSelectWrapper">
                 <div [hidden]="!autoSaveActive" class="autoSaveIntervalTogglerTitle">
                   AutoSave Interval
                 </div>

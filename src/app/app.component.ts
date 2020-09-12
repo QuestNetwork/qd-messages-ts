@@ -12,7 +12,7 @@ declare var $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor( private aChD: ChangeDetectorRef,private q:QuestOSService, private ui: UiService,private snackBar: MatSnackBar ){}
+  constructor( private cd: ChangeDetectorRef,private q:QuestOSService, private ui: UiService,private snackBar: MatSnackBar ){}
 
   private DEVMODE = swarmJson['dev'];
   @ViewChild('menuTabGroup') menuTabGroup;
@@ -135,11 +135,11 @@ export class AppComponent {
     }
 
     this.swarmPeers = this.q.os.ocean.getPeers();
-    this.aChD.detectChanges();
+    this.cd.detectChanges();
 
     this.q.os.ocean.swarmPeersSub.subscribe( (value:number) => {
       this.swarmPeers = value;
-      this.aChD.detectChanges();
+      this.cd.detectChanges();
     });
 
     this.q.os.ocean.dolphin.channelNameListSub.subscribe( (value) => {
@@ -156,7 +156,7 @@ export class AppComponent {
     let psPS = this.q.os.ocean.dolphin.getPubSubPeersSub();
     psPS.subscribe( (value:number) => {
       this.pubSubPeers = value;
-      this.aChD.detectChanges();
+      this.cd.detectChanges();
     });
 
     console.log('App: Boot Complete');

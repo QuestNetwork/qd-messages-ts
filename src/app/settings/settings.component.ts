@@ -117,20 +117,13 @@ autoSaveInterval = 30*10000;
   saveLockActive = true;
   saveLockActiveToggled(){
     console.log('toggled');
-    // let oldSaveLockStatus = this.q.os.getSaveLock();
-    // if(oldSaveLockStatus){
-    //   this.q.os.disableSaveLock();
-    // }
-    // else{
-    //   this.q.os.enableSaveLock();
-    // }
-
-    // if(this.saveLockActive){
-    //   this.saveLockActive = false;
-    // }
-    // else{
-    //   this.saveLockActive = true;
-    // }
+      let oldSaveLockStatus = this.q.os.getSaveLock();
+      if(oldSaveLockStatus){
+        this.q.os.disableSaveLock();
+      }
+      else{
+        this.q.os.enableSaveLock();
+      }
   }
 
 
