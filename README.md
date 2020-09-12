@@ -34,7 +34,7 @@ If you want anything else, you'll have to build from sources and probably fix so
 
 **WARNING:** THIRD PARTY DEPENDENCIES NOT AUDITED YET! APP HAS ACCESS TO FILESYSTEM! USE IN VIRTUAL MACHINE UNTIL 1.0.0!
 
-## IPFS Gateways
+## Web
 
 https://gateway.pinata.cloud/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
