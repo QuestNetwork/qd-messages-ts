@@ -16,14 +16,6 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
 
-## Support Us
-This project is a lot of work and unfortunately we need to eat food (ツ)
-
-| Ethereum| Bitcoin | 
-|---|---|
-| `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E` | `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`   |
-|  <img src="doc/images/eth-qr.png" >   | <img src="doc/images/btc-qr.png" > | 
-
 ## Download
 
 | Version | Linux | Mac | Windows |
@@ -50,6 +42,14 @@ https://ipfs.eternum.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 https://ipfs.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 
 http://ipfs.infura.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
+
+## Support Us
+This project is a lot of work and unfortunately we need to eat food (ツ)
+
+| Ethereum| Bitcoin | 
+|---|---|
+| `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E` | `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`   |
+|  <img src="doc/images/eth-qr.png" >   | <img src="doc/images/btc-qr.png" > | 
 
 ## Development
 
