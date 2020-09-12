@@ -1,13 +1,13 @@
 <nb-layout  class="channelScreen" >
   <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
-    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thinOutlineButton" style="margin-right:23px;">Hide Panel</button>
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thinOutlineButton" style="margin-right:24px;margin-left:0px;">Hide Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.left">Lock Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.left">Float Panel</button>
     <app-channel-sidebar-left></app-channel-sidebar-left>
   </nb-sidebar>
   <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true">
-    <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.right" style="margin-left: 2px;margin-right: 24px;">Lock Panel</button>
-    <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.right" style="margin-left: 2px;margin-right: 24px;">Float Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.right" style="margin-left: 3px;margin-right: 21px;">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.right" style="margin-left: 3px;margin-right: 21px;">Float Panel</button>
     <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton thinOutlineButton ">Hide Panel</button>
 
     <app-channel-sidebar-right></app-channel-sidebar-right>

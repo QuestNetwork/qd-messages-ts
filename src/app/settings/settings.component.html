@@ -112,7 +112,7 @@
                     </div>
               </div>
               <div style="margin-top:10px;" class="peerListWrapper">
-                  <div class="peerListHeader" (click)="refreshIpfsSwarmPeerList()">swarm.json['ipfs']['swarm']                  <nb-icon icon="swap-outline" class="refreshIpfsSwarmPeerListIcon"></nb-icon></div>
+                  <div class="peerListHeader" (click)="refreshIpfsSwarmPeerList()">config.addresses.swarm  <nb-icon icon="swap-outline" class="refreshIpfsSwarmPeerListIcon"></nb-icon></div>
                   <div class="peerListBox">
                     <div *ngFor="let peer of bootstrapIpfsPeers" class="peer">{{peer}}  <nb-icon icon="close-outline" class="removePeerButton" (click)="removePeer(peer)"></nb-icon></div>
                   </div>
