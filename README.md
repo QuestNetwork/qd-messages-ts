@@ -7,15 +7,6 @@
 
 [StationedInTheField](https://github.com/StationedInTheField)
 
-## Support Us
-This project is a lot of work and unfortunately we need to eat food, so we'd be thrilled if you sent us your financial contributions to:
-
-Bitcoin:
-`bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`
-
-Ethereum:
-`0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E`
-
 ## Description
 The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, end-to-end encrypted messenger with a feature to send money to rival all the other chat apps. It makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest Network Image Captcha](https://github.com/QuestNetwork/quest-captcha-js) and the Quest Network Whistle ID Protocol among others. We're planning to integrate payments soon, so you can send each other money!
 
@@ -25,12 +16,19 @@ The Quest Messenger works in the browser, as an Electron on Windows, Mac and Lin
 
 Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
 
+## Support Us
+This project is a lot of work and unfortunately we need to eat food (ツ)
+
+| Ethereum| Bitcoin | 
+|---|---|
+| `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E` | `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`   |
+|  <img src="doc/images/eth-qr.png" >   | <img src="doc/images/btc-qr.png" > | 
+
 ## Download
 
-| Platform | Download link                |
-|---------:|------------------------------|
-| **Linux**  | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage)
-| **Mac**    | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg)
+| Version | Win | Linux | Mac |
+|---------:|------------------------------|------------------------------|------------------------------|
+| 0.9.1 | No Official Build | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage) | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg) |
 
 If you want anything else, you'll have to build from sources and probably fix some stuff.
 
@@ -50,8 +48,9 @@ http://ipfs.infura.io/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
 https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 
+## Development
 
-## IPFS Deploy
+### IPFS Deploy
 **Memory** 3.75GB **Storage** 6GB **NodeJS** 14 **NPM** 6 **IPFS** 0.6
 
 ```git clone https://github.com/QuestNetwork/quest-messenger-js```
@@ -69,9 +68,8 @@ https://35.208.30.22/ipfs/QmYDKkaCtwAG1obMezLS1RgNmke5CxjrtdRU4fdpgzMuP4/
 If you have trouble getting the directory discovered by gateways, you can try ```./ipfs-propagate.sh``` from the root git folder. 
 Keep in mind that the bundled web application is >6MB alone without assets, please be patient until we have a preloader.
 
-## Development
 
-**Prerequisites**
+### Prerequisites
 
 To fully participate in the development, you'll need: 
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
@@ -82,7 +80,7 @@ To fully participate in the development, you'll need:
 
 ```git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js ```
 
-**Commands**
+### Commands
 
 
 To The same directory you're cloning this repository to.
