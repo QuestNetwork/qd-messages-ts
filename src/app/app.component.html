@@ -3,7 +3,7 @@
 
 <nb-layout>
   <nb-layout-column>
-    <mat-tab-group #menuTabGroup (selectedTabChange)="selectedTabChanged($event);" dynamicHeight>
+    <mat-tab-group #menuTabGroup (selectedTabChange)="selectedTabChanged($event);" dynamicHeight animationDuration="0ms">
 
       <mat-tab label="Sign In"  class="signInTab" [disabled]="!tabAccessibility['signInTab']">
         <app-sign-in *ngIf="!signedIn"></app-sign-in>
@@ -15,7 +15,7 @@
       </mat-tab>
 
       <mat-tab label="Settings"  class="settingsTab" [disabled]="!tabAccessibility['settingsTab']">
-        <!-- <app-settings></app-settings> -->
+        <app-settings></app-settings>
       </mat-tab>
 
 
@@ -44,6 +44,6 @@
     </div>
 </div>
 
-<div class="web-top-links" style="position:fixed;top:13px;right:13px;cursor:pointer;z-index: 20;">
-  <a href="https://github.com/QuestNetwork/quest-messenger-js" target="_blank"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png' width=50></a>
+<div class="web-top-links">
+  <a href="https://github.com/QuestNetwork/quest-messenger-js" target="_blank"><img src='./assets/1280px-Git-logo.svg.png' width=50></a>
 </div>

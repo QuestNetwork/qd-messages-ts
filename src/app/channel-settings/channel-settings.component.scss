@@ -1,9 +1,18 @@
-
+.channelSettingsOption{
+  color: #98aba2 !important;
+  margin-bottom: 0px;
+}
 
 .inviteCodeListItem{
   padding: 0 !important;
     margin: 0 !important;
     width:100%;
+}
+
+.inviteCodeUsers{
+  width: 30%;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
 .inviteCodeUsers, .inviteCodeItem{
@@ -12,8 +21,8 @@
 
 .inviteCodeItem{
   margin-left: 5px;
-    width: 55%;
-margin-right: 5px;
+    width: 30%;
+    margin-right: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -31,7 +40,8 @@ margin-right: 5px;
 
 .generateInviteCodeButton{
   margin-bottom: 16px;
-      color: rgba(218,165,32,.75);
+      // color: rgba(218,165,32,.75);
+      color: rgb(42 100 239);
       margin-left: 5%;
       height: 22px;
       width: 37%;
@@ -48,4 +58,13 @@ margin-right: 5px;
 
 .mat-form-field-infix {
   padding:0;
+}
+
+
+.qrCodeShowGenerate{
+  float: left;
+    display: block;
+    min-width: 31px;
+    max-height: 70vh;
+    max-width: 80vw;
 }

@@ -1,8 +1,36 @@
+<ng-template #qrCode let-data let-ref="qrCodeRef">
+      <nb-card>
+        <nb-card-header>Scan QR</nb-card-header>
+        <nb-card-body style="margin:10px;color:goldenrod;">
+
+          <div style="">
+
+
+
+
+
+
+            <div class="qrCodeWrapper">
+              <img [src]="qrCodeURLSafe" alt="" class="img-thumbnail" class="qrCodeShowGenerate">
+            </div>
+
+
+
+
+              </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Close</button>
+        </nb-card-footer>
+      </nb-card>
+    </ng-template>
+
+
 <div [hidden]='!isOwner'>
 
-<p style="color: goldenrod !important;  margin-bottom: 0px;"> Challenge</p>
+<p style=" "class="channelSettingsOption"> Challenge</p>
 <mat-form-field style="width: 24%;    padding: 0;">
-<mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged($event.value)"  >
+<mat-select [(value)]="challengeFlowFlag" (selectionChange)="challengeFlowFlagChanged()"  >
                  <mat-option  [value]="1" >
                     On
                 </mat-option>
@@ -12,10 +40,10 @@
 
       </mat-select>
       </mat-form-field>
-<p style="color: goldenrod !important;    margin-top: 10px;  margin-bottom: 0px;"> Invite Codes</p>
+<p  class="channelSettingsOption mTop10" > Invite Codes</p>
 <div style="margin-bottom: 4px;    height: 28px;">
 
- Include Folder Structure:  <mat-form-field style="width: 19%;" > <mat-select [(value)]="includeFolderStructure" (selectionChange)="newInviteExportFoldersChanged($event.value)" >
+ Include Folders:  <mat-form-field style="width: 19%;" > <mat-select [(value)]="includeFolderStructure" (selectionChange)="newInviteExportFoldersChanged($event.value)" >
 
                    <mat-option  [value]="1" >
                       On
@@ -51,10 +79,19 @@ Max:  <mat-form-field style="width: 24%;"> <mat-select [(value)]="newInviteCodeM
           <mat-option  [value]="100" >
              100
          </mat-option>
+         <mat-option  [value]="1000" >
+            1k
+        </mat-option>
+        <mat-option  [value]="1000000" >
+           1m
+       </mat-option>
+       <mat-option  [value]="10000000" >
+          10m
+      </mat-option>
 
      </mat-select>
 </mat-form-field>
-     <button nbButton size="small" (click)="generateInviteCode()" class="generateInviteCodeButton" >
+     <button nbButton size="small" (click)="generateInviteCode()" class="generateInviteCodeButton" style="color:#99aca2;">
           Generate
         </button>
 </div>
@@ -62,6 +99,7 @@ Max:  <mat-form-field style="width: 24%;"> <mat-select [(value)]="newInviteCodeM
 <ul>
 <li  *ngFor="let inviteCode of channelInviteCodes" class='inviteCodeListItem' ><div class="inviteCodeUsers"> {{ inviteCode['used'] }} / {{ inviteCode['max'] }} </div>   <div class="inviteCodeItem"> {{ inviteCode['link'] }} </div>
 <nb-icon icon="copy-outline" class="inviteCodeCopy" [cdkCopyToClipboard]="inviteCode['link']"></nb-icon>
+<nb-icon icon="camera-outline" class="deleteCode" (click)="showQR(inviteCode['link'])"></nb-icon>
 <nb-icon icon="trash-2-outline" class="deleteCode" (click)="removeInviteCode(inviteCode['link'])"></nb-icon>
 </li>
 </ul>
@@ -70,4 +108,6 @@ Max:  <mat-form-field style="width: 24%;"> <mat-select [(value)]="newInviteCodeM
 
 
 
-<button mat-stroked-button color="primary" (click)="deleteCurrentChannel()" class="defaultSettingsButton"  style="margin-right:10px;">Remove Channel</button>
+<button mat-stroked-button color="primary" (click)="deleteCurrentChannel()" class="defaultSettingsButton"  style="margin-right:10px;    margin-top: 20px;
+    color: #f14f31ab;
+    border: 1px solid #f14f3191 !important;">Remove Channel</button>

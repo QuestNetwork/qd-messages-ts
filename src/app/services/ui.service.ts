@@ -64,7 +64,13 @@ export class UiService {
 
 
 
-
+    parseFolderStructureAndFlattenForMatTree(newData){
+      let result = {};
+      for(let i=0;i<newData.length;i++){
+          result[newData[i]['data']['name']] = this.parseFolderStructureAndFlattenForMatTree(newData[i]['children']);
+      }
+      return result;
+    }
 
   uiModeSub = new Subject<any>();
   public uiMode(value){

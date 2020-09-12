@@ -15,26 +15,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-// import {MatTreeModule} from '@angular/material/tree';
-
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTreeModule} from '@angular/material/tree';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 import {DragDropModule} from '@angular/cdk/drag-drop';
-
-import { UiService} from './services/ui.service';
-import { IpfsService} from './services/ipfs.service';
-import { ConfigService } from './services/config.service';
-
-import { QuestPubSubService } from './services/quest-pubsub.service';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
 
 import { HttpClientModule } from '@angular/common/http';
-import { LoadHexComponent } from './load-hex/load-hex.component';
-import { ChannelComponent } from './channel/channel.component';
-import { MatMenuComponent } from './mat-menu/mat-menu.component';
-import { SettingsComponent } from './settings/settings.component';
-import { SignInComponent } from './sign-in/sign-in.component';
 
 
 import { NgxElectronModule } from 'ngx-electron';
@@ -44,10 +36,20 @@ import { NbDialogService } from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbTabsetModule } from '@nebular/theme';
 import { NbChatModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbIconModule,NbTreeGridModule,    NbCardModule } from '@nebular/theme';
+import { NbIconModule,    NbCardModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 
+//
+import { UiService} from './services/ui.service';
+import { QuestOSService } from './services/quest-os.service';
+//
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
+import { LoadHexComponent } from './load-hex/load-hex.component';
+import { ChannelComponent } from './channel/channel.component';
+import { MatMenuComponent } from './mat-menu/mat-menu.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+
 import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelSidebarRightComponent } from './channel-sidebar-right/channel-sidebar-right.component';
 import { ChannelSidebarLeftComponent } from './channel-sidebar-left/channel-sidebar-left.component';
@@ -56,7 +58,8 @@ import { ChannelSettingsComponent } from './channel-settings/channel-settings.co
 import { ChannelTabComponent } from './channel-tab/channel-tab.component';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     ChannelTabComponent
   ],
   imports: [
+    CdkTableModule,
+    CdkTreeModule,
     ClipboardModule,
     FlexLayoutModule,
     HttpClientModule,
@@ -102,15 +107,36 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     NbTabsetModule,
     NbEvaIconsModule,
     NbIconModule,
-    NbTreeGridModule,
     FormsModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
-    NbCardModule
+    NbCardModule,
+    MatTreeModule,
+    DragDropModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+   MatCheckboxModule,
+   MatIconModule,
+   MatInputModule,
+   MatFormFieldModule,
+   ZXingScannerModule
+
+
+  ],
+  exports: [
+    CdkTableModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTreeModule,
+    MatMenuModule,
+    MatSlideToggleModule
+
   ],
   providers: [
-    UiService, IpfsService,QuestPubSubService,ConfigService,NbSidebarService,NbMenuService,NbDialogService
+      UiService,
+      QuestOSService,
+    NbSidebarService,NbMenuService,NbDialogService
   ],
   bootstrap: [AppComponent]
 })

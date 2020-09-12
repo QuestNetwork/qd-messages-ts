@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestPubSubService } from '../services/quest-pubsub.service';
+import { QuestOSService } from '../services/quest-os.service';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-channel-participant-list',
@@ -8,16 +9,21 @@ import { QuestPubSubService } from '../services/quest-pubsub.service';
 })
 export class ChannelParticipantListComponent implements OnInit {
 
-  constructor(private pubsub: QuestPubSubService) { }
+  constructor(private q: QuestOSService, private ui: UiService) { }
 
   channelParticipantListArray = [];
 
 
-  initProcess(){
-    if(this.pubsub.getSelectedChannel() != 'NoChannelSelected'){
+  async initProcess(){
+
+    while(!this.q.isReady()){
+      await this.ui.delay(1000);
+    }
+
+    if(this.q.os.ocean.dolphin.getSelectedChannel() != 'NoChannelSelected'){
       let uiCheck = setInterval( () =>{
         try{
-          let fullPListArr = this.pubsub.getChannelParticipantList(this.pubsub.getSelectedChannel())['cList'].split(',');
+          let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
           if(fullPListArr.length > 0){
             for(let i=0;i<fullPListArr.length;i++){
               fullPListArr[i] =   fullPListArr[i].substr(130);
@@ -30,7 +36,7 @@ export class ChannelParticipantListComponent implements OnInit {
       },10000);
 
       try{
-        let fullPListArr = this.pubsub.getChannelParticipantList(this.pubsub.getSelectedChannel())['cList'].split(',');
+        let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
         if(fullPListArr.length > 0){
           for(let i=0;i<fullPListArr.length;i++){
             fullPListArr[i] =   fullPListArr[i].substr(130);
@@ -41,15 +47,16 @@ export class ChannelParticipantListComponent implements OnInit {
       catch(e){}
     }
 
+    return true;
+
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
-    this.initProcess()
+    await this.initProcess()
 
 
-
-          this.pubsub.selectedChannelSub.subscribe( (value) => {
+          this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
             this.initProcess();
 
             this.selectedChannel = value;

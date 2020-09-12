@@ -1,8 +1,6 @@
 import { Component, OnInit, Input,ViewChild} from '@angular/core';
 import { UiService} from '../services/ui.service';
-import { IpfsService} from '../services/ipfs.service';
-import { ConfigService} from '../services/config.service';
-import { QuestPubSubService } from '../services/quest-pubsub.service';
+import { QuestOSService } from '../services/quest-os.service';
 import packageJson from '../../../package.json';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { saveAs } from 'file-saver';
@@ -18,29 +16,56 @@ export class SignInComponent implements OnInit {
 
   fs: any;
 
-  constructor(private ui: UiService, private ipfs: IpfsService,private pubsub: QuestPubSubService, private config:ConfigService) {
+  constructor(private ui: UiService, private q: QuestOSService) {
 
   }
 
   stringifyStore;
-
-  ngOnInit(): void {
+isElectron = false;
+  async ngOnInit() {
     //auto login
-    if(this.config.isSignedIn()){
-      this.attemptImportSettings({}).then( (importSettingsStatus) => {
-        console.log('Import Settings Status:',importSettingsStatus);
-        console.log(importSettingsStatus);
-        if(importSettingsStatus){
-          console.log('SignIn: Settings Imported Successfully');
-          this.ui.showSnack('Loading Channels...','Almost There', {duration:2000});
-          this.jumpToChannels();
-          this.ui.signIn();
-          if(this.pubsub.getSelectedChannel() == 'NoChannelSelected'){
-            this.ui.updateProcessingStatus(false);
+
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf(' electron/') > -1) {
+      this.isElectron = true;
+    }
+
+    if(this.isElectron){
+      this.ui.updateProcessingStatus(true);
+      //wait for ocean
+      console.log('SignIn: Waiting For Quest OS...');
+      while(!this.q.os.isReady()){
+        console.log('SignIn: Waiting For Quest OS.');
+        await this.ui.delay(1000);
+      }
+
+      if(this.q.os.hasConfigFile()){
+        this.attemptImportSettings({}).then( (importSettingsStatus) => {
+          console.log('Import Settings Status:',importSettingsStatus);
+          console.log(importSettingsStatus);
+          if(importSettingsStatus){
+            console.log('SignIn: Settings Imported Successfully');
+            this.ui.showSnack('Loading Channels...','Almost There', {duration:2000});
+            this.jumpToChannels();
+            this.ui.signIn();
+            if(this.q.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected'){
+              this.ui.updateProcessingStatus(false);
+            }
           }
-        }
-        else{this.ui.showSnack('Error Importing Settings!','Oh No');}
-      });
+          else{
+                  this.ui.updateProcessingStatus(false);
+                  this.ui.showSnack('SignIn: No Settings Imported','Oh Ok');
+              }
+        }).catch( (error) => {
+          this.ui.updateProcessingStatus(false);
+          this.ui.showSnack('SignIn: Error Importing Settings!','Oh No');
+          this.DEVMODE && console.log(error);
+        });
+      }
+      else{
+        this.ui.updateProcessingStatus(false);
+        this.DEVMODE && console.log("SignIn: Not Signed In");
+      }
     }
     else{
       this.ui.updateProcessingStatus(false);
@@ -56,9 +81,6 @@ export class SignInComponent implements OnInit {
 
   async openFile(files){
     this.ui.updateProcessingStatus(true);
-    if(this.ui.isElectron()){
-
-    }
     const droppedFile = files[0];
 
       // Is it a file?
@@ -99,8 +121,7 @@ async openFileLoaded(event){
       //IMPORTED A .KEYCHAIN FILE
       let importSettingsStatus = await this.attemptImportSettings(parsedStringify);
       console.log('Sign In: Import Settings Status:',importSettingsStatus);
-      //set temporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
-      if(importSettingsStatus){this.ui.showSnack('Opening Messages...','Almost There');await this.jumpToChannels();return true;}
+      if(importSettingsStatus){this.ui.showSnack('Opening Messages...','Almost There',{duration:2000});await this.jumpToChannels();return true;}
       else{this.ui.showSnack('Error Importing Settings!','Oh No');}
     }
     return false;
@@ -111,30 +132,18 @@ async openFileLoaded(event){
     this.ui.enableTab('channelTab');
     this.ui.disableTab('signInTab');
 
-    if(this.pubsub.getSelectedChannel() == 'NoChannelSelected' ){
+    if(this.q.os.ocean.dolphin.getSelectedChannel() == 'NoChannelSelected' ){
       this.ui.updateProcessingStatus(false);
     }
 
     return true;
   }
 
-
   async generateDefaultSettings(){
     this.ui.updateProcessingStatus(true);
     let importSettingsStatus = await this.attemptImportSettings({});
     console.log('Import Settings Status:',importSettingsStatus);
-    let stringify = JSON.stringify({
-        version: packageJson['version'],
-        appId: 'quest-messenger-js',
-        channelKeyChain:   this.pubsub.getChannelKeyChain(),
-        channelParticipantList:  this.pubsub.getChannelParticipantList(),
-        channelNameList: this.pubsub.getChannelNameList(),
-        channelchannelFolderList: this.config.getChannelFolderList()
-    });
-    let jobFileBlob = new Blob([stringify], { type: 'text/plain;charset=utf-8' });
-    saveAs(jobFileBlob, "profile.qcprofile");
-    importSettingsStatus = await this.attemptImportSettings(stringify);
-    //settemporary participantlist with only me (unknown who else is in there and owner pubkey also unknown, only owner channelpubkey is known)
+    importSettingsStatus = await this.attemptImportSettings({});
 
     if(importSettingsStatus){
       this.ui.showSnack('Default Settings Loaded...','Almost There', {duration: 2000});
@@ -146,26 +155,6 @@ async openFileLoaded(event){
 
   channelNameList = [];
   channelName;
-  async createNewMessengerNetwork(){
-    this.pubsub.setChannelKeyChain({});
-    this.pubsub.setChannelParticipantList({});
-    this.pubsub.setChannelNameList([]);
-    this.channelName = await this.pubsub.createChannel('general');
-    this.channelNameList.push(this.channelName);
-    this.channelName = await this.pubsub.createChannel('developer');
-    this.channelNameList.push(this.channelName);
-    this.pubsub.setChannelNameList(this.channelNameList);
-    let jobFileBlob = new Blob([JSON.stringify({
-        version: packageJson['version'],
-        appId: 'quest-messenger-js',
-        channelKeyChain:   this.pubsub.getChannelKeyChain(),
-        channelParticipantList: this.pubsub.getChannelParticipantList(),
-        channelNameList: this.pubsub.getChannelNameList()
-    })], { type: 'text/plain;charset=utf-8' });
-    saveAs(jobFileBlob, "profile.qcprofile");
-    // this.ui.setSettingsLoaded(true);
-  }
-
 
   async attemptImportSettings(parsedStringify){
     try{
@@ -190,43 +179,39 @@ async openFileLoaded(event){
   }
 
   async importSettings(parsedStringify){
-    console.log('Importing Settings ...',parsedStringify);
+    console.log('Importing Settings ...');
+    this.DEVMODE && console.log(parsedStringify);
       this.ui.setElectronSize('0');
       this.ui.updateProcessingStatus(true);
       this.completeChallengeScreen = false;
 
-      if(this.ui.isElectron()){
-            this.ui.showSnack('Importing key...','Yeh',{duration:1000});
-          await this.ui.delay(1200);
+      this.ui.showSnack('Importing Profile...','Yeh');
 
+      this.DEVMODE && console.log('SignIn: Reading Bee Config...')
+      while(!this.q.os.isReady()){
+        await this.ui.delay(2000);
       }
-      else{
-          this.ui.showSnack('Importing key...','Yeh');
-      }
+      this.q.os.signIn(parsedStringify);
 
-      await this.ui.delay(2000);
-      this.DEVMODE && console.log('Unpacking Global Keychain...')
-      this.config.readConfig(parsedStringify);
-      this.config.autoSave();
 
       //wait for ipfs
-      this.ui.showSnack('Discovering Swarm...','Yeh',{duration:1000});
-      console.log('SignIn: Waiting for IPFS...');
-      while(!this.ipfs.isReady()){
-        console.log('SignIn: Waiting for IPFS...');
+      this.ui.showSnack('Discovering Swarm...','Yeh');
+
+      console.log('SignIn: Waiting for Quest OS...');
+      while(!this.q.os.isReady()){
+        console.log('SignIn: Waiting for Quest OS...');
         await this.ui.delay(5000);
       }
 
       this.ui.showSnack('Swarm Discovered...','Cool',{duration:1000});
 
       let defaultChannel = "NoChannelSelected";
-      if(typeof(this.config.getConfig()['selectedChannel']) != 'undefined'){
-        defaultChannel = this.config.getConfig()['selectedChannel'];
+      if(typeof(this.q.os.bee.config.getConfig()['selectedChannel']) != 'undefined'){
+        defaultChannel = this.q.os.bee.config.getConfig()['selectedChannel'];
       }
 
-      this.pubsub.setIpfsId(this.ipfs.getIpfsId());
       console.log('SignIn: Selecting Channel: '+defaultChannel+'...');
-      this.pubsub.selectChannel(defaultChannel);
+      this.q.os.ocean.dolphin.selectChannel(defaultChannel);
       return true;
     }
 
