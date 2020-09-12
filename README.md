@@ -161,10 +161,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Pair with participants by QR Code
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
-
-**0.9.4**
 - Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
 - Context Meny For Channels In Channel List
+
+**0.9.4**
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
