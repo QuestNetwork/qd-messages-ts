@@ -159,6 +159,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.4**
 - Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
+- Context Meny For Channels In Channel List
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
