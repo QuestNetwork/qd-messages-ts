@@ -14,6 +14,7 @@ Bitcoin:
 `bc1qujrqa3s34r5h0exgmmcuf8ejhyydm8wwja4fmq`
 
 Ethereum:
+<img src="doc/images/eth-qr.png" width=25%>
 `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E`
 
 ## Description
