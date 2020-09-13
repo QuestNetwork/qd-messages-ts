@@ -100,9 +100,11 @@ To The same directory you're cloning this repository to.
 **Build For Mac**
 ```
 sed -i 's/"@questnetwork\/quest-messenger-js"/"quest-messenger-js"/g' package.json
-&& npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
+&& npm run mac```
 sed -i  's/"quest-messenger-js"/"@questnetwork\/quest-messenger-js"/g'  package.json
 ```
+Builds MacOS DMG and .app files to ``dist/`` and ``dist/mac``
+
 **Build For IPFS**
 
 ``npm run ipfs``  Creates the bundled application for the web with dynamic base path to ```dist/web```
