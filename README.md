@@ -107,7 +107,7 @@ sed -i  's/quest-messenger-js/@questnetwork\/quest-messenger-js/g'  package.json
 
 **Build For Web**
 
-```npm run web``` Creates the bundled application for the web with base path ```/```  to ```dist/web```
+```npm run web``` Creates the bundled application for the web with static base path ```/```  to ```dist/web```
 
 **Serve For Web**
 
