@@ -173,11 +173,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Dynamic Swarm Peer List On Desktop (add and remove bootstrap peers)
 - Share and Import Channels By QR Code
 
-## Roadmap
-
 **0.9.3**
 - App is now modular, makes building add-ons easy
 - [qDesktop](https://github.com/QuestNetwork/qDesktop) Window Manager
+
+## Roadmap
+
+**0.9.3**
 - Combine messages sent in sequence
 - Offline Participants are semi transparent
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
