@@ -1,4 +1,5 @@
 <center><h1> Quest Messenger JS</h1></center>
+
 ![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/raw/0.9.2/doc/images/0.9.2.png?raw=true)
 
 ## Description
