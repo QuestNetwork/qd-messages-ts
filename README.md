@@ -90,9 +90,16 @@ To The same directory you're cloning this repository to.
 
 ```npm run inst``` Removes ```package-lock.json``` and runs ``npm install``
 
+**Linux**
+
 ```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
 
-```npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
+**Mac**
+```
+sed -i 's/@questnetwork\/quest-messenger-js/quest-messenger-js/g' package.json 
+&& npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
+sed -i  's/quest-messenger-js/@questnetwork\/quest-messenger-js/g'  package.json 
+```
 
 ```npm run ipfs```  Creates the bundled application for the web with dynamic base path to ```dist/web```
 
