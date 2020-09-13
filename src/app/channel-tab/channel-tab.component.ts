@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
-import { UiService } from '../services/ui.service';
-import { QuestOSService } from '../services/quest-os.service';
+import { UiService } from '../../../../qdesktop/src/app/services/ui.service';
+import { QuestOSService } from '../../../../qdesktop/src/app/services/quest-os.service';
 
 @Component({
   selector: 'app-channel-tab',

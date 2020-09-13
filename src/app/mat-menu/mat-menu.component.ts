@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UiService} from '../services/ui.service';
+import { UiService} from '../../../../qdesktop/src/app/services/ui.service';
 
 @Component({
   selector: 'app-mat-menu',
