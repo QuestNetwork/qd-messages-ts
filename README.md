@@ -8,7 +8,7 @@
 [StationedInTheField](https://github.com/StationedInTheField)
 
 ## Description
-The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is built on the [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) as well as of the [Quest Network PubSub Protocol](https://github.com/QuestNetwork/quest-pubsub-js), [Quest Network Image Captcha](https://github.com/QuestNetwork/quest-captcha-js) and the Quest Network Whistle ID Protocol among others. 
+The Quest Messenger is on track to become the first fully featured, multi-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is built on the [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io) and [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/).
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code. Ful IRC & Matrix integration is planned as well.
 
