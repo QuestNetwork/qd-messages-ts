@@ -97,9 +97,9 @@ To The same directory you're cloning this repository to.
 
 **Build For Mac**
 ```
-sed -i 's/@questnetwork\/quest-messenger-js/quest-messenger-js/g' package.json 
+sed -i 's/"@questnetwork\/quest-messenger-js"/"quest-messenger-js"/g' package.json 
 && npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
-sed -i  's/quest-messenger-js/@questnetwork\/quest-messenger-js/g'  package.json 
+sed -i  's/"quest-messenger-js"/"@questnetwork\/quest-messenger-js"/g'  package.json 
 ```
 **Build For IPFS**
 
