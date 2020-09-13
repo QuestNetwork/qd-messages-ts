@@ -19,11 +19,7 @@ export class QuestOSService {
       ipfs: {
         swarm: swarmJson['ipfs']['swarm']
       },
-      version: version,
-      dependencies: {
-        electronService: this.electron,
-        saveAs: saveAs
-      }
+      version: version
     };
     this.os = qOS;
   }
