@@ -3,6 +3,9 @@
 > The first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger.
 
 
+
+
+
 ## Lead Maintainer
 
 [StationedInTheField](https://github.com/StationedInTheField)
