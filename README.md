@@ -85,32 +85,33 @@ To fully participate in the development, you'll need:
 
 ### Commands
 
+**Prepare Package**
 
 To The same directory you're cloning this repository to.
 
 ```npm run inst``` Removes ```package-lock.json``` and runs ``npm install``
 
-**Linux**
+**Build For Linux**
 
 ```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
 
-**Mac**
+**Build For Mac**
 ```
 sed -i 's/@questnetwork\/quest-messenger-js/quest-messenger-js/g' package.json 
 && npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
 sed -i  's/quest-messenger-js/@questnetwork\/quest-messenger-js/g'  package.json 
 ```
-
+**Build For IPFS**
 ```npm run ipfs```  Creates the bundled application for the web with dynamic base path to ```dist/web```
-
+**Build For Web
 ```npm run web``` Creates the bundled application for the web with base path ```/```  to ```dist/web```
-
+**Serve For Web**
 ```npm run serve``` Serves the bundled application on ```localhost:4200``` from ```dist/web```
-
+**Serve For Web JIT**
 ```ng serve``` Serves a just in time compilation of the messenger on ```localhost:4200```
-
+**Rest `node_modules` And Build For Web JIT**
 ```npm run serve-fresh``` Runs ``rm -rf node_modules && npm run inst && ng serve``
-
+**Clear Watchlist**
 ```watch-reset``` Cleans the watch list, in case of ```System Limit``` error
 
 
