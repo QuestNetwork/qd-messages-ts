@@ -3,7 +3,7 @@
 ![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/raw/0.9.2/doc/images/0.9.2.png?raw=true)
 
 ## Description
-The Quest Messenger is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is a [Quest OS Module](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io) and [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesktop](https://github.com/QuestNetwork/qDesktop), our window manager.
+The Quest Messenger is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is built on the [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io) and [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window manager.
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code. Ful IRC & Matrix integration is planned as well.
 
@@ -74,7 +74,6 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 ### Prerequisites
 
 To fully participate in the development, you'll need:
-- [qDesktop](https://github.com/QuestNetwork/qDesktop)
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
 - [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
 - [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
@@ -82,7 +81,7 @@ To fully participate in the development, you'll need:
 - [Quest Network PubSub Process](https://github.com/QuestNetwork/quest-pubsub-js)
 
 ```
-git clone https://github.com/QuestNetwork/qDesktop && git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js
+git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js
 ```
 
 ### Commands
@@ -176,7 +175,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.3**
 - App is now modular, makes building add-ons easy
-- [qDesktop](https://github.com/QuestNetwork/qDesktop) Window Manager
+- [qDesk](https://github.com/QuestNetwork/qDesk) Window Manager
 
 ## Roadmap
 
