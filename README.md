@@ -158,7 +158,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - Sidebars resizable
 - Participant/Friends Groups And Folders 
-- ParticipantStatus
+- Participant Status
 - Offline Participants are semi transparent
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Pair with participants by QR Code
