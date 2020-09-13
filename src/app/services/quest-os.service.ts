@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { qOS }  from '@questnetwork/quest-os-js';
 import * as swarmJson from '../swarm.json';
 import  packageJson from '../../../package.json';
-import { ElectronService } from 'ngx-electron';
-import { saveAs } from 'file-saver';
 const version = packageJson.version;
 
 @Injectable({
@@ -14,12 +12,13 @@ export class QuestOSService {
   public os;
   ready = false;
   config;
-  constructor(private electron: ElectronService) {
+  constructor() {
     this.config = {
       ipfs: {
         swarm: swarmJson['ipfs']['swarm']
       },
-      version: version
+      version: version,
+      dev: swarmJson['dev']
     };
     this.os = qOS;
   }
@@ -32,6 +31,7 @@ export class QuestOSService {
         throw(e);
       }
   }
+
   isReady(){
     return this.ready;
   }
