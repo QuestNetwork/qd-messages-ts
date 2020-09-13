@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestOSService } from '../../../../qDesktop/src/app/services/quest-os.service';
-import { UiService } from '../../../../qDesktop/src/app/services/ui.service';
+import { QuestOSService } from '../../../../qDesk/src/app/services/quest-os.service';
+import { UiService } from '../../../../qDesk/src/app/services/ui.service';
 
 @Component({
   selector: 'app-channel-participant-list',
