@@ -85,24 +85,43 @@ To fully participate in the development, you'll need:
 
 ### Commands
 
+**Prepare Package**
 
 To The same directory you're cloning this repository to.
 
 ```npm run inst``` Removes ```package-lock.json``` and runs ``npm install``
 
+**Build For Linux**
+
 ```npm run linux``` Builds Linux AppImage and Snap files to ```dist/```
 
-```npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
+**Build For Mac**
+```
+sed -i 's/@questnetwork\/quest-messenger-js/quest-messenger-js/g' package.json 
+&& npm run mac``` Builds MacOS DMG and .app files to ```dist/``` and ```dist/mac```
+sed -i  's/quest-messenger-js/@questnetwork\/quest-messenger-js/g'  package.json 
+```
+**Build For IPFS**
 
 ```npm run ipfs```  Creates the bundled application for the web with dynamic base path to ```dist/web```
 
+**Build For Web**
+
 ```npm run web``` Creates the bundled application for the web with base path ```/```  to ```dist/web```
+
+**Serve For Web**
 
 ```npm run serve``` Serves the bundled application on ```localhost:4200``` from ```dist/web```
 
+**Serve For Web JIT**
+
 ```ng serve``` Serves a just in time compilation of the messenger on ```localhost:4200```
 
+**Rest `node_modules` And Build For Web JIT**
+
 ```npm run serve-fresh``` Runs ``rm -rf node_modules && npm run inst && ng serve``
+
+**Clear Watchlist**
 
 ```watch-reset``` Cleans the watch list, in case of ```System Limit``` error
 
@@ -155,10 +174,11 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.3**
 - Combine messages sent in sequence
-- Offline Participants are semi transparent
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - Sidebars resizable
-- Participant/Friends Groups And Folders
+- Participant/Friends Groups And Folders 
+- Participant Status
+- Offline Participants are semi transparent
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Pair with participants by QR Code
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
