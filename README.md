@@ -155,6 +155,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.3**
 - Combine messages sent in sequence
+- Offline Participants are semi transparent
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - Sidebars resizable
 - Participant/Friends Groups And Folders
@@ -166,6 +167,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Context Menu For Channels In Channel List
 
 **0.9.4**
+- Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
