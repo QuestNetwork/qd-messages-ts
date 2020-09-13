@@ -122,6 +122,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Organize Channels By Transport/Protocol And Custom Groups (like project folders in Atom)
 - AutoSave For Settings
+- [Quest Network PubSub Process](https://github.com/QuestNetwork/quest-pubsub-js)
 
 **0.9.1**
 - Auto SignIn, if signed in
@@ -153,6 +154,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.3**
+- Combine messages sent in sequence
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - Sidebars resizable
 - Participant/Friends Groups And Folders
@@ -160,17 +162,17 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Pair with participants by QR Code
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
+- Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
+- Context Menu For Channels In Channel List
 
 **0.9.4**
-- Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
-- Context Meny For Channels In Channel List
+- Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
 **0.9.5**
-- Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
 - AES Encrypt Invite Tokens
-- AutoSave For Message Histories
+- AutoSave And P2P Sync For Message History Tree
 - Export Message Histories
 
 **0.9.6**
