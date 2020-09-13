@@ -177,7 +177,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.3**
 - App is now modular, makes building add-ons easy
-- [qDesktop](https://github.com/QuestNetwork/qDesktop) Window Nanager
+- [qDesktop](https://github.com/QuestNetwork/qDesktop) Window Manager
 - Combine messages sent in sequence
 - Offline Participants are semi transparent
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
