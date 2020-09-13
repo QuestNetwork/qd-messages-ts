@@ -155,10 +155,11 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.3**
 - Combine messages sent in sequence
-- Offline Participants are semi transparent
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - Sidebars resizable
-- Participant/Friends Groups And Folders
+- Participant/Friends Groups And Folders 
+- ParticipantStatus
+- Offline Participants are semi transparent
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Pair with participants by QR Code
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
