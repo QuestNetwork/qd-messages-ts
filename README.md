@@ -55,7 +55,7 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 ### IPFS Deploy
 **Memory** 3.75GB **Storage** 6GB **NodeJS** 14 **NPM** 6 **IPFS** 0.6
 
-``git clone https://github.com/QuestNetwork/qDesk`
+`git clone https://github.com/QuestNetwork/qDesk`
 
 `cd qDesk`
 
