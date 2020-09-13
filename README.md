@@ -55,11 +55,15 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 ### IPFS Deploy
 **Memory** 3.75GB **Storage** 6GB **NodeJS** 14 **NPM** 6 **IPFS** 0.6
 
-`git clone https://github.com/QuestNetwork/quest-messenger-js`
+``git clone https://github.com/QuestNetwork/qDesk`
 
-`cd quest-messenger-js`
+`cd qDesk`
 
-`git checkout 0.9.2`
+`git checkout 0.9.3`
+
+Configure your favorite modules, qDesk comes preloaded with the [Quest Messenger JS]((https://github.com/QuestNetwork/quest-messenger-js), so until it's published:
+
+`cd .. && git clone https://github.com/QuestNetwork/quest-messenger-js && git checkout 0.9.3 && cd qDesk`
 
 `npm install`
 
