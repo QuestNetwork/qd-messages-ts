@@ -74,6 +74,7 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 ### Prerequisites
 
 To fully participate in the development, you'll need:
+- [qDesktop](https://github.com/QuestNetwork/qDesktop)
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
 - [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
 - [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
