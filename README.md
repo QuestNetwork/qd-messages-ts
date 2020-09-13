@@ -175,6 +175,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.3**
+- App is now modular, makes building add-ons easy
 - Combine messages sent in sequence
 - Offline Participants are semi transparent
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
@@ -232,7 +233,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **1.2.0**
 - Parenting (reply to channel and private messages)
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
-
 **2.0.0**
 - Ethereum Payment Integration Finalized
 
