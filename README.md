@@ -186,6 +186,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.3**
 - App is now modular, makes building add-ons easy
 - [qDesk](https://github.com/QuestNetwork/qDesk) Window Platform
+- Drive Lock Fixed
 
 ## Roadmap
 
