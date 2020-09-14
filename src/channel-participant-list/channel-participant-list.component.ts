@@ -52,7 +52,7 @@ export class ChannelParticipantListComponent implements OnInit {
 
     await this.initProcess();
 
-    this.selectedChannelSub = this.q.os.channel.onSelectChannel().subscribe( (value) => {
+    this.selectedChannelSub = this.q.os.channels.onSelectChannel().subscribe( (value) => {
       console.log('ChannelParticipantList: changed channel');
       this.initProcess();
 
