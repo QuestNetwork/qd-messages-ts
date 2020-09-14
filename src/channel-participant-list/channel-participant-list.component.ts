@@ -13,27 +13,16 @@ export class ChannelParticipantListComponent implements OnInit {
 
   channelParticipantListArray = [];
 
+  uiCheck;
+  selectedChannelSub;
+  ngOnDestroy(){
+    clearInterval(this.uiCheck);
+    this.selectedChannelSub.unsubscribe();
+  }
 
   async initProcess(){
 
-    while(!this.q.isReady()){
-      await this.ui.delay(1000);
-    }
-
     if(this.q.os.ocean.dolphin.getSelectedChannel() != 'NoChannelSelected'){
-      let uiCheck = setInterval( () =>{
-        try{
-          let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
-          if(fullPListArr.length > 0){
-            for(let i=0;i<fullPListArr.length;i++){
-              fullPListArr[i] =   fullPListArr[i].substr(130);
-            }
-          }
-          this.channelParticipantListArray = fullPListArr;
-        }
-        catch(e){}
-
-      },10000);
 
       try{
         let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.ocean.dolphin.getSelectedChannel())['cList'].split(',');
@@ -53,22 +42,29 @@ export class ChannelParticipantListComponent implements OnInit {
 
   async ngOnInit() {
 
-    await this.initProcess()
+    while(!this.q.isReady()){
+      await this.ui.delay(1000);
+    }
 
+    this.uiCheck = setInterval( () =>{
+      this.initProcess();
+    },10000);
 
-          this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
-            this.initProcess();
+    await this.initProcess();
 
-            this.selectedChannel = value;
-            console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
-            console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
-          });
+    this.selectedChannelSub = this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+      console.log('ChannelParticipantList: changed channel');
+      this.initProcess();
+
+      this.selectedChannel = value;
+      console.log('App: Selected Channel: >>'+this.selectedChannel+'<<');
+      console.log('App: noChannelSelected: >>'+this.noChannelSelected+"<<")
+    });
 
 
 
 
         }
-
 
   selectedChannel = "NoChannelSelected";
   noChannelSelected = "NoChannelSelected";

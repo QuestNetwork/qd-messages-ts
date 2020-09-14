@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
 import { UiService } from '../../../qDesk/src/app/services/ui.service';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
@@ -12,6 +12,16 @@ export class ChannelTabComponent implements OnInit {
 
   constructor( private cd: ChangeDetectorRef, private ui: UiService, private sidebarService: NbSidebarService, private q: QuestOSService) { }
   channelNameList = [];
+
+  ngOnDestroy(){
+    this.sideBarFixedSub.unsubscribe();
+    this.channelFolderListSub.unsubscribe();
+    this.selectedChannelSub.unsubscribe();
+  }
+
+  sideBarFixedSub;
+  channelFolderListSub;
+  selectedChannelSub;
 
   async ngOnInit() {
 
@@ -48,13 +58,18 @@ export class ChannelTabComponent implements OnInit {
             if(this.sideBarVisible['right']){
               this.sidebarService.expand('right');
             }
+
+
+            this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
+            this.selectedChannel = this.q.os.ocean.dolphin.getSelectedChannel();
+
       },100);
 
       this.q.os.bee.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
         this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
       });
 
-      this.q.os.bee.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
+      this.sideBarFixedSub = this.q.os.bee.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
         console.log('getting',sideBarVisible);
         this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
         if(!this.sideBarVisible['left']){
@@ -76,13 +91,12 @@ export class ChannelTabComponent implements OnInit {
         await this.ui.delay(1000);
       }
 
-      this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
-        this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
+      this.channelFolderListSub = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
           this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
         });
 
 
-      this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+      this.selectedChannelSub = this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
         this.selectedChannel = value;
         console.log('Channel-Tab: Selected Channel: >>'+this.selectedChannel+'<<');
         console.log('Channel-Tab: noChannelSelected: >>'+this.noChannelSelected+"<<");
@@ -91,9 +105,9 @@ export class ChannelTabComponent implements OnInit {
 
 
     }
-
     selectedChannel = "NoChannelSelected";
     noChannelSelected = "NoChannelSelected";
+
 
 
     sideBarFixed = { right: true, left: true };

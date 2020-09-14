@@ -1,5 +1,5 @@
 
-import { Component, OnInit, TemplateRef, ViewChild, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 import { UiService } from '../../../qDesk/src/app/services/ui.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
@@ -78,31 +78,42 @@ export class ChannelSettingsComponent implements OnInit {
     console.log(code);
   }
 
+ngOnDestroy(){
+  this.selectedChannelSub.unsubscribe();
+}
+
+selectedChannelSub;
+  async initChannel(selectedChannel){
+    this.selectedChannel = selectedChannel;
+    console.log('Channel-Settings: Selected Channel: >>'+this.selectedChannel+'<<');
+    console.log('Channel-Settings: noChannelSelected: >>'+this.noChannelSelected+"<<");
+
+    if(this.selectedChannel.indexOf('-----') > -1){
+      this.isOwner = this.q.os.ocean.dolphin.isOwner(this.selectedChannel);
+      console.log('Channel-Settings:',this.isOwner);
+
+      this.channelInviteCodes = [];
+      let ivC = this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
+      if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
+               this.channelInviteCodes = ivC['items'];
+      }
+
+      console.log('getting flag for:',this.selectedChannel);
+      this.challengeFlowFlag = this.q.os.ocean.dolphin.getChallengeFlag(this.selectedChannel);
+    }
+
+    this.cd.detectChanges();
+  }
+
   async ngOnInit() {
     while(!this.q.isReady()){
       await this.ui.delay(1000);
     }
 
-    this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
-      this.selectedChannel = value;
-      console.log('Channel-Settings: Selected Channel: >>'+this.selectedChannel+'<<');
-      console.log('Channel-Settings: noChannelSelected: >>'+this.noChannelSelected+"<<");
+    this.initChannel(this.q.os.ocean.dolphin.getSelectedChannel());
 
-      if(this.selectedChannel.indexOf('-----') > -1){
-        this.isOwner = this.q.os.ocean.dolphin.isOwner(this.selectedChannel);
-        console.log('Channel-Settings:',this.isOwner);
-
-        this.channelInviteCodes = [];
-        let ivC = this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
-        if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
-                 this.channelInviteCodes = ivC['items'];
-        }
-
-        console.log('getting flag for:',this.selectedChannel);
-        this.challengeFlowFlag = this.q.os.ocean.dolphin.getChallengeFlag(this.selectedChannel);
-      }
-
-      this.cd.detectChanges();
+    this.selectedChannelSub = this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+      this.initChannel(value);
     });
 
 
