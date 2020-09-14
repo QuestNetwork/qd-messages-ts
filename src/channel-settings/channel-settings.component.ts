@@ -33,10 +33,10 @@ export class ChannelSettingsComponent implements OnInit {
     let channel = this.selectedChannel;
     let link;
     if(this.includeFolderStructure == 1){
-      link = this.q.os.createInvite(channel,this.newInviteCodeMax, true);
+      link = this.q.os.channel.invite.create(channel,this.newInviteCodeMax, true);
     }
     else{
-      link =  this.q.os.createInvite(channel,this.newInviteCodeMax);
+      link =  this.q.os.channel.invite.create(channel,this.newInviteCodeMax);
     }
 
     let ivC =  this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
@@ -110,9 +110,9 @@ selectedChannelSub;
       await this.ui.delay(1000);
     }
 
-    this.initChannel(this.q.os.channels.getSelectedChannel());
+    this.initChannel(this.q.os.channel.getSelectedChannel());
 
-    this.selectedChannelSub = this.q.os.channels.onSelectChannel().subscribe( (value) => {
+    this.selectedChannelSub = this.q.os.channel.onSelectChannel().subscribe( (value) => {
       this.initChannel(value);
     });
 
@@ -136,7 +136,7 @@ selectedChannelSub;
   noChannelSelected = "NoChannelSelected";
 
   deleteCurrentChannel(){
-    this.q.os.removeChannel(this.selectedChannel);
+    this.q.os.channel.removeChannel(this.selectedChannel);
   }
 
 
