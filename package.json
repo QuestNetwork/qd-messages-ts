@@ -18,7 +18,7 @@
     "e2e": "ng e2e",
     "prepare": "",
     "inst": "rm -rf package-lock.json && npm install"
-    },
+  },
   "private": false,
   "dependencies": {
     "@angular-builders/custom-webpack": "^10.0.0",
