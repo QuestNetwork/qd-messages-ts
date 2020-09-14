@@ -110,7 +110,7 @@ git clone https://github.com/QuestNetwork/quest-os-js && git clone https://githu
 
 **Build For Mac**
 ```
-sed -i 's/"@questnetwork\/qdesk"/"q-desk"/g' package.json
+sed -i 's/"@questnetwork\/q-desk"/"q-desk"/g' package.json
 && npm run mac```
 sed -i  's/"q-desk"/"@questnetwork\/q-desk"/g'  package.json
 ```
