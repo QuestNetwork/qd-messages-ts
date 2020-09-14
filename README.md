@@ -82,6 +82,7 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 ### Prerequisites
 
 To fully participate in the development, you'll need:
+- [qDesk](https://github.com/QuestNetwork/qDesk)
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
 - [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
 - [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
@@ -89,16 +90,20 @@ To fully participate in the development, you'll need:
 - [Quest Network PubSub Process](https://github.com/QuestNetwork/quest-pubsub-js)
 
 ```
-git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js
+git clone https://github.com/QuestNetwork/qDesk && git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js
 ```
 
 ### Commands
+
+From the root folder of this project
 
 **Prepare Package**
 
 ``npm run inst`` Removes `package-lock.json` and runs ``npm install``
 
 ### qDesk Commands
+
+From the root folder of qDesk
 
 **Prepare Package**
 
