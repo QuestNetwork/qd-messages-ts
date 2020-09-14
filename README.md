@@ -7,7 +7,7 @@ qDesk Messages is on track to become the first fully featured, cross-platform, p
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code. Ful IRC & Matrix integration is planned as well.
 
-qDesk works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
+[qDesk](https://github.com/QuestNetwork/qDesk) works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
 Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
 
