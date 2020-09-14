@@ -170,7 +170,7 @@ export class ChannelComponent implements OnInit {
   }
 
   async publishChannelMessage(event){
-    this.q.os.ocean.dolphin.publishChannelMessage(this.channel, event.message);
+    this.q.os.channel.publish(this.channel, event.message);
     this.newMessage.nativeElement.value = "";
   }
 
