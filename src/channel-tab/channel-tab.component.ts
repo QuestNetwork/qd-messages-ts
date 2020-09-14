@@ -89,7 +89,7 @@ export class ChannelTabComponent implements OnInit {
 
 
             this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
-            this.selectedChannel = this.q.os.ocean.dolphin.getSelectedChannel();
+            this.selectedChannel = this.q.os.channels.getSelectedChannel();
 
       },100);
 
@@ -101,7 +101,7 @@ export class ChannelTabComponent implements OnInit {
         });
 
 
-      this.selectedChannelSub = this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+      this.selectedChannelSub = this.q.os.channels.onSelectChannel().subscribe( (value) => {
         this.selectedChannel = value;
         console.log('Channel-Tab: Selected Channel: >>'+this.selectedChannel+'<<');
         console.log('Channel-Tab: noChannelSelected: >>'+this.noChannelSelected+"<<");

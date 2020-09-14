@@ -110,9 +110,9 @@ selectedChannelSub;
       await this.ui.delay(1000);
     }
 
-    this.initChannel(this.q.os.ocean.dolphin.getSelectedChannel());
+    this.initChannel(this.q.os.channels.getSelectedChannel());
 
-    this.selectedChannelSub = this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (value) => {
+    this.selectedChannelSub = this.q.os.channels.onSelectChannel().subscribe( (value) => {
       this.initChannel(value);
     });
 

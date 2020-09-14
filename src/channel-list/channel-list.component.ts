@@ -589,12 +589,12 @@ onContextMenu(event: MouseEvent, item) {
         this.channelFolderListSub  = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
               this.loadChannels(chFL);
         });
-        this.selectedChannelSub =  this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (selectedChannel) => {
+        this.selectedChannelSub =  this.q.os.channels.onSelectChannel().subscribe( (selectedChannel) => {
               this.selectedChannel = selectedChannel;
         });
 
         this.loadChannels(this.channelFolderList);
-        this.selectedChannel = this.q.os.ocean.dolphin.getSelectedChannel();
+        this.selectedChannel = this.q.os.channels.getSelectedChannel();
         this.cd.detectChanges();
 
       }
@@ -660,7 +660,7 @@ onContextMenu(event: MouseEvent, item) {
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
         if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
-          this.q.os.ocean.dolphin.selectChannel(channelName.trim());
+          this.q.os.channels.selectChannel(channelName.trim());
           this.cd.detectChanges();
         }
     }
