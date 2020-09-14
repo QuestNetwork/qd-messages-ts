@@ -572,9 +572,9 @@ onContextMenu(event: MouseEvent, item) {
 
       async ngOnInit() {
 
-        console.log('ChannelList: ngOnInit...');
 
         while(!this.q.os.isSignedIn()){
+          console.log('ChannelList: Waiting for OS Sign In...');
           await this.ui.delay(1000);
         }
 
@@ -589,13 +589,13 @@ onContextMenu(event: MouseEvent, item) {
         this.channelFolderListSub  = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
               this.loadChannels(chFL);
         });
-        this.selectedChannelSub =  this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (selectChannel) => {
-              this.selectedChannel = selectChannel;
+        this.selectedChannelSub =  this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (selectedChannel) => {
+              this.selectedChannel = selectedChannel;
         });
 
-
-        this.selectedChannel = this.q.os.ocean.dolphin.getSelectedChannel();
         this.loadChannels(this.channelFolderList);
+        this.selectedChannel = this.q.os.ocean.dolphin.getSelectedChannel();
+        this.cd.detectChanges();
 
       }
 
@@ -612,22 +612,22 @@ onContextMenu(event: MouseEvent, item) {
     }
 
 
-      expandedNodes;
-      restoreFlag = 0;
-      sENwriteBlock = 0;
-      saveExpandedNodes() {
-        this.sENwriteBlock = 1;
-        this.expandedNodes = [];
-        for(let i=0;i<this.treeControl.dataNodes.length;i++){
-          let node = this.treeControl.dataNodes[i];
-            if (node.expandable && this.treeControl.isExpanded(node)) {
-                this.expandedNodes.push(node);
-            }
-        }
-        console.log('ChannelList: Persisting expanded folders...');
-        this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
-        this.sENwriteBlock = 0;
-        return true;
+    expandedNodes;
+    restoreFlag = 0;
+    sENwriteBlock = 0;
+    saveExpandedNodes() {
+      this.sENwriteBlock = 1;
+      this.expandedNodes = [];
+      for(let i=0;i<this.treeControl.dataNodes.length;i++){
+        let node = this.treeControl.dataNodes[i];
+          if (node.expandable && this.treeControl.isExpanded(node)) {
+              this.expandedNodes.push(node);
+          }
+      }
+      console.log('ChannelList: Persisting expanded folders...');
+      this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+      this.sENwriteBlock = 0;
+      return true;
 
     }
 

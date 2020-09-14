@@ -3,7 +3,7 @@
   "author": "StationedInTheField",
   "version": "0.9.3",
   "description": "Decentralized End-To-End Encrypted P2P Messenger For qDesk",
-  "main": "main.js",
+  "main": "src/qd-messages-ts.module.ts",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
