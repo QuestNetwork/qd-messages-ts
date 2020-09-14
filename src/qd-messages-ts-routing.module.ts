@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { QuestMessengerJSComponent } from './quest-messenger-js.component';
+import { QuestMessengerJSComponent } from './qd-messages-ts.component';
 
 const routes: Routes = [
   { path: '', component: QuestMessengerJSComponent }

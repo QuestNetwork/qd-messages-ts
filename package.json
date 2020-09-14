@@ -16,9 +16,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "init": "mkdir recoveryWEB && mkdir recoveryAPP && mkdir local",
     "prepare": "",
-    "inst": "rm -rf package-lock.json && npm install",
+    "inst": "rm -rf package-lock.json && npm install"
     },
   "private": false,
   "dependencies": {
