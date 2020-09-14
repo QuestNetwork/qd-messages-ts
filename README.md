@@ -88,8 +88,6 @@ git clone https://github.com/QuestNetwork/quest-os-js && git clone https://githu
 
 **Prepare Package**
 
-To The same directory you're cloning this repository to.
-
 ``npm run inst`` Removes `package-lock.json` and runs ``npm install``
 
 **Build For Linux**
