@@ -3,13 +3,10 @@ import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetect
 
 @Component({
   selector: 'quest-messenger-root',
-  templateUrl: './quest-messenger-js.component.html',
-  styleUrls: ['./quest-messenger-js.component.scss']
+  templateUrl: './qd-messages-ts.component.html',
+  styleUrls: ['./qd-messages-ts.component.scss']
 })
 export class QuestMessengerJSComponent {
   constructor( ){}
-
-
-
 
 }
