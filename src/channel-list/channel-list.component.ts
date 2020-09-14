@@ -528,7 +528,35 @@ onContextMenu(event: MouseEvent, item) {
     // return this.q.os.bee.config.isChannelFolderItemFolder(id);
   }
 
+
+  itemClickSub;
+  dataChangeSub;
+  channelFolderListSub;
+  ngOnDestroy(){
+    console.log('ChannelList: ngOnDestroy...')
+    this.itemClickSub.unsubscribe();
+    this.dataChangeSub.unsubscribe();
+    this.channelFolderListSub.unsubscribe();
+    }
+
   constructor(private cd: ChangeDetectorRef, private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
+
+    this.itemClickSub = this.nbMenuService.onItemClick().subscribe( (menuItem) => {
+       if(String(menuItem.item.title) == 'Create Channel'){
+          this.getChannelFolderList();
+          this.open(this.createPop);
+        }
+        else if(String(menuItem.item.title) == 'Import Channel'){
+            this.getChannelFolderList();
+            this.open(this.importPop);
+        }
+        else if(String(menuItem.item.title) == 'New Folder'){
+            this.getChannelFolderList();
+            this.open(this.folderPop);
+        }
+    });
+
+
 
     this.database.setQOS(this.q);
 
@@ -536,25 +564,13 @@ onContextMenu(event: MouseEvent, item) {
     this.treeControl = new FlatTreeControl<TodoItemFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
+
     }
 
 
       async ngOnInit() {
 
-        this.nbMenuService.onItemClick().subscribe( (menuItem) => {
-           if(String(menuItem.item.title) == 'Create Channel'){
-              this.getChannelFolderList();
-              this.open(this.createPop);
-            }
-            else if(String(menuItem.item.title) == 'Import Channel'){
-                this.getChannelFolderList();
-                this.open(this.importPop);
-            }
-            else if(String(menuItem.item.title) == 'New Folder'){
-                this.getChannelFolderList();
-                this.open(this.folderPop);
-            }
-      });
+        console.log('ChannelList: ngOnInit...');
 
         while(!this.q.os.bee.config.hasConfig()){
           await this.ui.delay(1000);
@@ -562,12 +578,13 @@ onContextMenu(event: MouseEvent, item) {
 
         this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
         this.channelFolderList = this.q.os.bee.config.getChannelFolderList();
-            this.database.dataChange.subscribe(data => {
-              this.dataSource.data = [];
-              this.dataSource.data = data;
-            });
 
-        this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
+        this.dataChangeSub = this.database.dataChange.subscribe(data => {
+          this.dataSource.data = [];
+          this.dataSource.data = data;
+        });
+
+        this.channelFolderListSub  = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
               this.loadChannels(chFL);
         });
         // this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (selectChannel) => {
@@ -692,9 +709,6 @@ getFolderListTreeChildrenRec(data){
     this.sENwriteBlock = 0;
 }
 
-  ngOnDestroy(){
-  //  this.nbMenuService.unsubscribe();
-  }
 
 
 
