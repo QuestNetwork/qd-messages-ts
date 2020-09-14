@@ -96,7 +96,11 @@ git clone https://github.com/QuestNetwork/quest-os-js && git clone https://githu
 
 **Prepare Package**
 
-To The same directory you're cloning this repository to.
+``npm run inst`` Removes `package-lock.json` and runs ``npm install``
+
+### qDesk Commands
+
+**Prepare Package**
 
 ``npm run inst`` Removes `package-lock.json` and runs ``npm install``
 
@@ -106,9 +110,9 @@ To The same directory you're cloning this repository to.
 
 **Build For Mac**
 ```
-sed -i 's/"@questnetwork\/quest-messenger-js"/"quest-messenger-js"/g' package.json
+sed -i 's/"@questnetwork\/q-desk"/"q-desk"/g' package.json
 && npm run mac```
-sed -i  's/"quest-messenger-js"/"@questnetwork\/quest-messenger-js"/g'  package.json
+sed -i  's/"q-desk"/"@questnetwork\/q-desk"/g'  package.json
 ```
 Builds MacOS DMG and .app files to ``dist/`` and ``dist/mac``
 
