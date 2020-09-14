@@ -25,6 +25,11 @@ export class ChannelTabComponent implements OnInit {
 
   async ngOnInit() {
 
+    while(!this.q.isReady() || !this.q.os.isSignedIn()){
+      await this.ui.delay(1000);
+    }
+
+
 
       this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
       this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
@@ -41,6 +46,29 @@ export class ChannelTabComponent implements OnInit {
       if(this.sideBarVisible['right']){
         this.sidebarService.expand('right');
       }
+
+      this.q.os.bee.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
+        this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
+      });
+
+      this.sideBarFixedSub = this.q.os.bee.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
+        console.log('getting',sideBarVisible);
+        this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
+        if(!this.sideBarVisible['left']){
+          this.sidebarService.collapse('left');
+        }
+        else if(this.sideBarVisible['left']){
+          this.sidebarService.expand('left');
+        }
+        if(!this.sideBarVisible['right']){
+          this.sidebarService.collapse('right');
+        }
+        if(this.sideBarVisible['right']){
+          this.sidebarService.expand('right');
+        }
+    });
+
+
 
       setTimeout( () => {
             this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
@@ -65,31 +93,8 @@ export class ChannelTabComponent implements OnInit {
 
       },100);
 
-      this.q.os.bee.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
-        this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
-      });
-
-      this.sideBarFixedSub = this.q.os.bee.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
-        console.log('getting',sideBarVisible);
-        this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
-        if(!this.sideBarVisible['left']){
-          this.sidebarService.collapse('left');
-        }
-        else if(this.sideBarVisible['left']){
-          this.sidebarService.expand('left');
-        }
-        if(!this.sideBarVisible['right']){
-          this.sidebarService.collapse('right');
-        }
-        if(this.sideBarVisible['right']){
-          this.sidebarService.expand('right');
-        }
-    });
 
 
-      while(!this.q.isReady()){
-        await this.ui.delay(1000);
-      }
 
       this.channelFolderListSub = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
           this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();

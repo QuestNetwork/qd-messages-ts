@@ -532,11 +532,13 @@ onContextMenu(event: MouseEvent, item) {
   itemClickSub;
   dataChangeSub;
   channelFolderListSub;
+  selectedChannelSub;
   ngOnDestroy(){
     console.log('ChannelList: ngOnDestroy...')
     this.itemClickSub.unsubscribe();
     this.dataChangeSub.unsubscribe();
     this.channelFolderListSub.unsubscribe();
+    this.selectedChannelSub.unsubscribe();
     }
 
   constructor(private cd: ChangeDetectorRef, private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
@@ -572,7 +574,7 @@ onContextMenu(event: MouseEvent, item) {
 
         console.log('ChannelList: ngOnInit...');
 
-        while(!this.q.os.bee.config.hasConfig()){
+        while(!this.q.os.isSignedIn()){
           await this.ui.delay(1000);
         }
 
@@ -587,9 +589,11 @@ onContextMenu(event: MouseEvent, item) {
         this.channelFolderListSub  = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
               this.loadChannels(chFL);
         });
-        // this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (selectChannel) => {
-        //       this.selectedChannel = selectChannel;
-        // });
+        this.selectedChannelSub =  this.q.os.ocean.dolphin.selectedChannelSub.subscribe( (selectChannel) => {
+              this.selectedChannel = selectChannel;
+        });
+
+
         this.selectedChannel = this.q.os.ocean.dolphin.getSelectedChannel();
         this.loadChannels(this.channelFolderList);
 
@@ -657,7 +661,6 @@ onContextMenu(event: MouseEvent, item) {
         if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.ocean.dolphin.selectChannel(channelName.trim());
-          this.selectedChannel = channelName;
           this.cd.detectChanges();
         }
     }
