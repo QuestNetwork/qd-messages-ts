@@ -50,101 +50,13 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 
 ## Development
 
-### IPFS Deploy
-**Memory** 3.75GB **Storage** 6GB **NodeJS** 14 **NPM** 6 **IPFS** 0.6
+qDesk Messenger is a module of [qDesk](https://github.com/QuestNetwork/qDesk), so please see https://github.com/QuestNetwork/qDesk#development for instructions. 
 
-`git clone https://github.com/QuestNetwork/qDesk`
-
-`cd qDesk`
-
-`git checkout 0.9.3`
-
-Configure your favorite modules
-
-qDesk is built for [Quest OS](https://github.com/QuestNetwork/quest-os-js), so until it's published:
-
-`cd .. && git clone https://github.com/QuestNetwork/quest-os-js && cd quest-os-js && git checkout 0.9.3 && cd ../qDesk`
-
-qDesk comes preloaded with the [Quest Messenger JS](https://github.com/QuestNetwork/quest-messenger-js), so until it's published:
-
-`cd .. && git clone https://github.com/QuestNetwork/quest-messenger-js && cd quest-messenger-js && git checkout 0.9.3 && cd ../qDesk`
-
-`npm install`
-
-`npm run ipfs`
-
-`ipfs pin add <CID>`
-
-If you have trouble getting the directory discovered by gateways, you can try ```./ipfs-propagate.sh``` from the root git folder.
-Keep in mind that the bundled web application is >6MB alone without assets, please be patient until we have a preloader.
-
-
-### Prerequisites
-
-To fully participate in the development, you'll need:
-- [qDesk](https://github.com/QuestNetwork/qDesk)
-- [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
-- [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
-- [Quest Network Ocean Process](https://github.com/QuestNetwork/quest-ocean-js)
-- [Quest Network Dolphin Process](https://github.com/QuestNetwork/quest-dolphin-js)
-- [Quest Network PubSub Process](https://github.com/QuestNetwork/quest-pubsub-js)
-
-```
-git clone https://github.com/QuestNetwork/qDesk && git clone https://github.com/QuestNetwork/quest-os-js && git clone https://github.com/QuestNetwork/quest-bee-js && git clone https://github.com/QuestNetwork/quest-ocean-js && git clone https://github.com/QuestNetwork/quest-dolphin-js && git clone https://github.com/QuestNetwork/quest-pubsub-js && git clone https://github.com/QuestNetwork/quest-messenger-js
-```
-
-### Commands
-
-From the root folder of this project
+### Commands 
 
 **Prepare Package**
 
 ``npm run inst`` Removes `package-lock.json` and runs ``npm install``
-
-### qDesk Commands
-
-From the root folder of qDesk
-
-**Prepare Package**
-
-``npm run inst`` Removes `package-lock.json` and runs ``npm install``
-
-**Build For Linux**
-
-``npm run linux`` Builds Linux AppImage and Snap files to `dist/`
-
-**Build For Mac**
-```
-sed -i 's/"@questnetwork\/q-desk"/"q-desk"/g' package.json
-&& npm run mac```
-sed -i  's/"q-desk"/"@questnetwork\/q-desk"/g'  package.json
-```
-Builds MacOS DMG and .app files to ``dist/`` and ``dist/mac``
-
-**Build For IPFS**
-
-``npm run ipfs``  Creates the bundled application for the web with dynamic base path to ```dist/web```
-
-**Build For Web**
-
-``npm run web`` Creates the bundled application for the web with static base path ```/```  to ```dist/web```
-
-**Serve For Web**
-
-``npm run serve`` Serves the bundled application on ```localhost:4200``` from ```dist/web```
-
-**Serve For Web JIT**
-
-``ng serve`` Serves a just in time compilation of the messenger on ```localhost:4200```
-
-**Rest `node_modules` And Build For Web JIT**
-
-``npm run serve-fresh`` Runs ``rm -rf node_modules && npm run inst && ng serve``
-
-**Clear Watchlist**
-
-``watch-reset`` Cleans the watch list, in case of ```System Limit``` error
-
 
 We added an example ```swarm.json``` to the ```src/app``` folder with an example node to make reproduction easier, but we strongly recommend to use our [Quest CLI](https://github.com/QuestNetwork/quest-cli) to test and build the app.
 
