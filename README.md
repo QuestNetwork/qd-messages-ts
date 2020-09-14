@@ -1,13 +1,13 @@
-# Quest Messenger
+# qDesk Messages
 
 ![Screenshot](https://github.com/QuestNetwork/quest-messenger-js/raw/0.9.2/doc/images/0.9.2.png?raw=true)
 
 ## Description
-The Quest Messenger is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
+qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code. Ful IRC & Matrix integration is planned as well.
 
-The Quest Messenger works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
+[qDesk](https://github.com/QuestNetwork/qDesk) works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
 Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
 
@@ -17,8 +17,6 @@ Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/aw
 |---------:|------------------------------|------------------------------|------------------------------|
 | 0.9.2 | [quest-messenger-0.9.2.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.2/quest-messenger-0.9.2.AppImage) | [quest-messenger-0.9.2.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.2/quest-messenger-0.9.2.dmg) | No Official Build |
 | 0.9.1 | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.AppImage) | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.1/quest-messenger-0.9.1.dmg) | No Official Build |
-
-
 
 
 
@@ -61,7 +59,13 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 
 `git checkout 0.9.3`
 
-Configure your favorite modules, qDesk comes preloaded with the [Quest Messenger JS](https://github.com/QuestNetwork/quest-messenger-js), so until it's published:
+Configure your favorite modules
+
+qDesk is built for [Quest OS](https://github.com/QuestNetwork/quest-os-js), so until it's published:
+
+`cd .. && git clone https://github.com/QuestNetwork/quest-os-js && cd quest-os-js && git checkout 0.9.3 && cd ../qDesk`
+
+qDesk comes preloaded with the [Quest Messenger JS](https://github.com/QuestNetwork/quest-messenger-js), so until it's published:
 
 `cd .. && git clone https://github.com/QuestNetwork/quest-messenger-js && cd quest-messenger-js && git checkout 0.9.3 && cd ../qDesk`
 
@@ -180,6 +184,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.3**
 - App is now modular, makes building add-ons easy
 - [qDesk](https://github.com/QuestNetwork/qDesk) Window Platform
+- Drive Lock Fixed
 
 ## Roadmap
 
