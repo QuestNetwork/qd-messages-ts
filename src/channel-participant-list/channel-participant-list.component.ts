@@ -42,7 +42,7 @@ export class ChannelParticipantListComponent implements OnInit {
 
   async ngOnInit() {
 
-    while(!this.q.isReady()){
+    while(!this.q.isReady() || !this.q.os.isSignedIn()){
       await this.ui.delay(1000);
     }
 
