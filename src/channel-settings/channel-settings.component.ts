@@ -99,7 +99,7 @@ selectedChannelSub;
       }
 
       console.log('getting flag for:',this.selectedChannel);
-      this.challengeFlowFlag = this.q.os.ocean.dolphin.getChallengeFlag(this.selectedChannel);
+      this.challengeFlowFlag = this.q.os.channel.challenge.isEnabled();
     }
 
     this.cd.detectChanges();
@@ -125,10 +125,10 @@ selectedChannelSub;
       let flag = this.challengeFlowFlag;
       let ch = this.q.os.channel.getSelected();
       if(flag){
-        this.q.os.enableChallenge(ch)
+        this.q.os.channel.challenge.enable(ch)
       }
       else{
-        this.q.os.disableChallenge(ch)
+        this.q.os.channel.challenge.disable(ch)
       }
   }
 
