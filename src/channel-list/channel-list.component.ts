@@ -661,6 +661,9 @@ onContextMenu(event: MouseEvent, item) {
         if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.channel.select(channelName.trim());
+          if(this.q.os.ui.getSideBarFixed()['left']){
+            this.q.os.ui.hideSideBar('left');
+          }
           this.cd.detectChanges();
         }
     }
@@ -711,8 +714,6 @@ getFolderListTreeChildrenRec(data){
     }
     this.sENwriteBlock = 0;
 }
-
-
 
 
 

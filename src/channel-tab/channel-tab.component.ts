@@ -15,6 +15,8 @@ export class ChannelTabComponent implements OnInit {
 
   ngOnDestroy(){
     this.sideBarFixedSub.unsubscribe();
+    this.sideBarVisibleSub.unsubscribe();
+
     this.channelFolderListSub.unsubscribe();
     this.selectedChannelSub.unsubscribe();
   }
@@ -22,7 +24,7 @@ export class ChannelTabComponent implements OnInit {
   sideBarFixedSub;
   channelFolderListSub;
   selectedChannelSub;
-
+sideBarVisibleSub;
   async ngOnInit() {
 
     while(!this.q.isReady() || !this.q.os.isSignedIn()){
@@ -47,11 +49,11 @@ export class ChannelTabComponent implements OnInit {
         this.sidebarService.expand('right');
       }
 
-      this.q.os.bee.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
+      this.sideBarFixedSub = this.q.os.bee.config.sideBarFixedSub.subscribe( (sideBarFixed) => {
         this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
       });
 
-      this.sideBarFixedSub = this.q.os.bee.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
+      this.sideBarVisibleSub = this.q.os.bee.config.sideBarVisibleSub.subscribe( (sideBarVisible) => {
         console.log('getting',sideBarVisible);
         this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
         if(!this.sideBarVisible['left']){
