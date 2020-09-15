@@ -62,8 +62,8 @@ export class ChannelSettingsComponent implements OnInit {
   }
 
   removeInviteCode(link){
-    this.q.os.ocean.dolphin.removeInviteCode(this.selectedChannel,link);
-    this.channelInviteCodes = this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel)['items'];
+    this.q.os.channel.invite.remove(this.selectedChannel,link);
+    this.channelInviteCodes = this.q.os.channel.invite.get(this.selectedChannel);
   }
 
   newInviteExportFoldersChanged(value){
