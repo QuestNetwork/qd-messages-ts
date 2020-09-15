@@ -10,7 +10,7 @@
     <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.right" style="margin-left: 3px;margin-right: 21px;">Float Panel</button>
     <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton thinOutlineButton ">Hide Panel</button>
 
-    <app-channel-sidebar-right></app-channel-sidebar-right>
+    <app-channel-sidebar-right *ngIf="selectedChannel != 'NoChannelSelected'"></app-channel-sidebar-right>
   </nb-sidebar>
   <nb-layout-column>
     <app-channel *ngFor="let channel of channelNameList"  [channel]="channel" class="channel" [hidden]="selectedChannel != channel"></app-channel>

@@ -22,10 +22,10 @@ export class ChannelParticipantListComponent implements OnInit {
 
   async initProcess(){
 
-    if(this.q.os.channel.getSelectedChannel() != 'NoChannelSelected'){
+    if(this.q.os.channel.getSelected() != 'NoChannelSelected'){
 
       try{
-        let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.channel.getSelectedChannel())['cList'].split(',');
+        let fullPListArr = this.q.os.ocean.dolphin.getChannelParticipantList(this.q.os.channel.getSelected())['cList'].split(',');
         if(fullPListArr.length > 0){
           for(let i=0;i<fullPListArr.length;i++){
             fullPListArr[i] =   fullPListArr[i].substr(130);
@@ -52,7 +52,7 @@ export class ChannelParticipantListComponent implements OnInit {
 
     await this.initProcess();
 
-    this.selectedChannelSub = this.q.os.channel.onSelectChannel().subscribe( (value) => {
+    this.selectedChannelSub = this.q.os.channel.onSelect().subscribe( (value) => {
       console.log('ChannelParticipantList: changed channel');
       this.initProcess();
 

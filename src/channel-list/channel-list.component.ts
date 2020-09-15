@@ -589,12 +589,12 @@ onContextMenu(event: MouseEvent, item) {
         this.channelFolderListSub  = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
               this.loadChannels(chFL);
         });
-        this.selectedChannelSub =  this.q.os.channel.onSelectChannel().subscribe( (selectedChannel) => {
+        this.selectedChannelSub =  this.q.os.channel.onSelect().subscribe( (selectedChannel) => {
               this.selectedChannel = selectedChannel;
         });
 
         this.loadChannels(this.channelFolderList);
-        this.selectedChannel = this.q.os.channel.getSelectedChannel();
+        this.selectedChannel = this.q.os.channel.getSelected();
         this.cd.detectChanges();
 
       }
@@ -660,13 +660,13 @@ onContextMenu(event: MouseEvent, item) {
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
         if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
           console.log('ChannelList: Selecting: ',channelName.trim());
-          this.q.os.channel.selectChannel(channelName.trim());
+          this.q.os.channel.select(channelName.trim());
           this.cd.detectChanges();
         }
     }
     channelIsSelected = "active-channel";
     selectedChannel;
-    getSelectedChannel(){
+    getSelected(){
       return JSON.stringify(this.selectedChannel);
     }
 

@@ -110,9 +110,9 @@ selectedChannelSub;
       await this.ui.delay(1000);
     }
 
-    this.initChannel(this.q.os.channel.getSelectedChannel());
+    this.initChannel(this.q.os.channel.getSelected());
 
-    this.selectedChannelSub = this.q.os.channel.onSelectChannel().subscribe( (value) => {
+    this.selectedChannelSub = this.q.os.channel.onSelect().subscribe( (value) => {
       this.initChannel(value);
     });
 
@@ -123,7 +123,7 @@ selectedChannelSub;
 
   challengeFlowFlagChanged(){
       let flag = this.challengeFlowFlag;
-      let ch = this.q.os.getSelectedChannel();
+      let ch = this.q.os.channel.getSelected();
       if(flag){
         this.q.os.enableChallenge(ch)
       }
@@ -136,7 +136,7 @@ selectedChannelSub;
   noChannelSelected = "NoChannelSelected";
 
   deleteCurrentChannel(){
-    this.q.os.channel.removeChannel(this.selectedChannel);
+    this.q.os.channel.remove(this.selectedChannel);
   }
 
 
