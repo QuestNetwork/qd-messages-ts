@@ -177,13 +177,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - App is now modular, makes building add-ons easy
 - [qDesk](https://github.com/QuestNetwork/qDesk) Window Platform
 - Drive Lock Fixed
+- Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 
 ## Roadmap
 
 **0.9.3**
 - Combine messages sent in sequence
 - Offline Participants are semi transparent
-- Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - Sidebars resizable
 - Participant/Friends Groups And Folders
 - Participant Status
