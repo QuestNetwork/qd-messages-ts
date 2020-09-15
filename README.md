@@ -7,7 +7,7 @@
 ## Description
 qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
-qDesk Messages uses [Dolphin]() which uses (4096 Bit RSA)[https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation] encryption, (256 Bit AES-CBC)[https://en.wikipedia.org/wiki/Advanced_Encryption_Standard] encryption and (NIST P-521 EC)[https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Fast_reduction_(NIST_curves)] keys for signatures.
+**qDesk Messages uses [Quest OS](https://github.com/QuestNetwork/quest-os-js) which uses [4096 Bit RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation) encryption, [256 Bit AES-CBC](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption and [NIST P-521 E](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Fast_reduction_(NIST_curves) keys for signatures.**
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code. Ful IRC & Matrix integration is planned as well.
 
