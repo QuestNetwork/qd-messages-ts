@@ -118,6 +118,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [qDesk](https://github.com/QuestNetwork/qDesk) Window Platform
 - Drive Lock Fixed
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
+- [qDesk Social](https://github.com/QuestNetwork/qd-social-ts)
 
 ## Roadmap
 
