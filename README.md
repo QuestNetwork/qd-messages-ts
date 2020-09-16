@@ -82,6 +82,9 @@ Keep in mind that the bundled web application is >6MB alone without assets, plea
 ### Prerequisites
 
 To fully participate in the development, you'll need:
+- [qDesk Messages](https://github.com/QuestNetwork/quest-messenger-js)
+- [qDesk Social](https://github.com/QuestNetwork/quest-social-js)
+- [qDesk UI Service](https://github.com/QuestNetwork/qd-ui-js)
 - [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js)
 - [Quest Network Social Process](https://github.com/QuestNetwork/quest-social-js)
 - [Quest Network Bee Process](https://github.com/QuestNetwork/quest-bee-js)
