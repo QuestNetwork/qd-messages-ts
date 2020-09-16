@@ -150,7 +150,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Coral Process](https://github.com/QuestNetwork/quest-coral-js)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Inline Preview For Media Files And Links (images, videos, etc)
-- Encrypt Settings/Message History Files
+- Encrypt Settings/Files
 
 **0.9.7**
 - Private Channels Extendable To Groups (background create and join)
@@ -167,7 +167,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
-- Dynamic Swarm Peer List Also On The Web (add and remove bootstrap peers)
 - Unlimited Custom Emojis
 - Quest Network Calendar App Plugin (for shared calendars)
 - IRC Plugin
