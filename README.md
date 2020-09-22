@@ -124,7 +124,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Participant/Friends Groups And Folders
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
-- Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 
 ## Roadmap
 
@@ -138,6 +137,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Pair with participants by QR Code
 - Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
 - Context Menu For Channels In Channel List
+- Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
