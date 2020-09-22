@@ -125,15 +125,16 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.3**
 - Combine messages sent in sequence
-- Sidebars resizable
 - Participant/Friends Groups And Folders
-- Participant Status
-- Offline Participants are semi transparent and end of list
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 
 **0.9.4**
+- Sidebars resizable
+- Participant Status
+- Offline Participants are semi transparent and end of list
+- Option order channels by latest recent message
 - Pair with participants by QR Code
 - Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
 - Context Menu For Channels In Channel List
