@@ -129,7 +129,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.4**
-- Sidebars resizable
+- [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you.
+- Sidebars resizable 
 - Participant Status
 - Offline Participants are semi transparent and end of list
 - Option order channels by latest recent message
