@@ -120,15 +120,13 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Drive Lock Fixed
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts)
-
-## Roadmap
-
-**0.9.3**
 - Combine messages sent in sequence
 - Participant/Friends Groups And Folders
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
+
+## Roadmap
 
 **0.9.4**
 - Sidebars resizable
