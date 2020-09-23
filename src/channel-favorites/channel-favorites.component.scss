@@ -1,0 +1,213 @@
+
+
+button[nbTreeGridRowToggle] {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.search-label {
+  display: block;
+}
+
+.search-input{
+  background: transparent;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    width: 100%;
+        margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 78%;
+  margin-left:1%;
+}
+
+.addChannelButton{
+  color: #8674b7bf;
+  margin-left: 5%;
+  position: relative;
+  top: 1px;
+  // background-color: #29217eb0;
+      background-color: #45267d;
+  /* padding: 0px; */
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 4px;
+  opacity: 0.7;
+}
+
+
+.nb-column-name {
+  width: 80%;
+}
+.nb-column-items {
+  width: 20%;
+}
+
+.favoriteRequest{
+  width: 100%;
+overflow: hidden;
+white-space: nowrap;
+padding: 10px;
+border-radius: 5px;
+background: #780e3ea3;
+font-family: Ubuntu;
+font-size: 14px;
+margin-bottom:5px;
+}
+
+.favoriteRequestText{
+  width: 80%;
+    overflow: hidden;
+    float: left;
+    text-overflow: ellipsis;
+    cursor:pointer;
+
+    overflow: hidden;
+width: 66%;
+float: left;
+text-overflow: ellipsis;
+}
+
+
+.scanQRCode{
+  font-size: 37px;
+color: #315cdf;
+cursor:pointer;
+}
+
+.scanQRCode:hover{
+color:#4a81e6;
+}
+
+:host nb-layout-header ::ng-deep nav {
+ justify-content: flex-end;
+}
+
+
+
+
+
+@import '~@angular/material/theming';
+
+.mat-tree, .mat-tree-node{
+  background:transparent;
+}
+
+.mat-tree-node {
+  overflow: visible;
+  cursor: move;
+}
+
+.drop-above {
+  border-top: 10px solid #2196F3;
+  margin-top: -10px;
+}
+
+.drop-below {
+  border-bottom: 10px solid #2196F3;
+  margin-bottom: -10px;
+}
+
+.drop-center {
+  background-color: darkgray;
+}
+
+.drag-start {
+    background-color: #1565c0;
+    color:honeydew;
+}
+
+.treeNodeContainerFolder{
+  background-color: #8377e60f;
+  border-radius: 5px;
+  padding: 0;
+padding-right: 16px;
+  padding-left: 0px;
+  margin: 0px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.treeNodeContainerSingle{
+// background-color: #ffffff12;
+//     border-radius: 5px;
+//     padding: 10px;
+//     padding-left: 20px;
+//     margin: 5px;
+//
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+
+
+    background-color: #4527805e;
+border-radius: 5px;
+padding: 6px;
+padding-right: 10px;
+padding-left: 15px;
+margin: 0px;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+  }
+
+
+  .mat-tree{
+    z-index: 999;
+    width: 227px;
+    left: 14px;
+    top: 190px;
+    padding-right: 10px;
+    bottom: 40px;
+    position: fixed;
+    overflow: scroll;
+  }
+
+
+  .mat-tree::-webkit-scrollbar {
+  width: 4px;
+
+}
+
+.mat-tree::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.mat-tree::-webkit-scrollbar-thumb {
+  background-color: #4e84e58f;
+  outline: 0;
+}
+
+.mat-tree::-webkit-scrollbar-track {
+    box-shadow: none !important;
+}
+
+.emptyFolder{
+  display: none;
+}
+
+
+.mat-icon-button i, .mat-icon-button .mat-icon {
+    line-height: 20px;
+}
+
+
+.qrScanWrapper{
+  min-width: 20px;
+  max-height: 80vh;
+  max-width: 37vw;
+}
+
+
+
+.mat-tree{
+  z-index: 999;
+    max-width: 227px;
+    left: -1px;
+    padding-right: 10px;
+    position: relative;
+    top: 0;
+    margin-bottom:40px;
+}

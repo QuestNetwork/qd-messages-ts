@@ -1,0 +1,83 @@
+<ng-template #folder let-data let-ref="folderRef">
+      <nb-card>
+        <nb-card-header>Create Participant Folder</nb-card-header>
+        <nb-card-body style="color:goldenrod;">
+
+
+            <div style="padding: 20px;
+    color: white !important;">
+              <input matInput placeholder="Folder Name" value="" name='newFolderName' [(ngModel)]='newFolderName' style="color: black;
+    background-color: goldenrod;
+    padding: 7px;">
+              </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <button mat-stroked-button color="primary" (click)="createFolder(newFolderName);" style="    margin-right: 20px;
+    border: 1px solid #ffffff24;">Create</button>
+          <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
+        </nb-card-footer>
+      </nb-card>
+    </ng-template>
+
+    <ng-template #folderEdit let-data let-ref="folderEditRef">
+          <nb-card>
+            <nb-card-header>Edit Folder</nb-card-header>
+            <nb-card-body style="color:goldenrod;">
+
+
+                <div style="padding: 20px;
+        color: white !important;">
+                  <input matInput placeholder="Folder Name" value="" name='editedFolderName' [(ngModel)]='editedFolderName' style="color: black;
+        background-color: goldenrod;
+        padding: 7px;">
+                  </div>
+            </nb-card-body>
+            <nb-card-footer>
+              <button mat-stroked-button color="primary" (click)="editFolder(editedFolderId, editedFolderName);" style="    margin-right: 20px;
+        border: 1px solid #ffffff24;">Create</button>
+              <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
+            </nb-card-footer>
+          </nb-card>
+        </ng-template>
+
+
+
+        <ng-template #participantEdit let-data let-ref="participantEditRef">
+              <nb-card>
+                <nb-card-header>Edit Participant</nb-card-header>
+                <nb-card-body style="color:goldenrod;">
+
+
+                    <div style="padding: 20px;
+            color: white !important;">
+                      <input matInput placeholder="Participant Name" value="" name='editedParticipantName' [(ngModel)]='editedParticipantName' style="color: black;
+            background-color: goldenrod;
+            padding: 7px;">
+                      </div>
+                </nb-card-body>
+                <nb-card-footer>
+                  <button mat-stroked-button color="primary" (click)="editParticipant(editedParticipantId, editedParticipantName);" style="    margin-right: 20px;
+            border: 1px solid #ffffff24;">Create</button>
+                  <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
+                </nb-card-footer>
+              </nb-card>
+            </ng-template>
+
+<div class="col-md-3" *ngFor="let folder of folders">
+     <div class="drag-container">
+       <div class="section-heading">{{folder.name}}
+         <nb-icon icon="plus-outline" class="folderIcon" (click)="openPopup(folderPop)" *ngIf="folder.participants.length > 0 ||  folder.id == 'others'"></nb-icon>
+         <nb-icon icon="close-outline" class="folderIcon" (click)="removeFolder(folder.id)" *ngIf="folder.participants.length == 0 && folder.id != 'others'"></nb-icon>
+         <nb-icon icon="edit-2-outline" class="folderIcon editIcon"  (click)="openPopup(folderEditPop, folder.id)"></nb-icon></div>
+
+       <div cdkDropList id="{{folder.id}}" [cdkDropListData]="folder.participants"
+         [cdkDropListConnectedTo]="connectedTo" class="item-list" (cdkDropListDropped)="drop($event)">
+         <div class="item-box" *ngFor="let participant of folder.participants" cdkDrag (click)='clickParticipant($event)'>
+           <span (click)="openSocialProfile(participant.name, participant.pubKey)" class='participantName'>{{participant.name}}</span>
+
+           <nb-icon icon="options-2-outline" class="participantIcon participantSettingsIcon"  (click)="openPopup(participantEditPop, folder.id, participant.pubKey)"></nb-icon></div>
+       </div>
+     </div>
+   </div>
+
+<div class="spacer">&nbsp;</div>

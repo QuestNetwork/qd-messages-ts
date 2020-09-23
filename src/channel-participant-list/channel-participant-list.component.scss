@@ -1,0 +1,143 @@
+
+.section-heading {
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.drag-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #e9ecef05;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.item-list {
+  min-height: 60px;
+  border-radius: 4px;
+  display: block;
+}
+
+
+.participant{
+    background: #0084ff;
+    background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
+    color: #fff;
+  margin:0;
+
+}
+
+.participantName{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+      width: 100%;
+}
+
+.item-box {
+  padding: 8px 10px;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 8px;
+    background: #0084ff;
+    background-image: linear-gradient(319deg,#fce055,#256eff 37%,#46237a);
+    color: #fff;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin-bottom: 5px;
+    font-family: MONOSPACE;
+    font-size: 11px;
+
+  padding: 6px 10px;
+      border: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 0 0 5px;
+      font-family: Ubuntu;
+      font-size: 12px;
+
+
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+              border-radius: 8px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.item-list.cdk-drop-list-dragging .item-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.drag-container{
+  width: 400px;
+    max-width: 100%;
+    margin: 0 0 10px 0;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #e9ecef05;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+.section-heading{
+  padding-bottom: 9px;
+      padding-left: 7px;
+      padding-top: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #d6d649;
+}
+
+
+.spacer{
+  min-height:40px;
+}
+
+.editIcon{
+  margin-right:10px;
+}
+.folderIcon{
+  float:right;
+  font-size: 17px;
+  color: #3375f6;
+  cursor:pointer;
+}
+
+
+.participantIcon{
+  float:right;
+  font-size: 17px;
+  color: #3375f6;
+  cursor:pointer;
+}
