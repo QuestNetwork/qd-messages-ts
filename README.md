@@ -144,9 +144,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
 **0.9.5**
-- Gifs 
+- GIFs 
 - Stickers
-- Reactions (react to messages with emojis, gifs and stickers)
+- Reactions (react to messages with emojis, GIFs and stickers)
 - AES Encrypt Invite Tokens
 - AutoSave And P2P Sync For Message History Tree
 - Export Message Histories
