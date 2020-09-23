@@ -132,9 +132,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you.
 - Channel Folders are now sorted alphabetically by default
 - Sidebars resizable 
-- Participant Status
-- Offline Participants are semi transparent and end of list
-- Option order channels by latest recent message
 - Pair with participants by QR Code
 - Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
 - Context Menu For Channels In Channel List
@@ -160,6 +157,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.7**
 - Private Channels Extendable To Groups (background create and join)
 - Quote/Extend Messages (message inheritance)
+- Participant Status
+- Offline Participants are semi transparent and end of list
+- Option to order channels by latest recent message
 
 **0.9.8**
 - Badges for unread messages
