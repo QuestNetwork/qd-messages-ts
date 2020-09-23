@@ -52,7 +52,7 @@ http://ipfs.infura.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 [StationedInTheField](https://github.com/StationedInTheField)
 
 ## Support Us
-This project is a lot of work and unfortunately we need to eat food (ツ)
+This project is a lot of work and we need to eat food (ツ)
 
 | Ethereum| Bitcoin |
 |---|---|
@@ -114,33 +114,36 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Share and Import Channels By QR Code
 
 **0.9.3**
+- [IPFS Update (0.50.2)](https://ipfs.io)
 - App is now modular, makes building add-ons easy
-- [qDesk](https://github.com/QuestNetwork/qDesk) Window Platform
+- [qDesk Window Platform](https://qDesk.org)
 - Drive Lock Fixed
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts)
+- Combine messages sent in sequence
+- Participant/Friends Groups And Folders
+- Set Alias (show custom name instead of pub key) and profile pictures
+- Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 
 ## Roadmap
 
-**0.9.3**
-- Combine messages sent in sequence
-- Sidebars resizable
-- Participant/Friends Groups And Folders
-- Participant Status
-- Offline Participants are semi transparent and end of list
-- Set Alias (show custom name instead of pub key) and profile pictures
-- Pair with participants by QR Code
-- Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
-- Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
-
 **0.9.4**
+- Rename Channel/Favorite Folders
+- [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you.
+- Channel Folders are now sorted alphabetically by default
+- Sidebars resizable 
+- Pair with participants by QR Code
 - Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
 - Context Menu For Channels In Channel List
+- Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
 
 **0.9.5**
+- GIFs 
+- Stickers
+- Reactions (react to messages with emojis, GIFs and stickers)
 - AES Encrypt Invite Tokens
 - AutoSave And P2P Sync For Message History Tree
 - Export Message Histories
@@ -149,13 +152,14 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [Quest Network Coral Process](https://github.com/QuestNetwork/quest-coral-js)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Inline Preview For Media Files And Links (images, videos, etc)
-- Encrypt Settings/Message History Files
+- Encrypt Settings/Files
 
 **0.9.7**
 - Private Channels Extendable To Groups (background create and join)
-- Add Custom Themes By Pasting CSS Into The Built-In Theme Editor
-- Import/Export Themes
-- Light Mode
+- Quote/Extend Messages (message inheritance)
+- Participant Status
+- Offline Participants are semi transparent and end of list
+- Option to order channels by latest recent message
 
 **0.9.8**
 - Badges for unread messages
@@ -166,7 +170,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
-- Dynamic Swarm Peer List Also On The Web (add and remove bootstrap peers)
 - Unlimited Custom Emojis
 - Quest Network Calendar App Plugin (for shared calendars)
 - IRC Plugin
