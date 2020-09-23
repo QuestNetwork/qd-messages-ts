@@ -116,7 +116,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.3**
 - [IPFS Update (0.50.2)](https://ipfs.io)
 - App is now modular, makes building add-ons easy
-- [qDesk](https://qDesk.org) Window Platform
+- [qDesk Window Platform](https://qDesk.org)
 - Drive Lock Fixed
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts)
