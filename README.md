@@ -114,9 +114,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Share and Import Channels By QR Code
 
 **0.9.3**
-- IPFS Update (0.50.2)
+- [IPFS Update (0.50.2)](https://ipfs.io)
 - App is now modular, makes building add-ons easy
-- [qDesk](https://github.com/QuestNetwork/qDesk) Window Platform
+- [qDesk](https://qDesk.org) Window Platform
 - Drive Lock Fixed
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts)
