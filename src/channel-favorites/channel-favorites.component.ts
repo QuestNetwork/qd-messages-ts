@@ -51,7 +51,7 @@ export class TodoItemFlatNode {
  * If a node is a category, it has children items and new items can be added under the category.
  */
 @Injectable()
-export class ChecklistDatabase {
+export class ChannelFavoritesDatabase {
   dataChange = new BehaviorSubject<TodoItemNode[]>([]);
 
   get data(): TodoItemNode[] { return this.dataChange.value; }
@@ -138,6 +138,8 @@ export class ChecklistDatabase {
     }
     return null;
   }
+
+
 
   getParent(currentRoot: TodoItemNode, node: TodoItemNode): TodoItemNode {
     if (currentRoot.children && currentRoot.children.length > 0) {
@@ -272,13 +274,13 @@ export class ChecklistDatabase {
 }
 
 @Component({
-  selector: 'messages-channel-list',
-  templateUrl: './channel-list.component.html',
-  styleUrls: ['./channel-list.component.scss'],
-  providers: [ChecklistDatabase]
+  selector: 'messages-channel-favorites',
+  templateUrl: './channel-favorites.component.html',
+  styleUrls: ['./channel-favorites.component.scss'],
+  providers: [ChannelFavoritesDatabase]
 
 })
-export class ChannelListComponent implements OnInit {
+export class ChannelFavoritesComponent implements OnInit {
 
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
   // @ViewChild('contextMenu') contextMenu: MatMenuTrigger;
@@ -442,7 +444,7 @@ onContextMenu(event: MouseEvent, item) {
         this.database.deleteItem(newItem);
         newItem = this.database.copyPasteItem(newItem, this.flatNodeMap.get(node));
         this.saveExpandedNodes();
-        this.buildChannelFolderListFromTreeNodeData();
+        this.buildFavoriteFolderListFromTreeNodeData();
       }
       // this.buildChannelFolderListFromTreeNodeData();
 
@@ -458,6 +460,7 @@ onContextMenu(event: MouseEvent, item) {
 
 
   }
+
 
   handleDragEnd(event) {
     this.dragNode = null;
@@ -519,11 +522,11 @@ onContextMenu(event: MouseEvent, item) {
 
   channelNameList = [];
 
-  public getFolderNameFromId(id){
+  public getFavoriteFolderNameFromId(id){
     if(id == 'emptyFolder'){
       return id;
     }
-    return this.q.os.bee.config.getFolderNameFromId(id);
+    return this.q.os.bee.config.getFavoriteFolderNameFromId(id);
   }
 
   public isFolder(id){
@@ -534,33 +537,54 @@ onContextMenu(event: MouseEvent, item) {
     // return this.q.os.bee.config.isChannelFolderItemFolder(id);
   }
 
+  buildFavoritelFolderListFromTreeNodeData(){
+    console.log('!!!!!');
+    console.log(this.database.data);
+    let data = this.database.data;
+    data = data.filter( n => n.item != 'emptyFolder' );
+    let chFL = [];
+    for(let i=0;i<data.length;i++){
+        console.log(data[i]);
+        let kind = "dir";
+        if(data[i]['item'].indexOf('-----') > -1){
+          kind = "channel";
+        }
+        console.log(kind);
+          let children = [];
+        if(typeof data[i]['children'] != 'undefined' && data[i]['children']['length'] > 0){
+           children = this.getFavoriteFolderListTreeChildrenRec(data[i]['children']);
+        }
+        chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFavoriteFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
+    }
+    this.q.os.bee.config.setFavoriteFolderList(chFL);
+    return true;
+  }
+
 
   itemClickSub;
   dataChangeSub;
-  channelFolderListSub;
+  favoriteFolderListSub;
   selectedChannelSub;
   ngOnDestroy(){
     console.log('ChannelList: ngOnDestroy...')
+    clearInterval(this.updateNamesInterval);
     this.itemClickSub.unsubscribe();
     this.dataChangeSub.unsubscribe();
-    this.channelFolderListSub.unsubscribe();
+    this.favoriteFolderListSub.unsubscribe();
     this.selectedChannelSub.unsubscribe();
     }
 
-  constructor(private cd: ChangeDetectorRef, private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
+  constructor(private cd: ChangeDetectorRef, private database: ChannelFavoritesDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
 
     this.itemClickSub = this.nbMenuService.onItemClick().subscribe( (menuItem) => {
-       if(String(menuItem.item.title) == 'New Channel'){
-          this.getChannelFolderList();
-          this.open(this.createPop);
-        }
-        else if(String(menuItem.item.title) == 'Join Channel'){
-            this.getChannelFolderList();
-            this.open(this.importPop);
-        }
-        else if(String(menuItem.item.title) == 'New Folder'){
-            this.getChannelFolderList();
-            this.open(this.folderPop);
+
+        // if(String(menuItem.item.title) == 'Add Favorite'){
+        //     this.getFavoriteFolderList();
+        //     this.open(this.importPop);
+        // }
+       if(String(menuItem.item.title) == 'New Favorite Folder'){
+            this.getFavoriteFolderList();
+            this.open(this.newFavoriteFolderPop);
         }
     });
 
@@ -575,7 +599,8 @@ onContextMenu(event: MouseEvent, item) {
 
     }
 
-
+incomingFavoriteRequestList = [];
+updateNamesInterval;
       async ngOnInit() {
 
 
@@ -584,38 +609,60 @@ onContextMenu(event: MouseEvent, item) {
           await this.ui.delay(1000);
         }
 
+        this.updateNamesInterval = setInterval( () => {
+          this.saveExpandedNodes();
+          this.loadChannels(this.favoriteFolderList);
+          setTimeout(() => {
+            this.saveExpandedNodes();
+            this.loadChannels(this.favoriteFolderList);
+          }, 2000);
+        },20000);
+
+
         this.channelNameList = this.q.os.ocean.dolphin.getChannelNameList();
-        this.channelFolderList = this.q.os.bee.config.getChannelFolderList();
+
+        this.favoriteFolderList = this.q.os.bee.config.getFavoriteFolderList();
 
         this.dataChangeSub = this.database.dataChange.subscribe(data => {
           this.dataSource.data = [];
           this.dataSource.data = data;
         });
 
-        this.channelFolderListSub  = this.q.os.bee.config.channelFolderListSub.subscribe( (chFL: []) => {
+        this.favoriteFolderListSub  = this.q.os.bee.config.favoriteFolderListSub.subscribe( (chFL: []) => {
               this.loadChannels(chFL);
         });
         this.selectedChannelSub =  this.q.os.channel.onSelect().subscribe( (selectedChannel) => {
               this.selectedChannel = selectedChannel;
         });
 
-        this.loadChannels(this.channelFolderList);
+        this.loadChannels(this.favoriteFolderList);
+
+        setTimeout(() => {
+          this.saveExpandedNodes();
+          this.loadChannels(this.favoriteFolderList);
+        }, 2000);
+
         this.selectedChannel = this.q.os.channel.getSelected();
         this.cd.detectChanges();
 
       }
 
-
     loadChannels(chFL){
-      TREE_DATA =  this.q.os.bee.config.getChannelFolderIDList();
+
+      this.incomingFavoriteRequestList =  this.q.os.ocean.dolphin.getIncomingFavoriteRequests().filter(e => !this.q.os.crypto.inArray(this.q.os.ocean.dolphin.getChannelNameList(),e['channel']));
+
+      TREE_DATA =  this.q.os.bee.config.getFavoriteFolderIDList();
       this.database.filter("");
-      if(chFL.length > 0 && this.q.os.bee.config.getExpandedChannelFolderItems().length > 0 ){
+      if(chFL.length > 0 && this.q.os.bee.config.getExpandedFavoriteFolderItems().length > 0 ){
         console.log('got a saved state!');
-        this.expandedNodes = this.q.os.bee.config.getExpandedChannelFolderItems();
+        this.expandedNodes = this.q.os.bee.config.getExpandedFavoriteFolderItems();
         this.restoreExpandedNodes();
       }
 
+      this.updateNames();
+
     }
+
 
 
     expandedNodes;
@@ -631,14 +678,13 @@ onContextMenu(event: MouseEvent, item) {
           }
       }
       console.log('ChannelList: Persisting expanded folders...');
-      this.q.os.bee.config.setExpandedChannelFolderItems(this.expandedNodes);
+      this.q.os.bee.config.setExpandedFavoriteFolderItems(this.expandedNodes);
       this.sENwriteBlock = 0;
       return true;
 
     }
 
-    // buildChannelFolderListFromTreeNodeDataLock = 0;
-    buildChannelFolderListFromTreeNodeData(){
+    buildFavoriteFolderListFromTreeNodeData(){
       console.log('!!!!!');
       console.log(this.database.data);
       let data = this.database.data;
@@ -653,11 +699,11 @@ onContextMenu(event: MouseEvent, item) {
           console.log(kind);
             let children = [];
           if(typeof data[i]['children'] != 'undefined' && data[i]['children']['length'] > 0){
-             children = this.getFolderListTreeChildrenRec(data[i]['children']);
+             children = this.getFavoriteFolderListTreeChildrenRec(data[i]['children']);
           }
-          chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
+          chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFavoriteFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
       }
-      this.q.os.bee.config.setChannelFolderList(chFL);
+      this.q.os.bee.config.setFavoriteFolderList(chFL);
       return true;
     }
 
@@ -684,15 +730,14 @@ onContextMenu(event: MouseEvent, item) {
 
 
     items = [
-        { title: 'New Folder' },
-        { title: 'New Channel' },
-        { title: 'Join Channel' },
+        { title: 'New Favorite Folder' },
+        { title: 'Add Favorite' },
       ];
 
 
 
 
-getFolderListTreeChildrenRec(data){
+getFavoriteFolderListTreeChildrenRec(data){
   let chFL = [];
   for(let i=0;i<data.length;i++){
       console.log(data[i]);
@@ -702,9 +747,9 @@ getFolderListTreeChildrenRec(data){
       }
       let children = [];
       if(typeof data[i]['children'] != 'undefined' && data[i]['children']['length'] > 0){
-        children = this.getFolderListTreeChildrenRec(data[i]['children']);
+        children = this.getFavoriteFolderListTreeChildrenRec(data[i]['children']);
       }
-      chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
+      chFL.push({ id: data[i]['item'], data: { name: this.q.os.bee.config.getFavoriteFolderNameFromId(data[i]['item']), kind: kind, items: 0 }, children: children } );
   }
   return chFL;
 
@@ -772,23 +817,22 @@ getFolderListTreeChildrenRec(data){
     this.closePopup();
   }
 
-  newChannelName;
-  channelFolderList;
-  channelFolderListArray = [];
-  newChannelFolder;
-  getChannelFolderList(){
-    this.channelFolderList = this.q.os.bee.config.getChannelFolderList();
-    this.channelFolderListArray = [];
-    this.parseStructure(this.channelFolderList);
-    if(this.channelFolderListArray.length > 0){
-      this.newChannelFolder = this.channelFolderListArray[0];
+  favoriteFolderList;
+  favoriteFolderListArray = [];
+  newFavoriteFolder;
+  getFavoriteFolderList(){
+    this.favoriteFolderList = this.q.os.bee.config.getFavoriteFolderList();
+    this.favoriteFolderListArray = [];
+    this.parseStructure(this.favoriteFolderList);
+    if(this.favoriteFolderListArray.length > 0){
+      this.newFavoriteFolder = this.favoriteFolderListArray[0];
     }
-    return this.channelFolderList;
+    return this.favoriteFolderList;
   }
   parseStructure(folderStructure){
     for(let i=0;i<folderStructure.length;i++){
       if(folderStructure[i]['data']['name'].indexOf('-----') === -1 && folderStructure[i]['data']['name'] != 'emptyFolder'){
-        this.channelFolderListArray.push(folderStructure[i]);
+        this.favoriteFolderListArray.push(folderStructure[i]);
         if(typeof(folderStructure[i]['children']) != 'undefined'){
           this.parseStructure(folderStructure[i]['children']);
         }
@@ -797,23 +841,27 @@ getFolderListTreeChildrenRec(data){
     return folderStructure;
   }
   newChannelFolderChanged(){}
+
+
   async createNewChannel(event){
-    this.saveExpandedNodes();
-
-    console.log(event);
-    let channelNameDirty = event
-    //TODO put together folder structure...
-    let folders;
-
-    this.ui.showSnack('Creating Channel...','Please Wait');
-    let parentFolderId =  this.newChannelFolder;
-    if(typeof parentFolderId === 'object'){
-      parentFolderId = "";
-    }
-
-    await this.q.os.channel.create(channelNameDirty, parentFolderId);
-    this.createCompleteAndClose();
+    // this.saveExpandedNodes();
+    //
+    // console.log(event);
+    // let channelNameDirty = event
+    // //TODO put together folder structure...
+    // let folders;
+    //
+    // this.ui.showSnack('Creating Channel...','Please Wait');
+    // let parentFolderId =  this.newChannelFolder;
+    // if(typeof parentFolderId === 'object'){
+    //   parentFolderId = "";
+    // }
+    //
+    // await this.q.os.channel.create(channelNameDirty, parentFolderId);
+    // this.createCompleteAndClose();
   }
+
+
   popupRef = [];
   open(dialog: TemplateRef<any>) {
         this.popupRef.push(this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' }));
@@ -834,18 +882,19 @@ getFolderListTreeChildrenRec(data){
   }
 
 
-  @ViewChild('folder') folderPop;
-  newFolderName;
-  createNewFolder(folderNameDirty){
+  @ViewChild('newFavoriteFolder') newFavoriteFolderPop;
+  newFavoriteFolderName;
+  newFavoriteFolderId;
+  createNewFavoriteFolder(folderNameDirty){
 
     this.saveExpandedNodes();
 
     this.ui.showSnack('Creating Folder...','Please Wait');
-    let parentFolderId =  this.newChannelFolder;
+    let parentFolderId =  this.newFavoriteFolderId;
     if(typeof parentFolderId === 'object'){
       parentFolderId = "";
     }
-    this.q.os.bee.config.createChannelFolder(folderNameDirty, parentFolderId);
+    this.q.os.bee.config.createFavoriteFolder(folderNameDirty, parentFolderId);
     this.createCompleteAndClose();
   }
 
@@ -853,7 +902,7 @@ getFolderListTreeChildrenRec(data){
     // TODO:
     console.log('Deleting Folder...');
     console.log(folderId);
-    let hasChannels = this.q.os.bee.config.checkIfFolderIdChannels(folderId);
+    let hasChannels = this.q.os.bee.config.checkIfFavoriteFolderIdChannels(folderId);
     console.log(hasChannels)
     if(hasChannels){
       this.ui.showSnack('Folder has channels!','Sorry but no.', {duration: 5000});
@@ -861,22 +910,25 @@ getFolderListTreeChildrenRec(data){
     else{
       this.ui.showSnack('Deleting Folder...','Please Wait');
       this.saveExpandedNodes();
-      this.q.os.bee.config.deleteFolder(folderId);
+      this.q.os.bee.config.deleteFavoriteFolder(folderId);
       this.createCompleteAndClose();
     }
   }
 
-  @ViewChild('import') importPop;
-  importFolderStructure = 1;
+  // @ViewChild('import') importPop;
+  // importFolderStructure = 1;
   inviteCodeHex;
   importChannelFolderChanged(){}
-  async importNewChannel(){
+  async importNewChannel(invite = "NoInviteSelected"){
     this.saveExpandedNodes();
     //TODO put together folder structure...
     this.ui.showSnack('Importing Channel...','Please Wait');
 
+    if(invite == "NoInviteSelected"){
+      invite = this.inviteCodeHex;
+    }
 
-    let link = Buffer.from(this.inviteCodeHex,'hex').toString('utf8');
+    let link = Buffer.from(invite,'hex').toString('utf8');
     let channelName;
     let inviteToken;
 
@@ -891,7 +943,7 @@ getFolderListTreeChildrenRec(data){
        inviteToken = link.split(':')[1];
     }
 
-    let parentFolderId =  this.newChannelFolder;
+    let parentFolderId =  this.newFavoriteFolder;
     if(typeof parentFolderId === 'object' || typeof parentFolderId == 'undefined' || typeof parentFolderId == null){
       parentFolderId = "";
     }
@@ -900,12 +952,79 @@ getFolderListTreeChildrenRec(data){
       this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
     }
     else{
-      await this.q.os.channel.import(channelName,folders,parentFolderId,inviteToken,this.importFolderStructure);
+      this.q.os.ocean.dolphin.removeIncomingFavoriteRequest(channelName.split("-----")[0].split('-')[1]);
+      this.q.os.social.addFavorite(channelName.split("-----")[0].split('-')[1]);
+      console.log('ChannelFavorites: Adding Favorite: ',channelName.split("-----")[0].split('-')[1]);
+      await this.q.os.channel.import(channelName,folders,"",inviteToken,0);
+      // this.q.os.social.removeFavoriteRequest();
       this.createCompleteAndClose();
     }
 
   }
 
+  rejectRequest(pubKey){
+    this.q.os.ocean.dolphin.removeIncomingFavoriteRequest(pubKey);
+    this.saveExpandedNodes();
+    this.loadChannels(this.favoriteFolderList);
+    this.q.os.commitNow();
+  }
+
+
   newInviteImportFoldersChanged(){}
+
+  goToProfile(pubKey){
+  //select this profile
+    this.q.os.social.select(pubKey);
+
+    //jump to social tabgo
+    this.q.os.ui.toTabIndex('2');
+  }
+
+  flatChannelNameList = {};
+  flatChannelNameList2 = {};
+
+  async updateNames(){
+
+    let channelsHandled = [];
+
+    for(let c of this.flatChannelNeeded){
+      if(channelsHandled.indexOf(c) < 0){
+        let name = await this.q.os.social.getAliasFromDirectChannel(c);
+        console.log(name);
+        channelsHandled.push(c);
+        this.flatChannelNameList[c] = name;
+      }
+    }
+
+    for(let c of this.flatChannelNeeded2){
+      if(channelsHandled.indexOf(c) < 0){
+        let name = await this.q.os.social.getAliasFromDirectChannel2(c);
+        console.log(name);
+        channelsHandled.push(c);
+        this.flatChannelNameList2[c] = name;
+      }
+    }
+
+
+    this.cd.detectChanges();
+
+
+  }
+  flatChannelNeeded = [];
+  public getAliasFromDirectChannel(channel){
+    this.flatChannelNeeded.push(channel);
+    if(typeof this.flatChannelNameList[channel] != 'undefined'){
+    return this.flatChannelNameList[channel];
+  }else{return channel;}
+  }
+
+  flatChannelNeeded2 = [];
+  public getAliasFromDirectChannel2(channel){
+    this.flatChannelNeeded2.push(channel);
+    if(typeof this.flatChannelNameList2[channel] != 'undefined'){
+    return this.flatChannelNameList2[channel];
+  }else{return channel;}
+  }
+
 
 }

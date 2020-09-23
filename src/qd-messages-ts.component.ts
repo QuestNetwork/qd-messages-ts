@@ -6,7 +6,7 @@ import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetect
   templateUrl: './qd-messages-ts.component.html',
   styleUrls: ['./qd-messages-ts.component.scss']
 })
-export class QuestMessengerJSComponent {
+export class QDMessagesComponent {
   constructor( ){}
 
 }

@@ -1,5 +1,5 @@
 import { QuestMessengerJSRoutingModule } from './qd-messages-ts-routing.module';
-import { QuestMessengerJSComponent } from './qd-messages-ts.component';
+import { QDMessagesComponent } from './qd-messages-ts.component';
 
 
 import { CommonModule } from '@angular/common';
@@ -30,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { NbDialogService } from '@nebular/theme';
-import { NbChatModule } from '@nebular/theme';
+import { NbChatModule } from './nb-chat/chat.module';
 import { NbSidebarModule,NbMenuModule } from '@nebular/theme';
 
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
@@ -40,6 +40,7 @@ import { MatMenuComponent } from './mat-menu/mat-menu.component';
 
 
 import { ChannelListComponent } from './channel-list/channel-list.component';
+import { ChannelFavoritesComponent } from './channel-favorites/channel-favorites.component';
 import { ChannelSidebarRightComponent } from './channel-sidebar-right/channel-sidebar-right.component';
 import { ChannelSidebarLeftComponent } from './channel-sidebar-left/channel-sidebar-left.component';
 import { ChannelParticipantListComponent } from './channel-participant-list/channel-participant-list.component';
@@ -57,10 +58,14 @@ import { NbIconModule,    NbCardModule } from '@nebular/theme';
 import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/theme';
 
 
+import { LinkyModule } from 'ngx-linky';
+
+
+
 @NgModule({
   declarations: [
 
-    QuestMessengerJSComponent,
+    QDMessagesComponent,
     ChannelComponent,
     MatMenuComponent,
 
@@ -70,7 +75,8 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
     ChannelSidebarLeftComponent,
     ChannelParticipantListComponent,
     ChannelSettingsComponent,
-    ChannelTabComponent
+    ChannelTabComponent,
+    ChannelFavoritesComponent
   ],
   imports: [
   NbSidebarModule,
@@ -106,12 +112,13 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
    ZXingScannerModule,
    MatSliderModule,
    FlexLayoutModule,
-   MatIconModule
+   MatIconModule,
+   LinkyModule
 
 
   ],
   exports: [
-    QuestMessengerJSComponent,
+    QDMessagesComponent,
     CdkTableModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -121,6 +128,6 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
   providers: [
   NbDialogService
   ],
-  bootstrap: [QuestMessengerJSComponent]
+  bootstrap: [QDMessagesComponent]
 })
-export class QuestMessengerJSModule { }
+export class QDMessagesModule { }

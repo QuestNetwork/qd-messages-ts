@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-channel-sidebar-left',
+  selector: 'messages-channel-sidebar-left',
   templateUrl: './channel-sidebar-left.component.html',
   styleUrls: ['./channel-sidebar-left.component.scss']
 })

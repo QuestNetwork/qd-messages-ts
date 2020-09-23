@@ -4,7 +4,7 @@ import { UiService } from '../../../qDesk/src/app/services/ui.service';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 
 @Component({
-  selector: 'app-channel-tab',
+  selector: 'messages-channel-tab',
   templateUrl: './channel-tab.component.html',
   styleUrls: ['./channel-tab.component.scss']
 })

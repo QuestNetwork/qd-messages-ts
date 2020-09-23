@@ -99,15 +99,15 @@
 
 
 
-        <ng-template #folder let-data let-ref="folderRef">
+        <ng-template #newFavoriteFolder let-data let-ref="newFavoriteFolderRef">
               <nb-card>
-                <nb-card-header>New Channel Folder</nb-card-header>
+                <nb-card-header>New Favorite Folder</nb-card-header>
                 <nb-card-body style="color:goldenrod;">
 
                   <div style="padding: 20px;">
                     Folder:
-                    <mat-select [(value)]="newChannelFolder" (selectionChange)="newChannelFolderChanged($event.value)" style="width: 80%;margin-left:10px;" >
-                            <mat-option *ngFor="let folder of channelFolderListArray" [value]="folder.id" >
+                    <mat-select [(value)]="newFavoriteFolderId" (selectionChange)="newFavoriteFolderChanged($event.value)" style="width: 80%;margin-left:10px;" >
+                            <mat-option *ngFor="let folder of favoriteFolderListArray" [value]="folder.id" >
                                 {{ folder.data.name }}
                             </mat-option>
                            </mat-select>
@@ -116,13 +116,13 @@
             padding-bottom: 34px;
             padding-top: 0px;
             color: white !important;">
-                      <input matInput placeholder="Folder Name" value="" name='newFolderName' [(ngModel)]='newFolderName' style="color: black;
+                      <input matInput placeholder="Folder Name" value="" name='newFavoriteFolderName' [(ngModel)]='newFavoriteFolderName' style="color: black;
             background-color: goldenrod;
             padding: 7px;">
                       </div>
                 </nb-card-body>
                 <nb-card-footer>
-                  <button mat-stroked-button color="primary" (click)="createNewFolder(newFolderName);" style="    margin-right: 20px;
+                  <button mat-stroked-button color="primary" (click)="createNewFavoriteFolder(newFavoriteFolderName);" style="    margin-right: 20px;
             border: 1px solid #ffffff24;">Create</button>
                   <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Cancel</button>
                 </nb-card-footer>
@@ -138,7 +138,21 @@
 <button outline  [nbContextMenu]="items" size="small" class="addChannelButton">
      <nb-icon icon="plus-outline" style="font-size: 18px;width:auto;"></nb-icon>
    </button>
+
+
+
+
+   <div *ngFor="let favoriteRequest of incomingFavoriteRequestList" class="favoriteRequest">
+     <div class="favoriteRequestText" (click)="goToProfile(favoriteRequest['pubKey'])"> {{ getAliasFromDirectChannel(favoriteRequest['channel']) }}</div>
+    <nb-icon icon="close-square-outline" style="color: #ff0000bd;float:right;cursor:pointer;" (click)="rejectRequest(favoriteRequest['pubKey'])"></nb-icon>    <nb-icon icon="checkmark-square-2-outline" style="color: #16eb16;float:right;cursor:pointer;" (click)="importNewChannel(favoriteRequest['invite'])"></nb-icon>
+     </div>
+
+
+
+
    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" >
+
+
              <mat-tree-node *matTreeNodeDef="let node"
                      matTreeNodeToggle matTreeNodePadding
                      (dragover)="handleDragOver($event, node);"
@@ -153,8 +167,8 @@
        <nb-icon icon="activity"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"
                        (dragstart)="handleDragStart($event, node);">
-           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" >
-                {{node.item}}
+           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
+                {{ getAliasFromDirectChannel2(node.item) }}
            </span>
          </span>
 
@@ -183,7 +197,7 @@
            <span class="checklist-leaf-node"  draggable="true"
                          (dragstart)="handleDragStart($event, node);">
              <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}">
-               {{getFolderNameFromId(node.item)}}
+               {{getFavoriteFolderNameFromId(node.item)}}
                <!-- {{node.item}} -->
 
 
@@ -196,6 +210,8 @@
 
          <!-- <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add_circle_outline</mat-icon></button> -->
        </mat-tree-node>
+
+
      </mat-tree>
 
      <div style="visibility: hidden; position: fixed"
@@ -208,7 +224,7 @@
 	<ng-template matMenuContent let-item="item">
 		<button mat-menu-item (click)="deleteFolder(item)">Delete</button>
 		<button mat-menu-item (click)="onContextMenuAction2(item)">Rename</button>
-    <button mat-menu-item (click)="onContextMenuAction2(item)">Export</button>
+    <button mat-menu-item (click)="onContextMenuAction2(item)">New Channel</button>
 
 	</ng-template>
 </mat-menu>

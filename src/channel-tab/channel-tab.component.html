@@ -3,18 +3,18 @@
     <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thinOutlineButton" style="margin-right:24px;margin-left:0px;">Hide Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.left">Lock Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.left">Float Panel</button>
-    <app-channel-sidebar-left></app-channel-sidebar-left>
+    <messages-channel-sidebar-left></messages-channel-sidebar-left>
   </nb-sidebar>
-  <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true">
+  <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true"  *ngIf="selectedChannel != 'NoChannelSelected'">
     <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.right" style="margin-left: 3px;margin-right: 21px;">Lock Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.right" style="margin-left: 3px;margin-right: 21px;">Float Panel</button>
     <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton thinOutlineButton ">Hide Panel</button>
 
-    <app-channel-sidebar-right *ngIf="selectedChannel != 'NoChannelSelected'"></app-channel-sidebar-right>
+    <messages-channel-sidebar-right></messages-channel-sidebar-right>
   </nb-sidebar>
   <nb-layout-column>
-    <app-channel *ngFor="let channel of channelNameList"  [channel]="channel" class="channel" [hidden]="selectedChannel != channel"></app-channel>
-    <app-channel [channel]="noChannelSelected" [hidden]="selectedChannel != noChannelSelected" class="channel"></app-channel>
+    <messages-channel *ngFor="let channel of channelNameList"  [channel]="channel" class="channel" [hidden]="selectedChannel != channel"></messages-channel>
+    <messages-channel [channel]="noChannelSelected" [hidden]="selectedChannel != noChannelSelected" class="channel"></messages-channel>
   </nb-layout-column>
 </nb-layout>
 

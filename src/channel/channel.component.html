@@ -51,22 +51,24 @@
 </div>
 
 <div [hidden]="showJoinScreen || showInviteScreen || showChallengeScreen || channel == noChannelSelected" class="chatScreen">
-       <nb-chat title="Channel: {{channel}}">
+       <nb-chat title="{{channelDisplayName}}">
          <nb-chat-message *ngFor="let msg of messages"
            [type]="msg.type"
            [message]="msg.message"
            [reply]="msg.reply"
-           [sender]="msg.channelPubKey"
+           [sender]="msg.participant"
            [date]="msg.timestamp"
            [files]="msg.files"
            [quote]="msg.quote"
            [latitude]="msg.latitude"
            [longitude]="msg.longitude"
            [avatar]="msg.participant.avatar">
+
         </nb-chat-message>
 
         <nb-chat-form (send)="publishChannelMessage($event)" [dropFiles]="true">
         </nb-chat-form>
+
 
         </nb-chat>
 </div>
