@@ -159,6 +159,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.7**
 - Private Channels Extendable To Groups (background create and join)
+- Quote/Extend Messages (message inheritance)
 
 **0.9.8**
 - Badges for unread messages
