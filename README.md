@@ -52,7 +52,7 @@ http://ipfs.infura.io/ipfs/Qme2eCqpcLBpojfyYY3egzcWf2YRicwVatgCPyEefyRzk6/
 [StationedInTheField](https://github.com/StationedInTheField)
 
 ## Support Us
-This project is a lot of work and unfortunately we need to eat food (ツ)
+This project is a lot of work and we need to eat food (ツ)
 
 | Ethereum| Bitcoin |
 |---|---|
