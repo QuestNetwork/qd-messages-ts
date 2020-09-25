@@ -130,6 +130,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.4**
+- Special Participant Link to your own profile that allows extra settings
 - Rename Channel/Favorite Folders
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you.
 - Channel Folders are now sorted alphabetically by default
