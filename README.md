@@ -6,7 +6,7 @@
 
 ## Description
 
-qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
+qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time, dag based end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code.
 
@@ -130,6 +130,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.4**
+- Special Participant Link to your own profile that allows extra settings
 - Rename Channel/Favorite Folders
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you.
 - Channel Folders are now sorted alphabetically by default
