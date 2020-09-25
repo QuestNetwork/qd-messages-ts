@@ -164,6 +164,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Option to order channels by latest recent message
 
 **0.9.8**
+- Banners For Channels And Channel Folders
+- User Groups And Permissions
 - Badges for unread messages
 - Desktop Notifications
 
@@ -183,6 +185,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **1.2.0**
 - Parenting (reply to channel and private messages)
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
+- Tips & Guide That Explains The App In An Onscreen Overlay
 
 **2.0.0**
 - Ethereum Payment Integration Finalized
