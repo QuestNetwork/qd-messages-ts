@@ -137,7 +137,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Channel Folders are now sorted alphabetically by default
 - Sidebars resizable
 - Pair with participants by QR Code
-- Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
+- Magic Folder Explorer/Guide On Main (Delete Folders/Channels Also Called From Icon Click There)
 - Context Menu For Channels In Channel List
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
