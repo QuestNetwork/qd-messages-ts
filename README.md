@@ -123,13 +123,14 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts)
 - Combine messages sent in sequence
-- Participant/Friends Groups And Folders
+- Participant/Friends Folders
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 
 ## Roadmap
 
 **0.9.4**
+- Increase Security For Private P2P Channels
 - Magic Folders 
 - Special Participant Link to your own profile that allows extra settings
 - Rename Channel/Favorite Folders
