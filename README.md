@@ -130,6 +130,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.4**
+- Increase Security For Private P2P Channels
 - Magic Folders 
 - Special Participant Link to your own profile that allows extra settings
 - Rename Channel/Favorite Folders
