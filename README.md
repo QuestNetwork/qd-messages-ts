@@ -127,6 +127,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 
+**0.9.4**
+
+- Smart Line Breaks
+
 ## Roadmap
 
 **0.9.4**
