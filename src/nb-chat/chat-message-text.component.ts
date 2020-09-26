@@ -2,10 +2,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges } from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 
-/**
- * Chat message component.
- */
- //
+
  // <p class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></p>
  // <p class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></p>
 
@@ -26,21 +23,11 @@ import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service
         </p>
 
     <div class="text" *ngIf="!messages['isEmoji']">
-      <div *ngFor="let m of messages" style="display:inline-block">
-        <div *ngIf="!m['isEmoji']" style="display:inline-block;padding-left: 2px;padding-right: 2px;" [innerHTML]="m | linky:{newWindow: true}">
-        </div>
-        <div *ngIf="m['isEmoji']" style="
-     max-height: 22px;
-    overflow: hidden;
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;">
+      <div *ngFor="let m of messages" style="display:inline-block" class="messagesTextWrapper">
+          <p *ngIf="!m['isEmoji']" style="display:inline-block;padding-left: 2px;padding-right: 2px;" [innerHTML]="m | linky:{newWindow: true}"></p>
+          <div *ngIf="m['isEmoji']"  class="emojiChunk">
             <ngx-emoji emoji="{{ m['emojiColon'] }}" set="apple" size="22" class="" style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
-        </div>
+          </div>
       </div>
     </div>
     <div *ngIf="messages['isEmoji']">

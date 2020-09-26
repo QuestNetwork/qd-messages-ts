@@ -164,19 +164,23 @@ async getChannelDisplayName(cleanChannelName){
     console.log(this.q.os.ui.getHandledMessages());
       if(this.messages.length > 0 && pubObj['channelPubKey'] == this.messages[this.messages.length-1]['channelPubKey'] && !this.q.os.utilities.inArray(this.q.os.ui.getHandledMessages(),pubObj['id'])){
 
-          let combinator  = " ";
+          let combinator  = '\n';
+          try{
 
-          // combinator  = '\n';
+            let lastMessage = this.messages[this.messages.length-1]['message'];
 
-          let lastMessage = this.messages[this.messages.length-1]['message'];
-          let splitLastMessage = String(lastMessage).split("\n");
-          if(splitLastMessage.length > 1){
-            lastMessage = splitLastMessage[splitLastMessage.length-1];
+            let splitLastMessage = String(lastMessage).split("\n");
+
+            if(splitLastMessage.length > 1){
+              lastMessage = splitLastMessage[splitLastMessage.length-1];
+            }
+            // alert(String(this.messages[this.messages.length-1]['message'] + combinator + pubObj['message']).length);
+            if((lastMessage.charAt(lastMessage.length-1) == "," || lastMessage.charAt(lastMessage.length-1) == "." || lastMessage.charAt(lastMessage.length-1) == ";"  ) || String(  this.messages[this.messages.length-1]['message'] + combinator + pubObj['message']).length < 35 )  {
+              combinator = " ";
+            }
+
           }
-          let testCombination = lastMessage + combinator + pubObj['message'];
-          if(testCombination.length > 35){
-            combinator = "\n";
-          }
+          catch(e){console.log(e);}
 
           this.q.os.ui.addHandledMessage(pubObj['id']);
 
