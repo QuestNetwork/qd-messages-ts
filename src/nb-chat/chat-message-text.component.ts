@@ -23,13 +23,18 @@ import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service
         </p>
 
     <div class="text" *ngIf="!messages['isEmoji']">
-      <div *ngFor="let m of messages" style="display:inline-block" class="messagesTextWrapper">
-        <div class="messagesInnerWrapper">  <p *ngIf="!m['isEmoji']" style="display:inline-block;padding-left: 2px;padding-right: 2px;" [innerHTML]="m | linky:{newWindow: true}"></p> </div>
-          <div *ngIf="m['isEmoji']"  class="emojiChunk">
-            <ngx-emoji emoji="{{ m['emojiColon'] }}" set="apple" size="22" class="" style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
-          </div>
+      <div *ngFor="let m of messages" style="" class="messagesTextWrapper">
+
+        <p *ngIf="!m['isEmoji']" style="display:inline-block;padding-left: 2px;padding-right: 2px;" [innerHTML]="m | linky:{newWindow: true}"></p>
+
+        <div style="display:inline-block;">
+          <ngx-emoji *ngIf="m['isEmoji']"  class="emojiChunk" emoji="{{ m['emojiColon'] }}" set="apple" size="22"  style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
+        </div>
+
       </div>
+
     </div>
+
     <div *ngIf="messages['isEmoji']">
       <ngx-emoji emoji="{{ messages['emojiColon'] }}" set="apple" size="64" class="" ></ngx-emoji>
     </div>

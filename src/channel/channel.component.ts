@@ -106,6 +106,12 @@ async getChannelDisplayName(cleanChannelName){
 
   handledMessages = [];
 
+   capitalize(s){
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+
   captchaImageResource: SafeUrl;
   async handleNewMessage(pubObj){
     if(pubObj['type'] == "CHALLENGE" ){
@@ -174,19 +180,21 @@ async getChannelDisplayName(cleanChannelName){
             if(splitLastMessage.length > 1){
               lastMessage = splitLastMessage[splitLastMessage.length-1];
             }
-            // alert(String(this.messages[this.messages.length-1]['message'] + combinator + pubObj['message']).length);
-            if((lastMessage.charAt(lastMessage.length-1) == "," || lastMessage.charAt(lastMessage.length-1) == "." || lastMessage.charAt(lastMessage.length-1) == ";"  ) || String(  this.messages[this.messages.length-1]['message'] + combinator + pubObj['message']).length < 35 )  {
+            if(lastMessage.trim().charAt(lastMessage.length-1) == "!" || lastMessage.trim().charAt(lastMessage.length-1) == "?" || lastMessage.trim().charAt(lastMessage.length-1) == "," || lastMessage.trim().charAt(lastMessage.length-1) == "." || lastMessage.trim().charAt(lastMessage.length-1) == ";"  )  {
               combinator = " ";
+            }
+            else if(lastMessage.trim().charAt(lastMessage.length-1) != ":" && lastMessage.trim().charAt(lastMessage.length-1) != "-" && lastMessage.trim().charAt(lastMessage.length-1) != ":" ){
+              combinator  = '.\n';
             }
 
           }
           catch(e){console.log(e);}
 
           this.q.os.ui.addHandledMessage(pubObj['id']);
-
-          this.messages[this.messages.length-1]['message'] += combinator + pubObj['message'];
+          this.messages[this.messages.length-1]['message'] += combinator + this.capitalize(pubObj['message'].trim());
       }
       else if(!this.q.os.utilities.inArray(this.q.os.ui.getHandledMessages(),pubObj['id'])){
+        pubObj['message'] = this.capitalize(pubObj['message'].trim());
         this.messages.push(pubObj);
       }
 
