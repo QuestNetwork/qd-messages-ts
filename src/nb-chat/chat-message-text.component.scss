@@ -36,3 +36,16 @@ padding-bottom: 5px !important;
 .messagesInnerWrapper{
   display:inline-block;
 }
+
+
+.chunkContainer{
+  display:inline-block;
+}
+
+.textChunk{
+  display:inline-block;
+  white-space:nowrap;
+  padding-left: 2px;
+  padding-right: 2px;
+  max-height:22px;
+}

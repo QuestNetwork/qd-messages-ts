@@ -175,26 +175,29 @@ async getChannelDisplayName(cleanChannelName){
 
             let lastMessage = this.messages[this.messages.length-1]['message'];
 
-            let splitLastMessage = String(lastMessage).split("\n");
+          
+
+            let splitLastMessage = String(lastMessage).split('\n');
 
             if(splitLastMessage.length > 1){
-              lastMessage = splitLastMessage[splitLastMessage.length-1];
-            }
-            if(lastMessage.trim().charAt(lastMessage.length-1) == "!" || lastMessage.trim().charAt(lastMessage.length-1) == "?" || lastMessage.trim().charAt(lastMessage.length-1) == "," || lastMessage.trim().charAt(lastMessage.length-1) == "." || lastMessage.trim().charAt(lastMessage.length-1) == ";"  )  {
-              combinator = " ";
-            }
-            else if(lastMessage.trim().charAt(lastMessage.length-1) != ":" && lastMessage.trim().charAt(lastMessage.length-1) != "-" && lastMessage.trim().charAt(lastMessage.length-1) != ":" ){
-              combinator  = '.\n';
+              lastMessage = String(splitLastMessage[splitLastMessage.length-1]);
+
+              if(lastMessage.trim().charAt(lastMessage.length-1) == "!" || lastMessage.trim().charAt(lastMessage.length-1) == "?" || lastMessage.trim().charAt(lastMessage.length-1) == "," || lastMessage.trim().charAt(lastMessage.length-1) == "." || lastMessage.trim().charAt(lastMessage.length-1) == ";"  )  {
+                combinator = " ";
+              }
+              else if(lastMessage.trim().charAt(lastMessage.length-1) != ":" && lastMessage.trim().charAt(lastMessage.length-1) != "-" && lastMessage.trim().charAt(lastMessage.length-1) != ":" ){
+                combinator  = '\n';
+              }
             }
 
           }
           catch(e){console.log(e);}
 
           this.q.os.ui.addHandledMessage(pubObj['id']);
-          this.messages[this.messages.length-1]['message'] += combinator + this.capitalize(pubObj['message'].trim());
+          this.messages[this.messages.length-1]['message'] += combinator + this.capitalize(String(pubObj['message']).trim());
       }
       else if(!this.q.os.utilities.inArray(this.q.os.ui.getHandledMessages(),pubObj['id'])){
-        pubObj['message'] = this.capitalize(pubObj['message'].trim());
+        pubObj['message'] = this.capitalize(String(pubObj['message']).trim());
         this.messages.push(pubObj);
       }
 

@@ -5,6 +5,11 @@ import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service
 
  // <p class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></p>
  // <p class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></p>
+ //
+ //
+
+
+ //
 
 
 @Component({
@@ -22,22 +27,25 @@ import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service
         {{ sender['name'] }}
         </p>
 
-    <div class="text" *ngIf="!messages['isEmoji']">
-      <div *ngFor="let m of messages" style="" class="messagesTextWrapper">
+        <div *ngIf="messageRows.length > 0 && (messageRows.length > 1 || !messageRows[0][0]['isEmoji'])"  class="text">
+          <div *ngFor="let row of messageRows" style="display:block;clear:both;">
 
-        <p *ngIf="!m['isEmoji']" style="display:inline-block;padding-left: 2px;padding-right: 2px;" [innerHTML]="m | linky:{newWindow: true}"></p>
+              <div *ngFor="let chunk of row" class="chunkContainer">
+                  <div *ngIf="!chunk['isEmoji']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
+                  <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="22"  style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
+              </div>
 
-        <div style="display:inline-block;">
-          <ngx-emoji *ngIf="m['isEmoji']"  class="emojiChunk" emoji="{{ m['emojiColon'] }}" set="apple" size="22"  style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
+
+          </div>
         </div>
 
-      </div>
 
-    </div>
+        <!-- is single emoji -->
+        <div *ngIf="messageRows.length == 1 && messageRows[0].length == 1 && messageRows[0][0]['isEmoji']">
+          <ngx-emoji emoji="{{ messageRows[0][0]['emojiColon'] }}" set="apple" size="64" class="" ></ngx-emoji>
+        </div>
 
-    <div *ngIf="messages['isEmoji']">
-      <ngx-emoji emoji="{{ messages['emojiColon'] }}" set="apple" size="64" class="" ></ngx-emoji>
-    </div>
+
 
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,12 +56,12 @@ export class NbChatMessageTextComponent {
 
   }
 
-  messages
+  messageRows
   ngOnInit(){
-    this.messages = this.getArray(this.message);
+    this.messageRows = this.getArray(this.message);
   }
   ngOnChanges(){
-      this.messages = this.getArray(this.message);
+      this.messageRows = this.getArray(this.message);
   }
 
   goToProfile(pubKey){
@@ -64,8 +72,28 @@ export class NbChatMessageTextComponent {
   getArray(message){
     let messageArray = [];
     let inputArray =  [];
+
+    let inputRows =  [];
+    let rows = [];
+
+    let inputString =  String(message).trim();
+
     try{
-       let inputString =  String(message).trim();
+      let replacers = [ '\n:', '\n :', '\n  :'];
+      for(let replacer of replacers){
+        inputString = inputString.replace(new RegExp(replacer,"g"),' :');
+      }
+
+    }catch(e){}
+
+
+
+    try{
+
+       let replacers = [ ':D', ':)', '=)', '=D'];
+       for(let replacer of replacers){
+         inputString = inputString.replace(new RegExp(replacer,"g"),':grinning:');
+       }
 
        let colonedEmojis = /:(?![\n])[()#$@-\w]+:/g
        let emojis = colonedEmojis.exec(inputString);
@@ -77,32 +105,44 @@ export class NbChatMessageTextComponent {
          }
        }
        // alert(inputString);
-       inputArray = inputString.trim().split(" ");
-       if(inputArray.length < 2){
-         throw('not found');
-       }
-    }catch(e){console.log(e); inputArray = [message]}
 
-      for(let chunk of inputArray){
 
-        chunk = chunk.trim();
+    }catch(e){console.log(e); }
 
-        if(chunk == ':D' || chunk == ':)' || chunk == '=)' || chunk == '=D' ){
-          chunk = ':grinning:'
-        }
+    inputRows =  inputString.trim().split('\n');
+    rows = [];
+    for(let row of inputRows){
+      rows.push(row.trim().split(" "));
+    }
+
+    console.log(rows);
+
+    for(let i=0;i<rows.length;i++){
+      for(let i2=0;i2<rows[i].length;i2++){
+
+        let chunk = String(rows[i][i2]).trim();
+
+
 
         if(chunk.indexOf(':') == 0 && chunk.substr(1).indexOf(':') == chunk.length-2){
           let emojiChunk = { isEmoji: true, emojiColon: chunk.substr(1,chunk.length-2) };
           if(inputArray.length == 1){
             return emojiChunk;
           }
-          messageArray.push(emojiChunk);
+          rows[i][i2] = emojiChunk;
         }
         else{
-          messageArray.push(chunk);
+          let thisChunk = { isEmoji: false, text: chunk }
+          rows[i][i2] = thisChunk;
         }
       }
-      return messageArray;
+    }
+
+
+    console.log(rows);
+    return rows;
+
+
   }
 
   /**
