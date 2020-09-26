@@ -2,6 +2,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges } from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 
+declare var $:any;
 
  // <p class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></p>
  // <p class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></p>
@@ -115,14 +116,10 @@ export class NbChatMessageTextComponent {
       rows.push(row.trim().split(" "));
     }
 
-    console.log(rows);
-
     for(let i=0;i<rows.length;i++){
       for(let i2=0;i2<rows[i].length;i2++){
 
         let chunk = String(rows[i][i2]).trim();
-
-
 
         if(chunk.indexOf(':') == 0 && chunk.substr(1).indexOf(':') == chunk.length-2){
           let emojiChunk = { isEmoji: true, emojiColon: chunk.substr(1,chunk.length-2) };
@@ -138,9 +135,12 @@ export class NbChatMessageTextComponent {
       }
     }
 
+    setTimeout( () => {
+      $('#scrollableChatContainer').animate({scrollTop: $('#scrollableChatContainer').height() + $('#scrollableChatContainer').height()});
+    },1000)
 
-    console.log(rows);
     return rows;
+
 
 
   }

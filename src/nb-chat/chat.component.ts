@@ -175,7 +175,7 @@ import { NbChatMessageComponent } from './chat-message.component';
   styleUrls: ['./chat.component.scss'],
   template: `
     <div class="header">{{ title }}</div>
-    <div class="scrollable" #scrollable>
+    <div class="scrollable" #scrollable id="scrollableChatContainer">
       <div class="messages">
         <ng-content select="nb-chat-message"></ng-content>
         <p class="no-messages" *ngIf="!messages?.length">No messages yet.</p>
