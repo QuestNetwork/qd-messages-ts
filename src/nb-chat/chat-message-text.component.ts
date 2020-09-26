@@ -60,9 +60,11 @@ export class NbChatMessageTextComponent {
   messageRows
   ngOnInit(){
     this.messageRows = this.getArray(this.message);
+    $('#scrollableChatContainer').animate({scrollTop: $('#scrollableChatContainer')[0].scrollHeight}, 500);
   }
   ngOnChanges(){
       this.messageRows = this.getArray(this.message);
+      $('#scrollableChatContainer').animate({scrollTop: $('#scrollableChatContainer')[0].scrollHeight}, 500);
   }
 
   goToProfile(pubKey){
@@ -91,7 +93,7 @@ export class NbChatMessageTextComponent {
 
     try{
 
-       let replacers = [ ':D', ':)', '=)', '=D'];
+       let replacers = [ ':D', ':\\)', '=\\)', ':-\\)', '=D'];
        for(let replacer of replacers){
          inputString = inputString.replace(new RegExp(replacer,"g"),':grinning:');
        }
@@ -135,9 +137,9 @@ export class NbChatMessageTextComponent {
       }
     }
 
-    setTimeout( () => {
-      $('#scrollableChatContainer').animate({scrollTop: $('#scrollableChatContainer').height() + $('#scrollableChatContainer').height()});
-    },1000)
+
+    // setTimeout( () => {
+    // },1000)
 
     return rows;
 
