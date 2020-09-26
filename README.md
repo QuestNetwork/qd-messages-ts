@@ -6,7 +6,7 @@
 
 ## Description
 
-qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
+qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time, dag based end-to-end encrypted messenger with a feature to exchange goods and services and send payments. The messenger is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
 We're planning to become for messaging what [Atom](https://atom.io) is for writing code.
 
@@ -130,12 +130,15 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.4**
+- Increase Security For Private P2P Channels
+- Magic Folders 
+- Special Participant Link to your own profile that allows extra settings
 - Rename Channel/Favorite Folders
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you.
 - Channel Folders are now sorted alphabetically by default
 - Sidebars resizable
 - Pair with participants by QR Code
-- Folder Explorer On Main (Delete Folders Also Called From Icon Click There)
+- Magic Folder Explorer/Guide On Main (Delete Folders/Channels Also Called From Icon Click There)
 - Context Menu For Channels In Channel List
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
@@ -164,6 +167,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Option to order channels by latest recent message
 
 **0.9.8**
+- Banners For Channels And Channel Folders
+- User Groups And Permissions
 - Badges for unread messages
 - Desktop Notifications
 
@@ -183,6 +188,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **1.2.0**
 - Parenting (reply to channel and private messages)
 - Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
+- Tips & Guide That Explains The App In An Onscreen Overlay
 
 **2.0.0**
 - Ethereum Payment Integration Finalized
