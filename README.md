@@ -1,4 +1,4 @@
-![Completion 1.0.0](https://img.shields.io/badge/completion%20v1.0.0-51%25-yellow) ![Help Wanted](https://img.shields.io/badge/%20-help--wanted-%23159818) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.3-green) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.4-blue) ![Sponsors](https://img.shields.io/badge/sponsors-2-orange)
+![Completion 1.0.0](https://img.shields.io/badge/completion%20v1.0.0-51%25-yellow) ![Help Wanted](https://img.shields.io/badge/%20-help--wanted-%23159818) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.3rc1-green) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.4-blue) ![Sponsors](https://img.shields.io/badge/sponsors-2-orange)
 
 ## qDesk Messages
 
@@ -127,9 +127,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Set Alias (show custom name instead of pub key) and profile pictures
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 
-**0.9.4**
+**0.9.3-rc1**
 
 - Smart Line Breaks
+- Scrolls to bottom unless scrolled up > 210px
 
 ## Roadmap
 
