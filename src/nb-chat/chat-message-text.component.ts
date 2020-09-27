@@ -57,14 +57,33 @@ export class NbChatMessageTextComponent {
 
   }
 
+  scrollable = { };
+  scrollBottom(){
+
+
+      try{
+
+        //TODO: ADD TO UI SERVICE
+        this.scrollable['nativeElement'] = window['quest-network-ui-globals']['messages-chat-scrollable'];
+
+        if(this.scrollable['nativeElement'] != null && this.scrollable['nativeElement'].scrollTop > this.scrollable['nativeElement'].scrollHeight-$(this.scrollable['nativeElement']).height()-210){
+          this.scrollable['nativeElement'].scrollTop = this.scrollable['nativeElement'].scrollHeight;
+        }
+
+
+      }catch(e){console.log(e)}
+
+
+  }
+
   messageRows
   ngOnInit(){
     this.messageRows = this.getArray(this.message);
-    $('#scrollableChatContainer').animate({scrollTop: $('#scrollableChatContainer')[0].scrollHeight}, 500);
+    this.scrollBottom();
   }
   ngOnChanges(){
       this.messageRows = this.getArray(this.message);
-      $('#scrollableChatContainer').animate({scrollTop: $('#scrollableChatContainer')[0].scrollHeight}, 500);
+      this.scrollBottom();
   }
 
   goToProfile(pubKey){

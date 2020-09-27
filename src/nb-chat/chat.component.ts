@@ -24,6 +24,8 @@ import { NbComponentStatus } from  '@nebular/theme';
 import { NbChatFormComponent } from './chat-form.component';
 import { NbChatMessageComponent } from './chat-message.component';
 
+declare var $:any;
+
  function convertToBoolProperty(val: any): boolean {
   if (typeof val === 'string') {
     val = val.toLowerCase().trim();
@@ -245,7 +247,15 @@ export class NbChatComponent implements OnChanges, AfterContentInit, AfterViewIn
   }
 
   scrollListBottom() {
-    this.scrollable.nativeElement.scrollTop = this.scrollable.nativeElement.scrollHeight;
+
+
+    //TODO: ADD TO UI SERVICE
+    window['quest-network-ui-globals'] = {}
+    window['quest-network-ui-globals']['messages-chat-scrollable'] = this.scrollable.nativeElement;
+
+    if(this.scrollable.nativeElement.scrollTop > this.scrollable.nativeElement.scrollHeight-$(this.scrollable.nativeElement).height()-210){
+      this.scrollable.nativeElement.scrollTop = this.scrollable.nativeElement.scrollHeight;
+    }
   }
 
   protected updateFormStatus(): void {
