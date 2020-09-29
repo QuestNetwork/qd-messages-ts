@@ -199,6 +199,10 @@ export class ChannelParticipantListComponent implements OnInit {
     }
 
 
+    inArray(array, value) {
+      return array.indexOf(value) > -1;
+    }
+
 
   async initProcess(){
 
