@@ -6,7 +6,7 @@ import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-
+declare var $:any;
 
 import swarmJson from '../swarm.json';
 
@@ -37,6 +37,27 @@ export class ChannelComponent implements OnInit {
     }
   }
 
+  scrollable;
+
+  scrollBottom(){
+
+
+      try{
+        this.scrollable = {};
+        //TODO: ADD TO UI SERVICE
+        this.scrollable['nativeElement'] = window['quest-network-ui-globals']['messages-chat-scrollable'];
+
+        if(this.scrollable['nativeElement'] != null && this.scrollable['nativeElement'].scrollTop > this.scrollable['nativeElement'].scrollHeight-$(this.scrollable['nativeElement']).height()-210){
+          this.scrollable['nativeElement'].scrollTop = this.scrollable['nativeElement'].scrollHeight;
+        }
+
+
+      }catch(e){console.log(e)}
+
+
+  }
+
+
   channelDisplayName = "NoChannelSelected";
   async ngOnInit(){
 
@@ -45,11 +66,18 @@ export class ChannelComponent implements OnInit {
     //load channel
     console.log("Channel: Bootstrapping Channel...");
     if(this.channel != 'NoChannelSelected'){
-      this.attemptJoinChannel(this.channel);
+      await this.attemptJoinChannel(this.channel);
+      setTimeout( () => {
+
+          this.scrollBottom();
+      },2500);
     }
 
     this.channelDisplayName = await this.getChannelDisplayName(this.channel);
+
+
 }
+
 
 async getChannelDisplayName(cleanChannelName){
   if(cleanChannelName.indexOf('qprivatedch') > -1){
