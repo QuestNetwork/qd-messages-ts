@@ -664,7 +664,7 @@ onContextMenu(event: MouseEvent, item) {
 
     selectChannel(channelName){
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
-        if(this.q.os.utilties.inArray(this.q.os.ocean.dolphin.getChannelNameList(),channelName.trim())){
+        if(this.q.os.utilities.inArray(this.q.os.ocean.dolphin.getChannelNameList(),channelName.trim())){
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.channel.select(channelName.trim());
           if(this.q.os.ui.getSideBarFixed()['left']){
