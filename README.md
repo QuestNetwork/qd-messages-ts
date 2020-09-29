@@ -130,6 +130,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.4**
 
 - Smart Line Breaks
+- Scroll Bottom Fix
 
 ## Roadmap
 
