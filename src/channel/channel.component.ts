@@ -175,7 +175,7 @@ async getChannelDisplayName(cleanChannelName){
 
             let lastMessage = this.messages[this.messages.length-1]['message'];
 
-
+          
 
             let splitLastMessage = String(lastMessage).split('\n');
 
@@ -260,9 +260,6 @@ async getChannelDisplayName(cleanChannelName){
 
 
   async attemptJoinChannel(channel){
-    setTimeout( () => {
-      this.ui.updateProcessingStatus(false);
-    },20000)
     console.log('attempting to join: ',channel);
     try{
         if(!this.q.os.ocean.dolphin.isSubscribed(this.channel)){
