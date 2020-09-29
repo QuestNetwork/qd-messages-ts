@@ -664,7 +664,7 @@ onContextMenu(event: MouseEvent, item) {
 
     selectChannel(channelName){
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
-        if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
+        if(this.q.os.utilties.inArray(this.q.os.ocean.dolphin.getChannelNameList(),channelName.trim())){
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.channel.select(channelName.trim());
           if(this.q.os.ui.getSideBarFixed()['left']){
@@ -896,7 +896,7 @@ getFolderListTreeChildrenRec(data){
       parentFolderId = "";
     }
 
-    if(this.q.os.bee.config.isInArray(channelName,this.q.os.ocean.dolphin.getChannelNameList())){
+    if(this.q.os.utilities.inArray(this.q.os.ocean.dolphin.getChannelNameList(),channelName)){
       this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
     }
     else{

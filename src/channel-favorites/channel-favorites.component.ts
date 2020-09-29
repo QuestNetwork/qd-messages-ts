@@ -649,7 +649,7 @@ updateNamesInterval;
 
     loadChannels(chFL){
 
-      this.incomingFavoriteRequestList =  this.q.os.ocean.dolphin.getIncomingFavoriteRequests().filter(e => !this.q.os.crypto.inArray(this.q.os.ocean.dolphin.getChannelNameList(),e['channel']));
+      this.incomingFavoriteRequestList =  this.q.os.ocean.dolphin.getIncomingFavoriteRequests().filter(e => !this.q.os.utilities.inArray(this.q.os.ocean.dolphin.getChannelNameList(),e['channel']));
 
       TREE_DATA =  this.q.os.bee.config.getFavoriteFolderIDList();
       this.database.filter("");
@@ -710,7 +710,7 @@ updateNamesInterval;
 
     selectChannel(channelName){
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
-        if(this.q.os.ocean.dolphin.isInArray(channelName.trim(),this.q.os.ocean.dolphin.getChannelNameList())){
+        if(this.q.os.utilities.inArray(this.q.os.ocean.dolphin.getChannelNameList(),channelName.trim())){
           console.log('ChannelList: Selecting: ',channelName.trim());
           this.q.os.channel.select(channelName.trim());
           if(this.q.os.ui.getSideBarFixed()['left']){
@@ -948,7 +948,7 @@ getFavoriteFolderListTreeChildrenRec(data){
       parentFolderId = "";
     }
 
-    if(this.q.os.bee.config.isInArray(channelName,this.q.os.ocean.dolphin.getChannelNameList())){
+    if(this.q.os.utilities.inArray(this.q.os.ocean.dolphin.getChannelNameList(),channelName)){
       this.ui.showSnack('Channel Exists!','Oops',{duration:1000});
     }
     else{
