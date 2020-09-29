@@ -134,6 +134,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Smart Line Breaks
 - Scrolls to bottom unless scrolled up > 210px
 
+**0.9.4**
+
+- Bottom Scroll Fix
+
 ## Roadmap
 
 **0.9.4**
