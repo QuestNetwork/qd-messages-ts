@@ -237,6 +237,10 @@ export class NbChatComponent implements OnChanges, AfterContentInit, AfterViewIn
         this.updateView();
       });
 
+      //TODO: ADD TO UI SERVICE
+      window['quest-network-ui-globals'] = {}
+      window['quest-network-ui-globals']['messages-chat-scrollable'] = this.scrollable.nativeElement;
+
     this.updateView();
   }
 
@@ -248,10 +252,10 @@ export class NbChatComponent implements OnChanges, AfterContentInit, AfterViewIn
 
   scrollListBottom() {
 
-
     //TODO: ADD TO UI SERVICE
     window['quest-network-ui-globals'] = {}
     window['quest-network-ui-globals']['messages-chat-scrollable'] = this.scrollable.nativeElement;
+
 
     if(this.scrollable.nativeElement.scrollTop > this.scrollable.nativeElement.scrollHeight-$(this.scrollable.nativeElement).height()-210){
       this.scrollable.nativeElement.scrollTop = this.scrollable.nativeElement.scrollHeight;
