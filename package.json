@@ -1,7 +1,7 @@
 {
   "name": "@questnetwork/qd-messages-ts",
   "author": "StationedInTheField",
-  "version": "0.9.3",
+  "version": "0.9.3-rc1",
   "description": "Decentralized End-To-End Encrypted P2P Messenger For qDesk",
   "main": "src/qd-messages-ts.module.ts",
   "license": "AGPL-3.0",
