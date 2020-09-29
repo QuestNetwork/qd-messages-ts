@@ -662,9 +662,7 @@ onContextMenu(event: MouseEvent, item) {
     }
 
     selectChannel(channelName){
-      setTimeout( () => {
-          this.scrollBottom();
-      },2500);
+
 
 
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
@@ -675,6 +673,15 @@ onContextMenu(event: MouseEvent, item) {
             this.q.os.ui.hideSideBar('left');
           }
           this.cd.detectChanges();
+          setTimeout( () => {
+              this.scrollBottom();
+          },2500);
+          setTimeout( () => {
+              this.scrollBottom();
+          },5500);
+          setTimeout( () => {
+              this.scrollBottom();
+          },4000);
         }
     }
     channelIsSelected = "active-channel";
@@ -683,7 +690,7 @@ onContextMenu(event: MouseEvent, item) {
       return JSON.stringify(this.selectedChannel);
     }
 
-scrollable;
+      scrollable;
       scrollBottom(){
 
 
@@ -701,6 +708,8 @@ scrollable;
 
 
       }
+
+
     DEVMODE = swarmJson['dev'];
   customColumn = 'name';
 
