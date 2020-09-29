@@ -66,11 +66,11 @@ export class ChannelComponent implements OnInit {
     //load channel
     console.log("Channel: Bootstrapping Channel...");
     if(this.channel != 'NoChannelSelected'){
-      await this.attemptJoinChannel(this.channel);
       setTimeout( () => {
-
           this.scrollBottom();
       },2500);
+
+      await this.attemptJoinChannel(this.channel);
     }
 
     this.channelDisplayName = await this.getChannelDisplayName(this.channel);

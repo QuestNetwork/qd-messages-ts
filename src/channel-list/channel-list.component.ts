@@ -4,7 +4,7 @@ import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../../../qDesk/src/app/services/ui.service';
 import { BarcodeFormat } from '@zxing/library';
 
-
+declare var $:any;
 
 import { filter, map } from 'rxjs/operators';
 
@@ -661,8 +661,12 @@ onContextMenu(event: MouseEvent, item) {
       return true;
     }
 
-
     selectChannel(channelName){
+      setTimeout( () => {
+          this.scrollBottom();
+      },2500);
+
+
         console.log("ChannelList: Trying to select: >>"+channelName.trim());
         if(this.q.os.utilities.inArray(this.q.os.ocean.dolphin.getChannelNameList(),channelName.trim())){
           console.log('ChannelList: Selecting: ',channelName.trim());
@@ -679,6 +683,24 @@ onContextMenu(event: MouseEvent, item) {
       return JSON.stringify(this.selectedChannel);
     }
 
+scrollable;
+      scrollBottom(){
+
+
+          try{
+            this.scrollable = {};
+            //TODO: ADD TO UI SERVICE
+            this.scrollable['nativeElement'] = window['quest-network-ui-globals']['messages-chat-scrollable'];
+
+            if(this.scrollable['nativeElement'] != null && this.scrollable['nativeElement'].scrollTop > this.scrollable['nativeElement'].scrollHeight-$(this.scrollable['nativeElement']).height()-210){
+              this.scrollable['nativeElement'].scrollTop = this.scrollable['nativeElement'].scrollHeight;
+            }
+
+
+          }catch(e){console.log(e)}
+
+
+      }
     DEVMODE = swarmJson['dev'];
   customColumn = 'name';
 
