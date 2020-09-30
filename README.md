@@ -64,6 +64,12 @@ Please consider supporting us, so that we can build a non-profit for this projec
 
 ## Development
 
+### Planning 
+
+See our [Kanban](https://github.com/orgs/QuestNetwork/projects/1) for the development of 0.9.4, feel free to add or pick up features!
+
+### Building
+
 qDesk Messenger is a module of [qDesk](https://github.com/QuestNetwork/qDesk), so please see https://github.com/QuestNetwork/qDesk#development for instructions.
 
 ### Commands
