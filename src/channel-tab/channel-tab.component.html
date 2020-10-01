@@ -1,16 +1,17 @@
 <nb-layout  class="channelScreen" >
-  <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left">
-    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thinOutlineButton" style="margin-right:24px;margin-left:0px;">Hide Panel</button>
-    <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.left">Lock Panel</button>
-    <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.left">Float Panel</button>
-    <messages-channel-sidebar-left></messages-channel-sidebar-left>
-  </nb-sidebar>
-  <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right" collapsed="true"  *ngIf="selectedChannel != 'NoChannelSelected'">
+
+  <nb-sidebar state="expanded" right tag="right" [fixed]="sideBarFixed.right"  class="rightSideBar" collapsed="true"  *ngIf="selectedChannel != 'NoChannelSelected'">
     <button mat-stroked-button color="primary" (click)="lockSideBar('right', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.right" style="margin-left: 3px;margin-right: 21px;">Lock Panel</button>
     <button mat-stroked-button color="primary" (click)="lockSideBar('right', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.right" style="margin-left: 3px;margin-right: 21px;">Float Panel</button>
     <button mat-stroked-button color="primary" (click)="toggleSideBar('right')" class="defaultSettingsButton thinOutlineButton ">Hide Panel</button>
 
     <messages-channel-sidebar-right></messages-channel-sidebar-right>
+  </nb-sidebar>
+  <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left" class="leftSideBar">
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thinOutlineButton" style="margin-right:24px;margin-left:0px;">Hide Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton thinOutlineButton" *ngIf="sideBarFixed.left">Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton thinOutlineButton" *ngIf="!sideBarFixed.left">Float Panel</button>
+    <messages-channel-sidebar-left></messages-channel-sidebar-left>
   </nb-sidebar>
   <nb-layout-column>
     <messages-channel *ngFor="let channel of channelNameList"  [channel]="channel" class="channel" [hidden]="selectedChannel != channel"></messages-channel>
