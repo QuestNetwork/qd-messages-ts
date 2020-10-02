@@ -50,6 +50,10 @@ https://ipfs.io/ipfs/QmeQZ1brST9P52prY14Twuqixx4YwKvybEMkAZftK1iJiZ/
 
 http://ipfs.infura.io/ipfs/QmeQZ1brST9P52prY14Twuqixx4YwKvybEMkAZftK1iJiZ/
 
+## Manual & Documentation
+
+See our automated documentation for more information: https://questnetwork.github.io/docs
+
 ## Lead Maintainer
 
 [StationedInTheField](https://github.com/StationedInTheField)
