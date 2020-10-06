@@ -183,8 +183,8 @@ async getChannelDisplayName(cleanChannelName){
       }
       if(typeof p['key'] != 'undefined'){
         pubObj['participant']['social'] = p['key']['pubKey'];
-        pubObj['participant']['isFavorite'] = this.q.os.social.isFavorite(p['key']['pubKey']);
-        pubObj['participant']['isRequestedFavorite'] = this.q.os.social.isRequestedFavorite(p['key']['pubKey']);
+        pubObj['participant']['isFavorite'] = this.q.os.social.profile.isFavorite(p['key']['pubKey']);
+        pubObj['participant']['isRequestedFavorite'] = this.q.os.social.profile.isRequestedFavorite(p['key']['pubKey']);
       }
       else{
         pubObj['participant']['social'] = "unknown";
@@ -250,7 +250,7 @@ async getChannelDisplayName(cleanChannelName){
 
               let p;
               try{
-                p = await this.q.os.social.getProfileByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
+                p = await this.q.os.social.profile.getByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
               }catch(e){console.log(e)}
               if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
                 p['nick'] = folderBase[i]['participants'][i2]['nick'];
@@ -262,7 +262,7 @@ async getChannelDisplayName(cleanChannelName){
             else if(folderBase[i]['participants'][i2]['pubKey'] == chPubKey){
                 let p;
                 try{
-                  p = await this.q.os.social.getProfileByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
+                  p = await this.q.os.social.profile.getByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
                 }catch(e){console.log(e)}
                 if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
                   return p;
@@ -274,7 +274,7 @@ async getChannelDisplayName(cleanChannelName){
 
       let p;
       try{
-        p = await this.q.os.social.getProfileByChannelPubKey(chPubKey);
+        p = await this.q.os.social.profile.getByChannelPubKey(chPubKey);
       }catch(e){console.log(e)}
 
       if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){

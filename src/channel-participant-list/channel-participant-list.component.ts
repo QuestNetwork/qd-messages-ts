@@ -84,12 +84,12 @@ export class ChannelParticipantListComponent implements OnInit {
     }
 
     //get profileId for channelPublicKey
-    let profileId = await this.q.os.social.getProfileByChannelPubKey(channelPublicKey);
+    let profileId = await this.q.os.social.profile.getByChannelPubKey(channelPublicKey);
     profileId = profileId['key']['pubKey'];
     console.log(profileId);
 
     //select this profile
-    this.q.os.social.select(profileId);
+    this.q.os.social.profile.select(profileId);
 
     //jump to social tabgo
     this.q.os.ui.toTabIndex('2');
@@ -228,21 +228,21 @@ export class ChannelParticipantListComponent implements OnInit {
                     let p;
                     try{
                       console.log('ChannelParticipantList: Getting Profile For Foldered Participant...');
-                      p = await this.q.os.social.getProfileByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
+                      p = await this.q.os.social.profile.getByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
                     }catch(e){console.log(e)}
                     if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
 
                       let isFavorite = false;
                       let isRequestedFavorite = false;
-                      if(channel.indexOf('qprivatedch') > -1 && this.q.os.social.isRequestedFavorite(p['key']['pubKey'])){
-                        this.q.os.social.addFavorite(p['key']['pubKey']);
+                      if(channel.indexOf('qprivatedch') > -1 && this.q.os.social.profile.isRequestedFavorite(p['key']['pubKey'])){
+                        this.q.os.social.profile.addFavorite(p['key']['pubKey']);
                         isFavorite = true;
-                        this.q.os.social.removeFavoriteRequest(p['key']['pubKey']);
+                        this.q.os.social.profile.removeFavoriteRequest(p['key']['pubKey']);
                       }
-                      else if(this.q.os.social.isRequestedFavorite(p['key']['pubKey'])){
+                      else if(this.q.os.social.profile.isRequestedFavorite(p['key']['pubKey'])){
                         // send invitation over the wire
-                        let channel = this.q.os.social.getRequestedFavoriteChannel(p['key']['pubKey']);
-                        let reqObj = { invite:  this.q.os.channel.invite.create(channel,1), pubKey: await this.q.os.social.getMyProfileId(), channel: channel};
+                        let channel = this.q.os.social.profile.getRequestedFavoriteChannel(p['key']['pubKey']);
+                        let reqObj = { invite:  this.q.os.channel.invite.create(channel,1), pubKey: await this.q.os.social.profile.getMyProfileId(), channel: channel};
                         let pubObj = { message: reqObj, toChannelPubKey: folderBase[i]['participants'][i2]['pubKey']};
                         this.q.os.channel.publish(this.channel,pubObj,'REQUEST_FAVORITE');
                         isRequestedFavorite = true;
@@ -270,22 +270,22 @@ export class ChannelParticipantListComponent implements OnInit {
           let p;
           try{
             console.log('ChannelParticipantList: Getting Profile For Unfoldered Participant...');
-            p = await this.q.os.social.getProfileByChannelPubKey(fullCListArr[i]);
+            p = await this.q.os.social.profile.getByChannelPubKey(fullCListArr[i]);
             console.log(fullCListArr[i],p);
           }catch(e){console.log(e)}
           console.log(p);
           if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
             let isFavorite = false;
             let isRequestedFavorite = false;
-            if(channel.indexOf('qprivatedch') > -1 && this.q.os.social.isRequestedFavorite(p['key']['pubKey'])){
-              this.q.os.social.addFavorite(p['key']['pubKey']);
+            if(channel.indexOf('qprivatedch') > -1 && this.q.os.social.profile.isRequestedFavorite(p['key']['pubKey'])){
+              this.q.os.social.profile.addFavorite(p['key']['pubKey']);
               isFavorite = true;
-              this.q.os.social.removeFavoriteRequest(p['key']['pubKey']);
+              this.q.os.social.profile.removeFavoriteRequest(p['key']['pubKey']);
             }
-            else if(this.q.os.social.isRequestedFavorite(p['key']['pubKey'])){
+            else if(this.q.os.social.profile.isRequestedFavorite(p['key']['pubKey'])){
               //send invitation over the wire
-              let channel = this.q.os.social.getRequestedFavoriteChannel(p['key']['pubKey']);
-              let reqObj = { invite:  this.q.os.channel.invite.create(channel,1), pubKey:  await this.q.os.social.getMyProfileId(), channel: channel};
+              let channel = this.q.os.social.profile.getRequestedFavoriteChannel(p['key']['pubKey']);
+              let reqObj = { invite:  this.q.os.channel.invite.create(channel,1), pubKey:  await this.q.os.social.profile.getMyProfileId(), channel: channel};
               this.q.os.channel.publish(this.channel,{ message: reqObj, toChannelPubKey: fullCListArr[i] },'REQUEST_FAVORITE');
               isRequestedFavorite = true;
             }
@@ -325,27 +325,31 @@ export class ChannelParticipantListComponent implements OnInit {
         let diff = 1000*60*3;
         time = time-diff;
         console.log('CPL: Checking to share Social Profile...');
-        console.log(await this.q.os.social.isPublic());
-        if(await this.q.os.social.isPublic() && (typeof this.sharedPublicSocialTimestamp == 'undefined' || this.sharedPublicSocialTimestamp < time) ){
+        console.log(await this.q.os.social.profile.isPublic());
+        if(await this.q.os.social.profile.isPublic() && (typeof this.sharedPublicSocialTimestamp == 'undefined' || this.sharedPublicSocialTimestamp < time) ){
             let haveToGive = false;
             console.log('CPL: Checking who doesnt have my Social Profile...');
             for(let cPubKey of fullCListArrCopy){
-              if(!await this.q.os.social.hasMySocial(cPubKey)){
+              if(!await this.q.os.social.profile.hasMySocial(cPubKey)){
                 haveToGive = true;
               }
             }
             if(haveToGive){
               console.log('CPL: Sharing Social Profile...');
-              let socialObj = await this.q.os.social.getMyProfile();
+              let socialObj = await this.q.os.social.profile.getMyProfile();
               let privKey =  socialObj['key']['privKey'];
-
-              let safeSocialObj = { alias: socialObj['alias'], fullName: socialObj['fullName'], about: socialObj['about'], private: socialObj['private'], key: { pubKey: socialObj['key']['pubKey'] }  };
+                let timeline = [];
+              try{
+              timeline = await this.q.os.social.timeline.get(socialObj['key']['pubKey']);
+            }catch(e){console.log(e)}
+              let safeSocialObj = { timeline: timeline, alias: socialObj['alias'], fullName: socialObj['fullName'], about: socialObj['about'], private: socialObj['private'], key: { pubKey: socialObj['key']['pubKey'] }  };
 
               // delete socialObj['key']['privKey'];
               console.log('SHARING');
               console.log(privKey);
               let signedSafeSocialObj = await this.q.os.crypto.ec.sign(safeSocialObj,privKey);
               let pubObj = { message: signedSafeSocialObj };
+              console.log('qD Messages ChannelParticipantList: Publishing...',JSON.parse(JSON.stringify(pubObj)));
               this.q.os.channel.publish(this.channel, pubObj,'SHARE_PUBLIC_SOCIAL');
               this.sharedPublicSocialTimestamp = new Date().getTime();
             }

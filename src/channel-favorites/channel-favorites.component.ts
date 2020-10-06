@@ -953,10 +953,10 @@ getFavoriteFolderListTreeChildrenRec(data){
     }
     else{
       this.q.os.ocean.dolphin.removeIncomingFavoriteRequest(channelName.split("-----")[0].split('-')[1]);
-      this.q.os.social.addFavorite(channelName.split("-----")[0].split('-')[1]);
+      this.q.os.social.profile.addFavorite(channelName.split("-----")[0].split('-')[1]);
       console.log('ChannelFavorites: Adding Favorite: ',channelName.split("-----")[0].split('-')[1]);
       await this.q.os.channel.import(channelName,folders,"",inviteToken,0);
-      // this.q.os.social.removeFavoriteRequest();
+      // this.q.os.social.profile.removeFavoriteRequest();
       this.createCompleteAndClose();
     }
 
@@ -974,7 +974,7 @@ getFavoriteFolderListTreeChildrenRec(data){
 
   goToProfile(pubKey){
   //select this profile
-    this.q.os.social.select(pubKey);
+    this.q.os.social.profile.select(pubKey);
 
     //jump to social tabgo
     this.q.os.ui.toTabIndex('2');

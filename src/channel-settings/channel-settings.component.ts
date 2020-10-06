@@ -142,8 +142,8 @@ selectedChannelSub;
 
   removeFromFavoritesByCurrentChannel(){
     let channelName = this.selectedChannel;
-    this.q.os.social.removeFavorite(channelName.split("-----")[0].split('-')[1]);
-    this.q.os.social.removeFavorite(channelName.split("-----")[0].split('-')[2]);
+    this.q.os.social.profile.removeFavorite(channelName.split("-----")[0].split('-')[1]);
+    this.q.os.social.profile.removeFavorite(channelName.split("-----")[0].split('-')[2]);
     this.q.os.channel.remove(channelName);
     this.q.os.channel.removeFromNameList(channelName);
     this.q.os.channel.select('NoChannelSelected');

@@ -87,7 +87,7 @@ export class NbChatMessageTextComponent {
   }
 
   goToProfile(pubKey){
-    this.q.os.social.select(pubKey);
+    this.q.os.social.profile.select(pubKey);
     this.q.os.ui.toTabIndex('2');
   }
 
