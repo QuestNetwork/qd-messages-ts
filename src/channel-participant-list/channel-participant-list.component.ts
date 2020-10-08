@@ -203,6 +203,18 @@ export class ChannelParticipantListComponent implements OnInit {
     }
 
 
+  async initRefresh(rerun = true){
+    await this.q.os.utilities.delay(2000);
+    this.cd.detectChanges();
+    await this.q.os.utilities.delay(2000);
+    this.cd.detectChanges();
+    await this.q.os.utilities.delay(2000);
+    this.cd.detectChanges();
+    if(rerun){
+      await this.q.os.utilities.delay(2000);
+      this.initRefresh(false);
+    }
+  }
 
   async initProcess(){
 
@@ -332,7 +344,7 @@ export class ChannelParticipantListComponent implements OnInit {
         let time = new Date().getTime();
         let diff = 1000*60*3;
         time = time-diff;
-        
+
         if(await this.q.os.social.profile.isPublic() && (typeof this.sharedPublicSocialTimestamp == 'undefined' || this.sharedPublicSocialTimestamp < time) ){
             let haveToGive = false;
             console.log('CPL: Checking who doesnt have my Social Profile...');
