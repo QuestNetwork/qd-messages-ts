@@ -21,6 +21,10 @@ export class ChannelParticipantListComponent implements OnInit {
 
    }
 
+   isOnline(channelPubKey){
+     return this.q.os.channel.isPeerOnline(channelPubKey);
+   }
+
    sortFoldersByName(objArray){
      objArray.sort(function(a, b) {
       return a.name.localeCompare(b.name);
@@ -244,7 +248,9 @@ export class ChannelParticipantListComponent implements OnInit {
                         let channel = this.q.os.social.profile.getRequestedFavoriteChannel(p['key']['pubKey']);
                         let reqObj = { invite:  this.q.os.channel.invite.create(channel,1), pubKey: await this.q.os.social.profile.getMyProfileId(), channel: channel};
                         let pubObj = { message: reqObj, toChannelPubKey: folderBase[i]['participants'][i2]['pubKey']};
-                        this.q.os.channel.publish(this.channel,pubObj,'REQUEST_FAVORITE');
+                        if(this.isOnline(pubObj['toChannelPubKey'])){
+                          this.q.os.channel.publish(this.channel,pubObj,'REQUEST_FAVORITE');
+                        }
                         isRequestedFavorite = true;
                       }
 
@@ -286,7 +292,9 @@ export class ChannelParticipantListComponent implements OnInit {
               //send invitation over the wire
               let channel = this.q.os.social.profile.getRequestedFavoriteChannel(p['key']['pubKey']);
               let reqObj = { invite:  this.q.os.channel.invite.create(channel,1), pubKey:  await this.q.os.social.profile.getMyProfileId(), channel: channel};
-              this.q.os.channel.publish(this.channel,{ message: reqObj, toChannelPubKey: fullCListArr[i] },'REQUEST_FAVORITE');
+              if(this.isOnline(fullCListArr[i])){
+                this.q.os.channel.publish(this.channel,{ message: reqObj, toChannelPubKey: fullCListArr[i] },'REQUEST_FAVORITE');
+              }
               isRequestedFavorite = true;
             }
             participantsPrototype.push({ pubKey:fullCListArr[i], name: p['alias'], isFavorite: isFavorite,isRequestedFavorite: isRequestedFavorite });
@@ -324,13 +332,12 @@ export class ChannelParticipantListComponent implements OnInit {
         let time = new Date().getTime();
         let diff = 1000*60*3;
         time = time-diff;
-        console.log('CPL: Checking to share Social Profile...');
-        console.log(await this.q.os.social.profile.isPublic());
+        
         if(await this.q.os.social.profile.isPublic() && (typeof this.sharedPublicSocialTimestamp == 'undefined' || this.sharedPublicSocialTimestamp < time) ){
             let haveToGive = false;
             console.log('CPL: Checking who doesnt have my Social Profile...');
             for(let cPubKey of fullCListArrCopy){
-              if(!await this.q.os.social.profile.hasMySocial(cPubKey)){
+              if(!await this.q.os.social.profile.hasMySocial(cPubKey) && this.isOnline(cPubKey)){
                 haveToGive = true;
               }
             }
@@ -342,6 +349,7 @@ export class ChannelParticipantListComponent implements OnInit {
               try{
               timeline = await this.q.os.social.timeline.get(socialObj['key']['pubKey']);
             }catch(e){console.log(e)}
+
               let safeSocialObj = { timeline: timeline, alias: socialObj['alias'], fullName: socialObj['fullName'], about: socialObj['about'], private: socialObj['private'], key: { pubKey: socialObj['key']['pubKey'] }  };
 
               // delete socialObj['key']['privKey'];
@@ -352,6 +360,7 @@ export class ChannelParticipantListComponent implements OnInit {
               console.log('qD Messages ChannelParticipantList: Publishing...',JSON.parse(JSON.stringify(pubObj)));
               this.q.os.channel.publish(this.channel, pubObj,'SHARE_PUBLIC_SOCIAL');
               this.sharedPublicSocialTimestamp = new Date().getTime();
+
             }
         }
 

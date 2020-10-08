@@ -72,7 +72,8 @@
 
        <div cdkDropList id="{{folder.id}}" [cdkDropListData]="folder.participants"
          [cdkDropListConnectedTo]="connectedTo" class="item-list" (cdkDropListDropped)="drop($event)">
-         <div class="item-box" *ngFor="let participant of folder.participants" cdkDrag (click)='clickParticipant($event)'>
+         <div class="item-box participantEntry {{isOnline(participant.pubKey)}}" *ngFor="let participant of folder.participants" cdkDrag (click)='clickParticipant($event)' >
+
            <span (click)="openSocialProfile(participant.name, participant.pubKey)" class='participantName'>{{participant.name}}</span>
 
            <nb-icon icon="options-2-outline" class="participantIcon participantSettingsIcon"  (click)="openPopup(participantEditPop, folder.id, participant.pubKey)"></nb-icon></div>
