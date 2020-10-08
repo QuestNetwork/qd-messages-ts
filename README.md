@@ -146,6 +146,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Scroll Bottom Fix
 - Search for participants from qDesk Social
 - Pair with participants by QR Code
+- See who's online
 
 ## Roadmap
 
