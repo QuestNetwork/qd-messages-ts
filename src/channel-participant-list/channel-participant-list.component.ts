@@ -14,11 +14,11 @@ import { v4 as uuidv4 } from 'uuid';
 export class ChannelParticipantListComponent implements OnInit {
 
   clickParticipant(v){
-    console.log(v);
+    this.dev && console.log(v);
   }
 
   constructor(private cd: ChangeDetectorRef, private q: QuestOSService, private ui: UiService,private dialog:NbDialogService) {
-
+    this.dev = false;
    }
 
    isOnline(channelPubKey){
@@ -90,7 +90,7 @@ export class ChannelParticipantListComponent implements OnInit {
     //get profileId for channelPublicKey
     let profileId = await this.q.os.social.profile.getByChannelPubKey(channelPublicKey);
     profileId = profileId['key']['pubKey'];
-    console.log(profileId);
+    this.dev && console.log(profileId);
 
     //select this profile
     this.q.os.social.profile.select(profileId);
@@ -282,16 +282,16 @@ export class ChannelParticipantListComponent implements OnInit {
         }
 
         let participantsPrototype = [];
-        console.log(fullCListArr);
+        this.dev &&   console.log(fullCListArr);
         for(let i=0;i<fullCListArr.length;i++){
 
           let p;
           try{
-            console.log('ChannelParticipantList: Getting Profile For Unfoldered Participant...');
+          this.dev &&  console.log('ChannelParticipantList: Getting Profile For Unfoldered Participant...');
             p = await this.q.os.social.profile.getByChannelPubKey(fullCListArr[i]);
-            console.log(fullCListArr[i],p);
+          this.dev &&  console.log(fullCListArr[i],p);
           }catch(e){console.log(e)}
-          console.log(p);
+        this.dev &&  console.log(p);
           if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
             let isFavorite = false;
             let isRequestedFavorite = false;
@@ -370,10 +370,10 @@ export class ChannelParticipantListComponent implements OnInit {
 
               // delete socialObj['key']['privKey'];
               console.log('SHARING');
-              console.log(privKey);
+              this.dev && console.log(privKey);
               let signedSafeSocialObj = await this.q.os.crypto.ec.sign(safeSocialObj,privKey);
               let pubObj = { message: signedSafeSocialObj };
-              console.log('qD Messages ChannelParticipantList: Publishing...',JSON.parse(JSON.stringify(pubObj)));
+            this.dev &&   console.log('qD Messages ChannelParticipantList: Publishing...',JSON.parse(JSON.stringify(pubObj)));
               this.q.os.channel.publish(this.channel, pubObj,'SHARE_PUBLIC_SOCIAL');
               this.sharedPublicSocialTimestamp = new Date().getTime();
 
@@ -391,6 +391,7 @@ export class ChannelParticipantListComponent implements OnInit {
     return true;
 
   }
+  dev = false;
 
   sharedPublicSocialTimestamp;
 
