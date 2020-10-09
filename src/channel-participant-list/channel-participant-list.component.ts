@@ -357,13 +357,16 @@ export class ChannelParticipantListComponent implements OnInit {
               console.log('CPL: Sharing Social Profile...');
               let socialObj = await this.q.os.social.profile.getMyProfile();
               let privKey =  socialObj['key']['privKey'];
-                let timeline = [];
+              let timeline = [];
               try{
               timeline = await this.q.os.social.timeline.get(socialObj['key']['pubKey']);
             }catch(e){console.log(e)}
 
-              let safeSocialObj = { timeline: timeline, alias: socialObj['alias'], fullName: socialObj['fullName'], about: socialObj['about'], private: socialObj['private'], key: { pubKey: socialObj['key']['pubKey'] }  };
-
+              let safeSocialObj = { alias: socialObj['alias'], fullName: socialObj['fullName'], about: socialObj['about'], private: socialObj['private'], key: { pubKey: socialObj['key']['pubKey'] }  };
+              if(typeof timeline['indexOf'] != 'undefined' && timeline.length > 0){
+                safeSocialObj['timeline'] = timeline;
+              }
+              
               // delete socialObj['key']['privKey'];
               console.log('SHARING');
               console.log(privKey);
