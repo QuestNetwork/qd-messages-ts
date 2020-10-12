@@ -359,12 +359,12 @@ export class ChannelParticipantListComponent implements OnInit {
               let privKey =  socialObj['key']['privKey'];
               let safeSocialObj = { alias: socialObj['alias'], fullName: socialObj['fullName'], about: socialObj['about'], private: socialObj['private'], key: { pubKey: socialObj['key']['pubKey'] }  };
 
-              let timeline = [];
+              let timeline = {};
               try{
-                timeline = await this.q.os.social.timeline.getReferenceTree(socialObj['key']['pubKey']);
+                timeline = await this.q.os.social.timeline.getLatestRef(socialObj['key']['pubKey']);
               }catch(e){console.log(e)}
 
-              if(typeof timeline['indexOf'] != 'undefined' && timeline.length > 0){
+              if(typeof timeline['qHash'] != 'undefined' && typeof timeline['whistle'] != 'undefined' ){
                 safeSocialObj['timeline'] = timeline;
               }
 
