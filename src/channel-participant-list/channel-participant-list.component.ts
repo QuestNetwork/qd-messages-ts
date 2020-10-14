@@ -1,9 +1,10 @@
-import { Component, Injectable,ElementRef,OnInit, TemplateRef, ViewChild, OnDestroy,ChangeDetectorRef } from '@angular/core';
+import { Component, Injectable,ElementRef,OnInit, TemplateRef, NgZone, ViewChild, OnDestroy,ChangeDetectorRef } from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 import { UiService } from '../../../qDesk/src/app/services/ui.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { NbDialogService } from '@nebular/theme';
 import { v4 as uuidv4 } from 'uuid';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ChannelParticipantListComponent implements OnInit {
     this.dev && console.log(v);
   }
 
-  constructor(private cd: ChangeDetectorRef, private q: QuestOSService, private ui: UiService,private dialog:NbDialogService) {
+  constructor(private ngZone: NgZone,private router: Router,private cd: ChangeDetectorRef, private q: QuestOSService, private ui: UiService,private dialog:NbDialogService) {
     this.dev = false;
    }
 
@@ -92,12 +93,9 @@ export class ChannelParticipantListComponent implements OnInit {
     profileId = profileId['key']['pubKey'];
     this.dev && console.log(profileId);
 
-    //select this profile
-    this.q.os.social.profile.select(profileId);
 
-    //jump to social tabgo
-    this.q.os.ui.toTabIndex('2');
-
+    this.ngZone.run(() => this.router.navigate(['/social/profile/'+profileId]));
+    // this.q.os.ui.toTabIndex('2');
   }
 
 
@@ -224,7 +222,12 @@ export class ChannelParticipantListComponent implements OnInit {
     if(channel != 'NoChannelSelected'){
 
       try{
-        let fullCListArr = this.q.os.ocean.dolphin.getChannelParticipantList(channel)['cList'].split(',');
+        let fullParticipantList = this.q.os.ocean.dolphin.getChannelParticipantList(channel);
+        if(typeof fullParticipantList['cList'] == 'undefined'){
+          throw('no list')
+        }
+
+        let fullCListArr = fullParticipantList['cList'].split(',');
         let fullCListArrCopy = fullCListArr;
 
         this.connectedTo = [];
@@ -382,7 +385,16 @@ export class ChannelParticipantListComponent implements OnInit {
 
 
       }
-      catch(e){console.log(e)}
+      catch(e){
+
+        if(e == 'no list'){
+          this.folders = [];
+        }
+
+        console.log(e)
+
+
+      }
     }
 
     this.cd.detectChanges();

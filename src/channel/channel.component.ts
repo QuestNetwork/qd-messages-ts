@@ -288,6 +288,9 @@ async getChannelDisplayName(cleanChannelName){
 
 
   async attemptJoinChannel(channel){
+
+    this.q.os.sendBootMessage('Shaking Hands...')
+
     setTimeout( () => {
       this.ui.updateProcessingStatus(false);
     },20000)
@@ -296,7 +299,8 @@ async getChannelDisplayName(cleanChannelName){
         if(!this.q.os.ocean.dolphin.isSubscribed(this.channel)){
           await this.q.os.ocean.dolphin.joinChannel(channel);
         }
-        this.ui.showSnack('Loading Channel...','All right', {duration: 2500});
+
+        // this.ui.showSnack('Loading Channel...','All right', {duration: 2500});
 
         let messageHistory = this.q.os.ocean.dolphin.getChannelHistory(this.channel);
         this.DEVMODE && console.log('got history: ',messageHistory);

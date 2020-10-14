@@ -1,6 +1,7 @@
 
-import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges, NgZone } from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $:any;
 
@@ -53,7 +54,7 @@ declare var $:any;
 })
 export class NbChatMessageTextComponent {
 
-  constructor(private q: QuestOSService){
+  constructor(private ngZone: NgZone,private router: Router,private q: QuestOSService){
 
   }
 
@@ -87,8 +88,11 @@ export class NbChatMessageTextComponent {
   }
 
   goToProfile(pubKey){
-    this.q.os.social.profile.select(pubKey);
-    this.q.os.ui.toTabIndex('2');
+    // this.q.os.social.profile.select(pubKey);
+    // this.q.os.ui.toTabIndex('2');
+
+    this.ngZone.run(() => this.router.navigate(['/social/profile/'+pubKey]));
+    // this.q.os.ui.toTabIndex('2');
   }
 
   getArray(message){
