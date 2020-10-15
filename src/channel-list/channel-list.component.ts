@@ -547,6 +547,24 @@ onContextMenu(event: MouseEvent, item) {
     this.selectedChannelSub.unsubscribe();
     }
 
+
+
+    createNewChannelKeyDown(newChannelName,event){
+      if (event.keyCode === 13) {
+        this.createNewChannel(newChannelName);
+      }
+    }
+    importNewChannelKeyDown(event){
+      if (event.keyCode === 13) {
+        this.importNewChannel();
+      }
+    }
+    createNewFolderKeyDown(newFolderName,event){
+      if (event.keyCode === 13) {
+        this.createNewFolder(newFolderName);
+      }
+    }
+
   constructor(private cd: ChangeDetectorRef, private database: ChecklistDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
 
     this.itemClickSub = this.nbMenuService.onItemClick().subscribe( (menuItem) => {

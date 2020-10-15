@@ -17,7 +17,7 @@
     color: white !important;">
               <input matInput placeholder="Channel Name" value="" name='newChannelName' [(ngModel)]='newChannelName' style="color: black;
     background-color: goldenrod;
-    padding: 7px;">
+    padding: 7px;" (keydown)="createNewChannelKeyDown(newChannelName,$event)">
               </div>
         </nb-card-body>
         <nb-card-footer>
@@ -85,7 +85,7 @@
                   <input matInput placeholder="Invite Code" value="" name='inviteCodeHex' [(ngModel)]='inviteCodeHex' style="color: black;
         background-color: goldenrod;
         padding: 7px;    margin-right: 5%;
-    width: 80%;">
+    width: 80%;" (keydown)="importNewChannelKeyDown($event)">
         <nb-icon icon="camera-outline" class="deleteCode scanQRCode" (click)="scanQR()" style="  "></nb-icon>
                   </div>
             </nb-card-body>
@@ -118,7 +118,7 @@
             color: white !important;">
                       <input matInput placeholder="Folder Name" value="" name='newFolderName' [(ngModel)]='newFolderName' style="color: black;
             background-color: goldenrod;
-            padding: 7px;">
+            padding: 7px;" (keydown)="createNewFolderKeyDown(newFolderName,$event)">
                       </div>
                 </nb-card-body>
                 <nb-card-footer>
