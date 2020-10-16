@@ -155,13 +155,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Private Encrypted P2P Channels (End-To-End, AES-256-CBC, Shared Via 4096 Bit OAEP)
 
 **0.9.4**
-- Smart Line Breaks
 - Scroll Bottom Fix
 - Search for participants from qDesk Social
 - Pair with participants by QR Code
-- See who's online
-
-**0.9.4**
 - Click aliases to open stations.
 - Online/Offline Status
 - Improved Participant List
