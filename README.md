@@ -150,15 +150,15 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Scroll Bottom Fix
 - Search for participants from qDesk Social
 - Pair with participants by QR Code
-- See who's online
+- Click aliases to open stations.
+- Online/Offline Status
+- Improved Participant List
+- Improved Favorites
 
 ## Roadmap
 
-**0.9.4**
-- Increase Security For Private P2P Channels
-- Magic Folders 
-- Rename Channel/Favorite Folders
-- [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you.
+**0.9.5**
+[qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private stations, so you can have direct conversations with people who have shared their private stations with you.
 - Channel Folders are now sorted alphabetically by default
 - Sidebars resizable
 - Magic Folder Explorer/Guide On Main (Delete Folders Also Called From Icon Click There)
@@ -167,8 +167,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
 - Ignore/Mute Channel Participants Locally
 - Ban Channel Participants By Generating New Channel Names (ask representatives for new name, refuse banned participants
-
-**0.9.5**
+- Increase Security For Private P2P Channels
+- Magic Folders 
+- Rename Channel/Favorite Folders
 - GIFs
 - Stickers
 - Reactions (react to messages with emojis, GIFs and stickers)
