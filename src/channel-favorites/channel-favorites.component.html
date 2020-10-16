@@ -167,7 +167,6 @@
 
            <div  class="treeNodeContainerSingle {{node.item}}" [class.active-channel]="selectedChannel === node.item"  *ngIf="this.getAliasFromDirectChannel2(node.item).indexOf('qprivatedch') < 0">
           <!-- <button mat-icon-button disabled></button> -->
-          <nb-icon icon="shake-outline"></nb-icon>
             <span class="checklist-leaf-node"  draggable="true"
                           (dragstart)="handleDragStart($event, node);">
               <span class="nodeContent station"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
