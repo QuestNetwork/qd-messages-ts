@@ -67,6 +67,7 @@ margin-bottom:5px;
 width: 66%;
 float: left;
 text-overflow: ellipsis;
+    color: #ffffffbf;
 }
 
 
@@ -210,4 +211,15 @@ overflow: hidden;
     position: relative;
     top: 0;
     margin-bottom:40px;
+}
+
+
+.nodeContent.station{
+    position: relative;
+    top: -1px;
+}
+
+.nodeContent.unknown{
+    position: relative;
+    top: -1px;
 }
