@@ -1,8 +1,9 @@
-import { Component, Injectable,ElementRef,OnInit, TemplateRef, ViewChild, OnDestroy,ChangeDetectorRef } from '@angular/core';
+import { Component, Injectable,ElementRef,OnInit, TemplateRef, ViewChild, OnDestroy,ChangeDetectorRef,NgZone } from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { UiService} from '../../../qDesk/src/app/services/ui.service';
 import { BarcodeFormat } from '@zxing/library';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -574,7 +575,7 @@ onContextMenu(event: MouseEvent, item) {
     this.selectedChannelSub.unsubscribe();
     }
 
-  constructor(private cd: ChangeDetectorRef, private database: ChannelFavoritesDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
+  constructor(private router: Router, private ngZone: NgZone, private cd: ChangeDetectorRef, private database: ChannelFavoritesDatabase,private ui: UiService,private dialog:NbDialogService,private nbMenuService: NbMenuService, private q: QuestOSService) {
 
     this.itemClickSub = this.nbMenuService.onItemClick().subscribe( (menuItem) => {
 
@@ -974,10 +975,8 @@ getFavoriteFolderListTreeChildrenRec(data){
 
   goToProfile(pubKey){
   //select this profile
-    this.q.os.social.profile.select(pubKey);
+  this.ngZone.run(() => this.router.navigate(['/social/profile/'+pubKey]));
 
-    //jump to social tabgo
-    this.q.os.ui.toTabIndex('2');
   }
 
   flatChannelNameList = {};

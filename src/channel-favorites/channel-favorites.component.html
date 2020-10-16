@@ -143,8 +143,9 @@
 
 
    <div *ngFor="let favoriteRequest of incomingFavoriteRequestList" class="favoriteRequest">
-     <div class="favoriteRequestText" (click)="goToProfile(favoriteRequest['pubKey'])"> {{ getAliasFromDirectChannel(favoriteRequest['channel']) }}</div>
-    <nb-icon icon="close-square-outline" style="color: #ff0000bd;float:right;cursor:pointer;" (click)="rejectRequest(favoriteRequest['pubKey'])"></nb-icon>    <nb-icon icon="checkmark-square-2-outline" style="color: #16eb16;float:right;cursor:pointer;" (click)="importNewChannel(favoriteRequest['invite'])"></nb-icon>
+     <div class="favoriteRequestText" (click)="goToProfile(favoriteRequest['pubKey'])" *ngIf="getAliasFromDirectChannel(favoriteRequest['channel']).indexOf('qprivatedch') < 0"> {{ getAliasFromDirectChannel(favoriteRequest['channel']) }}</div>
+     <div class="favoriteRequestText" (click)="goToProfile(favoriteRequest['pubKey'])" *ngIf="getAliasFromDirectChannel(favoriteRequest['channel']).indexOf('qprivatedch') > -1"> Unknown</div>
+         <nb-icon icon="close-square-outline" style="color: #ff0000bd;float:right;cursor:pointer;" (click)="rejectRequest(favoriteRequest['pubKey'])"></nb-icon>    <nb-icon icon="checkmark-square-2-outline" style="color: #16eb16;float:right;cursor:pointer;" (click)="importNewChannel(favoriteRequest['invite'])"></nb-icon>
      </div>
 
 
@@ -162,17 +163,34 @@
 
                      <!-- <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)"> -->
 
-      <div  class="treeNodeContainerSingle {{node.item}}" [class.active-channel]="selectedChannel === node.item" >
+
+
+           <div  class="treeNodeContainerSingle {{node.item}}" [class.active-channel]="selectedChannel === node.item"  *ngIf="this.getAliasFromDirectChannel2(node.item).indexOf('qprivatedch') < 0">
+          <!-- <button mat-icon-button disabled></button> -->
+          <nb-icon icon="shake-outline"></nb-icon>
+            <span class="checklist-leaf-node"  draggable="true"
+                          (dragstart)="handleDragStart($event, node);">
+              <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
+                   {{ getAliasFromDirectChannel2(node.item) }}
+              </span>
+            </span>
+
+      </div>
+
+
+      <div  class="treeNodeContainerSingle {{node.item}}" [class.active-channel]="selectedChannel === node.item"  *ngIf="this.getAliasFromDirectChannel2(node.item).indexOf('qprivatedch') > -1">
        <!-- <button mat-icon-button disabled></button> -->
-       <nb-icon icon="activity"></nb-icon>
+       <nb-icon icon="question-mark-outline"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"
                        (dragstart)="handleDragStart($event, node);">
            <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
-                {{ getAliasFromDirectChannel2(node.item) }}
+                Unknown
            </span>
          </span>
 
    </div>
+
+
 
 
 
