@@ -63,7 +63,11 @@ export class ChannelSettingsComponent implements OnInit {
 
   removeInviteCode(link){
     this.q.os.channel.invite.remove(this.selectedChannel,link);
-    this.channelInviteCodes = this.q.os.channel.invite.get(this.selectedChannel);
+    this.channelInviteCodes = [];
+    let ivC = this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
+    if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
+             this.channelInviteCodes = ivC['items'];
+    }
   }
 
   newInviteExportFoldersChanged(value){
@@ -90,7 +94,7 @@ selectedChannelSub;
 
     if(this.selectedChannel.indexOf('-----') > -1){
       this.isOwner = this.q.os.ocean.dolphin.isOwner(this.selectedChannel);
-      console.log('Channel-Settings:',this.isOwner);
+      // console.log('Channel-Settings:',this.isOwner);
 
       this.channelInviteCodes = [];
       let ivC = this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
@@ -98,7 +102,7 @@ selectedChannelSub;
                this.channelInviteCodes = ivC['items'];
       }
 
-      console.log('getting flag for:',this.selectedChannel);
+      // console.log('getting flag for:',this.selectedChannel);
       this.challengeFlowFlag = this.q.os.channel.challenge.isEnabled();
     }
 

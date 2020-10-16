@@ -218,12 +218,14 @@ export class ChannelParticipantListComponent implements OnInit {
 
     this.channel = this.q.os.channel.getSelected();
     let channel = this.channel;
-
+    let saidHi = false;
     if(channel != 'NoChannelSelected'){
 
       try{
         let fullParticipantList = this.q.os.ocean.dolphin.getChannelParticipantList(channel);
         if(typeof fullParticipantList['cList'] == 'undefined'){
+          this.q.os.channel.sayHi(channel);
+          saidHi = true;
           throw('no list')
         }
 
@@ -282,6 +284,12 @@ export class ChannelParticipantListComponent implements OnInit {
           }
 
 
+        }
+        else{
+          if(!saidHi){
+            this.q.os.channel.sayHi(channel);
+            saidHi = true;
+          }
         }
 
         let participantsPrototype = [];
