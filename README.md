@@ -85,7 +85,7 @@ Please consider supporting us so we can build a non-profit for this project (ツ
 
 ### Planning 
 
-See our [Kanban](https://github.com/orgs/QuestNetwork/projects/1) for the development of 0.9.4, feel free to add or pick up features!
+See our [Kanban](https://github.com/orgs/QuestNetwork/projects/1) for the development of 0.9.5, feel free to add or pick up features!
 
 ### Building
 
