@@ -30,11 +30,13 @@ Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/aw
 
 | Version | Linux | Mac | Windows |
 |---------:|------------------------------|------------------------------|------------------------------|
-| 0.9.3 | [q-desk-0.9.3.AppImage](https://github.com/QuestNetwork/qDesk/releases/download/0.9.3/q-desk-0.9.3.AppImage)  |  [q-desk-0.9.3.dmg](https://github.com/QuestNetwork/qDesk/releases/download/0.9.3/q-desk-0.9.3.dmg) | No Official Build |
+| 0.9.4 | [qDesk-0.9.4.AppImage](https://github.com/QuestNetwork/qDesk/releases/download/0.9.4/qDesk-0.9.4.AppImage) | [qDesk-0.9.4.dmg](https://github.com/QuestNetwork/qDesk/releases/download/0.9.4/qDesk-0.9.4.dmg) | No Official Build |
+| 0.9.3-rc1 | [q-desk-0.9.3.AppImage](https://github.com/QuestNetwork/qDesk/releases/download/0.9.3-rc1/q-desk-0.9.3.AppImage)  |  [q-desk-0.9.3.dmg](https://github.com/QuestNetwork/qDesk/releases/download/0.9.3-rc1/q-desk-0.9.3.dmg) | No Official Build |
 | 0.9.2 | [quest-messenger-0.9.2.AppImage](https://github.com/QuestNetwork/qd-messages-ts/releases/download/0.9.2/quest-messenger-0.9.2.AppImage) | [quest-messenger-0.9.2.dmg](https://github.com/QuestNetwork/qd-messages-ts/releases/download/0.9.2/quest-messenger-0.9.2.dmg) | No Official Build |
 | 0.9.1 | [quest-messenger-0.9.1.AppImage](https://github.com/QuestNetwork/qd-messages-ts/releases/download/0.9.1/quest-messenger-0.9.1.AppImage) | [quest-messenger-0.9.1.dmg](https://github.com/QuestNetwork/qd-messages-ts/releases/download/0.9.1/quest-messenger-0.9.1.dmg) | No Official Build |
 
 If you want anything else, you'll have to build from sources and probably fix some stuff.
+
 
 **WARNING:** 3rd party dependencies not audited. We recommend to use the downloaded app in a virtual machine until version 1.0.0.
 
@@ -52,9 +54,19 @@ https://ipfs.io/ipfs/QmZNvMbTPCEW1vebsEc5L2dx18PeYCKgwP5oMCVREkmr3p/
 
 http://ipfs.infura.io/ipfs/QmZNvMbTPCEW1vebsEc5L2dx18PeYCKgwP5oMCVREkmr3p/
 
-**0.9.3**
+**0.9.3-rc1**
 
-<img src='https://github.com/QuestNetwork/qd-messages-ts/raw/0.9.3/doc/images/pinatalink.png?raw=true' width=25%> <img src='https://github.com/QuestNetwork/qd-messages-ts/raw/0.9.3/doc/images/cloudflarelink.png?raw=true' width=25%> <img src='https://github.com/QuestNetwork/qd-messages-ts/raw/0.9.3/doc/images/ipfsiolink.png?raw=true' width=25%>
+<img src='https://github.com/QuestNetwork/qDesk/raw/0.9.3-rc1/doc/images/pinatalink.png?raw=true' width=25%> <img src='https://github.com/QuestNetwork/qDesk/raw/0.9.3-rc1/doc/images/cloudflarelink.png?raw=true' width=25%> <img src='https://github.com/QuestNetwork/qDesk/raw/0.9.3-rc1/doc/images/ipfsiolink.png?raw=true' width=25%>
+
+https://gateway.pinata.cloud/ipfs/QmTSuYWm2LXyYndEq2W62raSpjjUioSoSW3otSJRFQ1wra/
+
+https://cloudflare-ipfs.com/ipfs/QmTSuYWm2LXyYndEq2W62raSpjjUioSoSW3otSJRFQ1wra/
+
+https://ipfs.eternum.io/ipfs/QmTSuYWm2LXyYndEq2W62raSpjjUioSoSW3otSJRFQ1wra/
+
+https://ipfs.io/ipfs/QmTSuYWm2LXyYndEq2W62raSpjjUioSoSW3otSJRFQ1wra/
+
+http://ipfs.infura.io/ipfs/QmTSuYWm2LXyYndEq2W62raSpjjUioSoSW3otSJRFQ1wra/
 
 ## Lead Maintainer
 
@@ -158,7 +170,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.5**
-[qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private stations, so you can have direct conversations with people who have shared their private stations with you.
+- [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private stations, so you can have direct conversations with people who have shared their private stations with you.
 - Channel Folders are now sorted alphabetically by default
 - Sidebars resizable
 - Magic Folder Explorer/Guide On Main (Delete Folders Also Called From Icon Click There)
