@@ -168,15 +168,12 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Improved Favorites
 - Encrypt Settings/Files
 - [Quest Network Coral Process](https://github.com/QuestNetwork/quest-coral-js)
-
+- Offline Participants are semi transparent and end of list
 
 ## Roadmap
 
 **0.9.5**
 - [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private stations, so you can have direct conversations with people who have shared their private stations with you.
-- Channel Folders are now sorted alphabetically by default
-- Sidebars resizable
-- Magic Folder Explorer/Guide On Main (Delete Folders Also Called From Icon Click There)
 - Context Menu For Channels In Channel List
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
@@ -185,14 +182,17 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Increase Security For Private P2P Channels
 - Rename Channel/Favorite Folders
 - Reactions (react to messages with emojis, GIFs and stickers)
-- AES Encrypt Invite Tokens
-- AutoSave And P2P Sync For Message History Tree
-- Export Message Histories
-- Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
+- AutoSave And Quorum based P2P Sync For Message History Tree
+- Export Message/Timeline Cache
 
 **0.9.6**
+- Channel Folders are now sorted alphabetically by default
+- Sidebars resizable
+- Magic Folder Explorer/Guide On Main (Delete Folders Also Called From Icon Click There)
 - Parenting (reply to channel and private messages)
+- Quote/Extend Messages (message inheritance)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
+- AES Encrypt Invite Tokens
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Magic Folders 
 - Stickers
@@ -201,10 +201,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.7**
 - Private Channels Extendable To Groups (background create and join)
-- Quote/Extend Messages (message inheritance)
-- Participant Status
-- Offline Participants are semi transparent and end of list
 - Option to order channels by latest recent message
+- Participant Status
 
 **0.9.8**
 - Banners For Channels And Channel Folders
