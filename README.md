@@ -188,8 +188,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - AES Encrypt Invite Tokens
 - AutoSave And P2P Sync For Message History Tree
 - Export Message Histories
+- Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 
 **0.9.6**
+- Parenting (reply to channel and private messages)
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - Inline Preview For Media Files And Links (images, videos, etc)
 - Magic Folders 
@@ -224,8 +226,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - AutoResponse (from quick responses)
 
 **1.2.0**
-- Parenting (reply to channel and private messages)
-- Sync Message History (like syncing the blockchain, channel participants can offer a history, since every message is signed with an elliptic curve key, we can verify and merge it into ours)
 - Tips & Guide That Explains The App In An Onscreen Overlay
 
 **2.0.0**
