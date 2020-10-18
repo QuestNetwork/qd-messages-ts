@@ -186,6 +186,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Export Message/Timeline Cache
 
 **0.9.6**
+- Ethereum Payment Integration Beta
 - Channel Folders are now sorted alphabetically by default
 - Sidebars resizable
 - Magic Folder Explorer/Guide On Main (Delete Folders Also Called From Icon Click There)
@@ -209,9 +210,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - User Groups And Permissions
 - Badges for unread messages
 - Desktop Notifications
-
-**0.9.9**
-- Ethereum Payment Integration Beta
 
 **1.0.0**
 - Third Party Dependencies Audited, Security Issues Fixed
