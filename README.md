@@ -14,7 +14,7 @@ In 0.9.4 message histories are session only. In 0.9.5+ the message history is sy
 
 We have chosen Angular/Electron as an example environment because we believe it offers the best accessibility for developers coming from any other language/framework. The Quest Network is already being used in Python on PyQt5 and we aim to provide the underlying library in Go and wherever possible in Rust as well.
 
-Full IRC & Matrix integration is planned as well.
+We are planning the integration of other messaging networks like Matrix and IRC.
 
 [qDesk](https://github.com/QuestNetwork/qDesk) works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
