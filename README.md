@@ -6,9 +6,9 @@
 
 ## Description
 
-qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time, dag based end-to-end encrypted messenger with a feature to exchange goods and services and send payments. 
+qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time, dag based end-to-end encrypted messenger with a feature to exchange goods and services and send payments.
 
-In this module you can create end-to-end encrypted channels, organize them in folders, share the folder structure with your invite, control the channels you own, participate in self-owned channels. Have private conversations or public channel discussions. Use Audio/Video in 0.9.5+ for groups or private conversations. Ban and report users in 0.9.5+. Alias and profile picture are linked from [qD Social](https://github.com/QuestNetwork/qd-social-ts). Peers can nickname participants and override the information that references other peers social profiles. 
+In this module you can create end-to-end encrypted channels, organize them in folders, share the folder structure with your invite, control the channels you own, participate in self-owned channels. Have private conversations or public channel discussions. Use Audio/Video in 0.9.5+ for groups or private conversations. Ban and report users in 0.9.5+. Alias and profile picture are linked from [qD Social](https://github.com/QuestNetwork/qd-social-ts). Peers can nickname participants and override the information that references other peers social profiles.
 
 In 0.9.4 message histories are session only. In 0.9.5+ the message history is synced based on a quorum consensus scheme which creates an always online experience and lets peers view messages they missed when they were offline.
 
@@ -28,7 +28,7 @@ Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/aw
 
 ![Completion 1.0.0](https://img.shields.io/badge/OAEP-4096%20Bit-green) ![EC](https://img.shields.io/badge/EC-P&#8208;521-green) ![AES](https://img.shields.io/badge/AES-256%20Bit-yellow)
 
-[Quest OS](https://github.com/QuestNetwork/quest-os-js) uses [4096 Bit RSA-OAEP](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation) encryption, [256 Bit AES-CBC](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption and [NIST P-521 EC](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Fast_reduction_(NIST_curves)) signatures.
+[qOS](https://github.com/QuestNetwork/quest-os-js) uses [4096 Bit RSA-OAEP](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation) encryption, [256 Bit AES-CBC](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption and [NIST P-521 EC](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Fast_reduction_(NIST_curves)) signatures.
 
 ## Download
 
@@ -95,7 +95,7 @@ Please consider supporting us so we can build a non-profit for this project (ツ
 
 ## Development
 
-### Planning 
+### Planning
 
 See our [Kanban](https://github.com/orgs/QuestNetwork/projects/1) for the development of 0.9.5, feel free to add or pick up features!
 
@@ -203,7 +203,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Encrypted P2P File Transfer (End-To-End AES-256-CBC, Shared Via 4096 Bit OAEP)
 - AES Encrypt Invite Tokens
 - Inline Preview For Media Files And Links (images, videos, etc)
-- Magic Folders 
+- Magic Folders
 - Stickers
 - GIFs
 
