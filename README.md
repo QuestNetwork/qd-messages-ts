@@ -1,6 +1,6 @@
 ![Completion 1.0.0](https://img.shields.io/badge/completion%20v1.0.0-51%25-yellow) ![Help Wanted](https://img.shields.io/badge/%20-help--wanted-%23159818) ![Version 0.9.4](https://img.shields.io/badge/version-0.9.4-green) ![Version 0.9.5](https://img.shields.io/badge/version-0.9.5-blue) ![Sponsors](https://img.shields.io/badge/sponsors-1-orange)
 
-## qDesk Messages
+## qD Messages
 
 ![Screenshot](https://github.com/QuestNetwork/qd-messages-ts/raw/0.9.3/doc/images/0.9.3.png?raw=true)
 
@@ -8,7 +8,7 @@
 
 qDesk Messages is on track to become the first fully featured, cross-platform, publicly auditable, decentralized, real-time, dag based end-to-end encrypted messenger with a feature to exchange goods and services and send payments. 
 
-In this module you can create end-to-end encrypted channels, organize them in folders, share the folder structure with your invite, control the channels you own, participate in self-owned channels. Have private conversations or public channel discussions. Use Audio/Video in 0.9.5+ for groups or private conversations. Ban and report users in 0.9.5+. Alias and profile picture are linked from qDesk Social. Peers can nickname participants and override the information that references other peers social profiles. 
+In this module you can create end-to-end encrypted channels, organize them in folders, share the folder structure with your invite, control the channels you own, participate in self-owned channels. Have private conversations or public channel discussions. Use Audio/Video in 0.9.5+ for groups or private conversations. Ban and report users in 0.9.5+. Alias and profile picture are linked from [qD Social](https://github.com/QuestNetwork/qd-social-ts). Peers can nickname participants and override the information that references other peers social profiles. 
 
 In 0.9.4 message histories are session only. In 0.9.5+ the message history is synced based on a quorum consensus scheme which creates an always online experience and lets peers view messages they missed when they were offline.
 
@@ -160,7 +160,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - [qDesk Window Platform](https://qDesk.org)
 - Drive Lock Fixed
 - Offer "LocalStorage" As A Storage Container On The Web To Stay Signed In
-- [qDesk Social](https://github.com/QuestNetwork/qd-social-ts)
+- [qD Social](https://github.com/QuestNetwork/qd-social-ts)
 - Combine messages sent in sequence
 - Participant/Friends Folders
 - Set Alias (show custom name instead of pub key) and profile pictures
@@ -168,7 +168,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.4**
 - Scroll Bottom Fix
-- Search for participants from qDesk Social
+- Search for participants from [qD Social](https://github.com/QuestNetwork/qd-social-ts)
 - Pair with participants by QR Code
 - Click aliases to open stations.
 - Online/Offline Status
@@ -181,7 +181,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.5**
-- [qDesk Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private stations, so you can have direct conversations with people who have shared their private stations with you.
+- [qD Social](https://github.com/QuestNetwork/qd-social-ts) now allows to share private stations, so you can have direct conversations with people who have shared their private stations with you.
 - Context Menu For Channels In Channel List
 - Encrypted Audio/Video P2P Channels (Encryption Can Be Turned Off For Higher Quality)
 - Encrypted Audio/Video Group Channels (Encryption Can Be Turned Off For Higher Quality)
