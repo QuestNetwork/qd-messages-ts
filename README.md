@@ -14,7 +14,7 @@ In 0.9.4 message histories are session only. In 0.9.5+ the message history is sy
 
 We are planning the integration of other messaging protocols like Matrix and IRC.
 
-The messenger uses the second layer Quest Network PubSub protocol and if you are using [Quest OS](https://github.com/QuestNetwork/quest-os-js) in your application you can use the channels. This allows the use of bots. See the qOS API Reference for more information.
+The messenger uses the second layer Quest Network PubSub protocol and if you are using [Quest OS](https://github.com/QuestNetwork/quest-os-js) in your application you can use the channels as well. This allows the use of bots. See the qOS API Reference for more information.
 
 The messenger is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
