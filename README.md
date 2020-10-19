@@ -1,6 +1,6 @@
 ![Completion 1.0.0](https://img.shields.io/badge/completion%20v1.0.0-51%25-yellow) ![Help Wanted](https://img.shields.io/badge/%20-help--wanted-%23159818) ![Version 0.9.4](https://img.shields.io/badge/version-0.9.4-green) ![Version 0.9.5](https://img.shields.io/badge/version-0.9.5-blue) ![Sponsors](https://img.shields.io/badge/sponsors-1-orange)
 
-## qDesk Messages
+## qD Messages
 
 ![Screenshot](https://github.com/QuestNetwork/qd-messages-ts/raw/0.9.3/doc/images/0.9.3.png?raw=true)
 
