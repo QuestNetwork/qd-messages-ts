@@ -76,7 +76,9 @@ import { NbComponentStatus } from '@nebular/theme';
              [class.with-button]="showButton"
              type="text"
              placeholder="{{ fileOver ? 'Drop file to send' : 'Type a message' }}"
-             (keyup.enter)="sendMessage()">
+             (keyup.enter)="sendMessage()"
+             [mention]="peopleToMention"
+             >
       <button  nbSuffix nbButton ghost
               [status]="status || 'primary'"
 
@@ -98,6 +100,8 @@ import { NbComponentStatus } from '@nebular/theme';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbChatFormComponent {
+
+  peopleToMention: string[] = ["Noah", "Liam", "Mason", "Jacob"];
 
   newMessage = "";
   addEmoji($event){
