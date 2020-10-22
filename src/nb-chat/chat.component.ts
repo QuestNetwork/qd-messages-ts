@@ -198,6 +198,8 @@ export class NbChatComponent implements OnChanges, AfterContentInit, AfterViewIn
    */
   @Input() size: NbComponentSize;
 
+
+
   /**
    * Chat status color (adds specific styles):
    * `primary`, `success`, `info`, `warning`, `danger`

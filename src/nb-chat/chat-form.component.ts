@@ -13,6 +13,7 @@ import {
   HostListener,
   Input,
   Output,
+  OnInit
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -101,9 +102,16 @@ import { NbComponentStatus } from '@nebular/theme';
 })
 export class NbChatFormComponent {
 
-  peopleToMention: string[] = ["Noah", "Liam", "Mason", "Jacob"];
-
+  peopleToMention = [];
   newMessage = "";
+
+  @Input() channel: string;
+  ngOnInit(){
+    // console.log('qD Messages: Channel: Chat: Chat-Form: Channel:',this.channel)
+    //get mentionable participants from channel - do this every 120 seconds at least!
+    this.peopleToMention = ["Noah", "Liam", "Mason", "Jacob"];
+  }
+
   addEmoji($event){
     // let data = this.emojiForm.get('inputField');
     // data.patchValue(data.value + $event.emoji.native)
