@@ -240,49 +240,7 @@ async getChannelDisplayName(cleanChannelName){
 
   async getSocialProfileForChannelPubKey(channel,chPubKey){
 
-      let folderBase = this.q.os.channel.getParticipantFolders(channel);
-      if(folderBase.length > 0){
-        for(let i=0;i<folderBase.length;i++){
-          for(let i2=0;i2<folderBase[i]['participants'].length;i2++){
-
-            if(folderBase[i]['participants'][i2]['pubKey'] == chPubKey && typeof folderBase[i]['participants'][i2]['nick'] != 'undefined' &&  folderBase[i]['participants'][i2]['nick'] != ""){
-
-
-              let p;
-              try{
-                p = await this.q.os.social.profile.getByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
-              }catch(e){console.log(e)}
-              if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
-                p['nick'] = folderBase[i]['participants'][i2]['nick'];
-                return p;
-              }
-
-              return { nick: folderBase[i]['participants'][i2]['nick'] }
-            }
-            else if(folderBase[i]['participants'][i2]['pubKey'] == chPubKey){
-                let p;
-                try{
-                  p = await this.q.os.social.profile.getByChannelPubKey(folderBase[i]['participants'][i2]['pubKey']);
-                }catch(e){console.log(e)}
-                if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
-                  return p;
-                }
-            }
-          }
-        }
-      }
-
-      let p;
-      try{
-        p = await this.q.os.social.profile.getByChannelPubKey(chPubKey);
-      }catch(e){console.log(e)}
-
-      if(typeof p != 'undefined' && typeof p['alias'] != 'undefined'){
-        return p;
-      }
-
-       return { alias: 'Anonymous' };
-
+      return await this.q.os.social.getSocialProfileForChannelPubKey(channel,chPubKey);
 
   }
 

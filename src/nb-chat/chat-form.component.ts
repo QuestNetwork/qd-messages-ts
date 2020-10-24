@@ -16,7 +16,7 @@ import {
   OnInit
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 import { NbComponentStatus } from '@nebular/theme';
 
 /**
@@ -106,11 +106,17 @@ export class NbChatFormComponent {
   newMessage = "";
 
   @Input() channel: string;
-  ngOnInit(){
+  async ngOnInit(){
     // console.log('qD Messages: Channel: Chat: Chat-Form: Channel:',this.channel)
     //get mentionable participants from channel - do this every 120 seconds at least!
-    this.peopleToMention = ["Noah", "Liam", "Mason", "Jacob"];
+    this.peopleToMention = await this.q.os.social.getMentionItems(this.channel);
   }
+
+
+  constructor(private q: QuestOSService, protected cd: ChangeDetectorRef, protected domSanitizer: DomSanitizer) {
+
+  }
+
 
   addEmoji($event){
     // let data = this.emojiForm.get('inputField');
@@ -170,8 +176,7 @@ export class NbChatFormComponent {
 
   @HostBinding('class.file-over') fileOver = false;
 
-  constructor(protected cd: ChangeDetectorRef, protected domSanitizer: DomSanitizer) {
-  }
+
 
   @HostListener('drop', ['$event'])
   onDrop(event: any) {
