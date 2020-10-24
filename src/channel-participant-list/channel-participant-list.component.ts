@@ -1,6 +1,6 @@
 import { Component, Injectable,ElementRef,OnInit, TemplateRef, NgZone, ViewChild, OnDestroy,ChangeDetectorRef } from '@angular/core';
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
-import { UiService } from '../../../qDesk/src/app/services/ui.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
+import { UiService } from '../../../qD/src/app/services/ui.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { NbDialogService } from '@nebular/theme';
 import { v4 as uuidv4 } from 'uuid';

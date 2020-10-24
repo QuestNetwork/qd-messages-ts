@@ -16,7 +16,7 @@ import {
   OnInit
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
 import { NbComponentStatus } from '@nebular/theme';
 
 /**
@@ -109,6 +109,8 @@ export class NbChatFormComponent {
   async ngOnInit(){
     // console.log('qD Messages: Channel: Chat: Chat-Form: Channel:',this.channel)
     //get mentionable participants from channel - do this every 120 seconds at least!
+    console.log(this.channel);
+    console.log(await this.q.os.social.getMentionItems(this.channel));
     this.peopleToMention = await this.q.os.social.getMentionItems(this.channel);
   }
 

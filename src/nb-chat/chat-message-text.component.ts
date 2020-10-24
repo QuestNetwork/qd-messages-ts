@@ -1,6 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges, NgZone } from '@angular/core';
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $:any;

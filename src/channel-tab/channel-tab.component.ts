@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
-import { UiService } from '../../../qDesk/src/app/services/ui.service';
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
+import { UiService } from '../../../qD/src/app/services/ui.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
 
 @Component({
   selector: 'messages-channel-tab',

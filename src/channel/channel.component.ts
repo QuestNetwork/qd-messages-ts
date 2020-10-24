@@ -1,6 +1,6 @@
 import { Component, OnInit, Input,ViewChild, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import { UiService} from '../../../qDesk/src/app/services/ui.service';
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
+import { UiService} from '../../../qD/src/app/services/ui.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
 
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 

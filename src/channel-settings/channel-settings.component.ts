@@ -1,7 +1,7 @@
 
 import { Component, OnInit, TemplateRef, ViewChild, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
-import { UiService } from '../../../qDesk/src/app/services/ui.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
+import { UiService } from '../../../qD/src/app/services/ui.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 

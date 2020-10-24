@@ -1,7 +1,7 @@
 import { Component, Injectable,ElementRef,OnInit, TemplateRef, ViewChild, OnDestroy,ChangeDetectorRef,NgZone } from '@angular/core';
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
 import { NbMenuService,NbDialogService } from '@nebular/theme';
-import { UiService} from '../../../qDesk/src/app/services/ui.service';
+import { UiService} from '../../../qD/src/app/services/ui.service';
 import { BarcodeFormat } from '@zxing/library';
 import { Router, ActivatedRoute } from '@angular/router';
 
