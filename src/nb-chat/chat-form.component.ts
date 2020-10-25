@@ -68,7 +68,7 @@ import { NbComponentStatus } from '@nebular/theme';
 
     <ng-template #mentionList let-item="item">
 
-      <a (click)="addMention(item.data.socialPubKey)" style="color:red !important;">
+      <a (click)="addMention(item.data.socialPubKey)" style="color:yellow !important;cursor:pointer;text-decoration:none;">
       {{ item.label }}
       </a>
 
