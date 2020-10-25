@@ -255,8 +255,15 @@ export class NbChatFormComponent {
       try{
         let i = 0;
         let newMessageReplace = this.newMessage.split('@')[0];
+
+          if(this.newMessage.charAt(0) == '@'){
+            newMessageReplace += '@' + this.newMessage.split('@')[0].replace(this.newMessage.split('@')[0].split('\n')[0].split(' ')[0],this.mentions[i]);
+          }
+
           for(let m of this.newMessage.split('@')){
-            newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i]);
+            if(i > 0){
+                newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i]);
+            }
             i++;
           }
 

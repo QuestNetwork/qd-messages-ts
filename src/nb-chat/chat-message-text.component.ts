@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, OnChanges, NgZone } from '@angular/core';
 import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -34,8 +34,8 @@ declare var $:any;
 
               <div *ngFor="let chunk of row" class="chunkContainer">
                   <div *ngIf="!chunk['isEmoji'] && !chunk['isMention']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
-                  <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="22"  style="cursor:pointer;display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
-                  <div *ngIf="chunk['isMention']" class="textChunk" (click)="goToProfile(chunk['socialPubKey'])" style="font-weight:bold;">@{{ chunk['displayName'] }} </div>
+                  <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="22"  style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
+                  <div *ngIf="chunk['isMention']" class="textChunk" (click)="goToProfile(chunk['socialPubKey'])" style="cursor:pointer;font-weight:bold;">@{{ chunk['displayName'] }} </div>
               </div>
 
 
@@ -55,7 +55,7 @@ declare var $:any;
 })
 export class NbChatMessageTextComponent {
 
-  constructor(private ngZone: NgZone,private router: Router,private q: QuestOSService){
+  constructor(private cd: ChangeDetectorRef, private ngZone: NgZone,private router: Router,private q: QuestOSService){
 
   }
 
@@ -81,10 +81,12 @@ export class NbChatMessageTextComponent {
   messageRows
   async ngOnInit(){
     this.messageRows = await this.getArray(this.message);
+    this.cd.detectChanges();
     this.scrollBottom();
   }
   async ngOnChanges(){
       this.messageRows = await this.getArray(this.message);
+      this.cd.detectChanges();
       this.scrollBottom();
   }
 
@@ -154,12 +156,12 @@ export class NbChatMessageTextComponent {
           }
           rows[i][i2] = emojiChunk;
         }
-        else if(chunk.indexOf('@') == 0 && String(chunk) != '@undefined' ){
+        else if(chunk.indexOf('@') == 0 && String(chunk).indexOf('undefined') == -1 ){
             let thisChunk = { isEmoji: false, isMention: true, socialPubKey: chunk.substr(1), displayName: await this.q.os.social.getDisplayName(chunk.substr(1)) }
             rows[i][i2] = thisChunk;
             this.inMentionCache.push(chunk.substr(1));
         }
-        else if(chunk.indexOf('@') == 0 && String(chunk) == '@undefined' || this.inMentions(String(chunk).substr(1))){
+        else if(chunk.indexOf('@') == 0 && String(chunk).indexOf('undefined') > -1  || this.inMentions(String(chunk).substr(1))){
             rows[i][i2] = { isEmoji: false, isMention: false, text: '@Anonymous'}
         }
         else{
