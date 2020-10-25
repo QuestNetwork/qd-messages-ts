@@ -66,6 +66,15 @@ import { NbComponentStatus } from '@nebular/theme';
     <div class="message-row">
     <nb-form-field style="    width: 100%;">
 
+    <ng-template #mentionList let-item="item">
+
+      <a (click)="addMention(item.data.socialPubKey)" style="color:red !important;">
+      {{ item.label }}
+      </a>
+
+    </ng-template>
+
+
       <input [(ngModel)]='newMessage' nbInput
              fullWidth
              [status]="getInputStatus()"
@@ -78,7 +87,8 @@ import { NbComponentStatus } from '@nebular/theme';
              type="text"
              placeholder="{{ fileOver ? 'Drop file to send' : 'Type a message' }}"
              (keyup.enter)="sendMessage()"
-             [mention]="peopleToMention"
+             [mentionConfig]="peopleToMention"
+            [mentionListTemplate]="mentionList"
              >
       <button  nbSuffix nbButton ghost
               [status]="status || 'primary'"
@@ -105,13 +115,17 @@ export class NbChatFormComponent {
   peopleToMention = [];
   newMessage = "";
 
+  addMention(){
+
+  }
+
   @Input() channel: string;
   async ngOnInit(){
     // console.log('qD Messages: Channel: Chat: Chat-Form: Channel:',this.channel)
     //get mentionable participants from channel - do this every 120 seconds at least!
     console.log(this.channel);
-    console.log(await this.q.os.social.getMentionItems(this.channel));
-    this.peopleToMention = await this.q.os.social.getMentionItems(this.channel);
+    console.log(await this.q.os.social.getMentionConfig(this.channel));
+    this.peopleToMention = await this.q.os.social.getMentionConfig(this.channel);
   }
 
 
