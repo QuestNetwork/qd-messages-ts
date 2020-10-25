@@ -33,8 +33,9 @@ declare var $:any;
           <div *ngFor="let row of messageRows" style="display:block;clear:both;">
 
               <div *ngFor="let chunk of row" class="chunkContainer">
-                  <div *ngIf="!chunk['isEmoji']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
-                  <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="22"  style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
+                  <div *ngIf="!chunk['isEmoji'] && !chunk['isMention']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
+                  <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="22"  style="cursor:pointer;display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
+                  <div *ngIf="chunk['isMention']" class="textChunk" (click)="goToProfile(chunk['socialPubKey'])" style="font-weight:bold;">@{{ chunk['displayName'] }} </div>
               </div>
 
 
@@ -78,12 +79,12 @@ export class NbChatMessageTextComponent {
   }
 
   messageRows
-  ngOnInit(){
-    this.messageRows = this.getArray(this.message);
+  async ngOnInit(){
+    this.messageRows = await this.getArray(this.message);
     this.scrollBottom();
   }
-  ngOnChanges(){
-      this.messageRows = this.getArray(this.message);
+  async ngOnChanges(){
+      this.messageRows = await this.getArray(this.message);
       this.scrollBottom();
   }
 
@@ -95,7 +96,7 @@ export class NbChatMessageTextComponent {
     // this.q.os.ui.toTabIndex('2');
   }
 
-  getArray(message){
+  async getArray(message){
     let messageArray = [];
     let inputArray =  [];
 
@@ -147,18 +148,28 @@ export class NbChatMessageTextComponent {
         let chunk = String(rows[i][i2]).trim();
 
         if(chunk.indexOf(':') == 0 && chunk.substr(1).indexOf(':') == chunk.length-2){
-          let emojiChunk = { isEmoji: true, emojiColon: chunk.substr(1,chunk.length-2) };
+          let emojiChunk = { isEmoji: true, isMention: false, emojiColon: chunk.substr(1,chunk.length-2) };
           if(inputArray.length == 1){
             return emojiChunk;
           }
           rows[i][i2] = emojiChunk;
         }
+        else if(chunk.indexOf('@') == 0 && String(chunk) != '@undefined' ){
+            let thisChunk = { isEmoji: false, isMention: true, socialPubKey: chunk.substr(1), displayName: await this.q.os.social.getDisplayName(chunk.substr(1)) }
+            rows[i][i2] = thisChunk;
+            this.inMentionCache.push(chunk.substr(1));
+        }
+        else if(chunk.indexOf('@') == 0 && String(chunk) == '@undefined' || this.inMentions(String(chunk).substr(1))){
+            rows[i][i2] = { isEmoji: false, isMention: false, text: '@Anonymous'}
+        }
         else{
-          let thisChunk = { isEmoji: false, text: chunk }
+          let thisChunk = { isEmoji: false, isMention: false, text: chunk }
           rows[i][i2] = thisChunk;
         }
       }
     }
+
+
 
 
     // setTimeout( () => {
@@ -168,6 +179,11 @@ export class NbChatMessageTextComponent {
 
 
 
+  }
+
+  inMentionCache = [];
+  inMentions(key){
+    return this.q.os.utilities.inArray(this.inMentionCache,key);
   }
 
   /**
