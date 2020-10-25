@@ -66,9 +66,9 @@ import { NbComponentStatus } from '@nebular/theme';
     <div class="message-row">
     <nb-form-field style="    width: 100%;">
 
-    <ng-template #mentionList let-item="item" (click)="addMention(item.data.displayName,item.data.socialPubKey, $event)">
+    <ng-template #mentionList let-item="item" (click)="addMention(item.data.displayName,item.data.socialPubKey, $event)" [hidden]="!showMentions">
 
-      <a (click)="addMention(item.data.displayName,item.data.socialPubKey, $event)" style="color:yellow !important;cursor:pointer;text-decoration:none;">
+      <a (click)="addMention(item.data.displayName,item.data.socialPubKey, $event)" style="color:yellow !important;cursor:pointer;text-decoration:none;" [hidden]="!showMentions">
       {{ item.label }}
       </a>
 
@@ -77,6 +77,7 @@ import { NbComponentStatus } from '@nebular/theme';
 
       <input [(ngModel)]='newMessage' nbInput
              fullWidth
+             (opened)="mentionEntered()"
              [status]="getInputStatus()"
              (focus)="inputFocus = true"
              (blur)="inputFocus = false"
@@ -118,8 +119,12 @@ export class NbChatFormComponent {
 
   mentions = [];
 
+  showMentions = false;
+
+
   addMention(name,pk,e){
-    // this.newMessage += '@'+name;
+    this.showMentions = false;
+    this.newMessage += '@'+name;
     console.log('adding mention key...',pk);
     this.mentions.push(pk);
   }
@@ -131,6 +136,19 @@ export class NbChatFormComponent {
     console.log(this.channel);
     console.log(await this.q.os.social.getMentionConfig(this.channel));
     this.peopleToMention = await this.q.os.social.getMentionConfig(this.channel);
+
+
+  }
+
+
+  mentionEntered(){
+    this.showMentions = true;
+    //
+    // console.log(e);
+    // if(e.target.value.charAt(e.target.value.length-1) == '@'){
+    //   this.showMentions = true;
+    // }
+
   }
 
 
@@ -254,7 +272,6 @@ export class NbChatFormComponent {
       try{
         let i = 0;
         let newMessageReplace = ""
-        let skippy = false;
         // console.log(this.mentions);
         let min = 0;
         if(this.newMessage.charAt(0) == '@'){
