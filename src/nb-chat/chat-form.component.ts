@@ -66,7 +66,7 @@ import { NbComponentStatus } from '@nebular/theme';
     <div class="message-row">
     <nb-form-field style="    width: 100%;">
 
-    <ng-template #mentionList let-item="item">
+    <ng-template #mentionList let-item="item" (click)="addMention(item.data.displayName,item.data.socialPubKey, $event)">
 
       <a (click)="addMention(item.data.displayName,item.data.socialPubKey, $event)" style="color:yellow !important;cursor:pointer;text-decoration:none;">
       {{ item.label }}
@@ -256,7 +256,7 @@ export class NbChatFormComponent {
         let i = 0;
         let newMessageReplace = this.newMessage.split('@')[0];
           for(let m of this.newMessage.split('@')){
-            newMessageReplace += '@' + this.newMessage.replace(m.split('\n')[0].split(' ')[0],this.mentions[i]);
+            newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i]);
             i++;
           }
 
