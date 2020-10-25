@@ -29,7 +29,7 @@ declare var $:any;
         {{ sender['name'] }}
         </p>
 
-        <div *ngIf="messageRows.length > 0 && (messageRows.length > 1 || !messageRows[0][0]['isEmoji'])"  class="text">
+        <div *ngIf="messageRows != undefined && messageRows.length > 0 && (messageRows.length > 1 || !messageRows[0][0]['isEmoji'])"  class="text">
           <div *ngFor="let row of messageRows" style="display:block;clear:both;">
 
               <div *ngFor="let chunk of row" class="chunkContainer">
@@ -44,7 +44,7 @@ declare var $:any;
 
 
         <!-- is single emoji -->
-        <div *ngIf="messageRows.length == 1 && messageRows[0].length == 1 && messageRows[0][0]['isEmoji']">
+        <div *ngIf="messageRows != undefined && messageRows.length == 1 && messageRows[0].length == 1 && messageRows[0][0]['isEmoji']">
           <ngx-emoji emoji="{{ messageRows[0][0]['emojiColon'] }}" set="apple" size="64" class="" ></ngx-emoji>
         </div>
 
@@ -78,7 +78,7 @@ export class NbChatMessageTextComponent {
 
   }
 
-  messageRows
+  messageRows;
   async ngOnInit(){
     this.messageRows = await this.getArray(this.message);
     this.cd.detectChanges();

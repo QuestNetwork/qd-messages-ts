@@ -267,7 +267,7 @@ export class NbChatFormComponent {
         for(let m of this.newMessage.split('@')){
           if(i > 0){
             console.log(this.mentions);
-              newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i-1]);
+              newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i-1] + ' ');
           }
           i++;
         }
