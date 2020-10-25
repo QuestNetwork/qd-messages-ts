@@ -119,8 +119,7 @@ export class NbChatFormComponent {
   mentions = [];
 
   addMention(name,pk,e){
-    e.preventDefault();
-    this.newMessage += '@'+name;
+    // this.newMessage += '@'+name;
     console.log('adding mention key...',pk);
     this.mentions.push(pk);
   }
@@ -255,9 +254,12 @@ export class NbChatFormComponent {
       try{
         let i = 0;
         let newMessageReplace = ""
+        let skippy = false;
         // console.log(this.mentions);
+        let min = 0;
         if(this.newMessage.charAt(0) == '@'){
           console.log(this.mentions);
+          min = 1;
           newMessageReplace = '@' + newMessageReplace.replace(newMessageReplace.split('\n')[0].split(' ')[0],this.mentions[i]+' ');
         }
         else{
@@ -265,7 +267,7 @@ export class NbChatFormComponent {
         }
 
         for(let m of this.newMessage.split('@')){
-          if(i > 0){
+          if(i > min){
             console.log(this.mentions);
               newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i-1] + ' ');
           }

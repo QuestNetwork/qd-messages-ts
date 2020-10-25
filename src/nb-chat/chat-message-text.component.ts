@@ -35,7 +35,7 @@ declare var $:any;
               <div *ngFor="let chunk of row" class="chunkContainer">
                   <div *ngIf="!chunk['isEmoji'] && !chunk['isMention']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
                   <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="22"  style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
-                  <div *ngIf="chunk['isMention']" class="textChunk" (click)="goToProfile(chunk['socialPubKey'])" style="cursor:pointer;font-weight:bold;">@{{ chunk['displayName'] }} </div>
+                  <div *ngIf="chunk['isMention'] && chunk['displayName'] != 'Anonymous'" class="textChunk" (click)="goToProfile(chunk['socialPubKey'])" style="cursor:pointer;font-weight:bold;">@{{ chunk['displayName'] }} </div>
               </div>
 
 
@@ -145,6 +145,7 @@ export class NbChatMessageTextComponent {
     }
 
     for(let i=0;i<rows.length;i++){
+
       for(let i2=0;i2<rows[i].length;i2++){
 
         let chunk = String(rows[i][i2]).trim();
@@ -158,13 +159,12 @@ export class NbChatMessageTextComponent {
           }
           rows[i][i2] = emojiChunk;
         }
-        else if(chunk.indexOf('@') == 0 && String(chunk).indexOf('undefined') == -1 ){
-            let thisChunk = { isEmoji: false, isMention: true, socialPubKey: chunk.substr(1), displayName: await this.q.os.social.getDisplayName(chunk.substr(1)) }
-            rows[i][i2] = thisChunk;
+        else if(chunk.indexOf('@') == 0 && String(chunk).indexOf('undefined') == -1){
+            rows[i][i2] =  { isEmoji: false, isMention: true, socialPubKey: chunk.substr(1), displayName: await this.q.os.social.getDisplayName(chunk.substr(1)) };
             this.inMentionCache.push(chunk.substr(1));
         }
-        else if(chunk.indexOf('@') == 0 && String(chunk).indexOf('undefined') > -1  || this.inMentions(String(chunk).substr(1))){
-            rows[i][i2] = { isEmoji: false, isMention: false, text: '@Anonymous'}
+        else if(chunk.indexOf('@') == 0 && String(chunk).indexOf('undefined') > -1 ){
+            rows[i][i2] = { isEmoji: false, isMention: false, text: ''}
         }
         else{
           let thisChunk = { isEmoji: false, isMention: false, text: chunk }
