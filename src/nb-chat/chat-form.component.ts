@@ -254,20 +254,25 @@ export class NbChatFormComponent {
 
       try{
         let i = 0;
-        let newMessageReplace = this.newMessage.split('@')[0];
+        let newMessageReplace = ""
+        // console.log(this.mentions);
+        if(this.newMessage.charAt(0) == '@'){
+          console.log(this.mentions);
+          newMessageReplace = '@' + newMessageReplace.replace(newMessageReplace.split('\n')[0].split(' ')[0],this.mentions[i]+' ');
+        }
+        else{
+          newMessageReplace = this.newMessage.split('@')[0];
+        }
 
-          if(this.newMessage.charAt(0) == '@'){
-            newMessageReplace += '@' + this.newMessage.split('@')[0].replace(this.newMessage.split('@')[0].split('\n')[0].split(' ')[0],this.mentions[i]);
+        for(let m of this.newMessage.split('@')){
+          if(i > 0){
+            console.log(this.mentions);
+              newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i-1]);
           }
+          i++;
+        }
 
-          for(let m of this.newMessage.split('@')){
-            if(i > 0){
-                newMessageReplace += '@' + m.replace(m.split('\n')[0].split(' ')[0],this.mentions[i]);
-            }
-            i++;
-          }
-
-          this.newMessage = newMessageReplace;
+        this.newMessage = newMessageReplace;
 
       }catch(e){}
 

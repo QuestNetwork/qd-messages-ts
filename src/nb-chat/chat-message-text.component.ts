@@ -149,6 +149,8 @@ export class NbChatMessageTextComponent {
 
         let chunk = String(rows[i][i2]).trim();
 
+        console.log('chunk:',chunk)
+
         if(chunk.indexOf(':') == 0 && chunk.substr(1).indexOf(':') == chunk.length-2){
           let emojiChunk = { isEmoji: true, isMention: false, emojiColon: chunk.substr(1,chunk.length-2) };
           if(inputArray.length == 1){
