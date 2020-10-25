@@ -24,7 +24,7 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 import { LinkyModule } from 'ngx-linky';
-import { MentionModule } from 'angular-mentions';
+import { MentionModule } from '@angular2plus/angular-mentions';
 
 
 const NB_CHAT_COMPONENTS = [

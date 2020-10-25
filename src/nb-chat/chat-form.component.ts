@@ -68,7 +68,7 @@ import { NbComponentStatus } from '@nebular/theme';
 
     <ng-template #mentionList let-item="item">
 
-      <a (click)="addMention(item.data.socialPubKey)" style="color:yellow !important;cursor:pointer;text-decoration:none;">
+      <a (click)="addMention(item.data.displayName,item.data.socialPubKey, $event)" style="color:yellow !important;cursor:pointer;text-decoration:none;">
       {{ item.label }}
       </a>
 
@@ -89,6 +89,7 @@ import { NbComponentStatus } from '@nebular/theme';
              (keyup.enter)="sendMessage()"
              [mentionConfig]="peopleToMention"
             [mentionListTemplate]="mentionList"
+            dropUp='true'
              >
       <button  nbSuffix nbButton ghost
               [status]="status || 'primary'"
@@ -115,8 +116,13 @@ export class NbChatFormComponent {
   peopleToMention = [];
   newMessage = "";
 
-  addMention(){
+  mentions = [];
 
+  addMention(name,pk,e){
+    e.preventDefault();
+    this.newMessage += '@'+name;
+    console.log('adding mention key...',pk);
+    this.mentions.push(pk);
   }
 
   @Input() channel: string;
@@ -246,9 +252,22 @@ export class NbChatFormComponent {
   sendMessage() {
     if (this.droppedFiles.length || String(this.newMessage).trim().length) {
 
+      try{
+        let i = 0;
+        let newMessageReplace = this.newMessage.split('@')[0];
+          for(let m of this.newMessage.split('@')){
+            newMessageReplace += '@' + this.newMessage.replace(m.split('\n')[0].split(' ')[0],this.mentions[i]);
+            i++;
+          }
+
+          this.newMessage = newMessageReplace;
+
+      }catch(e){}
+
       this.send.emit({ message: this.newMessage, files: this.droppedFiles });
       this.message = '';
       this.newMessage = '';
+      this.mentions = [];
       this.droppedFiles = [];
     }
   }
