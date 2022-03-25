@@ -65,7 +65,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "electron": "^10.0.10",
+    "electron": "^13.6.6",
     "@angular/cli": "^10.0.10",
     "@angular/compiler-cli": "^10.0.10",
     "@types/file-saver": "^2.0.1",
