@@ -52,7 +52,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
-    "jszip": "^3.5.0",
+    "jszip": "^3.8.0",
     "ngx-file-drop": "^9.0.1",
     "ngx-linky": "^2.2.0",
     "open": "^7.2.0",
